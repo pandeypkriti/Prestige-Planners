@@ -20,9 +20,11 @@
     --navy-chip:#0B1626;   /* badge chips (never pure black) */
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
   body{font-family:'Poppins',sans-serif; font-weight:300; color:var(--ink); background:var(--cream); line-height:1.7; overflow-x:hidden;}
   h1,h2,h3{font-family:'Fraunces',serif; font-weight:400; color:var(--navy); line-height:1.12;}
+  /* editorial voice: every body paragraph reads in serif */
+  p{font-family:'Fraunces',serif; font-weight:400; letter-spacing:.005em;}
   img{display:block; max-width:100%;}
   /* editorial label system: italic serif, sentence case — never tracked ALL-CAPS */
   .eyebrow{font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:17px;
@@ -165,9 +167,12 @@
   .stat-row:hover{background:linear-gradient(90deg, rgba(196,162,76,.09), rgba(196,162,76,0) 75%);}
   .stat-row::before{content:''; position:absolute; left:0; top:50%; width:5px; height:5px; background:var(--gold); transform:translateY(-50%) rotate(45deg);
     transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease;}
-  /* the story spotlight: one stat in focus, the rest soften back */
-  .stat-row.dim{filter:blur(3.5px); opacity:.34;}
-  .stat-row.lit{background:linear-gradient(90deg, rgba(196,162,76,.13), rgba(196,162,76,0) 75%);}
+  /* the story spotlight: one stat in focus, the rest rest quietly (no blur, no disorientation) */
+  .stat-row{border-left:2px solid transparent;}
+  .stat-row b, .stat-row > span{transition:opacity .25s ease;}
+  .stat-row.dim b, .stat-row.dim > span{opacity:.38;}
+  .stat-row.lit{background:linear-gradient(90deg, rgba(196,162,76,.12), rgba(196,162,76,0) 75%);
+    border-left:2px solid var(--gold);}
   .stat-row.lit::before{transform:translateY(-50%) rotate(45deg) scale(1.5); box-shadow:0 0 12px rgba(196,162,76,.8);}
   .stat-row:last-child{border-bottom:1px solid rgba(196,162,76,.35);}
   .stat-row b{font-family:'Fraunces',serif; font-weight:600; font-size:42px; color:var(--navy); min-width:108px; line-height:1;}
@@ -187,44 +192,64 @@
   .deck-stage{position:relative; height:730px; perspective:1300px;}
   .ghost-num{position:absolute; top:-36px; right:-10px; font-family:'Fraunces',serif; font-weight:600;
     font-size:min(280px,20vw); line-height:1; color:rgba(0,47,95,.06); pointer-events:none; user-select:none; font-variant-numeric:oldstyle-nums;}
-  .deck{position:absolute; left:4%; top:40px; width:min(475px,90%);
+  .deck{position:absolute; left:4%; top:40px; width:min(490px,92%);
     transform-style:preserve-3d; transition:transform .55s cubic-bezier(.22,1,.36,1);}
-  .deck .card{position:absolute; left:0; top:0; width:100%; background:linear-gradient(165deg,#FBF8F1,#F5EEDF);
-    border:1px solid rgba(0,47,95,.1); border-radius:8px; padding:15px 15px 10px;
-    box-shadow:0 2px 6px rgba(0,47,95,.06), 0 30px 60px -28px rgba(0,47,95,.38); will-change:transform,opacity;
-    transition:transform .75s cubic-bezier(.22,1,.36,1), opacity .75s cubic-bezier(.22,1,.36,1);}
-  .deck .card .card-photo{position:relative; overflow:visible;}
-  .deck .card img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px; display:block;}
-  /* detail hotspots: pulsing markers that reveal an enlarging caption on hover */
+  /* Framer-style record card: white shell, the photo is a rounded inset panel on a cream mat */
+  .deck .card{position:absolute; left:0; top:0; width:100%; background:#FFFFFF;
+    border:none; border-radius:20px; padding:0;
+    box-shadow:0 2px 4px rgba(0,47,95,.06), 0 8px 24px rgba(0,47,95,.1), 0 0 0 1px rgba(196,162,76,.12);
+    will-change:transform,opacity;
+    transition:transform .6s cubic-bezier(.25,.46,.45,.94), opacity .6s cubic-bezier(.25,.46,.45,.94);}
+  .deck .card .card-photo{position:relative; overflow:visible; background:#F0E8D8; padding:10px; border-radius:20px 20px 0 0;}
+  .deck .card img{width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center 30%; border-radius:12px; display:block;}
+  .deck .card .cat{position:absolute; top:20px; right:20px; z-index:5;
+    background:rgba(255,255,255,.92); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
+    border-radius:100px; padding:4px 11px;
+    font-family:'Poppins',sans-serif; font-size:9.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-ink);}
+  /* detail hotspots: pulsing markers that reveal a caption on hover */
   .deck .card .hs{position:absolute; width:24px; height:24px; margin:-12px 0 0 -12px; padding:0; border:none;
     background:none; cursor:pointer; z-index:6; transform:translateZ(1px); opacity:0; transition:opacity .5s ease;}
   .deck .card[data-depth="0"] .hs{pointer-events:auto; opacity:1;}
   .deck .card:not([data-depth="0"]) .hs{pointer-events:none;}
-  .deck .card .hs .dot{position:absolute; inset:7px; border-radius:50%; background:var(--gold-glint);
-    box-shadow:0 0 0 3px rgba(196,162,76,.35), 0 1px 4px rgba(0,0,0,.4);}
-  .deck .card .hs .dot::before{content:''; position:absolute; inset:-6px; border-radius:50%;
-    border:1px solid rgba(246,236,200,.9); animation:hsPulse 2.2s ease-out infinite;}
-  @keyframes hsPulse{0%{transform:scale(.6); opacity:.9} 100%{transform:scale(1.7); opacity:0}}
-  .deck .card .hs-tip{position:absolute; left:50%; bottom:calc(100% + 8px); transform:translateX(-50%) translateY(6px) scale(.94);
-    width:max-content; max-width:210px; background:rgba(8,22,38,.92); color:#F3ECDC; border:1px solid rgba(196,162,76,.5);
-    border-radius:9px; padding:9px 13px; font-size:12.5px; line-height:1.45; text-align:left; font-family:'Poppins',sans-serif;
-    opacity:0; pointer-events:none; transition:opacity .3s ease, transform .3s cubic-bezier(.22,1,.36,1); z-index:8;
-    box-shadow:0 12px 30px rgba(0,0,0,.4); backdrop-filter:blur(4px);}
-  .deck .card .hs-tip em{font-style:normal; color:var(--gold-lt); font-weight:600; font-size:1.18em;
-    display:inline-block; transition:transform .3s ease;}
-  .deck .card .hs:hover .hs-tip, .deck .card .hs:focus-visible .hs-tip{opacity:1; transform:translateX(-50%) translateY(0) scale(1.06);}
-  .deck .card .hs:hover .hs-tip em{transform:scale(1.12);}
-  .deck .card h3{font-style:italic; font-weight:400; font-size:23px; margin:16px 4px 8px;}
-  .deck .card .meta{display:flex; justify-content:space-between; align-items:center; padding:0 4px 12px;
-    font-size:13.5px; color:#55636f; border-bottom:1px solid rgba(196,162,76,.3);}
-  .deck .card .stars{color:var(--gold); letter-spacing:2px; font-size:12px;}
-  .deck .card .quote{font-style:italic; font-family:'Fraunces',serif; font-size:15px; color:var(--navy); padding:12px 4px 8px;}
-  .deck .card .quote span{display:block; font-family:'Poppins',sans-serif; font-style:normal; font-size:12px; color:rgba(0,47,95,.55); margin-top:6px;}
-  .deck .card[data-depth="0"]{transform:rotate(-1.5deg); z-index:4;}
-  .deck .card[data-depth="1"]{transform:translate(14px,22px) scale(.955) rotate(1deg); z-index:3;}
-  .deck .card[data-depth="2"]{transform:translate(28px,42px) scale(.91) rotate(-.5deg); z-index:2;}
-  .deck .card[data-depth="3"]{transform:translate(40px,60px) scale(.87); opacity:.4; z-index:1;}
-  .deck .card.leaving{transform:translateX(56px) rotate(-2.5deg); opacity:0;}
+  .deck .card .hs .dot{position:absolute; inset:0; border-radius:50%;
+    border:1.5px solid var(--gold); background:rgba(196,162,76,.18); transition:background .2s ease, transform .2s ease;}
+  .deck .card .hs .dot::after{content:''; position:absolute; left:50%; top:50%; width:8px; height:8px;
+    margin:-4px 0 0 -4px; border-radius:50%; background:var(--gold);}
+  .deck .card .hs:hover .dot{background:rgba(196,162,76,.35); transform:scale(1.12);}
+  .deck .card .hs .dot::before{content:''; position:absolute; inset:-1px; border-radius:50%;
+    border:1px solid var(--gold); animation:hsPulse 2.4s ease-out infinite; animation-delay:var(--hd,0s);}
+  .deck .card .hs:hover .dot::before{animation-play-state:paused; opacity:0;}
+  @keyframes hsPulse{0%{transform:scale(1); opacity:.6} 100%{transform:scale(2.2); opacity:0}}
+  .deck .card .hs-tip{position:absolute; left:50%; bottom:calc(100% + 10px); transform:translateX(-50%) translateY(5px);
+    width:190px; background:var(--navy); color:rgba(251,248,241,.9); border:1px solid rgba(196,162,76,.5);
+    border-radius:6px; padding:11px 14px; font-size:12.5px; font-weight:400; line-height:1.45; text-align:left;
+    font-family:'Fraunces',serif;
+    opacity:0; pointer-events:none; transition:opacity .18s ease, transform .18s cubic-bezier(.16,1,.3,1); z-index:8;
+    box-shadow:0 8px 24px rgba(0,0,0,.32);}
+  .deck .card .hs-tip::after{content:''; position:absolute; top:100%; left:50%; margin-left:-5px;
+    border:5px solid transparent; border-top-color:var(--navy);}
+  .deck .card .hs-tip em{font-style:italic; color:var(--gold); font-weight:400;}
+  .deck .card .hs:hover .hs-tip, .deck .card .hs:focus-visible .hs-tip{opacity:1; transform:translateX(-50%) translateY(0);}
+  /* tips near the card edges stay inside the photo */
+  .deck .card .hs.edge-l .hs-tip{left:0; transform:translateX(0) translateY(5px);}
+  .deck .card .hs.edge-l:hover .hs-tip{transform:translateX(0) translateY(0);}
+  .deck .card .hs.edge-l .hs-tip::after{left:12px; margin-left:0;}
+  .deck .card .hs.edge-r .hs-tip{left:auto; right:0; transform:translateX(0) translateY(5px);}
+  .deck .card .hs.edge-r:hover .hs-tip{transform:translateX(0) translateY(0);}
+  .deck .card .hs.edge-r .hs-tip::after{left:auto; right:12px; margin-left:0;}
+  .deck .card h3{font-weight:300; font-size:24px; line-height:1.25; margin:16px 20px 6px; font-style:normal;}
+  .deck .card .meta{display:flex; justify-content:space-between; align-items:center; margin:0 20px; padding:0 0 12px;
+    font-size:12.5px; color:#9B8B6E; font-family:'Poppins',sans-serif; border-bottom:1px solid rgba(196,162,76,.15);}
+  .deck .card .stars{color:var(--gold); letter-spacing:2px; font-size:11px;}
+  .deck .card .quote{font-style:italic; font-family:'Fraunces',serif; font-size:14.5px; line-height:1.55; color:#6B5A3E;
+    margin:12px 20px 18px; padding:0 0 0 12px; border-left:2px solid var(--gold);}
+  .deck .card .quote span{display:block; font-family:'Poppins',sans-serif; font-style:normal; font-size:11.5px; color:rgba(0,47,95,.55); margin-top:6px;}
+  .deck .card[data-depth="0"]{transform:none; z-index:4;}
+  .deck .card[data-depth="1"]{transform:translate(-2px,4px) scale(.97) rotate(-1deg); opacity:.85; z-index:3;}
+  .deck .card[data-depth="2"]{transform:translate(-5px,10px) scale(.94) rotate(-3deg); opacity:.7; z-index:2;}
+  .deck .card[data-depth="3"]{transform:translate(-10px,18px) scale(.9) rotate(-6deg); opacity:.55; z-index:1;}
+  .deck .card.leaving{transform:translateX(110%) rotate(6deg); opacity:0;
+    transition:transform .38s cubic-bezier(.4,0,.2,1), opacity .38s cubic-bezier(.4,0,.2,1);}
   .deck-stage:not(.in) .card{opacity:0; transform:translateY(90px) rotate(6deg);}
   @media(max-width:1024px){
     .deck-grid{grid-template-columns:1fr; gap:24px;}
@@ -351,7 +376,13 @@
   /* ---------- 6+7. HIGHLIGHT — marquee words sway behind the video as it scales to fullscreen ---------- */
   /* the champagne glass panel: the page's one dark editorial moment */
   .vid-pin{height:190vh;
-    background:radial-gradient(90% 70% at 50% -10%, rgba(196,162,76,.16), transparent 60%), var(--navy-ink);}
+    background:
+      radial-gradient(90% 70% at 50% -10%, rgba(196,162,76,.16), transparent 60%),
+      /* navy tilework: hairline gold grout on deep navy, with a soft sheen per tile */
+      repeating-linear-gradient(0deg, rgba(196,162,76,.07) 0 1px, transparent 1px 96px),
+      repeating-linear-gradient(90deg, rgba(196,162,76,.07) 0 1px, transparent 1px 96px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.016) 0 48px, transparent 48px 96px),
+      linear-gradient(160deg, #0A1C33 0%, var(--navy-ink) 55%, #061225 100%);}
   .vid-stick{position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;}
   /* the swaying word tickers live behind the frame */
   .vid-tickers{position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; justify-content:center; gap:7vh;
@@ -401,24 +432,47 @@
   .testi .head{max-width:640px; margin-bottom:56px;}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold);}
   .testi .head p{color:#55636f; font-size:15px; margin-top:8px;}
-  .spot{max-width:860px; margin:0 auto; text-align:center;}
-  .spot-quote blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:300;
-    font-size:clamp(24px,2.7vw,36px); line-height:1.42; color:var(--navy); text-wrap:balance; min-height:5em;}
-  .spot-quote blockquote .w{display:inline-block; margin-right:.24em;}
-  .spot-quote blockquote .hl{font-style:normal; color:var(--gold);}
-  .spot-who{margin-top:26px; font-size:15px;}
-  .spot-who b{display:block; font-weight:500; color:var(--navy);}
-  .spot-who span{color:rgba(0,47,95,.55); font-size:13.5px;}
-  .spot-ctrl{margin-top:26px; display:flex; align-items:center; justify-content:center; gap:18px;}
-  .spot-progress{width:120px; height:1px; background:rgba(0,47,95,.15); overflow:hidden;}
-  .spot-progress i{display:block; height:100%; width:100%; background:var(--gold); transform:scaleX(0); transform-origin:left;}
-  .spot-arrow{width:44px; height:44px; border-radius:50%; border:1px solid rgba(0,47,95,.25); background:none; cursor:pointer;
-    color:var(--navy); display:flex; align-items:center; justify-content:center; transition:.3s; flex:none;}
-  .spot-arrow:hover{border-color:var(--gold); color:var(--gold);}
-  .spot-arrow svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;}
-  .spot-count{font-family:'Fraunces',serif; font-size:15px; color:rgba(0,47,95,.6);}
-  .testi-note{margin-top:18px; font-size:12px; font-style:italic; color:rgba(0,47,95,.45);}
-  @media(max-width:860px){ .spot{max-width:100%;} }
+  /* the layered letter deck: three client stories held like a hand of cards */
+  .t-wrap{max-width:620px; margin:0 auto; position:relative;}
+  .t-deck{position:relative; height:330px;}
+  .t-card{position:absolute; left:0; right:0; top:0; min-height:280px; border-radius:18px; padding:30px 38px 24px;
+    border:1px solid rgba(196,162,76,.35); will-change:transform,opacity;
+    transition:transform .58s cubic-bezier(.16,1,.3,1), opacity .58s cubic-bezier(.16,1,.3,1),
+      background-color .58s ease, box-shadow .58s ease;}
+  .t-card .tq-mark{position:absolute; top:16px; left:26px; font-family:'Fraunces',serif; font-style:italic;
+    font-size:56px; line-height:1; color:var(--gold); opacity:.7; pointer-events:none;}
+  .t-card .mono{position:absolute; top:22px; right:26px; font-family:'Fraunces',serif; font-style:italic;
+    font-size:19px; color:var(--gold); opacity:.24; pointer-events:none;}
+  .t-card blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:16.5px;
+    line-height:1.65; color:#2A1E0E; margin:36px 0 0; text-wrap:pretty;}
+  .t-card blockquote .hl{font-style:normal; color:var(--gold-ink);}
+  .t-card .t-foot{display:flex; align-items:center; justify-content:space-between;
+    border-top:1px solid rgba(196,162,76,.22); margin-top:18px; padding-top:14px;}
+  .t-card .t-who b{display:block; font-family:'Poppins',sans-serif; font-weight:600; font-size:11px;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--navy);}
+  .t-card .t-who span{font-family:'Poppins',sans-serif; font-size:10.5px; letter-spacing:.06em; color:var(--gold-ink);}
+  .t-card .t-stars{color:var(--gold); font-size:11px; letter-spacing:2px;}
+  .t-card.tp0{background:#FBF8F1; transform:none; opacity:1; z-index:3;
+    box-shadow:0 2px 4px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.07), 0 0 0 1px rgba(196,162,76,.12);}
+  .t-card.tp1{background:#F6EED9; transform:translateY(16px) scale(.958); opacity:.85; z-index:2; box-shadow:none;}
+  .t-card.tp2{background:#EFDFC8; transform:translateY(30px) scale(.918); opacity:.62; z-index:1; box-shadow:none;}
+  .t-ctrl{display:flex; align-items:center; justify-content:center; gap:24px; margin-top:64px;}
+  .t-arrow{width:36px; height:36px; border-radius:50%; border:1px solid rgba(196,162,76,.45); background:transparent;
+    color:var(--gold-ink); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s ease; flex:none;}
+  .t-arrow:hover{background:rgba(196,162,76,.18); border-color:var(--gold);}
+  .t-arrow svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  .t-dots{display:flex; gap:8px; align-items:center;}
+  .t-dots button{width:6px; height:6px; border-radius:50%; background:rgba(196,162,76,.35); border:none; padding:0; cursor:pointer;
+    transition:width .35s cubic-bezier(.16,1,.3,1), background .3s ease, border-radius .35s ease;}
+  .t-dots button.on{width:24px; border-radius:3px; background:var(--gold);}
+  /* gold light pooling beneath the deck */
+  .t-glow{position:absolute; left:50%; bottom:-60px; transform:translateX(-50%); width:520px; height:260px;
+    pointer-events:none; background:radial-gradient(ellipse at 50% 100%, rgba(196,162,76,.16), transparent 70%);}
+  @media(max-width:860px){
+    .t-deck{height:400px;}
+    .t-card{min-height:350px; padding:24px 22px 20px;}
+    .t-card blockquote{font-size:15px;}
+  }
 
   /* ---------- 9. FAQ — coverflow of question boards ---------- */
   /* ---------- 1.5 ABOUT — layered editorial: her portrait over her own name ---------- */
@@ -494,17 +548,31 @@
   .meet-copy h2 em{font-style:italic; color:transparent;
     background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
     background-size:220% 100%; -webkit-background-clip:text; background-clip:text; animation:emShine 5.5s ease-in-out infinite;}
-  .meet-copy p{color:#4c5b68; font-size:16px; line-height:1.8; max-width:46ch; margin:20px 0 0;}
+  .meet-copy p{color:#41525f; font-size:18.5px; line-height:1.85; max-width:44ch; margin:22px 0 0;}
+  /* her story pops up word by word as it scrolls into view */
+  .meet-copy p .mw{display:inline-block; margin-right:.28em; opacity:0; transform:translateY(16px); filter:none;
+    transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    transition-delay:calc(var(--wi) * 28ms);}
+  .meet.in .meet-copy p .mw{opacity:1; transform:none;}
+  /* a giant italic outline of her name drifts behind the section */
+  .meet-word{position:absolute; z-index:1; left:50%; top:12%; transform:translateX(-50%);
+    font-family:'Fraunces',serif; font-style:italic; font-weight:300; white-space:nowrap;
+    font-size:clamp(120px,17vw,260px); color:transparent; -webkit-text-stroke:1px rgba(196,162,76,.22);
+    pointer-events:none; user-select:none; animation:meetDrift 30s ease-in-out infinite alternate;}
+  @keyframes meetDrift{from{transform:translateX(-54%)} to{transform:translateX(-46%)}}
   @media(max-width:860px){
     .meet-grid{grid-template-columns:1fr; gap:30px;}
     .meet-fig{aspect-ratio:4/5; max-width:340px; margin:0 auto;}
     .meet-copy{text-align:center;} .meet-copy p{margin-left:auto; margin-right:auto;}
   }
 
-  .faq{background:var(--cream); padding:120px 0 128px; position:relative; overflow:hidden;}
+  /* the questions PIN on screen: scrolling leafs through the boards, then releases */
+  .faq-pin{height:340vh;}
+  .faq{background:var(--cream); position:sticky; top:0; height:100vh; padding:0; overflow:hidden;
+    display:flex; flex-direction:column; justify-content:center;}
   .faq::before{content:''; position:absolute; right:-10%; top:8%; width:min(900px,72vw); height:84%;
     background:radial-gradient(ellipse at center, rgba(251,248,241,.75), rgba(251,248,241,0) 70%); pointer-events:none;}
-  .faq-head{text-align:center; max-width:660px; margin:0 auto 56px; position:relative; z-index:2;}
+  .faq-head{text-align:center; max-width:660px; margin:0 auto 44px; position:relative; z-index:2; width:100%;}
   .faq-head .eyebrow.rule{justify-content:center;}
   .faq-head h2{font-size:clamp(32px,4.4vw,56px); margin:12px 0 12px;} .faq-head h2 em{font-style:italic; color:var(--gold);}
   .faq-head p{color:#55636f; font-size:15.5px;}
@@ -621,7 +689,14 @@
     .btn{padding:13px 24px; font-size:13.5px;}
     .hero-slug{gap:10px;}
     .hero-slug .hs-line{width:32px;}
-    .hero-slug .hs-text{font-size:10.5px; letter-spacing:.22em;}
+    .hero-slug .hs-text{font-size:9.5px; letter-spacing:.18em;}
+    /* the nav row must FIT a phone: smaller wordmark, tighter pill */
+    nav .wrap{gap:10px;}
+    .logo{font-size:17px;}
+    .logo span{font-size:7px; letter-spacing:.24em;}
+    nav .btn.has-arr{padding:7px 7px 7px 16px; font-size:11.5px; gap:9px;}
+    nav .btn .arr{width:28px; height:28px; border-radius:9px;}
+    nav .btn .arr svg{width:12px; height:12px;}
     .deck-sec{padding:72px 0 84px;}
     .deck-band{width:100%;}
     .deck-grid{gap:32px;}
@@ -635,8 +710,15 @@
     .blur-line{font-size:clamp(26px,6.4vw,40px);}
     .services{padding:72px 0;}
     .services .head{grid-template-columns:1fr; gap:16px;}
-    .acc{flex-direction:column; height:auto; margin-top:24px;}
-    .acc-card{min-height:96px;} .acc-card.active{min-height:420px; flex:1;}
+    .acc{flex-direction:column; height:auto; margin-top:24px; gap:12px;}
+    .acc-card{min-height:96px; border-radius:18px;} .acc-card.active{min-height:420px; flex:1;}
+    /* phone: keep the numerals and labels comfortably inside the card, like desktop */
+    .acc-num{top:18px; right:20px; font-size:34px;}
+    .acc-label{left:20px; bottom:18px;}
+    .acc-label h3{font-size:18px;}
+    .acc-full .txt{left:20px; right:20px; bottom:20px; width:auto;}
+    .acc-full .txt h3{font-size:20px;}
+    .acc-full .txt p{font-size:13px;}
     .vid-frame{width:88vw; height:52vh;}
     .vid-tickers{gap:4vh;}
     .vid-cap{bottom:22px;}
@@ -650,7 +732,8 @@
     .ab-panel p{font-size:14px; line-height:1.6;}
     .ab-stack{height:40vh;}
     .stk{width:min(230px,64%);}
-    .faq{padding:80px 0 88px;}
+    .faq-pin{height:auto;}
+    .faq{position:static; height:auto; display:block; padding:80px 0 88px;}
     .final .sub{font-size:15px;}
     footer .wrap{grid-template-columns:1fr; gap:26px;}
     .wa-float{width:50px; height:50px; bottom:18px; right:18px;}
@@ -716,13 +799,14 @@
     <i style="--x:78%;--y:20%;--d:2.8s"></i><i style="--x:88%;--y:58%;--d:.4s"></i><i style="--x:36%;--y:40%;--d:3.7s"></i>
   </div>
   <div class="glow-orb o5" aria-hidden="true"></div>
+  <div class="meet-word" aria-hidden="true">Benafsha</div>
   <div class="wrap">
     <div class="meet-grid">
       <div class="meet-fig reveal"><img src="assets/founder-large.jpg" alt="Benafsha Engineer-Mulla, founder of Prestige Planners"></div>
       <div class="meet-copy">
         <h2 class="reveal">Meet <em>Benafsha</em></h2>
         <p class="reveal">The founder behind every Prestige celebration. London-raised, Dubai-based, and personally involved in every event from the first idea to the final toast. When you work with Prestige, you work directly with her.</p>
-        <a class="btn has-arr meet-cta reveal" href="https://wa.me/971509118505?text=Hi%20Benafsha%2C%20I%27d%20love%20to%20talk%20about%20an%20event." target="_blank" rel="noopener">Say hello on WhatsApp
+        <a class="btn has-arr meet-cta reveal" href="https://wa.me/971509118505?text=Hi%20Benafsha%2C%20I%27d%20love%20to%20plan%20my%20event." target="_blank" rel="noopener">Let's plan your event
           <span class="arr" aria-hidden="true"><svg class="a1" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg><svg class="a2" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
         </a>
       </div>
@@ -750,8 +834,9 @@
         <div class="card" data-depth="0">
           <div class="card-photo">
             <img src="assets/event-glamour.png" alt="Black and gold birthday celebration by Prestige Planners">
-            <button class="hs" style="left:31%;top:45%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Hand-gilded <em>charger plates</em> laid at every seat</span></button>
-            <button class="hs" style="left:69%;top:66%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A live <em>gold-leaf</em> dessert table</span></button>
+            <span class="cat">Birthday</span>
+            <button class="hs edge-l" style="left:31%;top:45%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Hand-gilded <em>charger plates</em> laid at every seat</span></button>
+            <button class="hs edge-r" style="left:69%;top:66%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A live <em>gold-leaf</em> dessert table</span></button>
           </div>
           <h3>A black &amp; gold fortieth</h3>
           <div class="meta"><span>120 guests · Dubai</span><span class="stars">★★★★★</span></div>
@@ -760,8 +845,9 @@
         <div class="card" data-depth="1">
           <div class="card-photo">
             <img src="assets/event-butterfly.png" alt="Enchanted garden baby shower by Prestige Planners">
+            <span class="cat">Baby shower</span>
             <button class="hs" style="left:40%;top:39%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A suspended <em>butterfly canopy</em>, hand-set</span></button>
-            <button class="hs" style="left:63%;top:63%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>fresh peony</em> arch, built on site</span></button>
+            <button class="hs edge-r" style="left:63%;top:63%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>fresh peony</em> arch, built on site</span></button>
           </div>
           <h3>An enchanted garden shower</h3>
           <div class="meta"><span>60 guests · Dubai</span><span class="stars">★★★★★</span></div>
@@ -770,8 +856,9 @@
         <div class="card" data-depth="2">
           <div class="card-photo">
             <img src="assets/event-banquet.png" alt="Al fresco banquet under festoon lights by Prestige Planners">
-            <button class="hs" style="left:29%;top:52%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Two hundred <em>festoon bulbs</em>, strung by hand</span></button>
-            <button class="hs" style="left:68%;top:47%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A single <em>ten-metre</em> banquet table</span></button>
+            <span class="cat">Private dining</span>
+            <button class="hs edge-l" style="left:29%;top:52%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Two hundred <em>festoon bulbs</em>, strung by hand</span></button>
+            <button class="hs edge-r" style="left:68%;top:47%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A single <em>ten-metre</em> banquet table</span></button>
           </div>
           <h3>Dinner under the lights</h3>
           <div class="meta"><span>48 guests · Palm Jumeirah</span><span class="stars">★★★★★</span></div>
@@ -780,6 +867,7 @@
         <div class="card" data-depth="3">
           <div class="card-photo">
             <img src="assets/hero-scene.png" alt="Cascading floral walkway by Prestige Planners">
+            <span class="cat">Corporate gala</span>
             <button class="hs" style="left:44%;top:41%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Cascading orchids</em> along the entrance</span></button>
             <button class="hs" style="left:58%;top:66%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>mirrored aisle</em> that doubled the candlelight</span></button>
           </div>
@@ -828,7 +916,7 @@
         <img src="assets/event-glamour.png" alt="Black and gold glamour birthday (full room view)">
         <div class="veil"></div>
         <div class="info"><div class="wrap">
-          <div><span class="tag">Birthday</span><h3>Black &amp; Gold Glamour</h3><div class="venue">[Venue: replace] · Dubai</div>
+          <div><span class="tag">Birthday</span><h3>Black &amp; Gold Glamour</h3><div class="venue">Dubai</div>
             <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20glamorous%20birthday%20celebration." target="_blank" rel="noopener">Enquire about this event</a>
           </div>
           <div class="idx">.01</div>
@@ -838,7 +926,7 @@
         <img src="assets/event-butterfly.png" alt="Enchanted pastel butterfly garden shower (full room view)">
         <div class="veil"></div>
         <div class="info"><div class="wrap">
-          <div><span class="tag">Shower</span><h3>Enchanted Butterfly Garden</h3><div class="venue">[Venue: replace] · Dubai</div>
+          <div><span class="tag">Shower</span><h3>Enchanted Butterfly Garden</h3><div class="venue">Dubai</div>
             <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20baby%20shower." target="_blank" rel="noopener">Enquire about this event</a>
           </div>
           <div class="idx">.02</div>
@@ -848,7 +936,7 @@
         <img src="assets/event-banquet.png" alt="Golden-hour al fresco banquet (full view)">
         <div class="veil"></div>
         <div class="info"><div class="wrap">
-          <div><span class="tag">Private dining</span><h3>Al Fresco Banquet</h3><div class="venue">[Venue: replace] · Dubai</div>
+          <div><span class="tag">Private dining</span><h3>Al Fresco Banquet</h3><div class="venue">Dubai</div>
             <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20private%20dinner." target="_blank" rel="noopener">Enquire about this event</a>
           </div>
           <div class="idx">.03</div>
@@ -929,26 +1017,39 @@
       <h2 class="reveal">Kind words from <em>our clients</em></h2>
       <p class="reveal">One story at a time, from the people who lived them.</p>
     </div>
-    <div class="spot">
-      <div class="spot-quote">
-        <blockquote id="spotQuote" aria-live="polite"></blockquote>
-        <div class="spot-who"><b id="spotName"></b><span id="spotEvent"></span></div>
-        <div class="spot-ctrl">
-          <button class="spot-arrow" id="spotPrev" aria-label="Previous story"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <div class="spot-progress"><i id="spotBar"></i></div>
-          <button class="spot-arrow" id="spotNext" aria-label="Next story"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-          <div class="spot-count" id="spotCount">1 of 3</div>
-        </div>
+    <div class="t-wrap">
+      <div class="t-glow" aria-hidden="true"></div>
+      <div class="t-deck" id="tDeck" aria-live="polite">
+        <article class="t-card tp0">
+          <span class="tq-mark" aria-hidden="true">&ldquo;</span><span class="mono" aria-hidden="true">S &amp; R</span>
+          <blockquote>From the first tasting to the last dance, every decision had already been thought through. Our celebration <span class="hl">felt effortless,</span> and our families still talk about it.</blockquote>
+          <div class="t-foot"><div class="t-who"><b>S. &amp; R.</b><span>Wedding weekend, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+        </article>
+        <article class="t-card tp1">
+          <span class="tq-mark" aria-hidden="true">&ldquo;</span><span class="mono" aria-hidden="true">A &amp; K</span>
+          <blockquote>She made three hundred guests feel like <span class="hl">the only ones in the room.</span> Every corner held a detail we had not even thought to ask for.</blockquote>
+          <div class="t-foot"><div class="t-who"><b>A. &amp; K.</b><span>Engagement, Meydan</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+        </article>
+        <article class="t-card tp2">
+          <span class="tq-mark" aria-hidden="true">&ldquo;</span><span class="mono" aria-hidden="true">M</span>
+          <blockquote>We handed over a colour and a feeling, and walked into a room that <span class="hl">understood us completely.</span> Planning felt calm from start to finish.</blockquote>
+          <div class="t-foot"><div class="t-who"><b>M.</b><span>Milestone birthday, Palm Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+        </article>
+      </div>
+      <div class="t-ctrl">
+        <button class="t-arrow" id="tPrev" aria-label="Previous story"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="t-dots" id="tDots"></div>
+        <button class="t-arrow" id="tNext" aria-label="Next story"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 9. FAQ — coverflow of question boards -->
+<!-- 9. FAQ — pinned: the board stays put while scroll leafs through the questions -->
+<div class="faq-pin" id="faqPin">
 <section class="faq grain" id="faq">
   <div class="wrap">
     <div class="faq-head">
-      <div class="eyebrow rule reveal">Questions</div>
       <h2 class="reveal">Questions, <em>answered</em></h2>
       <p class="reveal">Everything couples and hosts ask us before we begin. Swipe through the cards.</p>
     </div>
@@ -989,6 +1090,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- 10. FINAL CTA — the invitation -->
 <section class="final">
@@ -1101,6 +1203,7 @@
   const heroCue  = document.querySelector('.scroll-cue');
   const meetImg  = document.querySelector('.meet-fig img');
   const faqSec   = document.querySelector('.faq');
+  const faqPinEl = document.getElementById('faqPin');
   let coverAPI   = null;   // set by the FAQ coverflow once it initialises
   const aboutPin = document.getElementById('aboutPin');
   let stackAPI   = null;   // set by the ABOUT story stack once it initialises
@@ -1175,12 +1278,16 @@
       stackAPI.layout(stackAPI.pos);
     }
 
-    // FAQ coverflow: scrolling glides the question boards left and right
-    if (coverAPI && faqSec){
-      const fq = faqSec.getBoundingClientRect();
+    // FAQ: the panel pins while scroll leafs through the questions
+    if (coverAPI && faqPinEl){
+      const fq = faqPinEl.getBoundingClientRect();
       if (fq.bottom > -100 && fq.top < innerHeight + 100){
-        const range = fq.height + innerHeight * .55;
-        const sp = clamp01((innerHeight * .82 - fq.top) / range);
+        let sp;
+        if (innerWidth > 860){ sp = progress(faqPinEl); }
+        else {
+          const range = fq.height + innerHeight * .55;
+          sp = clamp01((innerHeight * .82 - fq.top) / range);
+        }
         coverAPI.scrollIdx = sp * (coverAPI.n - 1);
         const ct = Math.max(0, Math.min(coverAPI.n - 1, coverAPI.scrollIdx + coverAPI.bias));
         coverAPI.pos += (ct - coverAPI.pos) * .09;
@@ -1190,9 +1297,9 @@
 
     // BLUR WORDS: pop into focus while the line rides up, then settles DOWN to meet the white banner
     const bp = progress(blurPin);
-    // line starts a few cm from the TOP, drifts down slowly ONLY while words pop in, then stays put
+    // the line eases gently down to rest CENTERED in the panel (no dead space below)
     const rv = Math.min(bp/.65, 1), esv = rv*rv*(3-2*rv);
-    blurLine.style.transform = `translateY(${(-26 + 11*esv).toFixed(2)}vh)`;
+    blurLine.style.transform = `translateY(${(-10 + 10*esv).toFixed(2)}vh)`;
     words.forEach((w,i)=>{
       const start = .6 * i / words.length;                     // all words fully revealed by ~70% of the pin
       const t = clamp01((bp - start) / .12);
@@ -1281,6 +1388,19 @@
     layoutStack(0);
   }
 
+  // MEET: her story rises word by word as the section arrives
+  document.querySelectorAll('.meet-copy p').forEach(par => {
+    const ws = par.textContent.trim().split(/\s+/);
+    par.textContent = '';
+    ws.forEach((w, i) => {
+      const s = document.createElement('span');
+      s.className = 'mw'; s.style.setProperty('--wi', i); s.textContent = w;
+      par.appendChild(s);
+    });
+    par.classList.remove('reveal');   // the word rise IS the reveal; don't double-animate
+    par.classList.add('visible');
+  });
+
   // MEET: curtain-reveal the founder portrait when the section arrives
   const meetSec = document.querySelector('.meet');
   if (meetSec){
@@ -1308,11 +1428,17 @@
   const hsText = document.querySelector('.hs-text');
   if (hsText){
     const t = hsText.textContent; hsText.textContent = '';
-    [...t].forEach((ch, i) => {
-      const s = document.createElement('span');
-      if (ch === ' '){ s.innerHTML = '&nbsp;'; }
-      else { s.className = 'ch'; s.style.setProperty('--i', i); s.textContent = ch; }
-      hsText.appendChild(s);
+    let i = 0;
+    t.split(' ').forEach((word, wi) => {
+      if (wi > 0) hsText.appendChild(document.createTextNode(' '));   // words may wrap, letters may not
+      const w = document.createElement('span');
+      w.style.whiteSpace = 'nowrap'; w.style.display = 'inline-block';
+      [...word].forEach(ch => {
+        const s = document.createElement('span');
+        s.className = 'ch'; s.style.setProperty('--i', i++); s.textContent = ch;
+        w.appendChild(s);
+      });
+      hsText.appendChild(w);
     });
   }
 
@@ -1384,11 +1510,12 @@
     };
     const clearStat = () => statRows.forEach(r => r.classList.remove('lit', 'dim'));
     const cycleSpot = () => setStat((statIdx + 1) % statRows.length);
-    const startDeck = () => { clearInterval(deckTimer); deckTimer = setInterval(cycleSpot, 4200); };
+    const startDeck = () => { clearInterval(deckTimer); deckTimer = setInterval(cycleSpot, 5000); };
+    // hover only PAUSES the cycle (no jumping around under the cursor); click chooses
     statRows.forEach((row, i) => {
-      row.addEventListener('pointerenter', () => { clearInterval(deckTimer); setStat(i); });
+      row.addEventListener('pointerenter', () => clearInterval(deckTimer));
       row.addEventListener('pointerleave', () => { if (!reduced) startDeck(); });
-      row.addEventListener('click', () => setStat(i));
+      row.addEventListener('click', () => { setStat(i); if (!reduced) startDeck(); });
     });
     if (!reduced){
       // always begin the story at 01, once the numbers have rolled in
@@ -1411,6 +1538,9 @@
       deckStage.addEventListener('pointerleave', () => { deckEl.style.transform = ''; });
     }
   }
+
+  // hotspot pulses breathe out of sync, not as one synchronized pop
+  document.querySelectorAll('.hs').forEach((h, i) => h.style.setProperty('--hd', (i % 3) * .8 + 's'));
 
   // ODOMETER: stat numerals roll like a mechanical counter instead of a generic count-up
   document.querySelectorAll('.odo').forEach(el => {
@@ -1490,74 +1620,68 @@
     layoutAt(0);
   }
 
-  // TESTIMONIALS: the spotlight letter — one story at a time
-  const stories = [
-    {q:"From the first tasting to the last dance, every decision had already been thought through. Our celebration [[felt effortless,]] and our families still talk about it.", name:"S. & R.", ev:"Wedding weekend, Dubai"},
-    {q:"She made three hundred guests feel like [[the only ones in the room.]] Every corner held a detail we had not even thought to ask for.", name:"A. & K.", ev:"Engagement, Meydan"},
-    {q:"We handed over a colour and a feeling, and walked into a room that [[understood us completely.]] Planning felt calm from start to finish.", name:"M.", ev:"Milestone birthday, Palm Jumeirah"}
-  ];
-  const spotQuote = document.getElementById('spotQuote');
-  const spotName = document.getElementById('spotName');
-  const spotEvent = document.getElementById('spotEvent');
-  const spotCount = document.getElementById('spotCount');
-  const spotBar = document.getElementById('spotBar');
-  const spotFigs = [...document.querySelectorAll('#spotPhotos figure')];
-  let sIdx = 0, sTimer = null, sBarAnim = null;
-  function renderStory(i, fast){
-    const s = stories[i];
-    spotQuote.innerHTML = '';
-    s.q.split(/\[\[|\]\]/).forEach((chunk, pi) => {
-      chunk.split(' ').filter(Boolean).forEach(word => {
-        const sp = document.createElement('span');
-        sp.className = 'w' + (pi === 1 ? ' hl' : '');
-        sp.textContent = word;
-        spotQuote.appendChild(sp);
+  // TESTIMONIALS: the layered letter deck. The front story arcs away every 5s
+  // and the letters beneath glide forward. Pauses while reading (hover).
+  const tDeck = document.getElementById('tDeck');
+  if (tDeck){
+    const tCards = [...tDeck.querySelectorAll('.t-card')];
+    const tDotsW = document.getElementById('tDots');
+    let tOrder = [0, 1, 2], tTimer = null, tBusy = false;
+    tCards.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.setAttribute('aria-label', 'Story ' + (i + 1));
+      d.addEventListener('click', () => { jumpTo(i); startT(); });
+      tDotsW.appendChild(d);
+    });
+    const tDots = [...tDotsW.children];
+    const apply = () => {
+      tOrder.forEach((ci, pos) => {
+        const c = tCards[ci];
+        c.classList.remove('tp0', 'tp1', 'tp2');
+        c.classList.add('tp' + pos);
       });
-    });
-    spotName.textContent = s.name; spotEvent.textContent = s.ev;
-    spotCount.textContent = (i+1) + ' of ' + stories.length;
-    spotFigs.forEach(f => {
-      const p = (+f.dataset.p - i + stories.length) % stories.length;
-      f.className = p === 0 ? 'is-front' : p === 1 ? 'is-mid' : 'is-back';
-    });
-    spotQuote.animate([{opacity:1, filter:'blur(0px)', transform:'none'}], {duration:1, fill:'forwards'});
-    if (!reduced && !fast){
-      [...spotQuote.children].forEach((w, wi) => w.animate(
-        [{opacity:0, filter:'blur(6px)', transform:'translateY(8px)'},
-         {opacity:1, filter:'blur(0px)', transform:'translateY(0)'}],
-        {duration:600, delay:wi*18, fill:'both', easing:'cubic-bezier(.22,1,.36,1)'}));
+      tDots.forEach((d, i) => d.classList.toggle('on', i === tOrder[0]));
+    };
+    const advance = () => {
+      if (tBusy) return; tBusy = true;
+      const front = tCards[tOrder[0]];
+      const finish = () => {
+        tOrder.push(tOrder.shift());
+        front.style.transition = 'none';           // the exited letter slips silently underneath
+        front.getAnimations().forEach(a => a.cancel());
+        apply();
+        void front.offsetWidth;
+        requestAnimationFrame(() => { front.style.transition = ''; tBusy = false; });
+      };
+      if (!reduced){
+        front.animate(
+          [{ transform: 'none', opacity: 1 },
+           { transform: 'translateX(-460px) translateY(40px) scale(.92) rotate(-12deg)', opacity: 0 }],
+          { duration: 580, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'forwards' }
+        ).onfinish = finish;
+      } else finish();
+    };
+    const retreat = () => {                        // previous: the deck glides back one letter
+      if (tBusy) return;
+      tOrder.unshift(tOrder.pop());
+      apply();
+    };
+    function jumpTo(i){
+      if (tBusy || tOrder[0] === i) return;
+      while (tOrder[0] !== i) tOrder.push(tOrder.shift());
+      apply();
     }
-    startSpotTimer();
-  }
-  function startSpotTimer(){
-    clearTimeout(sTimer); if (sBarAnim) sBarAnim.cancel();
-    if (reduced) return;
-    sBarAnim = spotBar.animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}],
-      {duration:5000, easing:'linear', fill:'forwards'});
-    sTimer = setTimeout(() => spotAdvance(1), 5000);
-  }
-  function spotAdvance(dir, fast){
-    sIdx = (sIdx + dir + stories.length) % stories.length;
-    if (!reduced && !fast){
-      spotQuote.animate(
-        [{opacity:1, filter:'blur(0px)', transform:'translateY(0)'},
-         {opacity:0, filter:'blur(5px)', transform:'translateY(-10px)'}],
-        {duration:450, fill:'forwards'}).onfinish = () => renderStory(sIdx);
-    } else renderStory(sIdx, true);
-  }
-  if (spotQuote){
-    document.getElementById('spotNext').addEventListener('click', () => spotAdvance(1, true));
-    document.getElementById('spotPrev').addEventListener('click', () => spotAdvance(-1, true));
+    const startT = () => { clearInterval(tTimer); if (!reduced) tTimer = setInterval(advance, 5000); };
+    document.getElementById('tNext').addEventListener('click', () => { advance(); startT(); });
+    document.getElementById('tPrev').addEventListener('click', () => { retreat(); startT(); });
     const testiSec = document.querySelector('.testi');
-    testiSec.addEventListener('mouseenter', () => { clearTimeout(sTimer); if (sBarAnim) sBarAnim.pause(); });
-    testiSec.addEventListener('mouseleave', () => {
-      if (sBarAnim && sBarAnim.playState === 'paused'){
-        sBarAnim.play();
-        const remain = Math.max(500, 5000 - (sBarAnim.currentTime || 0));
-        sTimer = setTimeout(() => spotAdvance(1), remain);
-      }
-    });
-    renderStory(0);
+    testiSec.addEventListener('mouseenter', () => clearInterval(tTimer));
+    testiSec.addEventListener('mouseleave', startT);
+    apply();
+    // the deck begins its rhythm only once the section is being read
+    new IntersectionObserver((es, obs) => es.forEach(en => {
+      if (en.isIntersecting){ startT(); obs.disconnect(); }
+    }), { threshold: .4 }).observe(tDeck);
   }
 
   // FINAL CTA: line-mask entrance, frame draw, magnetic button
