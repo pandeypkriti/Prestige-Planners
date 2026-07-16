@@ -445,29 +445,34 @@
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
   /* the envelope unveiling: the flap opens and the letters fly out, then float forever */
   .env-stage{position:relative; max-width:1150px; margin:0 auto; height:700px; z-index:2;}
-  .t-squig{position:absolute; left:-6%; top:0; width:112%; height:100%; pointer-events:none; overflow:visible; z-index:1;}
-  .t-squig path{fill:none; stroke:rgba(251,248,241,.7); stroke-width:2.5; stroke-linecap:round;
-    stroke-dasharray:2600; stroke-dashoffset:2600;}
-  .testi.in .t-squig path{animation:squigDraw 2.4s cubic-bezier(.4,0,.2,1) .2s forwards, squigDrift 12s ease-in-out 2.8s infinite alternate;}
-  .t-squig .s2{stroke:rgba(122,95,41,.35); stroke-width:1.5; animation-delay:.5s, 3.2s !important;}
-  @keyframes squigDraw{to{stroke-dashoffset:0}}
-  @keyframes squigDrift{from{transform:translateY(0)} to{transform:translateY(-26px)}}
   /* the envelope itself */
   .envelope{position:absolute; left:50%; bottom:4px; transform:translateX(-50%); width:340px; height:198px; z-index:3; perspective:900px;}
-  .env-back{position:absolute; inset:0; border-radius:12px; background:linear-gradient(170deg,#0E2242,#08182B);
-    border:1px solid rgba(196,162,76,.6); box-shadow:0 24px 50px -18px rgba(64,44,6,.5);}
+  /* honest ivory paper: fibre texture, soft creases, no outlines */
+  .env-back{position:absolute; inset:0; border-radius:10px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), linear-gradient(172deg,#F8F2E3 0%,#EFE6CE 55%,#E5D8BA 100%);
+    background-blend-mode:multiply, normal; background-size:170px, auto;
+    box-shadow:0 30px 60px -18px rgba(64,44,6,.55), 0 4px 14px rgba(64,44,6,.22), inset 0 0 46px rgba(150,120,60,.14);}
   .env-flap{position:absolute; left:0; right:0; top:0; height:110px; transform-origin:top center; z-index:6;
-    background:linear-gradient(190deg,#123059,#0A1D38); border-bottom:1px solid rgba(196,162,76,.5);
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), linear-gradient(188deg,#F4ECD8 0%,#E9DDBF 68%,#DECFAA 100%);
+    background-blend-mode:multiply, normal; background-size:170px, auto;
     clip-path:polygon(0 0, 100% 0, 50% 100%);
+    filter:drop-shadow(0 7px 10px rgba(64,44,6,.28));
     transition:transform .95s cubic-bezier(.4,0,.2,1) .2s;}
-  .testi.in .env-flap{transform:rotateX(178deg);}
-  .env-front{position:absolute; left:0; right:0; bottom:0; height:116px; z-index:5; border-radius:0 0 12px 12px;
-    background:linear-gradient(160deg,#13315B,#0B2140); border:1px solid rgba(196,162,76,.6); border-top:none;
-    clip-path:polygon(0 0, 50% 34%, 100% 0, 100% 100%, 0 100%);}
-  .env-seal{position:absolute; left:50%; top:88px; transform:translate(-50%,-50%); z-index:7; width:46px; height:46px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, var(--gold-glint), var(--gold) 60%, var(--gold-shadow));
+  .testi.in .env-flap{transform:rotateX(178deg); filter:drop-shadow(0 -3px 6px rgba(64,44,6,.18));}
+  .env-front{position:absolute; left:0; right:0; bottom:0; height:116px; z-index:5; border-radius:0 0 10px 10px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      linear-gradient(115deg, rgba(94,70,26,.12), transparent 32%),
+      linear-gradient(245deg, rgba(94,70,26,.12), transparent 32%),
+      linear-gradient(175deg,#F6EFDE 0%,#EADFC2 60%,#E0D2AF 100%);
+    background-blend-mode:multiply, normal, normal, normal; background-size:170px, auto, auto, auto;
+    clip-path:polygon(0 0, 50% 34%, 100% 0, 100% 100%, 0 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.6);}
+  .env-seal{position:absolute; left:50%; top:88px; transform:translate(-50%,-50%); z-index:7; width:46px; height:46px;
+    border-radius:47% 53% 50% 50%/52% 48% 52% 48%;
+    background:radial-gradient(circle at 33% 28%, var(--gold-glint), var(--gold) 55%, var(--gold-shadow) 95%);
     display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-style:italic;
-    color:#0B1626; font-size:20px; box-shadow:0 4px 12px rgba(0,0,0,.35);
+    color:#5A431A; font-size:20px; text-shadow:0 1px 0 rgba(255,255,255,.35);
+    box-shadow:0 3px 8px rgba(64,44,6,.4), inset 0 2px 3px rgba(255,255,255,.5), inset 0 -3px 5px rgba(94,70,26,.45);
     transition:opacity .45s ease .25s, transform .55s ease .25s;}
   .testi.in .env-seal{opacity:0; transform:translate(-50%,-50%) scale(.5) rotate(-24deg);}
   /* the letters: fly from the envelope to their fanned places, then bob gently */
@@ -785,12 +790,22 @@
     .wa-float{width:50px; height:50px; bottom:18px; right:18px;}
     .modal-box{padding:32px 24px;}
   }
+  /* every gold word in a heading carries the metallic shimmer */
+  .deck-rail h2 em, .stack-intro h2 em, .services .head h2 em, .testi .head h2 em{
+    font-style:italic; color:transparent;
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background-size:220% 100%; -webkit-background-clip:text; background-clip:text;
+    animation:emShine 5.5s ease-in-out infinite;}
+  .faq-head h2 em{font-style:italic; color:transparent;
+    background:linear-gradient(100deg, var(--gold) 0%, var(--gold-lt) 35%, #FBF4DC 50%, var(--gold-lt) 65%, var(--gold) 100%);
+    background-size:220% 100%; -webkit-background-clip:text; background-clip:text;
+    animation:emShine 5.5s ease-in-out infinite;}
+
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important; transition:none !important;}
     .reveal{opacity:1; transform:none;}
     .blur-line .w{filter:none; opacity:1; transform:none;}
     .t-pop{opacity:1 !important; transform:none !important;}
-    .t-squig path{stroke-dashoffset:0 !important;}
     .meet-fig{opacity:1 !important; transform:none !important;}
     .meet-copy p .mw{opacity:1 !important; transform:none !important;}
     .hero-title h1, .hero-title h1 em{color:var(--navy); background:none; -webkit-background-clip:initial;}
@@ -901,25 +916,36 @@
         </div>
         <div class="card" data-depth="1">
           <div class="card-photo">
-            <img src="assets/event-butterfly.png" alt="Enchanted garden baby shower by Prestige Planners">
-            <span class="cat">Baby shower</span>
-            <button class="hs" style="left:40%;top:39%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A suspended <em>butterfly canopy</em>, hand-set</span></button>
-            <button class="hs edge-r" style="left:63%;top:63%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>fresh peony</em> arch, built on site</span></button>
+            <img src="assets/detail-feathertable.jpg" alt="Feather centrepieces over a gold sequin table runner with floating candles">
+            <span class="cat">Tablescape</span>
+            <button class="hs edge-l" style="left:24%;top:60%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Crystal votives, <em>lit by hand</em> before doors</span></button>
+            <button class="hs edge-r" style="left:60%;top:76%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>gold sequin runner</em> set with pearls and mirrors</span></button>
           </div>
-          <h3>An enchanted garden shower</h3>
-          <div class="meta"><span>60 guests · Dubai</span><span class="stars">★★★★★</span></div>
-          <p class="quote">"It looked like a storybook come true."<span>M. &amp; S., garden estate</span></p>
+          <h3>An evening in feathers</h3>
+          <div class="meta"><span>Private dinner · Dubai</span><span class="stars">★★★★★</span></div>
+          <p class="quote">"It looked like a storybook come true."<span>M. &amp; S., private estate</span></p>
         </div>
         <div class="card" data-depth="2">
           <div class="card-photo">
-            <img src="assets/event-banquet.png" alt="Al fresco banquet under festoon lights by Prestige Planners">
-            <span class="cat">Private dining</span>
-            <button class="hs edge-l" style="left:29%;top:52%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Two hundred <em>festoon bulbs</em>, strung by hand</span></button>
-            <button class="hs edge-r" style="left:68%;top:47%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A single <em>ten-metre</em> banquet table</span></button>
+            <img src="assets/detail-candelabra.jpg" alt="Gold candelabra draped with pearls, fresh florals and candlelight">
+            <span class="cat">Details</span>
+            <button class="hs" style="left:46%;top:56%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Pearl strands</em> draped one by one</span></button>
+            <button class="hs" style="left:50%;top:34%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Fresh florals</em> set at the crown</span></button>
           </div>
-          <h3>Dinner under the lights</h3>
-          <div class="meta"><span>48 guests · Palm Jumeirah</span><span class="stars">★★★★★</span></div>
+          <h3>Candlelight &amp; pearls</h3>
+          <div class="meta"><span>Styling detail · Dubai</span><span class="stars">★★★★★</span></div>
           <p class="quote">"Nobody wanted the night to end."<span>K. F., anniversary dinner</span></p>
+        </div>
+        <div class="card" data-depth="3">
+          <div class="card-photo">
+            <img src="assets/detail-cakewhite.jpg" alt="Cream celebration cake pressed with gold leaf and sugar flowers">
+            <span class="cat">The cake</span>
+            <button class="hs edge-r" style="left:62%;top:62%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Gold leaf</em>, pressed petal by petal</span></button>
+            <button class="hs edge-l" style="left:34%;top:20%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Hand-sculpted <em>sugar peonies</em></span></button>
+          </div>
+          <h3>The cake, gilded by hand</h3>
+          <div class="meta"><span>Celebration cake · Dubai</span><span class="stars">★★★★★</span></div>
+          <p class="quote">"Guests photographed it before they touched it."<span>Milestone birthday</span></p>
         </div>
       </div>
     </div>
@@ -1020,7 +1046,7 @@
         <div class="acc-num">.02</div>
         <div class="acc-label"><span class="eyebrow">Style</span><h3>Styling</h3></div>
         <div class="acc-full">
-          <img src="assets/36.png" alt="">
+          <img src="assets/detail-gatsby.jpg" alt="Gatsby styling: feather and pearl centrepieces over black and gold tables">
           <div class="shade"></div>
           <div class="txt"><h3>Styling &amp; Design</h3><p>Transforming your space so it feels refined, stunning and deeply personal: florals, stationery and custom builds.</p></div>
         </div>
@@ -1029,7 +1055,7 @@
         <div class="acc-num">.03</div>
         <div class="acc-label"><span class="eyebrow">Deliver</span><h3>Coordination</h3></div>
         <div class="acc-full">
-          <img src="assets/champagne-wall.png" alt="">
+          <img src="assets/detail-mirror.jpg" alt="Mirrored banquet table dressed with feathers, roses and candlelight">
           <div class="shade"></div>
           <div class="txt"><h3>On-the-Day Coordination</h3><p>Seamless execution of your day, with complete project management so you can be fully present in the moment.</p></div>
         </div>
@@ -1060,16 +1086,18 @@
   <div class="glow-orb o3" aria-hidden="true"></div>
   <div class="glow-orb o4" aria-hidden="true"></div>
   <div class="bigq" aria-hidden="true">”</div>
+  <div class="sparkles" aria-hidden="true">
+    <i style="--x:6%;--y:16%;--d:.3s"></i><i style="--x:15%;--y:70%;--d:1.8s"></i><i style="--x:26%;--y:30%;--d:3s"></i>
+    <i style="--x:37%;--y:82%;--d:.9s"></i><i style="--x:49%;--y:14%;--d:2.4s"></i><i style="--x:57%;--y:60%;--d:4s"></i>
+    <i style="--x:68%;--y:24%;--d:1.4s"></i><i style="--x:78%;--y:74%;--d:3.4s"></i><i style="--x:88%;--y:38%;--d:.6s"></i>
+    <i style="--x:94%;--y:66%;--d:2.1s"></i><i style="--x:32%;--y:52%;--d:4.4s"></i><i style="--x:83%;--y:12%;--d:2.9s"></i>
+  </div>
   <div class="wrap">
     <div class="head">
       <h2 class="reveal">Kind words from <em>our clients</em></h2>
       <p class="reveal">One story at a time, from the people who lived them.</p>
     </div>
     <div class="env-stage">
-      <svg class="t-squig" viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M-20,520 C120,380 250,560 390,430 C530,300 570,150 710,220 C850,290 860,500 1000,450 C1100,415 1160,260 1230,220"/>
-        <path class="s2" d="M-20,560 C170,450 310,590 470,500 C630,410 670,240 820,300 C970,360 1020,530 1230,400"/>
-      </svg>
       <div class="envelope" aria-hidden="true">
         <div class="env-back"></div>
         <div class="env-flap"></div>
