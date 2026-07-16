@@ -34,7 +34,7 @@
   .wrap{max-width:1200px; margin:0 auto; padding:0 28px;}
   section{position:relative;}
   /* paper grain — kills flat strips; apply .grain per section */
-  .grain::after{content:''; position:absolute; inset:0; pointer-events:none; z-index:3; opacity:.035; mix-blend-mode:multiply;
+  .grain::after{content:''; position:absolute; inset:0; pointer-events:none; z-index:3; opacity:.05; mix-blend-mode:normal;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
   /* drifting candlelight orbs — atmospheric warmth for quiet sections */
   .glow-orb{position:absolute; z-index:0; border-radius:50%; pointer-events:none; filter:blur(30px);
@@ -133,7 +133,7 @@
   .hero-ctas{animation:heroRise 1.2s cubic-bezier(.22,1,.36,1) .75s backwards;}
   @keyframes heroRise{from{opacity:0; transform:translateY(38px)}}
   .hero-title h1{font-size:clamp(56px,10.5vw,148px); font-weight:300; letter-spacing:-.01em; white-space:nowrap;
-    filter:drop-shadow(0 2px 26px rgba(251,248,241,.9)) drop-shadow(0 0 60px rgba(251,248,241,.5));
+    filter:drop-shadow(0 2px 24px rgba(251,248,241,.85));
     color:transparent;
     background:linear-gradient(105deg, var(--navy) 0%, var(--navy) 40%, #E7EEF6 50%, var(--navy) 60%, var(--navy) 100%);
     background-size:300% 100%; background-position:130% 0;
@@ -209,7 +209,7 @@
     border:none; border-radius:20px; padding:0;
     box-shadow:0 2px 4px rgba(0,47,95,.06), 0 8px 24px rgba(0,47,95,.1), 0 0 0 1px rgba(196,162,76,.12);
     will-change:transform,opacity;
-    transition:transform .45s cubic-bezier(.34,1.56,.64,1), opacity .45s cubic-bezier(.34,1.56,.64,1);}
+    transition:transform .55s cubic-bezier(.22,1,.36,1), opacity .55s cubic-bezier(.22,1,.36,1);}
   .deck .card .card-photo{position:relative; overflow:visible; background:#F0E8D8; padding:10px; border-radius:20px 20px 0 0;}
   .deck .card img{width:100%; aspect-ratio:5/4; object-fit:cover; object-position:center 30%; border-radius:12px; display:block;}
   .deck .card .cat{position:absolute; top:20px; right:20px; z-index:5;
@@ -429,7 +429,8 @@
   .vid-cap a:hover{color:var(--gold-glint); border-color:var(--gold-glint);}
 
   /* ---------- 8. TESTIMONIALS — the spotlight letter ---------- */
-  .testi{padding:120px 0 110px; position:relative; overflow:hidden;
+  .testi-pin{height:300vh;}
+  .testi{position:sticky; top:0; height:100vh; padding:0; display:flex; flex-direction:column; justify-content:center; overflow:hidden;
     background:
       radial-gradient(75% 60% at 50% 0%, rgba(251,248,241,.55), transparent 65%),
       linear-gradient(165deg, #EBDAAC 0%, #E0C787 45%, #CFAE61 100%);}
@@ -440,13 +441,14 @@
   .testi .wrap{position:relative; z-index:2;}
   .testi .o3{left:-110px; top:20%; width:380px; height:380px; animation:orbB 21s ease-in-out infinite alternate;}
   .testi .o4{right:-140px; bottom:-120px; width:460px; height:460px; animation:orbA 27s ease-in-out infinite alternate;}
-  .testi .head{max-width:640px; margin-bottom:56px;}
+  .testi .head{max-width:640px; margin-bottom:26px;}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
   /* the envelope unveiling: the flap opens and the letters fly out, then float forever */
   .env-stage{position:relative; max-width:1150px; margin:0 auto; height:700px; z-index:2;}
   /* the envelope itself */
-  .envelope{position:absolute; left:50%; bottom:4px; transform:translateX(-50%); width:340px; height:198px; z-index:3; perspective:900px;}
+  .envelope{position:absolute; left:50%; bottom:4px; transform:translateX(-50%); width:340px; height:198px; z-index:3;
+    perspective:900px; transform-origin:50% 100%; will-change:transform;}
   /* honest ivory paper: fibre texture, soft creases, no outlines */
   .env-back{position:absolute; inset:0; border-radius:10px;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), linear-gradient(172deg,#F8F2E3 0%,#EFE6CE 55%,#E5D8BA 100%);
@@ -458,7 +460,7 @@
     clip-path:polygon(0 0, 100% 0, 50% 100%);
     filter:drop-shadow(0 7px 10px rgba(64,44,6,.28));
     transition:transform .95s cubic-bezier(.4,0,.2,1) .2s;}
-  .testi.in .env-flap{transform:rotateX(178deg); filter:drop-shadow(0 -3px 6px rgba(64,44,6,.18));}
+  .envelope.open .env-flap{transform:rotateX(178deg); filter:drop-shadow(0 -3px 6px rgba(64,44,6,.18));}
   .env-front{position:absolute; left:0; right:0; bottom:0; height:116px; z-index:5; border-radius:0 0 10px 10px;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
       linear-gradient(115deg, rgba(94,70,26,.12), transparent 32%),
@@ -474,17 +476,25 @@
     color:#5A431A; font-size:20px; text-shadow:0 1px 0 rgba(255,255,255,.35);
     box-shadow:0 3px 8px rgba(64,44,6,.4), inset 0 2px 3px rgba(255,255,255,.5), inset 0 -3px 5px rgba(94,70,26,.45);
     transition:opacity .45s ease .25s, transform .55s ease .25s;}
-  .testi.in .env-seal{opacity:0; transform:translate(-50%,-50%) scale(.5) rotate(-24deg);}
+  .envelope.open .env-seal{opacity:0; transform:translate(-50%,-50%) scale(.5) rotate(-24deg);}
   /* the letters: fly from the envelope to their fanned places, then bob gently */
   .env-cards{position:absolute; inset:0; z-index:4;}
   .t-pop{position:absolute; left:var(--fx); top:var(--fy); width:min(300px,86vw); opacity:0;
     transform:translate(var(--bx,0px),var(--by,0px)) scale(.3) rotate(0deg); will-change:transform,opacity;
     transition:opacity .85s cubic-bezier(.34,1.5,.5,1), transform .85s cubic-bezier(.34,1.5,.5,1);
     transition-delay:var(--td,0s);}
-  .testi.in .t-pop{opacity:1; transform:translate(0,0) scale(1) rotate(var(--fr,0deg));}
-  .t-in{position:relative; background:#fff; border-radius:18px; padding:48px 24px 18px; border:1px solid rgba(196,162,76,.35);
-    box-shadow:0 3px 8px rgba(64,44,6,.08), 0 22px 48px -18px rgba(64,44,6,.3);
-    transition:transform .5s cubic-bezier(.34,1.56,.5,1), box-shadow .5s ease, border-color .5s ease;}
+  .t-pop.out{opacity:1; transform:translate(0,0) scale(1) rotate(var(--fr,0deg));}
+  .testi.scrollmode .t-pop{transition-delay:0s;}
+  @media(max-width:860px){
+    .testi.in .t-pop{opacity:1; transform:none;}
+  }
+  .t-in{position:relative; border:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), linear-gradient(168deg,#FDF9ED 0%,#F6EEDA 62%,#EDE2C6 100%);
+    background-blend-mode:multiply, normal; background-size:170px, auto;
+    border-radius:5px 14px 7px 12px/12px 6px 14px 7px;
+    padding:48px 24px 18px;
+    box-shadow:0 2px 5px rgba(64,44,6,.14), 0 20px 42px -16px rgba(64,44,6,.42), inset 0 0 26px rgba(150,120,60,.1);
+    transition:transform .5s cubic-bezier(.34,1.56,.5,1), box-shadow .5s ease;}
   .testi.in .t-in{animation:envFloat 5.5s ease-in-out var(--fd,2s) infinite alternate;}
   @keyframes envFloat{from{translate:0 0} to{translate:0 -9px}}
   .t-pop.em{z-index:8;}
@@ -774,7 +784,8 @@
     .vid-tickers{gap:4vh;}
     .vid-cap{margin-top:44px;}
     .vid-cap a{font-size:14px;}
-    .testi{padding:60px 0 52px;}
+    .testi-pin{height:auto;}
+    .testi{position:static; height:auto; display:block; padding:60px 0 52px;}
     .testi .bigq{font-size:240px; top:-60px;}
     .testi .head{margin-bottom:32px;}
     .about-pin{height:300vh;}
@@ -927,10 +938,10 @@
         </div>
         <div class="card" data-depth="2">
           <div class="card-photo">
-            <img src="assets/detail-candelabra.jpg" alt="Gold candelabra draped with pearls, fresh florals and candlelight">
+            <img src="assets/detail-candelabra.jpg" alt="Gold candelabras with white tapers and strands of oversized pearls">
             <span class="cat">Details</span>
-            <button class="hs" style="left:46%;top:56%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Pearl strands</em> draped one by one</span></button>
-            <button class="hs" style="left:50%;top:34%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Fresh florals</em> set at the crown</span></button>
+            <button class="hs edge-l" style="left:26%;top:64%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Pearl garlands</em> draped one by one</span></button>
+            <button class="hs" style="left:55%;top:30%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Gilded candelabra, <em>polished before doors</em></span></button>
           </div>
           <h3>Candlelight &amp; pearls</h3>
           <div class="meta"><span>Styling detail · Dubai</span><span class="stars">★★★★★</span></div>
@@ -943,7 +954,7 @@
             <button class="hs edge-r" style="left:62%;top:62%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Gold leaf</em>, pressed petal by petal</span></button>
             <button class="hs edge-l" style="left:34%;top:20%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Hand-sculpted <em>sugar peonies</em></span></button>
           </div>
-          <h3>The cake, gilded by hand</h3>
+          <h3>The celebration cake</h3>
           <div class="meta"><span>Celebration cake · Dubai</span><span class="stars">★★★★★</span></div>
           <p class="quote">"Guests photographed it before they touched it."<span>Milestone birthday</span></p>
         </div>
@@ -1081,7 +1092,8 @@
   </div>
 </div>
 
-<!-- 8. TESTIMONIALS — one story at a time -->
+<!-- 8. TESTIMONIALS — the envelope opens huge, shrinks as you scroll, the letters deal out -->
+<div class="testi-pin" id="testiPin">
 <section class="testi grain" id="reviews">
   <div class="glow-orb o3" aria-hidden="true"></div>
   <div class="glow-orb o4" aria-hidden="true"></div>
@@ -1134,6 +1146,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- 9. FAQ — pinned: the board stays put while scroll leafs through the questions -->
 <div class="faq-pin" id="faqPin">
@@ -1314,6 +1327,10 @@
     });
   }
   const stackPin = document.getElementById('stackPin');
+  const testiPinEl = document.getElementById('testiPin');
+  const envEl = document.querySelector('.envelope');
+  const testiEl = document.querySelector('.testi');
+  const tPops = [...document.querySelectorAll('.t-pop')];
   const stackCards = stackPin ? [...stackPin.querySelectorAll('.stack-card')] : [];
 
   // Lenis-style smooth scroll: wheel input is lerped so the whole page glides
@@ -1409,6 +1426,23 @@
       card.style.transform = `translateY(${((1 - eg) * 100).toFixed(2)}vh)`;
       stackCards[idx - 1].style.filter = `brightness(${(1 - .16*eg).toFixed(3)})`; // covered card dims for depth
     });
+
+    // ENVELOPE SCENE: opens huge in the middle of the screen, then settles down
+    // to its seat while the letters deal themselves out, one per scroll beat
+    if (testiPinEl && envEl){
+      if (innerWidth > 860){
+        testiEl.classList.add('scrollmode');
+        const tp = progress(testiPinEl);
+        const eg = clamp01(tp / .42), ee = eg*eg*(3-2*eg);
+        envEl.style.transform = `translateX(-50%) translateY(${((1-ee)*-30).toFixed(2)}vh) scale(${(2.05 - 1.05*ee).toFixed(3)})`;
+        testiEl.classList.toggle('in', tp > .01);
+        envEl.classList.toggle('open', tp > .09);
+        tPops.forEach((c, i) => c.classList.toggle('out', tp > .36 + i*.115));
+      } else {
+        envEl.style.transform = '';
+        testiEl.classList.remove('scrollmode');
+      }
+    }
 
     requestAnimationFrame(frame);
   }
@@ -1700,6 +1734,7 @@
     new IntersectionObserver((es, obs) => es.forEach(en => {
       if (en.isIntersecting){
         testiSec.classList.add('in');
+        if (envEl && innerWidth <= 860) envEl.classList.add('open');
         setTimeout(() => { setEm(0); startEm(); }, 900);   // let the bounce land first
         obs.disconnect();
       }
