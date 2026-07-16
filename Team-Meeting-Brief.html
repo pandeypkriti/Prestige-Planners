@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestige Planners · Team Meeting Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#F3ECDC; --soft:#FBF8F1; --navy:#002F5F; --gold:#C4A24C; --gold-ink:#7A5F29; --ink:#2a3844;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Poppins',sans-serif; font-weight:300; color:var(--ink); background:var(--cream); line-height:1.7; font-size:15px;}
+  .page{max-width:860px; margin:0 auto; padding:56px 32px 90px;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:400; color:var(--navy); line-height:1.15;}
+  h1{font-size:clamp(34px,5vw,48px);}
+  h1 em{font-style:italic; color:var(--gold);}
+  .sub{font-family:'Fraunces',serif; font-style:italic; color:var(--gold-ink); font-size:16px; margin-top:8px;}
+  .rule{height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin:34px 0;}
+  h2{font-size:24px; margin:44px 0 6px; display:flex; align-items:baseline; gap:12px;}
+  h2 .n{font-style:italic; font-size:16px; color:var(--gold);}
+  .say{background:var(--soft); border-left:3px solid var(--gold); padding:14px 20px; margin:14px 0;
+    font-family:'Fraunces',serif; font-style:italic; font-size:15.5px; color:var(--navy); border-radius:0 8px 8px 0;}
+  ul{margin:10px 0 10px 22px;}
+  li{margin:7px 0;}
+  b{font-weight:500; color:var(--navy);}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14px;}
+  th{font-family:'Fraunces',serif; font-weight:500; color:var(--gold-ink); text-align:left; padding:8px 10px; border-bottom:1px solid var(--gold);}
+  td{padding:9px 10px; border-bottom:1px solid rgba(0,47,95,.12); vertical-align:top;}
+  .tag{display:inline-block; font-size:11.5px; background:rgba(196,162,76,.16); color:var(--gold-ink);
+    border:1px solid rgba(196,162,76,.4); border-radius:999px; padding:2px 11px; margin:2px 3px 2px 0; white-space:nowrap;}
+  .demo{background:#0B1626; color:#F3ECDC; border-radius:12px; padding:22px 26px; margin:16px 0;}
+  .demo h3{color:#E8CF8A; font-size:17px; margin-bottom:8px;}
+  .demo li{margin:6px 0;}
+  .demo b{color:#E8CF8A;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+  .card{background:var(--soft); border:1px solid rgba(196,162,76,.35); border-radius:10px; padding:18px 20px;}
+  .card h3{font-size:16px; margin-bottom:8px;}
+  .foot{margin-top:60px; font-size:12px; font-style:italic; color:rgba(0,47,95,.45); text-align:center;}
+  @media print{body{background:#fff;} .demo{-webkit-print-color-adjust:exact; print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Prestige Planners <em>· team briefing</em></h1>
+<p class="sub">Kriti's run sheet for the team call · project status, findings, and the road ahead</p>
+
+<div class="rule"></div>
+
+<h2><span class="n">00</span>The 30-second opener</h2>
+<div class="say">"Prestige Planners is our first paying client: a solo luxury event planner in Dubai, Benafsha. Her events are genuinely beautiful, but her online presence doesn't sell them. We audited everything, extracted what was valuable, and built her a luxury landing page designed to convert Meta-ads traffic into WhatsApp enquiries. Today I'll demo it, show you what's left, and where we take her next."</div>
+
+<h2><span class="n">01</span>The client, in one minute</h2>
+<ul>
+  <li><b>Who:</b> Prestige Planners · luxury wedding &amp; event planning, Dubai (Meydan Grandstand). Solo founder: <b>Benafsha Engineer-Mulla</b> (ex-aviation + hospitality). New to tech and marketing.</li>
+  <li><b>The deal:</b> Meta-ads-optimised landing page → Calendly/WhatsApp booking → CRM + lead automations. Strategy: ship a showcase landing page first to lock in trust, then upsell the full build.</li>
+  <li><b>Where she is now:</b> basic website, new Instagram (~267 followers), no ads running, strong Google rating that nobody sees.</li>
+</ul>
+
+<h2><span class="n">02</span>Her weak points · what the audit found</h2>
+<table>
+  <tr><th>Gap</th><th>Why it costs her sales</th></tr>
+  <tr><td>No portfolio gallery</td><td>Dubai luxury clients buy on visual proof. Her best work is invisible.</td></tr>
+  <tr><td>No booking flow</td><td>No path from interest → enquiry. Every visitor has to figure it out themselves.</td></tr>
+  <tr><td>WhatsApp buried</td><td>WhatsApp is THE channel in Dubai and it's hidden on her site.</td></tr>
+  <tr><td>Founder hidden</td><td>She IS the brand (solo planner) but the human story is missing.</td></tr>
+  <tr><td>Thin social proof</td><td>Great Google reviews exist but are never surfaced. New IG, new FB.</td></tr>
+  <tr><td>No single clear CTA</td><td>Visitors aren't told what to do next.</td></tr>
+  <tr><td>Zero paid traffic</td><td>No Meta ads, no pixel, no retargeting. Nobody new finds her.</td></tr>
+  <tr><td>No video assets</td><td>Luxury sells with motion; she only has photos (IG reels are login-walled).</td></tr>
+</table>
+
+<h2><span class="n">03</span>What we extracted from her</h2>
+<ul>
+  <li><b>Brand kit</b> from her guidelines PDF: navy #002F5F · gold #C4A24C · cream #F3ECDC, translated her paid fonts into web-safe Fraunces + Poppins.</li>
+  <li><b>Real event photography</b>: pulled, upscaled, and art-directed her strongest assets (champagne tower wall, floral walkway, black &amp; gold glamour, garden shower, banquets).</li>
+  <li><b>Motion from stills</b>: turned her static photos into cinemagraph-style ambient video so the page feels alive without fake stock footage.</li>
+  <li><b>Her proof</b>: Google rating + review language, event types, guest counts · turned into the stats and story cards on the page.</li>
+  <li><b>A design language</b>: researched real luxury-editorial references and locked a reusable system (gilded navy buttons, italic serif labels, glass chips, grain, gold hairlines). This is now OUR house style for luxury clients, not just hers.</li>
+</ul>
+
+<h2><span class="n">04</span>What I built · demo walkthrough</h2>
+<p>Share the screen, open <b>Prestige-Planners-Preview.html</b>, and scroll top to bottom. Signature moments to call out:</p>
+<div class="demo">
+  <h3>Demo pointers (in scroll order)</h3>
+  <ul>
+    <li><b>Hero:</b> layered cinematic scroll · the arch rises through a growing gold glow while the title sinks behind it, over a blurred ambient video. Note the drawing hairlines + cascading dateline.</li>
+    <li><b>Stats spotlight:</b> rolling odometer numbers; the three stats take turns in focus while the rest blur, and the Polaroid deck pulls each stat's story card forward in sync. Hover a number: it grabs its card.</li>
+    <li><b>Blur-to-focus manifesto:</b> words sharpen as you scroll, golden glimmers drift up, ambient video breathes underneath.</li>
+    <li><b>Portfolio stack:</b> full-bleed event cards glide up and stack, each with its own WhatsApp enquiry CTA.</li>
+    <li><b>Services accordion:</b> auto-cycles through Planning / Styling / Coordination every 10s, click to expand.</li>
+    <li><b>Dark champagne panel:</b> shining outline words sway left/right behind the video, which scales to fullscreen as you scroll. Slim Instagram follow link rides the bottom.</li>
+    <li><b>Testimonials:</b> auto-rotating spotlight, one story at a time, word-by-word reveal with gold highlights.</li>
+    <li><b>FAQ coverflow:</b> question boards angled like a photo gallery · arrows, dots, drag, or keyboard to flip through.</li>
+    <li><b>Final CTA:</b> gold frame draws itself, lines mask in, magnetic metallic-gold WhatsApp button. One CTA, no distractions.</li>
+  </ul>
+</div>
+<p><b>Craft layer to mention:</b>
+<span class="tag">Lenis-style smooth scroll</span>
+<span class="tag">grain on every section</span>
+<span class="tag">reduced-motion support</span>
+<span class="tag">mobile pass done</span>
+<span class="tag">floating WhatsApp button</span>
+<span class="tag">availability modal</span>
+<span class="tag">optimised hero video 8.8MB → 224KB</span>
+<span class="tag">single-file shareable build</span></p>
+
+<h2><span class="n">05</span>What's still placeholder · be upfront</h2>
+<ul>
+  <li><b>Video</b>: aspirational placeholder until Benafsha supplies real footage or reels.</li>
+  <li><b>Testimonial quotes + deck card details</b>: sample copy until we wire in her real Google reviews.</li>
+  <li><b>Venue names</b> on portfolio cards: marked for replacement.</li>
+  <li><b>Founder section</b>: not built yet, waiting on her headshot + story.</li>
+</ul>
+
+<h2><span class="n">06</span>How we help her · the roadmap</h2>
+<table>
+  <tr><th>Phase</th><th>What happens</th><th>Outcome for her</th></tr>
+  <tr><td><b>1 · Close</b></td><td>Present the page, swap in her real content (reviews, venues, founder, footage)</td><td>She sees her brand at its best · signs off</td></tr>
+  <tr><td><b>2 · Launch</b></td><td>Domain + hosting, SEO/meta, favicon, form delivery to her inbox</td><td>Live, shareable, findable</td></tr>
+  <tr><td><b>3 · Traffic</b></td><td>Meta Pixel + CAPI, ad creative from her real photos, first campaigns</td><td>New eyes on her work every day</td></tr>
+  <tr><td><b>4 · Convert</b></td><td>WhatsApp-first CTA everywhere, Calendly consult booking, welcome-gift email capture</td><td>Enquiries become consultations</td></tr>
+  <tr><td><b>5 · Retain</b></td><td>CRM (HubSpot free) + Make.com automations: lead nurture, follow-ups, review requests</td><td>No lead ever goes cold</td></tr>
+  <tr><td><b>6 · Upsell</b></td><td>Full multi-page website, journal/blog, bilingual EN/AR, seasonal campaigns</td><td>Ongoing retainer relationship</td></tr>
+</table>
+
+<h2><span class="n">07</span>Future design aspirations</h2>
+<div class="grid2">
+  <div class="card"><h3>Selling more</h3>
+    <ul>
+      <li>Meta ads funnel: photo + cinemagraph creatives → landing page → WhatsApp</li>
+      <li>Real reviews wired into the testimonial spotlight (live proof)</li>
+      <li>"Why Benafsha" founder section: the trust closer</li>
+      <li>Process section: "what working with us looks like"</li>
+      <li>Reply-time promise + availability checker to lower enquiry friction</li>
+    </ul>
+  </div>
+  <div class="card"><h3>Looking better</h3>
+    <ul>
+      <li>Replace all placeholder video with her real event footage</li>
+      <li>Real Wedding Highlights: magazine-cover portfolio cards</li>
+      <li>Journal/editorial section in the same design language</li>
+      <li>Keep refining motion: loud and quiet beats, never static, never cluttered</li>
+      <li>Bilingual EN/AR pass for the Dubai market</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="n">08</span>Ask the team</h2>
+<ul>
+  <li>Who can chase Benafsha for the content we're blocked on: reviews permission, real footage, headshot, venue names?</li>
+  <li>Who owns ad creative production once we get to Phase 3?</li>
+  <li>Timeline check: what do we commit to for launch?</li>
+  <li>Pricing check: what does Phase 2-6 packaging look like for the upsell conversation?</li>
+</ul>
+
+<p class="foot">Prepared for Kriti's team call · Prestige Planners project · assets live in ~/Desktop/Prestige-Planners</p>
+</div>
+</body>
+</html>

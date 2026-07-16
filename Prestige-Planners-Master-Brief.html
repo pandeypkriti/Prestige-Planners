@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestige Planners — Master Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#002F5F; --gold:#C4A24C; --cream:#F3ECDC; --rust:#903E1F; --sage:#A4C0AA;
+    --ink:#1c2733;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Poppins',sans-serif; color:var(--ink); background:var(--cream);
+    margin:0; line-height:1.6; font-weight:300;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 34px 80px;}
+  header.cover{
+    background:var(--navy); color:var(--cream); text-align:center;
+    padding:70px 34px 60px; margin-bottom:46px;
+    border-bottom:6px solid var(--gold);
+  }
+  header.cover .eyebrow{letter-spacing:.32em; text-transform:uppercase; color:var(--gold); font-size:12px; font-weight:600;}
+  header.cover h1{
+    font-family:'Fraunces',serif; font-weight:900; font-size:52px; line-height:1.05;
+    margin:14px 0 8px; color:#fff;
+  }
+  header.cover .sub{font-size:16px; color:var(--sage); font-weight:400;}
+  header.cover .stack{margin-top:20px; font-size:13px; color:var(--cream); opacity:.9;}
+  header.cover .stack b{color:var(--gold);}
+  h2{
+    font-family:'Fraunces',serif; font-weight:600; color:var(--navy);
+    font-size:27px; margin:48px 0 6px; padding-bottom:8px; border-bottom:2px solid var(--gold);
+  }
+  h2 .num{color:var(--gold); font-weight:900; margin-right:10px;}
+  h3{font-family:'Fraunces',serif; color:var(--rust); font-size:19px; margin:26px 0 6px; font-weight:600;}
+  p{margin:8px 0;}
+  a{color:var(--navy); text-decoration:none; border-bottom:1px solid var(--gold);}
+  strong,b{font-weight:600; color:var(--navy);}
+  ul,ol{margin:8px 0 8px; padding-left:22px;}
+  li{margin:5px 0;}
+  .tldr{
+    background:#fff; border-left:5px solid var(--gold); border-radius:6px;
+    padding:20px 26px; box-shadow:0 4px 18px rgba(0,47,95,.06);
+  }
+  .callout{
+    background:var(--navy); color:var(--cream); border-radius:8px; padding:20px 26px; margin:20px 0;
+    font-family:'Fraunces',serif; font-size:17px; font-style:italic;
+  }
+  .callout b{color:var(--gold);}
+  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; background:#fff; border-radius:6px; overflow:hidden; box-shadow:0 3px 14px rgba(0,47,95,.05);}
+  th{background:var(--navy); color:var(--cream); text-align:left; padding:11px 14px; font-weight:500; font-size:13px; letter-spacing:.02em;}
+  td{padding:10px 14px; border-top:1px solid #eadfca;}
+  tr:nth-child(even) td{background:#faf6ec;}
+  .swatches{display:flex; gap:12px; flex-wrap:wrap; margin:14px 0;}
+  .sw{flex:1; min-width:120px; border-radius:8px; overflow:hidden; box-shadow:0 3px 12px rgba(0,47,95,.08); background:#fff;}
+  .sw .chip{height:56px;}
+  .sw .lbl{padding:8px 10px; font-size:12px;}
+  .sw .lbl b{display:block; font-size:13px;}
+  .sw .lbl code{color:var(--rust); font-size:12px;}
+  .gaps li{margin:7px 0;}
+  .flow{background:#fff; border-radius:8px; padding:16px 20px; margin:12px 0; border-left:4px solid var(--sage); box-shadow:0 2px 10px rgba(0,47,95,.04);}
+  .flow .t{font-weight:600; color:var(--navy); font-family:'Fraunces',serif; font-size:16px;}
+  .flow .trig{color:var(--rust); font-weight:600; font-size:13px;}
+  .need{background:#fff; border:1px dashed var(--gold); border-radius:8px; padding:6px 24px 14px;}
+  .footer{margin-top:50px; padding-top:18px; border-top:2px solid var(--gold); font-size:12px; color:#5a6b7a;}
+  .pipeline{font-family:'Fraunces',serif; color:var(--navy); font-size:16px; background:#faf6ec; padding:12px 18px; border-radius:6px; text-align:center; letter-spacing:.02em;}
+  @media print{
+    body{background:#fff;} .wrap{max-width:100%;}
+    header.cover{padding:44px 20px;} h2{page-break-after:avoid;} .flow,.tldr,table{page-break-inside:avoid;}
+    a{border:none; color:var(--navy);}
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="eyebrow">Client Brief &amp; Build Plan</div>
+  <h1>Prestige Planners</h1>
+  <div class="sub">Meta-ads landing page · Calendly booking · CRM with workflows</div>
+  <div class="stack">Stack: <b>Framer</b> (UI) &nbsp;+&nbsp; <b>Claude</b> (functionality) &nbsp;+&nbsp; <b>Make.com</b> (CRM workflows)</div>
+</header>
+
+<div class="wrap">
+
+  <h2><span class="num">0</span>The Deal in One Look</h2>
+  <div class="tldr">
+    <p><strong>Client:</strong> Prestige Planners — a solo luxury event/wedding planner in Dubai. She already has a site (<a href="https://prestigeplanners.ae/">prestigeplanners.ae</a>) but it's a <em>brochure, not a booking machine</em>.</p>
+    <p><strong>Your job:</strong> a landing page that takes an Instagram ad-clicker → booked consultation in under 60 seconds, with every lead tracked so none slip away.</p>
+    <p><strong>Build split:</strong> <strong>Framer</strong> builds the beautiful on-brand page. <strong>Claude</strong> builds the functionality — copy, layout, code embeds, tracking, and the CRM automations. <strong>Make.com</strong> runs the workflows.</p>
+    <p><strong>Cost:</strong> ~<strong>$30–55/month</strong> all-in — or a leaner <strong>$10–20/mo</strong> build (see §5).</p>
+  </div>
+  <div class="callout">"You've built a beautiful brand — but your site is a brochure, not a booking machine. I'll turn it into a page that converts Instagram ads into booked consultations, with <b>every lead tracked</b> so none slip away."</div>
+
+  <h2><span class="num">1</span>The Brand Kit</h2>
+  <p>A genuinely luxury system — navy + gold + cream is the timeless "expensive" combination.</p>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#002F5F"></div><div class="lbl"><b>Navy</b><code>#002F5F</code></div></div>
+    <div class="sw"><div class="chip" style="background:linear-gradient(135deg,#C4A24C,#e3c877)"></div><div class="lbl"><b>Gold</b><code>#C4A24C</code></div></div>
+    <div class="sw"><div class="chip" style="background:#F3ECDC;border-bottom:1px solid #eadfca"></div><div class="lbl"><b>Cream</b><code>#F3ECDC</code></div></div>
+    <div class="sw"><div class="chip" style="background:#903E1F"></div><div class="lbl"><b>Rust</b><code>#903E1F</code></div></div>
+    <div class="sw"><div class="chip" style="background:#A4C0AA"></div><div class="lbl"><b>Sage</b><code>#A4C0AA</code></div></div>
+  </div>
+  <p><strong>Fonts —</strong> Headlines: <em>Cofo Raffine Bold</em> (fashion display serif). Body: <em>Museo Sans</em> / <em>Acumin Variable</em>. Both are <strong>paid</strong> — free web look-alikes: <strong>Fraunces / Playfair Display</strong> (serif) + <strong>Poppins / Mulish</strong> (body). <em>This document is already set in those substitutes.</em></p>
+  <p><strong>Logo —</strong> gold serif "Prestige" with an elegant swash + "PLANNERS" in spaced caps. Reads premium; sits beautifully on navy or cream.</p>
+
+  <h2><span class="num">2</span>The Company Dossier</h2>
+  <p><strong>Confirmed:</strong> <a href="https://prestigeplanners.ae/">prestigeplanners.ae</a> · IG <a href="https://www.instagram.com/prestigeplannersuae/">@prestigeplannersuae</a> · WhatsApp +971 50 911 8505 · contact@prestigeplanners.ae · Meydan Grandstand, Dubai. Name-clashes ruled out (@prestigeweddings, "Melle Prestige").</p>
+  <p><strong>Services:</strong> weddings, engagements, showers, gender reveals, birthdays, corporate, yacht &amp; desert parties — broad "every occasion" menu, <strong>no packages or prices published.</strong></p>
+  <p><strong>Positioning today:</strong> aspirational-luxury copy but generic and unproven — same space as established players, with no proof to back it. Early-stage online presence.</p>
+
+  <h2><span class="num">3</span>The Pitch — Gaps to Sell Against</h2>
+  <ol class="gaps">
+    <li><strong>No portfolio gallery</strong> — luxury clients buy with their eyes. <em>Biggest gap.</em></li>
+    <li><strong>No booking flow</strong> — a basic contact form, no "book a free consultation."</li>
+    <li><strong>WhatsApp buried</strong> — in the UAE a floating WhatsApp button is the #1 booking channel.</li>
+    <li><strong>Founder invisible</strong> — solo brands win on a face + story; hers is hidden.</li>
+    <li><strong>Thin social proof</strong> — few testimonials, no awards/press.</li>
+    <li><strong>No single clear CTA</strong> — the page pulls three directions.</li>
+    <li><strong>Zero ads running</strong> — 100% organic; a landing page is the prerequisite before Meta spend.</li>
+  </ol>
+  <h3>What "good" looks like in Dubai</h3>
+  <table>
+    <tr><th>Competitor</th><th>Does well</th></tr>
+    <tr><td><a href="https://coutureeventsworldwide.com/">Couture Events</a></td><td>WhatsApp-first + free consultation; blue-chip client logos (Emirates, Vogue, Bulgari)</td></tr>
+    <tr><td><a href="https://www.jamweddingplanner.com/">JAM Wedding Planner</a></td><td>Multi-path lead capture, free-consultation CTA, named testimonials, award badges</td></tr>
+    <tr><td><a href="https://www.vivaahcelebrations.com/">Vivaah Celebrations</a></td><td>Deep portfolio case studies + awards wall + founder-led</td></tr>
+  </table>
+  <p><strong>Winning formula:</strong> named founder story + real portfolio + awards/logo proof + WhatsApp-first free-consultation CTA.</p>
+
+  <h2><span class="num">4</span>How We Build It — Framer + Claude</h2>
+  <h3>Framer handles the UI</h3>
+  <ul>
+    <li>The beautiful on-brand page (navy/gold/cream, serif headlines, smooth scroll), auto mobile-responsive</li>
+    <li>Publishing live + custom domain (<strong>free custom domain since Jan 2026</strong>)</li>
+    <li><strong>Built-in Calendly component</strong> (Insert menu — no code) &amp; <strong>native HubSpot form integration</strong></li>
+    <li>Custom code (Meta Pixel in <code>&lt;head&gt;</code>) — a <strong>Pro-plan</strong> feature</li>
+  </ul>
+  <h3>Claude ("Claude design") handles functionality</h3>
+  <ul>
+    <li>All <strong>copy</strong>, on-brand + Meta-ad-optimized</li>
+    <li>Full <strong>page wireframe</strong> — can be designed in <strong>Figma</strong> and imported straight into Framer</li>
+    <li><strong>Code embeds</strong>: Calendly, floating WhatsApp button, Meta Pixel + "Lead" event, form→webhook</li>
+    <li>The <strong>CRM workflows</strong> in Make.com (§7) + click-by-click Framer instructions</li>
+  </ul>
+  <p><strong>Honest limitation:</strong> Claude connects directly to Figma, Lovable &amp; Higgsfield — <strong>not Framer</strong>. So Claude hands you ready-to-paste design/copy/code, or designs in <strong>Figma → you import to Framer</strong> (smoothest path).</p>
+  <h3>Build order</h3>
+  <ol>
+    <li>Confirm domain login (or start on a free <code>.framer.website</code> URL).</li>
+    <li>Design the page (Claude → Figma or wireframe + copy).</li>
+    <li>Build in Framer: Hero+CTA · Portfolio · Services · Founder story · Testimonials · Booking · Footer+WhatsApp.</li>
+    <li>Add Calendly component + floating WhatsApp button.</li>
+    <li>Install Meta Pixel in custom code; fire a <strong>Lead</strong> event on submit (needs Pro).</li>
+    <li>Connect form → webhook → Make.com.</li>
+    <li>Publish + connect domain; verify in Meta.</li>
+    <li>Build the CRM workflows (§7).</li>
+    <li>Test end-to-end with a fake lead + booking.</li>
+    <li>Hand over ad creative made in Higgsfield.</li>
+  </ol>
+
+  <h2><span class="num">5</span>The Stack &amp; Costs</h2>
+  <table>
+    <tr><th>Job</th><th>Tool</th><th>Cost</th></tr>
+    <tr><td>Landing page UI</td><td><strong>Framer Pro</strong> (custom code for Pixel)</td><td>$30/mo</td></tr>
+    <tr><td>Booking</td><td>Calendly (built into Framer)</td><td>Free–$10/mo</td></tr>
+    <tr><td>CRM</td><td>HubSpot Free</td><td>$0</td></tr>
+    <tr><td>Workflow glue</td><td>Make.com</td><td>$0–9/mo</td></tr>
+    <tr><td>Ad tracking</td><td>Meta Pixel + Conversions API</td><td>$0</td></tr>
+    <tr><td>Ad creative</td><td>Higgsfield</td><td>usage-based</td></tr>
+    <tr><td>Domain</td><td>likely owns prestigeplanners.ae</td><td>~$12/yr</td></tr>
+  </table>
+  <p><strong>≈ $30–55/month.</strong> &nbsp; <strong>Cheaper build:</strong> Framer <strong>Basic ($10/mo)</strong> gets custom domain + unlimited forms but not site-wide custom code — install the Pixel via an Embed component or use server-side CAPI through Make. Total ≈ <strong>$10–20/mo</strong>.</p>
+
+  <h2><span class="num">6</span>What Makes a Meta-Ads Page Convert</h2>
+  <ol>
+    <li><strong>One goal, one button</strong> — "Book a free consultation."</li>
+    <li><strong>Message match</strong> — page headline echoes the ad.</li>
+    <li><strong>Mobile-first</strong> &amp; <strong>fast load</strong> (under 2–3s).</li>
+    <li><strong>Hero + CTA above the fold.</strong></li>
+    <li><strong>Social proof</strong> — portfolio, named testimonials, logos.</li>
+    <li><strong>Short form</strong> — name, email, phone, event type/date.</li>
+    <li><strong>Tracking</strong> — Meta <strong>Pixel + Conversions API</strong> (both, per Meta 2026); capture the hidden <code>fbclid</code> with each lead so ads get credited.</li>
+  </ol>
+
+  <h2><span class="num">7</span>The CRM &amp; Its Workflows</h2>
+  <p><strong>CRM = the business's memory.</strong> Every form submission becomes a contact card that moves along a pipeline. Recommended: <strong>HubSpot Free</strong>.</p>
+  <div class="pipeline">New Lead → Contacted → Consultation Booked → Proposal Sent → Won / Lost</div>
+  <p style="margin-top:18px;">The four workflows, built in <strong>Make.com</strong> (the glue that runs steps automatically):</p>
+
+  <div class="flow"><div class="t">Workflow 1 — New lead capture</div>
+    <div><span class="trig">Trigger:</span> Framer form submitted (webhook) →
+    <span class="trig">Do:</span> create HubSpot contact (New Lead) · store event type/date/budget + <code>fbclid</code> · email the planner.</div></div>
+
+  <div class="flow"><div class="t">Workflow 2 — Instant response <span style="color:var(--gold)">(the UAE money-maker)</span></div>
+    <div><span class="trig">Trigger:</span> new lead created →
+    <span class="trig">Do:</span> instant <strong>WhatsApp/SMS</strong> to the planner + an <strong>auto-reply</strong> to the lead ("We'll reach out within the hour"). Speed-to-lead is the biggest conversion lever.</div></div>
+
+  <div class="flow"><div class="t">Workflow 3 — Booking made</div>
+    <div><span class="trig">Trigger:</span> Calendly consultation booked →
+    <span class="trig">Do:</span> move to <strong>Consultation Booked</strong> · add to calendar · schedule reminders (cut no-shows) · fire Meta booking event with <code>fbclid</code>.</div></div>
+
+  <div class="flow"><div class="t">Workflow 4 — After the call</div>
+    <div><span class="trig">Trigger:</span> consultation complete / +1 day →
+    <span class="trig">Do:</span> won → Proposal Sent + task; no-show → friendly re-book link; after the event → auto-request a Google review + testimonial (fixes the social-proof gap).</div></div>
+
+  <h2><span class="num">8</span>What Claude Still Needs From You</h2>
+  <div class="need">
+    <ol>
+      <li><strong>Her name + a photo/short bio</strong> — the founder story anchors the whole page.</li>
+      <li><strong>What "ng2" is</strong> — no file by that name was found.</li>
+      <li><strong>Real event photos</strong> — to fill the portfolio, or confirm she's pre-first-client.</li>
+      <li><strong>Domain login</strong> for prestigeplanners.ae.</li>
+      <li><strong>Her budget / your fee</strong> — to pick the $10–20 vs $30–55 build.</li>
+    </ol>
+  </div>
+
+  <div class="footer">
+    <strong>Sources —</strong>
+    <a href="https://prestigeplanners.ae/">prestigeplanners.ae</a> ·
+    <a href="https://www.framer.com/pricing">Framer pricing</a> ·
+    <a href="https://www.framer.com/help/articles/framer-form-webhook-setup/">Framer webhooks</a> ·
+    <a href="https://www.storylane.io/tutorials/framer-calendly-integration">Framer + Calendly</a> ·
+    <a href="https://www.softr.io/blog/make-vs-zapier">Make vs Zapier</a> ·
+    <a href="https://www.dataally.ai/blog/how-to-set-up-meta-conversions-api">Meta CAPI</a> ·
+    <a href="https://segwise.ai/blog/meta-pixel-conversions-api-ai-updates-2026">Pixel+CAPI 2026</a>
+    <br><br>Prepared for Kriti Pandey · Prestige Planners client · July 2026
+  </div>
+
+</div>
+</body>
+</html>

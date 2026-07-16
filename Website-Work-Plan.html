@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestige Planners · Website Work Plan (from team meeting 15 Jul)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#F3ECDC; --soft:#FBF8F1; --navy:#002F5F; --navy-ink:#0B1626; --gold:#C4A24C; --gold-lt:#E8CF8A; --gold-ink:#7A5F29; --ink:#2a3844;
+    --p1:#903E1F; --p2:#7A5F29; --p3:#4a6741;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Poppins',sans-serif; font-weight:300; color:var(--ink); background:var(--cream); line-height:1.7; font-size:14.5px;}
+  .page{max-width:920px; margin:0 auto; padding:56px 32px 100px;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif; font-weight:400; color:var(--navy); line-height:1.15;}
+  h1{font-size:clamp(32px,5vw,46px);}
+  h1 em{font-style:italic; color:var(--gold);}
+  .sub{font-family:'Fraunces',serif; font-style:italic; color:var(--gold-ink); font-size:16px; margin-top:8px;}
+  .rule{height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin:36px 0;}
+  h2{font-size:25px; margin:52px 0 8px; display:flex; align-items:baseline; gap:12px;}
+  h2 .n{font-style:italic; font-size:16px; color:var(--gold);}
+  h3{font-size:17px; margin:22px 0 6px;}
+  h4{font-size:15px; font-style:italic; color:var(--gold-ink); margin:16px 0 4px;}
+  ul{margin:8px 0 8px 22px;} li{margin:6px 0;}
+  b{font-weight:500; color:var(--navy);}
+  .say{background:var(--soft); border-left:3px solid var(--gold); padding:13px 18px; margin:12px 0;
+    font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:var(--navy); border-radius:0 8px 8px 0;}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:13.5px;}
+  th{font-family:'Fraunces',serif; font-weight:500; color:var(--gold-ink); text-align:left; padding:8px 10px; border-bottom:1px solid var(--gold); white-space:nowrap;}
+  td{padding:10px; border-bottom:1px solid rgba(0,47,95,.12); vertical-align:top;}
+  .pill{display:inline-block; font-size:10.5px; font-weight:500; letter-spacing:.04em; color:#fff; border-radius:999px; padding:2px 10px; white-space:nowrap;}
+  .P1{background:var(--p1);} .P2{background:var(--p2);} .P3{background:var(--p3);}
+  .keep{display:inline-block; font-size:11px; background:rgba(74,103,65,.14); color:#3d5636; border:1px solid rgba(74,103,65,.4); border-radius:999px; padding:2px 11px;}
+  .quote{font-size:12.5px; font-style:italic; color:rgba(0,47,95,.55);}
+  .card{background:var(--soft); border:1px solid rgba(196,162,76,.35); border-radius:10px; padding:18px 22px; margin:14px 0;}
+  .warn{background:#faf3e8; border:1px solid rgba(144,62,31,.35); border-radius:10px; padding:16px 20px; margin:14px 0;}
+  .warn h3{color:var(--p1);}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+  /* flowchart */
+  .flow{margin:20px 0;}
+  .fnode{position:relative; background:var(--soft); border:1px solid rgba(196,162,76,.55); border-radius:12px;
+    padding:14px 20px; margin:0 auto; max-width:640px; box-shadow:0 3px 14px rgba(0,47,95,.07);}
+  .fnode h4{margin:0 0 2px; font-style:normal; color:var(--navy); font-size:15px;}
+  .fnode h4 i{font-style:italic; color:var(--gold-ink); font-weight:400;}
+  .fnode p{font-size:13px; color:#55636f; margin:0;}
+  .fnode .why{display:block; margin-top:5px; font-size:12px; font-family:'Fraunces',serif; font-style:italic; color:var(--gold-ink);}
+  .farrow{width:1px; height:26px; background:var(--gold); margin:0 auto; position:relative;}
+  .farrow::after{content:''; position:absolute; bottom:0; left:-4px; border:5px solid transparent; border-top:6px solid var(--gold); border-bottom:0;}
+  .fnode.start{background:var(--navy); border-color:var(--navy);}
+  .fnode.start h4,.fnode.start p{color:var(--cream);}
+  .fnode.start .why{color:var(--gold-lt);}
+  .fnode.end{background:linear-gradient(135deg,#8C6D2F,#C4A24C 45%,#E8CF8A);}
+  .fnode.end h4,.fnode.end p,.fnode.end .why{color:var(--navy-ink);}
+  .fnode.future{border-style:dashed; opacity:.85;}
+  .fbranch{display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:640px; margin:0 auto;}
+  .fbranch .fnode{max-width:none;}
+  .foot{margin-top:70px; font-size:12px; font-style:italic; color:rgba(0,47,95,.45); text-align:center;}
+  .toc{background:var(--navy-ink); border-radius:12px; padding:20px 26px; margin-top:26px;}
+  .toc a{color:var(--gold-lt); text-decoration:none; font-size:13.5px; display:block; padding:3px 0; font-family:'Fraunces',serif; font-style:italic;}
+  .toc a:hover{color:#F6ECC8;}
+  @media print{body{background:#fff;} .toc,.fnode.start{-webkit-print-color-adjust:exact; print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Website Work Plan <em>· post-meeting draft</em></h1>
+<p class="sub">Everything extracted from the team call (Kriti · Kynan · Mulla, 15 July) · full detail, head to toe · NO changes made yet, this is the plan for sign-off</p>
+
+<div class="toc">
+  <a href="#verdict">0 · The verdict + strategy in one breath</a>
+  <a href="#worklist">1 · Section-by-section work list (every detail)</a>
+  <a href="#approved">2 · Approved as-is: do not touch</a>
+  <a href="#content">3 · Content and asset tasks</a>
+  <a href="#flow">4 · The conversion flow chart (client-facing deliverable)</a>
+  <a href="#pitch">5 · Pitch structure and talking points</a>
+  <a href="#intel">6 · Client intel file</a>
+  <a href="#prep">7 · Call prep rules (Kynan's coaching)</a>
+  <a href="#decide">8 · Decisions needed before I build</a>
+</div>
+
+<h2 id="verdict"><span class="n">0</span>The verdict + strategy in one breath</h2>
+<div class="card">
+  <p><b>Team verdict:</b> the build fixed the three big problems of her old site: too much telling and not enough showing, luxury-sounding but generic-looking, and weak hidden CTAs. Flow, palette and interactivity all praised.</p>
+  <p style="margin-top:8px;"><b>Strategy:</b> she has NOT commissioned work yet. This page exists to <b>sell her the vision</b>. So: no huge rebuilds now, only high-impact tweaks that become <b>talking points</b> in the pitch. Every change below exists to justify a sentence in the client call. The heavy engineering (CRM, booking, full site) happens after she signs.</p>
+  <p style="margin-top:8px;"><b>Priorities:</b> <span class="pill P1">P1 · before client demo</span> <span class="pill P2">P2 · stretch, if time allows</span> <span class="pill P3">P3 · after she commissions</span></p>
+</div>
+
+<h2 id="worklist"><span class="n">1</span>Section-by-section work list</h2>
+
+<h3>1.1 · Hero</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Background video</b></td><td>Approved. AI-generated placeholder passed because it is styled to HER brand. Keep. <span class="quote">"The video in the background is very good because it's relevant to her."</span></td><td><span class="keep">keep</span></td></tr>
+  <tr><td><b>"Check availability" button</b></td><td>Hard to see against the hero. Needs real contrast: white background or a shiny silver/light gradient treatment. Design call is Kriti's, but it must visibly pop. <span class="quote">"Hard to see, hard to see... maybe something white, like a shiny silver gradient, so there's contrast."</span></td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Headline copy</b></td><td>"Luxury weddings, private events, Dubai" tells a cold visitor everything: what, niche, where. Clear enough, fine-tune later only.</td><td><span class="keep">keep</span></td></tr>
+</table>
+
+<h3>1.2 · Rising arch → Founder reveal (the one structural change)</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Kill the static walkway arch</b></td><td>A cold visitor doesn't know what to do with it. <span class="quote">"If I'm a cold customer and I scroll down and see this, I'm like: what is this? What do I do with this information?"</span></td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Replace with HER photo rising + expanding into a full Founder section</b></td><td>As you scroll, an image of Benafsha pops up and expands into an "about the founder" block. Rationale: solo planner = she IS the brand; a face builds trust that a company name cannot; one-to-one contact is the sell. Her old site technically had founder info but it was buried inside a banner on another page: effectively invisible. <span class="quote">"If we have an image of her pop up and expand into a whole section about her, fantastic. People can't trust a company, they can trust a person."</span> Needs: her headshot/portrait from the Drive + a short founder story (dig it out of the old site banner + ask Mulla).</td><td><span class="pill P1">P1</span></td></tr>
+</table>
+
+<h3>1.3 · Stats deck ("Every detail, considered")</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Remove hint text</b></td><td>Delete "Touch a number to pull its story from the deck." Reason: fills space, tiny text, confusing. It should just work on its own.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Remove the samples disclaimer</b></td><td>Delete "Card details shown as samples until client records are added." We present this as a finished product, then personalise after she signs.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Bigger cards</b></td><td>Enlarge the record cards so the section reads instantly: "these are events we've done." Zero confusion at a glance.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Fully automatic cycling</b></td><td>Stats and cards advance on their own (already built: spotlight blur cycle + synced deck). Verify it reads effortlessly with no interaction needed.</td><td><span class="keep">keep</span></td></tr>
+  <tr><td><b>Annotated detail callouts</b></td><td>Stretch idea: instead of repeating portfolio photos, annotate the cards: small auto-appearing dot-point callouts that point at details in the photo. Purpose of the section = "show your attention to detail," so literally point out the details. Becomes a strong pitch talking point.</td><td><span class="pill P2">P2</span></td></tr>
+</table>
+
+<h3>1.4 · Backgrounds and dead space (site-wide)</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>No plain backgrounds anywhere</b></td><td>Any section that reads flat gets a subtle living detail: a squiggly gold line that shines periodically, ribbons, or drifting sparkles. Named spots: the space near the top sections and behind testimonials/FAQ. <span class="quote">"Ask Claude to add a squiggly line in the background that shines periodically... it is an events company, we're focused on design."</span></td><td><span class="pill P1">P1</span></td></tr>
+</table>
+
+<h3>1.5 · Fullscreen video panel (dark champagne section)</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Replace the dull video</b></td><td>Current placeholder reads flat. Source the most visually striking luxury hospitality footage available. Kynan's reference: search "Jumeirah hotels hospitality video" · already colour-graded and cut for luxury hospitality. Kriti's angle: a wedding/reception film also fits (people know wedding videography). Since it's not her footage either way, we are free to pick the most stunning clip possible: we are selling a vision.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Autoplay, no play button</b></td><td>Remove the play ring. Nobody wants to click; zero-effort viewing. <span class="quote">"Have this autoplay, don't have there be a play button. No one wants to do any effort."</span></td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Remove placeholder chip</b></td><td>Delete the "Placeholder video · swap for real footage" pill. Same logic as the stats disclaimer.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Pitch line for this section</b></td><td>When Mulla's filmed content is ready, this is where it lives: "once we get your content edited, this is how we showcase it cohesively."</td><td><span class="pill P3">P3</span></td></tr>
+</table>
+
+<h3>1.6 · Testimonials ("Kind words")</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Auto-swipe + more fluid motion</b></td><td>Already auto-rotates every 7s; make the transition feel more fluid/liquid and confirm it never requires a click. Add the background life treatment (sparkles/ribbons) here too.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Real Google reviews</b></td><td>Wire in her actual review quotes once collected (screenshots → extract). Still pending.</td><td><span class="pill P3">P3</span></td></tr>
+</table>
+
+<h3>1.7 · FAQ coverflow</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Section approved</b></td><td>Both teammates liked it. <span class="quote">"The FAQ is nice, questions answered, very nice."</span></td><td><span class="keep">keep</span></td></tr>
+  <tr><td><b>Image-backed boards</b></td><td>Upgrade: instead of plain cream boards, give each board an event image background with a dark overlay so the question text sits on top with contrast (same recipe as the portfolio cards).</td><td><span class="pill P2">P2</span></td></tr>
+  <tr><td><b>Auto-advance</b></td><td>The coverflow should slowly cycle on its own (pause on hover/interaction), consistent with "everything moves without effort."</td><td><span class="pill P2">P2</span></td></tr>
+</table>
+
+<h3>1.8 · Final CTA ("the invitation")</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Fix the text cutoff</b></td><td>Kriti flagged copy clipping at the front of the WhatsApp button line. Straight bug fix.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Envelope-opening animation</b></td><td>Stretch: the section animates like an envelope opening into an invitation. On-theme for an event planner and a memorable pitch moment. <span class="quote">"Ask Claude to make a quick animation of it opening as an envelope, like an invitation."</span></td><td><span class="pill P2">P2</span></td></tr>
+</table>
+
+<h3>1.9 · CTAs and conversion plumbing (site-wide)</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Tighten CTAs</b></td><td>CTAs judged strong but "can tighten a little more": every button obvious, high-contrast, zero hunting. Audit each one top to bottom.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>WhatsApp float</b></td><td>Pulsating corner button approved: direct and always visible.</td><td><span class="keep">keep</span></td></tr>
+  <tr><td><b>GHL / Calendly wiring</b></td><td>Post-signature: buttons route to a GHL calendar synced with Google Calendar → visitor books a slot → automatic email + SMS reminders → post-meeting next steps → lead-nurture funnel. This is the upsell story: website → CRM → full sales pathway.</td><td><span class="pill P3">P3</span></td></tr>
+</table>
+
+<h3>1.10 · Mobile-first pass</h3>
+<table>
+  <tr><th>Item</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Optimise phone layout as its own design</b></td><td>Estimate from the call: ~70% of her traffic will be phones ("wedding planners near me" searches + Meta ads are phone-first). Phone and desktop can effectively be two different layouts; changes to one don't have to touch the other. Kriti already flagged the stats section needs more spacing on mobile. Full audit top to bottom on a real phone.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Pitch angle</b></td><td>"X% of your demographic arrives by phone; here's how we optimised for that" becomes its own talking point in the client call.</td><td><span class="pill P1">P1</span></td></tr>
+</table>
+
+<h2 id="approved"><span class="n">2</span>Approved as-is · do not touch</h2>
+<div class="card">
+  <ul>
+    <li><b>Hero background video</b> · "very good because it's relevant to her"</li>
+    <li><b>Colour palette + luxury feel</b> · fixed the "sounds luxury, looks generic" problem</li>
+    <li><b>Overall flow and smooth animation</b> · "the flow of the entire website was amazing"</li>
+    <li><b>Blur-to-focus manifesto</b> (her own phrase from her site) · "perfect, I love it"</li>
+    <li><b>Middle banner</b> · "perfect, I love it"</li>
+    <li><b>Portfolio stack</b> · "I like the portfolio section a lot. Less is more: a fat image and a button."</li>
+    <li><b>Services accordion</b> · good; just ensure the auto-slide stays smooth</li>
+    <li><b>FAQ concept</b> · approved (upgrades listed above are optional polish)</li>
+    <li><b>Final CTA section</b> · "this part is amazing"</li>
+  </ul>
+  <p class="quote" style="margin-top:6px;">Rule for this phase: these sections earned their place. Don't redesign what's already selling.</p>
+</div>
+
+<h2 id="content"><span class="n">3</span>Content and asset tasks</h2>
+<table>
+  <tr><th>Task</th><th>Detail</th><th>Priority</th></tr>
+  <tr><td><b>Mine her Google Drive</b></td><td>Access granted during the call. Hunt for: before/after transformation shots, event setup videos, client reaction clips, anything showing process. Shortlist the best.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Upscale via Higgsfield</b></td><td>Any usable but low-quality Drive photo → run through Higgsfield upscale. (Her IG reels are mostly unusable: quality on/off, cuts too short.)</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Founder story + portrait</b></td><td>Extract her story from the old site's buried banner; get a proper portrait from the Drive or via Mulla. Needed for the new Founder section.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Luxury hospitality/wedding stock video</b></td><td>For the fullscreen panel (see 1.5). Jumeirah-style reference or premium wedding film.</td><td><span class="pill P1">P1</span></td></tr>
+  <tr><td><b>Real Google reviews</b></td><td>Collect her actual reviews (screenshot → extract text) for the testimonial spotlight.</td><td><span class="pill P3">P3</span></td></tr>
+  <tr><td><b>Mulla's filmed content</b></td><td>2 filming sessions done, ~12 clips captured, 3 videos edited so far (6-video deal). This becomes site footage after signature.</td><td><span class="pill P3">P3</span></td></tr>
+</table>
+
+<h2 id="flow"><span class="n">4</span>The conversion flow chart · client-facing deliverable</h2>
+<p>The team's biggest ask: a flow chart / board that walks Benafsha through <b>how a cold visitor becomes a booked lead</b>, and what each section and button is doing for her conversions. Presented side-by-side with her old site, pitch-deck style. Draft of the journey it will show:</p>
+
+<div class="flow">
+  <div class="fnode start"><h4>COLD LEAD <i>· doesn't know her yet</i></h4>
+    <p>Arrives from a Meta ad, Google search ("wedding planner Dubai"), or Instagram · most likely on a phone</p>
+    <span class="why">Five Stages of Awareness: they have a problem (an event to plan), zero trust in her yet. The site's job is to warm them up step by step.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode"><h4>HERO <i>· first impression</i></h4>
+    <p>Cinematic luxury opening + headline that answers what / niche / where in one line + a visible "Check availability" CTA</p>
+    <span class="why">"If they can make a stunning hero, they must know design." In a creative industry the website IS the proof of taste. Impatient visitors can convert immediately.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode"><h4>FOUNDER REVEAL <i>· the trust moment</i></h4>
+    <p>Benafsha's photo rises and expands into her story</p>
+    <span class="why">People don't trust companies, they trust people. One-to-one contact with the person in charge = accountability = trust built early.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode"><h4>STATS DECK <i>· proof at a glance</i></h4>
+    <p>Numbers cycle automatically, each pulling up a real event record card</p>
+    <span class="why">Track record without reading a word. Detail callouts show her attention to detail: the thing clients actually buy.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode"><h4>PORTFOLIO STACK <i>· show, don't tell</i></h4>
+    <p>Full-bleed real event photos, each with its own "Enquire about this event" button</p>
+    <span class="why">A bride looking for a planner wants to SEE weddings they've done. Every card is also an exit ramp straight to WhatsApp.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode"><h4>SERVICES <i>· "they do what I need"</i></h4>
+    <p>Auto-cycling accordion: Planning / Styling / Coordination</p>
+    <span class="why">Answers "can they handle MY kind of event?" without a menu dive.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode"><h4>SHOWCASE FILM <i>· the immersion beat</i></h4>
+    <p>Luxury footage scales to fullscreen mid-scroll, autoplaying</p>
+    <span class="why">Motion sells atmosphere in a way photos can't. Future home of her own filmed content.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode"><h4>TESTIMONIALS + FAQ <i>· objections handled</i></h4>
+    <p>Auto-rotating client stories, then swipeable answers to the questions every host asks</p>
+    <span class="why">By now they trust her taste and record; this clears the final doubts (budget, timing, scope) before the ask.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode end"><h4>ONE CLEAR ACTION <i>· the invitation</i></h4>
+    <p>Single metallic-gold WhatsApp CTA + pulsating WhatsApp float that never left the corner</p>
+    <span class="why">Zero hunting for contact. WhatsApp-first because that's how Dubai actually books. The visitor was hand-held from stranger → enquiry.</span></div>
+  <div class="farrow"></div>
+  <div class="fnode future"><h4>AFTER SIGNATURE <i>· the upsell pathway</i></h4>
+    <p>Buttons route to GHL/Calendly booking → synced calendar slot → automatic email + SMS reminders → post-meeting follow-ups → lead-nurture funnel (CRM)</p>
+    <span class="why">The website becomes the gateway to a full sales system. This is the "beyond the website" vision we sell on the call.</span></div>
+</div>
+
+<h4>Format of the deliverable</h4>
+<ul>
+  <li>A polished on-brand page (like this one, but client-safe: <b>no pricing, no internal strategy</b>)</li>
+  <li>Per section: <b>her old site's weakness → what we built → why it converts</b>, side by side</li>
+  <li>Doubles as the pitch deck: Kriti talks over it on the call instead of memorising a script</li>
+</ul>
+
+<h2 id="pitch"><span class="n">5</span>Pitch structure and talking points</h2>
+<div class="card">
+  <h3>The four broad categories (Kynan's structure · don't script, just know these)</h3>
+  <ul>
+    <li>1 · <b>What we did</b> · visual uplift, real portfolio, founder forward, mobile-first</li>
+    <li>2 · <b>The purpose of the website</b> · convert cold ad traffic into WhatsApp enquiries</li>
+    <li>3 · <b>What each section does</b> · walk the flow chart</li>
+    <li>4 · <b>How it helps HER</b> · more booked leads, less friction, a system not a brochure</li>
+  </ul>
+</div>
+<div class="say">The money line: "You made six figures last year from 15–20 booked leads, all word of mouth, none from online. Imagine doubling that. To run ads you need somewhere for the ads to send people: a website built to convert. This is that website."</div>
+<ul>
+  <li><b>Five Stages of Awareness framing</b> (Mulla): the site walks a stranger from "I have an event" to "I trust this person with it."</li>
+  <li><b>Design = credibility</b>: in event planning, a creative industry, a stunning site is itself proof of capability.</li>
+  <li><b>Mobile stat</b>: majority of her traffic will arrive by phone; we designed phone-first.</li>
+  <li><b>Old vs new CTAs</b>: her old site made interested visitors hunt for contact; now every portfolio card, the nav, the float and the finale all route to WhatsApp.</li>
+  <li><b>Beyond the website</b>: GHL calendar, auto reminders, nurture funnel · paint the full pathway, sell the vision of a sales system.</li>
+  <li><b>Positioning note</b>: she said "I thought we were leaving the website for a while and focusing on IG." Frame this as exactly that: no pressure, "we just wanted to show you what's possible" · the IG content Mulla is filming plugs INTO this site later.</li>
+</ul>
+
+<h2 id="intel"><span class="n">6</span>Client intel file</h2>
+<table>
+  <tr><th>Fact</th><th>Detail</th></tr>
+  <tr><td><b>Business results</b></td><td>Made 130k+ last year from only 15–20 booked leads · 100% word of mouth, zero online/Meta leads. Huge headroom.</td></tr>
+  <tr><td><b>Current focus</b></td><td>Corporate events. Also mid-push on Instagram content (Mulla filming: 6 videos for 1.5k deal, 2 sessions shot, 3 videos edited).</td></tr>
+  <tr><td><b>Relationship</b></td><td>Her husband is Mulla's cousin (family connection, big age gap so not close). Warm intro, high trust channel.</td></tr>
+  <tr><td><b>Personality</b></td><td>Very down to earth, recognises and respects effort. Cautious with money / spends reluctantly, but commits once she sees results.</td></tr>
+  <tr><td><b>Pricing context (INTERNAL)</b></td><td>Originally quoted ~2.5k on contract. Plan: anchor there, settle at 1.5–1.75k so she feels the concession. Payment plan is the fallback if price stalls. Kriti gets a cut.</td></tr>
+  <tr><td><b>Her current assets</b></td><td>Google Drive shared (access granted ✓). IG reels exist but low quality/short cuts. No usable long-form video yet.</td></tr>
+  <tr><td><b>Meeting status</b></td><td>She replied "sure" · call later this week or next, no rush. Three time zones to juggle. She's busy today (as of the meeting).</td></tr>
+  <tr><td><b>Pipeline note</b></td><td>Mulla has a second prospect lined up (a salon with an AI-generated site) regardless of how this one lands.</td></tr>
+</table>
+
+<h2 id="prep"><span class="n">7</span>Call prep rules · Kynan's coaching</h2>
+<div class="card">
+  <ul>
+    <li><b>Conversation, not script.</b> Slides/board carry minimal text; the substance comes from you talking. "No one wants to listen to a script, they want a conversation."</li>
+    <li><b>Know the four categories</b>, let the details come naturally · you built it, you know the product best.</li>
+    <li><b>Never defend.</b> If she criticises: "Our rationale was X, but I totally see your point · you know your business best, happy to adjust."</li>
+    <li><b>Drop the fear.</b> If this one doesn't land, more clients are lined up; it still goes in the portfolio either way ("international client, Dubai" is already a portfolio win).</li>
+    <li><b>Walk her through the WHY,</b> not just the pretty. "You can make the sexiest website in the world · if it doesn't convert, it means nothing."</li>
+    <li><b>Plant the idea</b>: she doesn't yet know she needs it. The flow chart is the planting tool.</li>
+  </ul>
+</div>
+
+<h2 id="decide"><span class="n">8</span>Decisions needed before I build</h2>
+<div class="warn">
+  <h3>Confirm these, then work starts</h3>
+  <ul>
+    <li><b>1 · Founder reveal replaces the rising arch?</b> It's the one structural change to the page. (Kynan pushed it hard; needs her portrait + story first, or a tasteful stand-in for the demo.)</li>
+    <li><b>2 · Deliverable split:</b> internal work list (this doc) stays internal; the flow chart becomes a separate polished client-facing page with no pricing/strategy. Confirm the split.</li>
+    <li><b>3 · Video source for the fullscreen panel:</b> luxury hotel-style footage (Jumeirah reference) or wedding/reception film? Pick a lane before I source it.</li>
+    <li><b>4 · Scope check:</b> P1 list only before the client call, or P1 + the P2 stretch items (annotated stats, envelope animation, FAQ image boards, FAQ auto-advance)?</li>
+  </ul>
+</div>
+
+<p class="foot">Internal document · Prestige Planners project · compiled from the 15 July team call transcript · no website changes made yet</p>
+</div>
+</body>
+</html>

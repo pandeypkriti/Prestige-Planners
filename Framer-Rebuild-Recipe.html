@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Framer Rebuild Recipe — Recreating the Prestige Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#002F5F;--gold:#C4A24C;--cream:#F3ECDC;--rust:#903E1F;--sage:#A4C0AA;--ink:#1c2733;}
+  *{box-sizing:border-box;}
+  html,body{overflow-x:hidden;}
+  body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--cream);margin:0;line-height:1.65;font-weight:300;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 34px 90px;}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:40px;line-height:1.1;color:#fff;background:var(--navy);
+     border-bottom:6px solid var(--gold);margin:34px 0 40px;padding:52px 40px 44px;text-align:center;border-radius:10px;
+     box-shadow:0 8px 30px rgba(0,47,95,.14);}
+  h2{font-family:'Fraunces',serif;font-weight:600;color:var(--navy);font-size:26px;margin:46px 0 6px;
+     padding-bottom:8px;border-bottom:2px solid var(--gold);}
+  h3{font-family:'Fraunces',serif;color:var(--rust);font-size:19px;margin:26px 0 6px;font-weight:600;}
+  h4{font-family:'Poppins';color:var(--navy);font-weight:600;font-size:15px;margin:18px 0 4px;letter-spacing:.02em;}
+  p{margin:9px 0;}
+  a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold);}
+  strong,b{font-weight:600;color:var(--navy);}
+  ul,ol{margin:8px 0;padding-left:22px;}
+  li{margin:5px 0;}
+  code{font-family:'SF Mono',Menlo,monospace;background:#faf1dd;color:var(--rust);padding:1px 6px;border-radius:4px;font-size:.9em;}
+  pre{background:var(--navy);color:var(--cream);padding:16px 20px;border-radius:8px;overflow:auto;}
+  pre code{background:none;color:var(--cream);padding:0;}
+  blockquote{background:var(--navy);color:var(--cream);border-radius:8px;border-left:5px solid var(--gold);
+     padding:16px 24px;margin:20px 0;font-family:'Fraunces',serif;font-size:16px;font-style:italic;}
+  blockquote strong{color:var(--gold);}
+  blockquote a{color:var(--sage);}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;background:#fff;border-radius:6px;
+     overflow:hidden;box-shadow:0 3px 14px rgba(0,47,95,.05);}
+  th{background:var(--navy);color:var(--cream);text-align:left;padding:11px 14px;font-weight:500;font-size:13px;}
+  td{padding:10px 14px;border-top:1px solid #eadfca;vertical-align:top;}
+  tr:nth-child(even) td{background:#faf6ec;}
+  hr{border:none;border-top:2px solid var(--gold);margin:38px 0;opacity:.7;}
+  ul.task-list{list-style:none;padding-left:6px;}
+  ul.task-list li{margin:6px 0;}
+  input[type=checkbox]{accent-color:var(--gold);margin-right:8px;transform:scale(1.15);}
+  em{color:#42586b;}
+  .doc-foot{margin-top:54px;padding-top:16px;border-top:2px solid var(--gold);font-size:12px;color:#5a6b7a;text-align:center;}
+  @media print{
+    body{background:#fff;} .wrap{max-width:100%;}
+    h1{margin:0 0 30px;padding:40px 20px;} h2,h3{page-break-after:avoid;}
+    table,blockquote,pre{page-break-inside:avoid;} a{border:none;color:var(--navy);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1 id="framer-rebuild-recipe--recreating-the-prestige-landing-page">Framer Rebuild Recipe — Recreating the Prestige Landing Page</h1><p><em>How to rebuild every effect from your live HTML draft inside Framer. Keep the HTML page open beside you as your live reference.</em></p><hr /><h2 id="the-smart-workflow-do-it-in-this-order">The smart workflow (do it in this order)</h2><ol type="1"><li><strong>Set your brand Styles first</strong> — create Color Styles (Navy <code>#002F5F</code>, Gold <code>#C4A24C</code>, Cream <code>#F3ECDC</code>, Rust <code>#903E1F</code>, Sage <code>#A4C0AA</code>) and Text Styles (Fraunces for headings, Poppins for body). Everything you build after is automatically on-brand.</li><li><strong>Build the sections</strong> top to bottom: Hero → Ribbon → Stats → Featured → Services → Gallery → Founder → Testimonials → How We Work → CTA → Footer.</li><li><strong>Then layer the Effects on</strong> — this is where the "everything belongs" feeling comes from.</li><li><strong>Shortcut:</strong> use <strong>Framer AI (Wireframer)</strong> to scaffold the layout ("luxury Dubai event planner landing page, hero + gallery + founder + testimonials"), then restyle with your brand kit and add effects.</li></ol><hr /><h2 id="the-effects-you-loved--how-to-do-each-in-framer">The effects you loved → how to do each in Framer</h2><h3 id="-native-built-in--no-code-no-plugins">⭐ Native (built in — no code, no plugins)</h3><p><strong>Fade + rise on scroll (the reveals)</strong> Select a section → <strong>Effects</strong> panel → add <strong>Appear</strong> → choose <em>Fade</em> + <em>Move Up</em>. Apply it to a stack of items and Framer staggers them automatically. This is the single most-used effect on the page.</p><p><strong>Ken Burns hero zoom (slow continuous zoom)</strong> Select the hero image → <strong>Effects</strong> → add a <strong>Loop</strong> effect → animate <strong>Scale 1 → 1.1</strong>, ease in-out, loop/alternate. Gives that cinematic drift.</p><p><strong>Scrolling gold ribbon (the services marquee)</strong> <strong>Insert menu → Ticker.</strong> Drop your text items in (Weddings · Bridal Showers · Corporate Galas…) — it scrolls infinitely on its own. Built for exactly this.</p><p><strong>Cards that zoom + reveal their caption on hover</strong> Make the card a <strong>Component</strong> → add a <strong>Hover variant</strong> → in that variant, scale the image up and slide the caption in. Framer animates smoothly between the two states.</p><p><strong>Hover-zoom gallery images</strong> Same Hover-variant trick — the image scales up on hover.</p><p><strong>Sticky header that darkens on scroll</strong> Select the nav → Position → <strong>Sticky</strong> (top offset 0). For the darkening, add a <strong>Scroll</strong> effect that changes its background as the page scrolls down.</p><p><strong>Button shine + hover lift</strong> Build the button once as a <strong>Component</strong>; add a <strong>Hover</strong> effect (slight lift + shadow). For the shimmer, a Hover variant with a moving highlight.</p><h3 id="-marketplace-helpers-free-drag-in-components--insert--search">⭐⭐ Marketplace helpers (free drag-in components — Insert → search)</h3><p>Not one-click, but ready-made so you never touch code:</p><ul><li><strong>Count-up stats</strong> (50+, 100%, 8+) → search <strong>"Counter"</strong> or "Number animation."</li><li><strong>Scroll-progress bar</strong> (the gold line along the top) → search <strong>"Scroll progress."</strong></li><li><strong>Click-to-enlarge lightbox</strong> (gallery) → search <strong>"Lightbox"</strong> or "Gallery lightbox."</li></ul><p>Drag it in, point it at your content, done.</p><hr /><h2 id="section-by-section-build-map">Section-by-section build map</h2><table><thead><tr class="header"><th>Section</th><th>Framer build</th><th>Effects to add</th></tr></thead><tbody><tr class="odd"><td><strong>Hero</strong></td><td>Full-screen Frame, image fill, dark overlay Frame on top, headline + subline + WhatsApp button</td><td>Ken Burns <strong>Loop</strong> on image · <strong>Appear</strong> (staggered) on text</td></tr><tr class="even"><td><strong>Ribbon</strong></td><td><strong>Ticker</strong> component with service words</td><td>Built-in scroll</td></tr><tr class="odd"><td><strong>Stats</strong></td><td>4-column Stack</td><td>Marketplace <strong>Counter</strong> · <strong>Appear</strong></td></tr><tr class="even"><td><strong>Featured</strong></td><td>3 card <strong>Components</strong> (image + tag + title + caption)</td><td><strong>Hover variant</strong> (zoom + caption reveal) · <strong>Appear</strong></td></tr><tr class="odd"><td><strong>Services</strong></td><td>4-column Stack of icon cards</td><td><strong>Hover</strong> lift · <strong>Appear</strong></td></tr><tr class="even"><td><strong>Gallery</strong></td><td>Grid or Masonry of her real photos</td><td><strong>Hover</strong> zoom · Marketplace <strong>Lightbox</strong></td></tr><tr class="odd"><td><strong>Founder</strong></td><td>2-column: image + text; add Benafsha's real headshot</td><td><strong>Appear</strong> slide-in</td></tr><tr class="even"><td><strong>Testimonials</strong></td><td>Horizontal Scroll of quote cards</td><td><strong>Appear</strong></td></tr><tr class="odd"><td><strong>How We Work</strong></td><td>3-column numbered steps</td><td><strong>Appear</strong></td></tr><tr class="even"><td><strong>CTA</strong></td><td>Full-width Frame, image + dark overlay, headline + button</td><td><strong>Appear</strong></td></tr><tr class="odd"><td><strong>Footer</strong></td><td>Navy Frame, 3 columns of links</td><td>—</td></tr><tr class="even"><td><strong>WhatsApp float</strong></td><td>Fixed-position circle Frame, linked to <code>wa.me/971509118505</code></td><td><strong>Loop</strong> pulse (optional)</td></tr></tbody></table><hr /><h2 id="making-it-work-live">Making it work (live)</h2><ul><li><strong>Publish</strong> → free <code>.framer.website</code> URL to show the client.</li><li><strong>Basic plan (~$10/mo)</strong> → connect her custom domain (e.g. prestigeplanners.ae or a subdomain).</li><li><strong>WhatsApp button</strong> = a link set to <code>https://wa.me/971509118505?text=...</code> (pre-filled message). Nothing to install.</li><li><strong>Mobile:</strong> switch to the Mobile breakpoint and get it flawless — most Dubai traffic is on phones.</li></ul><hr /><h2 id="remember">Remember</h2><p>Brand Styles first · elegant and uncluttered · WhatsApp impossible to miss · obsess over mobile. Build the sections, <em>then</em> add the Appear / Loop / Ticker / Hover effects — that layering is what makes it all feel like it belongs.</p>
+
+<div class="doc-foot">Prestige Planners &middot; prepared for Kriti Pandey &middot; July 2026</div>
+</div>
+</body>
+</html>

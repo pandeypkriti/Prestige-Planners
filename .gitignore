@@ -1,0 +1,16 @@
+# Client's raw Google Drive dump — private media, too large for GitHub (2GB, has files >100MB)
+assets/real/
+assets/real/**
+
+# Phone videos (large, not used by the site)
+*.MOV
+*.mov
+
+# macOS cruft
+.DS_Store
+**/.DS_Store
+._*
+
+# temp / thumbnails
+**/_thumbs/
+**/_thumbs2/

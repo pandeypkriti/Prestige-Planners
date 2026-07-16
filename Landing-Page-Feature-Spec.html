@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing Page Feature Spec — Gaps → Features That Prove Them</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#002F5F;--gold:#C4A24C;--cream:#F3ECDC;--rust:#903E1F;--sage:#A4C0AA;--ink:#1c2733;}
+  *{box-sizing:border-box;}
+  html,body{overflow-x:hidden;}
+  body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--cream);margin:0;line-height:1.65;font-weight:300;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 34px 90px;}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:40px;line-height:1.1;color:#fff;background:var(--navy);
+     border-bottom:6px solid var(--gold);margin:34px 0 40px;padding:52px 40px 44px;text-align:center;border-radius:10px;
+     box-shadow:0 8px 30px rgba(0,47,95,.14);}
+  h2{font-family:'Fraunces',serif;font-weight:600;color:var(--navy);font-size:26px;margin:46px 0 6px;
+     padding-bottom:8px;border-bottom:2px solid var(--gold);}
+  h3{font-family:'Fraunces',serif;color:var(--rust);font-size:19px;margin:26px 0 6px;font-weight:600;}
+  h4{font-family:'Poppins';color:var(--navy);font-weight:600;font-size:15px;margin:18px 0 4px;letter-spacing:.02em;}
+  p{margin:9px 0;}
+  a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold);}
+  strong,b{font-weight:600;color:var(--navy);}
+  ul,ol{margin:8px 0;padding-left:22px;}
+  li{margin:5px 0;}
+  code{font-family:'SF Mono',Menlo,monospace;background:#faf1dd;color:var(--rust);padding:1px 6px;border-radius:4px;font-size:.9em;}
+  pre{background:var(--navy);color:var(--cream);padding:16px 20px;border-radius:8px;overflow:auto;}
+  pre code{background:none;color:var(--cream);padding:0;}
+  blockquote{background:var(--navy);color:var(--cream);border-radius:8px;border-left:5px solid var(--gold);
+     padding:16px 24px;margin:20px 0;font-family:'Fraunces',serif;font-size:16px;font-style:italic;}
+  blockquote strong{color:var(--gold);}
+  blockquote a{color:var(--sage);}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;background:#fff;border-radius:6px;
+     overflow:hidden;box-shadow:0 3px 14px rgba(0,47,95,.05);}
+  th{background:var(--navy);color:var(--cream);text-align:left;padding:11px 14px;font-weight:500;font-size:13px;}
+  td{padding:10px 14px;border-top:1px solid #eadfca;vertical-align:top;}
+  tr:nth-child(even) td{background:#faf6ec;}
+  hr{border:none;border-top:2px solid var(--gold);margin:38px 0;opacity:.7;}
+  ul.task-list{list-style:none;padding-left:6px;}
+  ul.task-list li{margin:6px 0;}
+  input[type=checkbox]{accent-color:var(--gold);margin-right:8px;transform:scale(1.15);}
+  em{color:#42586b;}
+  .doc-foot{margin-top:54px;padding-top:16px;border-top:2px solid var(--gold);font-size:12px;color:#5a6b7a;text-align:center;}
+  @media print{
+    body{background:#fff;} .wrap{max-width:100%;}
+    h1{margin:0 0 30px;padding:40px 20px;} h2,h3{page-break-after:avoid;}
+    table,blockquote,pre{page-break-inside:avoid;} a{border:none;color:var(--navy);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1 id="landing-page-feature-spec--gaps--features-that-prove-them">Landing Page Feature Spec — Gaps → Features That Prove Them</h1><p><em>Every pitch point becomes a visible feature. Landing page = v1 (now). Website = the upsell (later).</em></p><hr /><h2 id="the-mapping-pain--feature">The mapping: pain → feature</h2><h3 id="-hard-to-book--make-booking-impossible-to-miss">💸 "Hard to book" → make booking impossible to miss</h3><table><thead><tr class="header"><th>Landing page (build now)</th><th>Full website (upsell)</th></tr></thead><tbody><tr class="odd"><td><strong>Sticky header</strong> with a persistent <strong>"Enquire on WhatsApp"</strong> button that follows you down the page</td><td>Same sticky Enquire CTA on every page</td></tr><tr class="even"><td><strong>Hero CTA</strong> — one bold WhatsApp button above the fold</td><td><strong>Enquiry form</strong> (name, event type, date) → her email</td></tr><tr class="odd"><td><strong>Floating WhatsApp bubble</strong> on mobile (always on screen)</td><td><strong>"Check my date" mini-form</strong> (date + event type)</td></tr><tr class="even"><td><strong>Closing CTA band</strong> — repeats the ask at the bottom</td><td><strong>Click-to-call</strong> button for phone-first clients</td></tr><tr class="odd"><td><strong>Pre-filled WhatsApp message</strong> ("Hi, I'd love to enquire about my event")</td><td>Live availability / booking calendar (Calendly)</td></tr></tbody></table><h3 id="-portfolio-undersells--turn-photos-into-proof">🏆 "Portfolio undersells" → turn photos into proof</h3><table><thead><tr class="header"><th>Landing page</th><th>Full website</th></tr></thead><tbody><tr class="odd"><td><strong>"Featured Events" section</strong> — 3 curated cards, each = photo + event type + guest count + venue + a one-line result or quote</td><td><strong>Dedicated Portfolio page</strong>, filterable: Weddings / Corporate / Showers / Yacht &amp; Desert</td></tr><tr class="even"><td><strong>Hover-to-reveal</strong> detail on each image (elegant, luxury feel)</td><td><strong>Individual case-study pages</strong> — full gallery + the story + client quote</td></tr><tr class="odd"><td><strong>Category strip</strong> (Weddings · Corporate · Showers · Yacht/Desert) so range is instantly clear</td><td><strong>Before/after or "how we did it"</strong> storytelling per event</td></tr></tbody></table><h3 id="-proof--founder-hidden--put-trust-front-and-centre">🙈 "Proof &amp; founder hidden" → put trust front and centre</h3><table><thead><tr class="header"><th>Landing page</th><th>Full website</th></tr></thead><tbody><tr class="odd"><td><strong>Founder Spotlight</strong> — Benafsha's photo + a warm short story (aviation → hospitality → London → Dubai)</td><td><strong>Full About page</strong> + a <strong>30-sec founder intro video</strong></td></tr><tr class="even"><td><strong>Testimonial carousel</strong> with names + event types (not just homepage)</td><td>Testimonials <strong>spread across every page</strong> at decision points</td></tr><tr class="odd"><td><strong>Trust bar</strong> — "★★★★★ on Google · 50+ events · Featured at [venue]"</td><td><strong>Live Google Reviews</strong> widget pulling real ratings</td></tr><tr class="even"><td><strong>Signature / personal note</strong> for a bespoke, human touch</td><td>Press / "as featured in" logos</td></tr></tbody></table><h3 id="-cant-be-found--build-discovery-in-no-ads">🔍 "Can't be found" → build discovery in (no ads)</h3><table><thead><tr class="header"><th>Landing page</th><th>Full website</th></tr></thead><tbody><tr class="odd"><td><strong>Proper page title + meta description</strong> (so Google shows "Luxury Wedding Planner Dubai", not "Event Agency")</td><td>Full <strong>SEO</strong>: keyword titles + meta on every page, location terms ("Dubai", "UAE")</td></tr><tr class="even"><td><strong>Fast load + flawless mobile</strong> (Google ranks these)</td><td><strong>Blog</strong> kept alive (~1/mo) for search traffic</td></tr><tr class="odd"><td><strong>Embedded Instagram feed</strong> (fresh, social proof, keeps them on-page)</td><td><strong>Google Business Profile</strong> map embed + review link</td></tr><tr class="even"><td><strong>Pinterest "Save" buttons</strong> on portfolio images (brides pin for months)</td><td><strong>Embedded TikTok / Reels</strong> section — the #1 Dubai discovery engine</td></tr><tr class="odd"><td><strong>Favicon + custom domain</strong> (the polished details)</td><td><strong>Image alt text + sitemap</strong> for full search visibility</td></tr></tbody></table><h3 id="-looks-template-not-luxury--make-it-feel-expensive">💎 "Looks template, not luxury" → make it feel expensive</h3><table><thead><tr class="header"><th>Landing page</th><th>Full website</th></tr></thead><tbody><tr class="odd"><td><strong>Full-width hero image or subtle video</strong> of an elegant event</td><td>Consistent design system across all pages</td></tr><tr class="even"><td><strong>Elegant serif headlines + gold accents + generous white space</strong></td><td>Custom iconography, refined micro-copy</td></tr><tr class="odd"><td><strong>Subtle scroll animations</strong> (fade/rise), soft gold hover glows</td><td>Page transitions, richer motion</td></tr><tr class="even"><td><strong>Custom 404 + correct browser-tab title</strong> (kills the "template" tell)</td><td>Fixes the "About Us — 1" / "Event Agency" glitches site-wide</td></tr></tbody></table><h3 id="️-no-pricing-signal--qualify-and-set-expectations">🏷️ "No pricing signal" → qualify and set expectations</h3><table><thead><tr class="header"><th>Landing page</th><th>Full website</th></tr></thead><tbody><tr class="odd"><td><strong>"How We Work" — 3 simple steps</strong> (Enquire → Consult → We plan it all)</td><td><strong>Packages page</strong> — tiers or "Investment from…"</td></tr><tr class="even"><td><strong>"Bespoke packages from [X]"</strong> teaser line (optional, if she'll share)</td><td><strong>Downloadable price/brochure guide</strong> (captures email = a lead)</td></tr></tbody></table><hr /><h2 id="-v1-landing-page--the-exact-feature-list-to-build-now">⭐ v1 LANDING PAGE — the exact feature list to build now</h2><p>One page, top to bottom. This is what I'll build:</p><ol type="1"><li><strong>Sticky header</strong> — logo + a single gold "Enquire on WhatsApp" button</li><li><strong>Hero</strong> — full-bleed image, luxury headline, one subline, one WhatsApp CTA</li><li><strong>Trust bar</strong> — ★★★★★ · number of events · a venue/press mention</li><li><strong>Featured Events</strong> — 3 mini case-study cards (photo + type + guests + venue + quote)</li><li><strong>Services strip</strong> — Weddings · Showers · Corporate · Yacht &amp; Desert (one line each)</li><li><strong>Founder Spotlight</strong> — Benafsha's photo + short story (the trust-closer)</li><li><strong>Testimonial carousel</strong> — named quotes with event types</li><li><strong>"How We Work"</strong> — 3 steps (Enquire → Consult → We handle everything)</li><li><strong>Closing CTA band</strong> — "Let's plan something extraordinary" + big WhatsApp button</li><li><strong>Footer</strong> — logo, WhatsApp, email, Instagram, discreet copyright</li><li><strong>Always-on:</strong> floating mobile WhatsApp bubble · pre-filled message · fade-on-scroll animation · flawless mobile · correct page title + favicon</li></ol><p><em>Everything here is buildable with placeholder-but-tasteful imagery today, then swapped for her real photos.</em></p><hr /><h2 id="the-pitch-power-of-this">The pitch power of this</h2><p>When you show her the page, each section is a <strong>silent answer to a problem she just felt:</strong></p><ul><li>She felt "hard to book" → she sees the sticky WhatsApp button everywhere.</li><li>She felt "my gallery looks like stock" → she sees real captioned case studies.</li><li>She felt "people can't see me" → she sees her own face and story done beautifully.</li><li>She felt "it looks a bit template" → she sees something that looks like a high-end agency made it.</li></ul><p><strong>You're not describing features — you're resolving tensions you created 30 seconds earlier.</strong> That's what closes it.</p><p><em>The ⚠️/🔧 items that DON'T fit on one page (Pinterest, TikTok, Google Profile, full portfolio, blog, packages) are exactly your <strong>website upsell</strong> — the roadmap you present after she says yes to the page.</em></p>
+
+<div class="doc-foot">Prestige Planners &middot; prepared for Kriti Pandey &middot; July 2026</div>
+</div>
+</body>
+</html>

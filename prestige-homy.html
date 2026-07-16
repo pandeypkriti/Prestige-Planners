@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestige Planners · Luxury Wedding & Event Planner in Dubai</title>
+<meta name="description" content="Prestige Planners designs bespoke luxury weddings, celebrations and corporate events across Dubai. Enquire on WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F3ECDC'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23C4A24C' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3ECDC; --soft:#FBF8F1; --navy:#002F5F; --navy-d:#00223f;
+    --gold:#C4A24C; --gold-lt:#E8CF8A; --ink:#2a3844; --wa:#25D366;
+    --gold-ink:#7A5F29;    /* gold for small text on cream (AA); raw gold fails contrast */
+    --gold-glint:#F6ECC8;  /* metallic hotspot */
+    --gold-shadow:#8C6D2F; /* metallic dark stop */
+    --navy-ink:#08182B;    /* dark champagne-panel canvas */
+    --navy-chip:#0B1626;   /* badge chips (never pure black) */
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Poppins',sans-serif; font-weight:300; color:var(--ink); background:var(--cream); line-height:1.7; overflow-x:hidden;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:400; color:var(--navy); line-height:1.12;}
+  img{display:block; max-width:100%;}
+  /* editorial label system: italic serif, sentence case — never tracked ALL-CAPS */
+  .eyebrow{font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:17px;
+    letter-spacing:.015em; text-transform:none; color:var(--gold-ink);}
+  .eyebrow.rule{display:flex; align-items:center; gap:12px;}
+  .eyebrow.rule::before{content:''; width:32px; height:1px; background:var(--gold); flex:none;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 28px;}
+  section{position:relative;}
+  /* paper grain — kills flat strips; apply .grain per section */
+  .grain::after{content:''; position:absolute; inset:0; pointer-events:none; z-index:3; opacity:.035; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  /* drifting candlelight orbs — atmospheric warmth for quiet sections */
+  .glow-orb{position:absolute; z-index:0; border-radius:50%; pointer-events:none; filter:blur(30px);
+    background:radial-gradient(circle, rgba(227,200,119,.42), rgba(227,200,119,0) 70%);}
+  @keyframes orbA{from{transform:translate(0,0)} to{transform:translate(70px,44px)}}
+  @keyframes orbB{from{transform:translate(0,0)} to{transform:translate(-80px,-50px)}}
+
+  /* gilded navy buttons: navy carries the surface, gold is the finish. Sharp corners. */
+  .btn{position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:14px;
+    font-weight:500; font-size:14.5px; letter-spacing:.01em;
+    background:linear-gradient(180deg,#003A73,var(--navy) 55%,#00264D); color:#F8F3E6;
+    padding:15px 32px; border-radius:999px; border:1px solid rgba(196,162,76,.55);
+    cursor:pointer; text-decoration:none; transition:transform .25s ease, box-shadow .25s ease;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 2px 10px rgba(0,26,51,.18);}
+  .btn::before{content:''; position:absolute; top:0; bottom:0; left:0; width:55%;
+    background:linear-gradient(100deg, transparent, rgba(246,236,200,.3), transparent);
+    transform:translateX(-130%) skewX(-18deg); pointer-events:none;}
+  .btn:hover{transform:translateY(-1px);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 6px 18px rgba(0,26,51,.26);}
+  .btn:hover::before{transition:transform .7s ease; transform:translateX(320%) skewX(-18deg);}
+  .btn.ghost{background:transparent; color:var(--navy); border:1px solid var(--gold); box-shadow:none;}
+  .btn.ghost:hover{background:rgba(196,162,76,.1); color:var(--navy);}
+  /* pearl pill: bright against the hero, shines on its own (meeting note: the old ghost was "hard to see") */
+  .btn.pearl{background:linear-gradient(180deg,#FFFFFF 0%,#F6F0E1 52%,#E9DFC6 100%); color:var(--navy);
+    font-weight:600; border:1px solid rgba(196,162,76,.75);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.95), 0 6px 22px rgba(0,26,51,.2);}
+  .btn.pearl::before{width:45%;
+    background:linear-gradient(100deg, transparent, rgba(255,255,255,.85) 50%, transparent);
+    animation:pearlShine 4.6s ease-in-out infinite;}
+  @keyframes pearlShine{0%,62%{transform:translateX(-160%) skewX(-18deg)} 86%,100%{transform:translateX(340%) skewX(-18deg)}}
+  .btn.pearl:hover{transform:translateY(-2px);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.95), 0 10px 30px rgba(0,26,51,.28), 0 0 24px rgba(196,162,76,.35);}
+  .btn svg{width:17px; height:17px; fill:currentColor;}
+  /* Homy-style arrow chip: rounded box inside the pill; arrow flies out diagonally on hover */
+  .btn.has-arr{padding:9px 9px 9px 28px;}
+  .btn .arr{width:38px; height:38px; border-radius:13px; background:transparent; color:var(--gold-lt);
+    border:1px solid rgba(196,162,76,.6);
+    position:relative; overflow:hidden; flex:none; display:flex; align-items:center; justify-content:center;}
+  .btn.ghost .arr{color:var(--gold-ink);}
+  .btn .arr svg{position:absolute; width:15px; height:15px; fill:none !important; stroke:currentColor; stroke-width:2.2;
+    stroke-linecap:round; stroke-linejoin:round; transition:transform .38s cubic-bezier(.55,0,.2,1);}
+  .btn .arr .a2{transform:translate(-160%,160%);}
+  .btn:hover .arr .a1{transform:translate(160%,-160%);}
+  .btn:hover .arr .a2{transform:translate(0,0);}
+
+  /* ---------- NAV ---------- */
+  nav{position:fixed; top:0; left:0; right:0; z-index:90; padding:20px 0; transition:.35s; background:transparent;}
+  nav.scrolled{background:rgba(251,248,241,.72); backdrop-filter:blur(16px) saturate(1.4);
+    -webkit-backdrop-filter:blur(16px) saturate(1.4);
+    border-bottom:1px solid rgba(196,162,76,.32); padding:11px 0;}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Fraunces',serif; font-size:22px; color:var(--navy); text-decoration:none; line-height:1;}
+  .logo em{color:var(--gold);}
+  .logo span{display:block; font-family:'Poppins'; font-size:8.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold-ink); margin-top:3px;}
+  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links a{position:relative; font-size:13px; letter-spacing:.06em; color:var(--navy); text-decoration:none; opacity:.8; transition:.25s; padding-bottom:5px;}
+  .nav-links a::after{content:''; position:absolute; left:0; bottom:0; width:100%; height:1px; background:var(--gold);
+    transform:scaleX(0); transform-origin:left; transition:transform .3s cubic-bezier(.25,.8,.25,1);}
+  .nav-links a:hover{opacity:1;}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  nav .btn{padding:10px 22px; font-size:13px;}
+
+  /* ---------- 1. HERO — layered scroll over a living, blurred backdrop ---------- */
+  .hero-pin{height:100vh;}   /* no hold: the hero scrolls straight through like any section */
+  .hero-stick{position:sticky; top:0; height:100vh; overflow:hidden; background:#EDE3CD;}
+  /* living background: blurred real-event ambience + (when present) a blurred video on top of it */
+  .hero-amb{position:absolute; inset:-5%; z-index:0; background:url('assets/hero-scene.png') center/cover;
+    filter:blur(12px) saturate(1.15) brightness(1.02); animation:ambPan 26s ease-in-out infinite alternate; will-change:transform;}
+  .hero-video{position:absolute; inset:0; z-index:0; width:100%; height:100%; object-fit:cover;}
+  @keyframes ambPan{from{transform:scale(1)} to{transform:scale(1.12) translateY(-2%)}}
+  /* light pool holds the title zone; the frame darkens toward the base for depth + contrast */
+  .hero-veil{position:absolute; inset:0; z-index:1;
+    background:
+      radial-gradient(68% 52% at 50% 42%, rgba(251,248,241,.78), rgba(251,248,241,0) 72%),
+      linear-gradient(180deg, rgba(251,248,241,.55) 0%, rgba(251,248,241,.28) 38%, rgba(8,24,43,.18) 70%, rgba(8,24,43,.52) 100%);}
+  /* illumination that grows behind the rising arch */
+  .hero-glow{position:absolute; z-index:2; left:50%; bottom:4vh; transform:translateX(-50%) scale(.55);
+    width:115vmin; height:115vmin; border-radius:50%; pointer-events:none; opacity:0; will-change:opacity,transform;
+    background:radial-gradient(circle, rgba(227,200,119,.6) 0%, rgba(196,162,76,.3) 34%, rgba(196,162,76,0) 70%);}
+  .hero-title{position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 24px; will-change:transform,opacity;}
+  /* masthead dateline: serif caps between gold hairlines that draw outward on load */
+  .hero-slug{display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:22px;}
+  .hero-slug .hs-line{width:52px; height:1px; transform:scaleX(0);
+    animation:lineIn 1.1s cubic-bezier(.22,1,.36,1) .25s forwards;}
+  .hero-slug .hs-line:first-child{background:linear-gradient(90deg, transparent, var(--gold)); transform-origin:right;}
+  .hero-slug .hs-line:last-child{background:linear-gradient(90deg, var(--gold), transparent); transform-origin:left;}
+  @keyframes lineIn{to{transform:scaleX(1)}}
+  .hero-slug .hs-text{font-family:'Fraunces',serif; font-size:12.5px; font-weight:500; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--gold-ink); text-shadow:0 1px 12px rgba(251,248,241,.9);}
+  .hero-slug .ch{display:inline-block; opacity:0; transform:translateY(7px);
+    animation:chIn .55s cubic-bezier(.22,1,.36,1) forwards; animation-delay:calc(var(--i)*.024s + .35s);}
+  @keyframes chIn{to{opacity:1; transform:none}}
+  /* staged entrance for the hero writing */
+  .hero-title h1{animation:heroRise 1.2s cubic-bezier(.22,1,.36,1) .3s backwards;}
+  .hero-title p{animation:heroRise 1.2s cubic-bezier(.22,1,.36,1) .55s backwards;}
+  .hero-ctas{animation:heroRise 1.2s cubic-bezier(.22,1,.36,1) .75s backwards;}
+  @keyframes heroRise{from{opacity:0; transform:translateY(38px)}}
+  .hero-title h1{font-size:clamp(56px,10.5vw,148px); font-weight:300; letter-spacing:-.01em; white-space:nowrap;
+    text-shadow:0 2px 30px rgba(251,248,241,.95), 0 0 70px rgba(251,248,241,.7);}
+  .hero-title h1 em{font-style:italic; color:var(--gold);}
+  .hero-title p{max-width:540px; margin:22px auto 30px; font-size:16.5px; font-weight:400; color:#33434f;
+    text-shadow:0 1px 16px rgba(251,248,241,.9);}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
+  .haze{position:absolute; z-index:5; bottom:-12vh; left:-20vw; right:-20vw; height:46vh; pointer-events:none;}
+  .haze .blob{position:absolute; bottom:0; width:60vw; height:34vh; border-radius:50%;
+    background:radial-gradient(ellipse at center, rgba(251,248,241,.95) 0%, rgba(251,248,241,0) 70%);}
+  .haze .b1{left:-6vw; animation:driftA 16s ease-in-out infinite alternate;}
+  .haze .b2{left:38vw; bottom:-6vh; width:70vw; animation:driftB 21s ease-in-out infinite alternate;}
+  .haze .b3{left:14vw; bottom:-10vh; width:80vw; height:30vh; animation:driftA 26s ease-in-out infinite alternate-reverse;}
+  @keyframes driftA{from{transform:translateX(0)} to{transform:translateX(9vw)}}
+  @keyframes driftB{from{transform:translateX(0)} to{transform:translateX(-11vw)}}
+  .scroll-cue{position:absolute; z-index:6; bottom:26px; left:50%; transform:translateX(-50%);
+    font-family:'Fraunces',serif; font-style:italic; font-size:12px; letter-spacing:.08em; color:var(--gold-lt); opacity:.9; text-align:center;}
+  .scroll-cue::after{content:''; display:block; width:1px; height:34px; margin:8px auto 0;
+    background:linear-gradient(var(--gold),transparent); animation:cue 1.8s ease-in-out infinite;}
+  @keyframes cue{0%,100%{opacity:.3; transform:scaleY(.6)} 50%{opacity:1; transform:scaleY(1)}}
+
+  /* ---------- 2. PROOF — the client deck: a dealing stack of event record cards ---------- */
+  .deck-sec{background:var(--cream); padding:110px 0 120px; overflow:hidden;}
+  .deck-band{position:absolute; top:0; bottom:0; right:0; width:56%; background:var(--soft);
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 140px); mask-image:linear-gradient(90deg, transparent, #000 140px);}
+  .deck-grid{display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; position:relative; z-index:2;}
+  .deck-rail{position:sticky; top:110px; align-self:start;}
+  .deck-rail h2{font-size:clamp(32px,4vw,50px); margin:12px 0 16px;}
+  .deck-rail h2 em{font-style:italic; color:var(--gold);}
+  .deck-rail .para{color:#4c5b68; font-size:15.5px; max-width:46ch;}
+  .stat-rail{margin-top:34px;}
+  .stat-row{display:flex; align-items:baseline; gap:20px; padding:22px 0 22px 18px; border-top:1px solid rgba(196,162,76,.35); position:relative;
+    cursor:pointer; transition:background .5s ease, filter .9s ease, opacity .9s ease;}
+  .stat-row:hover{background:linear-gradient(90deg, rgba(196,162,76,.09), rgba(196,162,76,0) 75%);}
+  .stat-row::before{content:''; position:absolute; left:0; top:50%; width:5px; height:5px; background:var(--gold); transform:translateY(-50%) rotate(45deg);
+    transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease;}
+  /* the story spotlight: one stat in focus, the rest soften back */
+  .stat-row.dim{filter:blur(3.5px); opacity:.34;}
+  .stat-row.lit{background:linear-gradient(90deg, rgba(196,162,76,.13), rgba(196,162,76,0) 75%);}
+  .stat-row.lit::before{transform:translateY(-50%) rotate(45deg) scale(1.5); box-shadow:0 0 12px rgba(196,162,76,.8);}
+  .stat-row:last-child{border-bottom:1px solid rgba(196,162,76,.35);}
+  .stat-row b{font-family:'Fraunces',serif; font-weight:600; font-size:42px; color:var(--navy); min-width:108px; line-height:1;}
+  /* odometer: each digit is a rolling strip, like a mechanical counter */
+  .od{display:inline-flex; overflow:hidden; height:1.08em; line-height:1.08; font-variant-numeric:lining-nums;}
+  .od .dcol{display:block; height:1.08em; overflow:hidden;}
+  .od .dstrip{display:flex; flex-direction:column; transform:translateY(0);
+    transition:transform 1.6s cubic-bezier(.16,1,.3,1);}
+  .od .dstrip span{display:block; height:1.08em; line-height:1.08; font-size:inherit; color:var(--navy);}
+  .od .dsym{display:block; line-height:1.08; font-size:inherit; color:var(--navy);}
+  .stat-row > span{font-size:14.5px; color:#55636f;}
+  .deck-link{display:inline-block; margin-top:26px; color:var(--gold-ink); font-size:14.5px; text-decoration:none;
+    border-bottom:1px solid rgba(196,162,76,.5); padding-bottom:2px; transition:border-color .25s;}
+  .deck-link:hover{border-color:var(--gold-ink);}
+  .deck-note{margin-top:16px; font-size:12px; font-style:italic; color:rgba(0,47,95,.45);}
+  .deck-hint{margin-top:10px; font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; color:var(--gold-ink);}
+  .deck-stage{position:relative; height:730px; perspective:1300px;}
+  .ghost-num{position:absolute; top:-36px; right:-10px; font-family:'Fraunces',serif; font-weight:600;
+    font-size:min(280px,20vw); line-height:1; color:rgba(0,47,95,.06); pointer-events:none; user-select:none; font-variant-numeric:oldstyle-nums;}
+  .deck{position:absolute; left:4%; top:40px; width:min(475px,90%);
+    transform-style:preserve-3d; transition:transform .55s cubic-bezier(.22,1,.36,1);}
+  .deck .card{position:absolute; left:0; top:0; width:100%; background:linear-gradient(165deg,#FBF8F1,#F5EEDF);
+    border:1px solid rgba(0,47,95,.1); border-radius:8px; padding:15px 15px 10px;
+    box-shadow:0 2px 6px rgba(0,47,95,.06), 0 30px 60px -28px rgba(0,47,95,.38); will-change:transform,opacity;
+    transition:transform .75s cubic-bezier(.22,1,.36,1), opacity .75s cubic-bezier(.22,1,.36,1);}
+  .deck .card .card-photo{position:relative; overflow:visible;}
+  .deck .card img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px; display:block;}
+  /* detail hotspots: pulsing markers that reveal an enlarging caption on hover */
+  .deck .card .hs{position:absolute; width:24px; height:24px; margin:-12px 0 0 -12px; padding:0; border:none;
+    background:none; cursor:pointer; z-index:6; transform:translateZ(1px); opacity:0; transition:opacity .5s ease;}
+  .deck .card[data-depth="0"] .hs{pointer-events:auto; opacity:1;}
+  .deck .card:not([data-depth="0"]) .hs{pointer-events:none;}
+  .deck .card .hs .dot{position:absolute; inset:7px; border-radius:50%; background:var(--gold-glint);
+    box-shadow:0 0 0 3px rgba(196,162,76,.35), 0 1px 4px rgba(0,0,0,.4);}
+  .deck .card .hs .dot::before{content:''; position:absolute; inset:-6px; border-radius:50%;
+    border:1px solid rgba(246,236,200,.9); animation:hsPulse 2.2s ease-out infinite;}
+  @keyframes hsPulse{0%{transform:scale(.6); opacity:.9} 100%{transform:scale(1.7); opacity:0}}
+  .deck .card .hs-tip{position:absolute; left:50%; bottom:calc(100% + 8px); transform:translateX(-50%) translateY(6px) scale(.94);
+    width:max-content; max-width:210px; background:rgba(8,22,38,.92); color:#F3ECDC; border:1px solid rgba(196,162,76,.5);
+    border-radius:9px; padding:9px 13px; font-size:12.5px; line-height:1.45; text-align:left; font-family:'Poppins',sans-serif;
+    opacity:0; pointer-events:none; transition:opacity .3s ease, transform .3s cubic-bezier(.22,1,.36,1); z-index:8;
+    box-shadow:0 12px 30px rgba(0,0,0,.4); backdrop-filter:blur(4px);}
+  .deck .card .hs-tip em{font-style:normal; color:var(--gold-lt); font-weight:600; font-size:1.18em;
+    display:inline-block; transition:transform .3s ease;}
+  .deck .card .hs:hover .hs-tip, .deck .card .hs:focus-visible .hs-tip{opacity:1; transform:translateX(-50%) translateY(0) scale(1.06);}
+  .deck .card .hs:hover .hs-tip em{transform:scale(1.12);}
+  .deck .card h3{font-style:italic; font-weight:400; font-size:23px; margin:16px 4px 8px;}
+  .deck .card .meta{display:flex; justify-content:space-between; align-items:center; padding:0 4px 12px;
+    font-size:13.5px; color:#55636f; border-bottom:1px solid rgba(196,162,76,.3);}
+  .deck .card .stars{color:var(--gold); letter-spacing:2px; font-size:12px;}
+  .deck .card .quote{font-style:italic; font-family:'Fraunces',serif; font-size:15px; color:var(--navy); padding:12px 4px 8px;}
+  .deck .card .quote span{display:block; font-family:'Poppins',sans-serif; font-style:normal; font-size:12px; color:rgba(0,47,95,.55); margin-top:6px;}
+  .deck .card[data-depth="0"]{transform:rotate(-1.5deg); z-index:4;}
+  .deck .card[data-depth="1"]{transform:translate(14px,22px) scale(.955) rotate(1deg); z-index:3;}
+  .deck .card[data-depth="2"]{transform:translate(28px,42px) scale(.91) rotate(-.5deg); z-index:2;}
+  .deck .card[data-depth="3"]{transform:translate(40px,60px) scale(.87); opacity:.4; z-index:1;}
+  .deck .card.leaving{transform:translateX(56px) rotate(-2.5deg); opacity:0;}
+  .deck-stage:not(.in) .card{opacity:0; transform:translateY(90px) rotate(6deg);}
+  @media(max-width:1024px){
+    .deck-grid{grid-template-columns:1fr; gap:24px;}
+    .deck-rail{position:static;}
+    .deck-stage{height:720px;}
+    .deck{left:50%; margin-left:0; transform:translateX(-50%);}
+    .ghost-num{right:0;}
+  }
+
+  /* ---------- 3. DISCOVERY — blur-to-focus words over a darker champagne glass panel ---------- */
+  .blur-pin{height:175vh;
+    background:linear-gradient(160deg, #EDE0C2 0%, #E3D2A9 48%, #EFE3C6 100%);}
+  .blur-stick{position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .vignette{position:absolute; inset:0; pointer-events:none; z-index:1;
+    box-shadow:inset 0 0 200px rgba(112,88,40,.22), inset 0 0 60px rgba(112,88,40,.1);}
+  /* diagonal glass glare that travels across the panel as you scroll */
+  .glare-scroll{position:absolute; top:-35%; left:0; width:34%; height:170%; pointer-events:none; z-index:1;
+    background:linear-gradient(105deg, transparent 0%, rgba(255,255,255,.28) 38%, rgba(255,255,255,.6) 50%, rgba(255,255,255,.28) 62%, transparent 100%);
+    filter:blur(8px); transform:rotate(14deg) translateX(-60vw); will-change:transform;}
+  /* soft glare that follows the cursor */
+  .glare-cursor{position:absolute; inset:0; pointer-events:none; z-index:1;
+    background:radial-gradient(420px circle at var(--gx,50%) var(--gy,45%), rgba(255,255,255,.45), rgba(255,255,255,0) 62%);}
+  .blur-line{position:relative; z-index:2; max-width:1100px; padding:0 30px; text-align:center;
+    font-family:'Fraunces',serif; font-weight:300; font-size:clamp(30px,4.6vw,58px); line-height:1.3; color:var(--navy); will-change:transform;}
+  .blur-line .w{display:inline-block; margin:0 .13em; filter:blur(16px); opacity:.08; transform:translateY(40px) scale(.8); will-change:filter,opacity,transform;}
+  .blur-line .w.gold{color:var(--gold); font-style:italic;}
+  /* ambient placeholder video breathing beneath the champagne panel */
+  .blur-video{position:absolute; inset:0; z-index:0; width:100%; height:100%; object-fit:cover;
+    opacity:.2; filter:saturate(1.1) brightness(1.05);}
+  /* golden glimmers drifting up through the panel */
+  .glints{position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden;}
+  .glint{position:absolute; bottom:-3vh; border-radius:50%;
+    background:radial-gradient(circle, var(--gold-glint) 0%, var(--gold) 45%, transparent 72%);
+    box-shadow:0 0 8px rgba(232,207,138,.85); opacity:0;
+    animation:glintRise linear infinite, glintTwinkle ease-in-out infinite;}
+  @keyframes glintRise{from{transform:translateY(0)} to{transform:translateY(-110vh)}}
+  @keyframes glintTwinkle{0%,100%{opacity:0} 14%{opacity:.95} 42%{opacity:.3} 68%{opacity:.8}}
+
+  /* ---------- 4. STACKED EVENT CARDS ---------- */
+  .stack-intro{background:var(--soft); padding:96px 0 72px; text-align:center; position:relative; overflow:hidden;}
+  .stack-intro .eyebrow{display:block;}
+  .stack-intro .wrap{position:relative; z-index:2;}
+  /* type-behind-content layering: a drifting outline word fills the space behind the heading */
+  .si-word{position:absolute; z-index:1; left:50%; top:54%; transform:translate(-50%,-50%);
+    font-family:'Fraunces',serif; font-style:italic; font-weight:300; white-space:nowrap;
+    font-size:clamp(110px,15vw,220px); color:transparent; -webkit-text-stroke:1px rgba(196,162,76,.3);
+    pointer-events:none; user-select:none; animation:siDrift 26s ease-in-out infinite alternate;}
+  @keyframes siDrift{from{transform:translate(-54%,-50%)} to{transform:translate(-46%,-50%)}}
+  .stack-intro .o1{left:-90px; top:-60px; width:340px; height:340px; animation:orbA 18s ease-in-out infinite alternate;}
+  .stack-intro .o2{right:-120px; bottom:-140px; width:440px; height:440px; animation:orbB 24s ease-in-out infinite alternate;}
+  .stack-intro h2{font-size:clamp(32px,4.2vw,52px);}
+  /* "moments" catches the light: metallic shimmer sweeping through the italic word */
+  .stack-intro h2 em{font-style:italic; color:transparent;
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background-size:220% 100%; -webkit-background-clip:text; background-clip:text;
+    animation:emShine 5.5s ease-in-out infinite;}
+  @keyframes emShine{0%,100%{background-position:0% 0} 50%{background-position:100% 0}}
+  .stack-intro p{color:#55636f; margin-top:10px;}
+  .stack-pin{height:540vh; position:relative;}
+  .stack-stick{position:sticky; top:0; height:100vh; overflow:hidden;}
+  .stack-card{position:absolute; inset:0; overflow:hidden; will-change:transform,filter;}
+  .stack-card:not(:first-child){transform:translateY(100vh);}   /* waits below, then GLIDES up */
+  .stack-card .btn{padding:12px 28px; font-size:13px; margin-top:18px;}
+  @media (prefers-reduced-motion: reduce){
+    .stack-pin{height:auto;}
+    .stack-stick{position:static; height:auto;}
+    .stack-card{position:relative; height:100vh; transform:none !important;}
+  }
+  .stack-card img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .stack-card .veil{position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,34,63,.03) 35%, rgba(0,23,44,.5) 72%, rgba(0,17,33,.85) 100%);}
+  .stack-card .info{position:absolute; left:0; right:0; bottom:0; padding:56px 0; color:#fff;}
+  .stack-card .info .wrap{display:flex; align-items:flex-end; justify-content:space-between; gap:20px;}
+  /* museum-caption badge: dark glass chip, gradient gold ring, italic serif mixed case */
+  .stack-card .tag{display:inline-block; font-family:'Fraunces',serif; font-style:italic; font-size:13px; font-weight:500;
+    letter-spacing:.03em; text-transform:none; color:var(--gold-lt); padding:6px 16px; border-radius:999px; margin-bottom:14px;
+    border:1px solid transparent;
+    background:
+      linear-gradient(rgba(11,22,38,.78), rgba(11,22,38,.78)) padding-box,
+      linear-gradient(135deg, var(--gold-shadow), var(--gold-glint) 45%, var(--gold) 60%, var(--gold-shadow)) border-box;
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);}
+  .stack-card:hover .tag{background:
+      linear-gradient(rgba(11,22,38,.78), rgba(11,22,38,.78)) padding-box,
+      linear-gradient(315deg, var(--gold-shadow), var(--gold-glint) 45%, var(--gold) 60%, var(--gold-shadow)) border-box;}
+  .stack-card h3{color:#fff; font-size:clamp(30px,4.5vw,54px); font-weight:300;}
+  .stack-card .venue{font-size:14px; color:rgba(255,255,255,.85); margin-top:6px; font-style:italic;}
+  .stack-card .idx{font-family:'Fraunces',serif; font-size:clamp(40px,6vw,84px); color:transparent; -webkit-text-stroke:1px rgba(243,236,220,.8);}
+
+  /* ---------- 5. SERVICES — expanding accordion ---------- */
+  .services{padding:96px 0; overflow:hidden;
+    background:radial-gradient(120% 80% at 50% 0%, rgba(196,162,76,.1), transparent 60%), var(--cream);}
+  .services .watermark{position:absolute; right:-4rem; top:-5rem; z-index:1;
+    font:italic 600 24rem/1 'Fraunces',serif; color:rgba(0,47,95,.045); user-select:none; pointer-events:none;}
+  .services .wrap{position:relative; z-index:2;}
+  .acc{display:flex; gap:16px; height:540px; margin-top:40px;}
+  .acc-card{position:relative; flex:1; border-radius:22px; overflow:hidden; cursor:pointer; background:var(--soft);
+    border:1px solid rgba(196,162,76,.35); transition:flex .85s cubic-bezier(.25,.8,.25,1);}
+  .acc-card.active{flex:4;}
+  .acc-num{position:absolute; top:26px; right:28px; font-family:'Fraunces',serif; font-size:52px; color:transparent; -webkit-text-stroke:1.2px var(--gold); z-index:3; transition:.4s;}
+  .acc-label{position:absolute; left:26px; bottom:24px; z-index:3;
+    transition:opacity .45s ease, transform .45s ease;}
+  .acc-label .eyebrow{display:block; margin-bottom:6px;}
+  .acc-label h3{font-size:21px; white-space:nowrap;}
+  .acc-full{position:absolute; inset:0; z-index:2;}  /* image always visible — no white blocks when collapsed */
+  .acc-full img{width:100%; height:100%; object-fit:cover; transition:filter .6s;}
+  .acc-card:not(.active) .acc-full img{filter:brightness(.82) saturate(.85);}
+  .acc-full .shade{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,34,63,.06) 35%, rgba(0,34,63,.74) 100%);}
+  .acc-card:not(.active) .acc-full .shade{background:linear-gradient(180deg, rgba(0,23,44,.3), rgba(0,23,44,.74));}
+  /* handoff: collapsed label eases down and out while the full title rises in its place */
+  .acc-full .txt{position:absolute; left:34px; bottom:30px; width:min(520px,58vw); color:#fff; opacity:0;
+    transform:translateY(14px);
+    transition:opacity .6s cubic-bezier(.22,1,.36,1) .3s, transform .6s cubic-bezier(.22,1,.36,1) .3s;}
+  .acc-card.active .acc-full .txt{opacity:1; transform:none;}
+  .acc-card:not(.active) .acc-full .txt{transition:opacity .1s; opacity:0;}  /* fast fade-out kills the text-squish flash */
+  .acc-full .txt h3{color:#fff; font-size:24px; margin-bottom:8px;}
+  .acc-full .txt p{font-size:14px; color:rgba(255,255,255,.9);}
+  .acc-card.active .acc-label{opacity:0; transform:translateY(12px);}
+  .acc-label{z-index:3;}
+  .acc-label h3{color:var(--cream);}
+  .services .head{display:grid; grid-template-columns:1.3fr .9fr; gap:40px; align-items:end;}
+  .services .head h2{font-size:clamp(32px,4.2vw,52px);} .services .head h2 em{font-style:italic; color:var(--gold);}
+  .services .head p{color:#55636f;}
+
+  /* ---------- 6+7. HIGHLIGHT — marquee words sway behind the video as it scales to fullscreen ---------- */
+  /* the champagne glass panel: the page's one dark editorial moment */
+  .vid-pin{height:190vh;
+    background:radial-gradient(90% 70% at 50% -10%, rgba(196,162,76,.16), transparent 60%), var(--navy-ink);}
+  .vid-stick{position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  /* the swaying word tickers live behind the frame */
+  .vid-tickers{position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; justify-content:center; gap:7vh;
+    transition:opacity .5s ease;}
+  .ticker{overflow:hidden; white-space:nowrap;}
+  .ticker-track{display:inline-flex; will-change:transform;}
+  .t-fwd .ticker-track{animation:tick 46s linear infinite;}
+  .t-rev .ticker-track{animation:tickR 52s linear infinite;}
+  @keyframes tick{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+  @keyframes tickR{from{transform:translateX(-50%)} to{transform:translateX(0)}}
+  /* outline words that catch the light as they travel */
+  .ticker span{font-family:'Fraunces',serif; font-size:clamp(44px,6.5vw,92px); font-weight:300; line-height:1.3;
+    color:transparent; -webkit-text-stroke:1.1px rgba(196,162,76,.75); padding:0 .35em;
+    background:linear-gradient(105deg, transparent 42%, rgba(246,236,200,.95) 50%, transparent 58%);
+    background-size:240% 100%; background-position:200% 0; -webkit-background-clip:text; background-clip:text;
+    animation:glint 7s linear infinite;}
+  .t-rev .ticker span{animation-delay:3.5s;}
+  @keyframes glint{0%{background-position:200% 0} 55%{background-position:-40% 0} 100%{background-position:-40% 0}}
+  .ticker span i{font-style:italic;}
+  /* slim Instagram invitation riding above the panel */
+  .vid-cap{position:absolute; z-index:3; bottom:34px; left:0; right:0; text-align:center;}
+  .vid-cap a{font-family:'Fraunces',serif; font-style:italic; color:var(--gold-lt); font-size:16px;
+    letter-spacing:.015em; text-transform:none; text-decoration:none; border-bottom:1px solid rgba(232,207,138,.45); padding-bottom:3px; transition:.3s;}
+  .vid-cap a:hover{color:var(--gold-glint); border-color:var(--gold-glint);}
+  .vid-frame{position:relative; z-index:2; width:58vw; height:58vh; border-radius:26px; overflow:hidden;
+    box-shadow:0 40px 100px rgba(0,47,95,.35); will-change:width,height,border-radius; background:var(--navy-d);}
+  .vid-frame img{width:100%; height:100%; object-fit:cover; opacity:.85;}
+  .vid-frame video{width:100%; height:100%; object-fit:cover; display:block;}
+  .vid-frame .veil{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,34,63,.15), rgba(0,34,63,.5));}
+  .vid-frame .play{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:#fff;}
+  .vid-frame .play .ring{width:84px; height:84px; border-radius:50%; border:1px solid rgba(243,236,220,.8);
+    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); background:rgba(0,34,63,.25);}
+  .vid-frame .play .ring::after{content:''; border-style:solid; border-width:11px 0 11px 19px; border-color:transparent transparent transparent var(--cream); margin-left:5px;}
+  .vid-frame .chip{font-family:'Fraunces',serif; font-style:italic; font-size:13px; letter-spacing:.02em; text-transform:none;
+    background:rgba(8,22,38,.55); color:var(--gold-lt); border:1px solid rgba(232,207,138,.35);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding:8px 18px; border-radius:999px;}
+
+  /* ---------- 8. TESTIMONIALS — the spotlight letter ---------- */
+  .testi{background:var(--soft); padding:120px 0 110px; position:relative; overflow:hidden;}
+  .testi .bigq{position:absolute; top:-100px; right:-16px; font-family:'Fraunces',serif; font-size:420px; line-height:1;
+    color:rgba(196,162,76,.09); pointer-events:none; user-select:none;
+    animation:bigqFloat 22s ease-in-out infinite alternate;}
+  @keyframes bigqFloat{from{transform:translateY(0) rotate(0deg)} to{transform:translateY(48px) rotate(-3deg)}}
+  .testi .wrap{position:relative; z-index:2;}
+  .testi .o3{left:-110px; top:20%; width:380px; height:380px; animation:orbB 21s ease-in-out infinite alternate;}
+  .testi .o4{right:-140px; bottom:-120px; width:460px; height:460px; animation:orbA 27s ease-in-out infinite alternate;}
+  .testi .head{max-width:640px; margin-bottom:56px;}
+  .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold);}
+  .testi .head p{color:#55636f; font-size:15px; margin-top:8px;}
+  .spot{max-width:860px; margin:0 auto; text-align:center;}
+  .spot-quote blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:300;
+    font-size:clamp(24px,2.7vw,36px); line-height:1.42; color:var(--navy); text-wrap:balance; min-height:5em;}
+  .spot-quote blockquote .w{display:inline-block; margin-right:.24em;}
+  .spot-quote blockquote .hl{font-style:normal; color:var(--gold);}
+  .spot-who{margin-top:26px; font-size:15px;}
+  .spot-who b{display:block; font-weight:500; color:var(--navy);}
+  .spot-who span{color:rgba(0,47,95,.55); font-size:13.5px;}
+  .spot-ctrl{margin-top:26px; display:flex; align-items:center; justify-content:center; gap:18px;}
+  .spot-progress{width:120px; height:1px; background:rgba(0,47,95,.15); overflow:hidden;}
+  .spot-progress i{display:block; height:100%; width:100%; background:var(--gold); transform:scaleX(0); transform-origin:left;}
+  .spot-arrow{width:44px; height:44px; border-radius:50%; border:1px solid rgba(0,47,95,.25); background:none; cursor:pointer;
+    color:var(--navy); display:flex; align-items:center; justify-content:center; transition:.3s; flex:none;}
+  .spot-arrow:hover{border-color:var(--gold); color:var(--gold);}
+  .spot-arrow svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;}
+  .spot-count{font-family:'Fraunces',serif; font-size:15px; color:rgba(0,47,95,.6);}
+  .testi-note{margin-top:18px; font-size:12px; font-style:italic; color:rgba(0,47,95,.45);}
+  @media(max-width:860px){ .spot{max-width:100%;} }
+
+  /* ---------- 9. FAQ — coverflow of question boards ---------- */
+  /* ---------- 1.5 ABOUT — layered editorial: her portrait over her own name ---------- */
+  .meet{background:var(--soft); position:relative; overflow:hidden; padding:90px 0 100px;}
+  .meet .o5{right:-120px; top:-120px; width:420px; height:420px; animation:orbA 23s ease-in-out infinite alternate;}
+  /* flowing gold ribbons drift through the backdrop */
+  .meet .ribbons{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;}
+  .meet .ribbons path{fill:none; stroke:rgba(196,162,76,.32); stroke-width:1.2;
+    stroke-dasharray:900 260; animation:ribbonFlow 26s linear infinite;}
+  .meet .ribbons .r2{stroke:rgba(196,162,76,.2); animation-duration:34s; animation-direction:reverse;}
+  @keyframes ribbonFlow{to{stroke-dashoffset:-1160;}}
+  .sparkles i{position:absolute; left:var(--x); top:var(--y); width:4px; height:4px; border-radius:50%; z-index:1;
+    background:var(--gold-glint); box-shadow:0 0 10px 2px rgba(246,236,200,.75); opacity:0; pointer-events:none;
+    animation:twinkle 4.6s ease-in-out infinite; animation-delay:var(--d);}
+  @keyframes twinkle{0%,100%{opacity:0; transform:scale(.5)} 50%{opacity:.9; transform:scale(1)}}
+  /* the giant name sits BEHIND her portrait: the layered wordmark effect */
+  /* about: a scroll-driven 3D story stack — her portrait leads, each chapter brings the next photo forward */
+  .about-pin{height:250vh;}
+  .meet.about-stick{position:sticky; top:0; height:100vh; padding:0; display:flex; align-items:center;}
+  .ab-grid{display:grid; grid-template-columns:1.05fr 1fr; gap:60px; align-items:center; position:relative; z-index:3; width:100%;}
+  .ab-cap{margin-top:14px; font-family:'Fraunces',serif; font-style:italic; font-size:17px; color:var(--gold-ink); max-width:34ch;}
+  .ab-panels{position:relative; margin-top:26px; min-height:300px;}
+  .ab-panel{position:absolute; inset:0; opacity:0; transform:translateY(16px); pointer-events:none;
+    transition:opacity .55s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1);}
+  .ab-panel.on{opacity:1; transform:none; pointer-events:auto;}
+  .ab-panel h3{font-size:clamp(26px,2.6vw,36px); font-weight:400;}
+  .ab-panel h3 em{font-style:italic; color:transparent;
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background-size:220% 100%; -webkit-background-clip:text; background-clip:text; animation:emShine 5.5s ease-in-out infinite;}
+  .ab-panel p{color:#4c5b68; font-size:15.5px; line-height:1.75; max-width:48ch; margin:12px 0 0;}
+  .ab-panel ul{margin:14px 0 0; padding:0; list-style:none; max-width:48ch;}
+  .ab-panel li{position:relative; padding:7px 0 7px 20px; color:#4c5b68; font-size:14.5px; line-height:1.6;}
+  .ab-panel li::before{content:''; position:absolute; left:2px; top:16px; width:5px; height:5px; background:var(--gold); transform:rotate(45deg);}
+  .ab-panel li b{color:var(--navy); font-weight:600;}
+  .ab-dots{display:flex; gap:10px; margin-top:26px;}
+  .ab-dots button{width:8px; height:8px; border-radius:50%; border:none; background:rgba(0,47,95,.22); cursor:pointer; padding:0; transition:.3s;}
+  .ab-dots button.on{background:var(--gold); transform:scale(1.4);}
+  .ab-stack{position:relative; height:min(74vh,680px); perspective:1400px; transform-style:preserve-3d; cursor:pointer;}
+  .stk{position:absolute; left:50%; top:50%; width:min(400px,82%); aspect-ratio:3/4; margin:0;
+    transform:translate(-50%,-50%); border-radius:14px; overflow:hidden; border:1px solid rgba(196,162,76,.4);
+    box-shadow:0 32px 70px -26px rgba(0,47,95,.42); will-change:transform,opacity; background:var(--cream);}
+  /* pre-JS stacking: her portrait leads, the rest wait behind */
+  .stk:nth-child(1){z-index:30;}
+  .stk:nth-child(2){z-index:28; transform:translate(-50%,-50%) translateY(-30px) scale(.93); opacity:.84;}
+  .stk:nth-child(3){z-index:26; transform:translate(-50%,-50%) translateY(-60px) scale(.86); opacity:.68;}
+  .stk:nth-child(4){z-index:24; transform:translate(-50%,-50%) translateY(-90px) scale(.79); opacity:.52;}
+  .stk:nth-child(5){z-index:22; transform:translate(-50%,-50%) translateY(-120px) scale(.72); opacity:.36;}
+  .stk img{width:100%; height:100%; object-fit:cover; object-position:top; display:block;}
+  .ab-head h2{font-size:clamp(38px,4.4vw,60px); margin:0; line-height:1.08;}
+  /* the title glimmers: a soft light sweeps through the letters after it rises in */
+  .ab-head h2 .cta-line{color:transparent;
+    background:linear-gradient(105deg, var(--navy) 0%, var(--navy) 42%, #4C7BB8 50%, var(--navy) 58%, var(--navy) 100%);
+    background-size:260% 100%; background-position:120% 0; -webkit-background-clip:text; background-clip:text;}
+  .meet.in .cta-line{animation:titleGlint 5.5s ease-in-out 1s infinite;}
+  @keyframes titleGlint{0%{background-position:120% 0} 45%,100%{background-position:-140% 0}}
+  .ab-head h2 em{font-style:italic; color:transparent;
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background-size:220% 100%; -webkit-background-clip:text; background-clip:text;
+    animation:emShine 5.5s ease-in-out infinite;}
+  .meet.in .cta-line{transform:none;}
+  .meet-cta{margin-top:22px;}
+  .meet-sig{font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:30px; color:var(--gold-ink); margin-top:16px;}
+  .meet-sig span{display:block; font-family:'Poppins',sans-serif; font-style:normal; font-size:12px; color:rgba(0,47,95,.55); margin-top:4px;}
+  .meet-link{display:inline-block; margin-top:18px; color:var(--gold-ink); font-size:14.5px; text-decoration:none;
+    border-bottom:1px solid rgba(196,162,76,.5); padding-bottom:2px; transition:border-color .25s;}
+  .meet-link:hover{border-color:var(--gold-ink);}
+  /* simplified Meet Benafsha: one portrait + one name */
+  .meet-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:64px; align-items:center; position:relative; z-index:3;}
+  .meet-fig{position:relative; border-radius:16px; overflow:hidden; aspect-ratio:4/5;
+    box-shadow:0 40px 90px -30px rgba(0,47,95,.4), 0 0 70px rgba(196,162,76,.14); border:1px solid rgba(196,162,76,.4);}
+  .meet-fig img{width:100%; height:114%; object-fit:cover; object-position:center 20%; will-change:transform;}
+  .meet-copy h2{font-size:clamp(40px,5vw,66px); line-height:1.05; margin:0;}
+  .meet-copy h2 em{font-style:italic; color:transparent;
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background-size:220% 100%; -webkit-background-clip:text; background-clip:text; animation:emShine 5.5s ease-in-out infinite;}
+  .meet-copy p{color:#4c5b68; font-size:16px; line-height:1.8; max-width:46ch; margin:20px 0 0;}
+  @media(max-width:860px){
+    .meet-grid{grid-template-columns:1fr; gap:30px;}
+    .meet-fig{aspect-ratio:4/5; max-width:340px; margin:0 auto;}
+    .meet-copy{text-align:center;} .meet-copy p{margin-left:auto; margin-right:auto;}
+  }
+
+  .faq{background:var(--cream); padding:120px 0 128px; position:relative; overflow:hidden;}
+  .faq::before{content:''; position:absolute; right:-10%; top:8%; width:min(900px,72vw); height:84%;
+    background:radial-gradient(ellipse at center, rgba(251,248,241,.75), rgba(251,248,241,0) 70%); pointer-events:none;}
+  .faq-head{text-align:center; max-width:660px; margin:0 auto 56px; position:relative; z-index:2;}
+  .faq-head .eyebrow.rule{justify-content:center;}
+  .faq-head h2{font-size:clamp(32px,4.4vw,56px); margin:12px 0 12px;} .faq-head h2 em{font-style:italic; color:var(--gold);}
+  .faq-head p{color:#55636f; font-size:15.5px;}
+  .cover{position:relative; z-index:2;}
+  .cover-stage{position:relative; height:430px; perspective:1700px; transform-style:preserve-3d; touch-action:pan-y; outline:none;}
+  .board{position:absolute; left:50%; top:50%; width:min(460px,84vw); height:372px;
+    background:linear-gradient(165deg,#FBF8F1,#F3EBD9); border:1px solid rgba(196,162,76,.4);
+    border-radius:10px; padding:38px 40px 30px; cursor:pointer; transform-origin:center center;
+    box-shadow:0 30px 70px -34px rgba(0,47,95,.5); transform-style:preserve-3d; will-change:transform,opacity;
+    transition:transform .7s cubic-bezier(.22,1,.36,1), opacity .7s ease, box-shadow .7s ease;
+    display:flex; flex-direction:column;}
+  .board .b-n{font-family:'Fraunces',serif; font-style:italic; font-size:15.5px; color:var(--gold-ink);}
+  .board .ghost{position:absolute; right:24px; bottom:2px; font-family:'Fraunces',serif; font-weight:600;
+    font-size:150px; line-height:1; color:rgba(0,47,95,.05); pointer-events:none; user-select:none;}
+  .board h3{font-size:clamp(21px,2vw,27px); font-weight:400; color:var(--navy); margin:14px 0 0; line-height:1.2; text-wrap:balance;}
+  .board .b-rule{height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin-top:18px;
+    transform:scaleX(0); transform-origin:left; transition:transform .6s ease .12s;}
+  .board .b-a{margin-top:18px; font-size:15px; color:rgba(0,47,95,.72); line-height:1.7; max-width:46ch;
+    opacity:0; transform:translateY(8px); transition:opacity .5s ease .18s, transform .5s ease .18s;}
+  .board.active{box-shadow:0 44px 90px -30px rgba(0,47,95,.5), 0 0 0 1px rgba(196,162,76,.45), 0 0 64px -12px rgba(196,162,76,.4);}
+  .board.active .b-rule{transform:scaleX(1);}
+  .board.active .b-a{opacity:1; transform:none;}
+  .cover-ctrl{display:flex; align-items:center; justify-content:center; gap:20px; margin-top:46px; position:relative; z-index:2;}
+  .cover-arrow{width:52px; height:52px; border-radius:50%; border:1px solid var(--gold); background:transparent;
+    color:var(--navy); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.3s; flex:none;}
+  .cover-arrow:hover{background:var(--gold); color:var(--soft);}
+  .cover-arrow svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  .cover-dots{display:flex; gap:10px;}
+  .cover-dots button{width:8px; height:8px; border-radius:50%; border:none; background:rgba(0,47,95,.22); cursor:pointer; padding:0; transition:.3s;}
+  .cover-dots button.on{background:var(--gold); transform:scale(1.4);}
+  .faq .ask{display:block; width:max-content; margin:28px auto 0; color:var(--gold-ink); font-size:14px; text-decoration:none;
+    border-bottom:1px solid rgba(196,162,76,.5); padding-bottom:2px; transition:.3s; position:relative; z-index:2;}
+  .faq .ask:hover{border-color:var(--gold-ink);}
+  @media(max-width:860px){ .cover-stage{height:400px;} .board{height:358px; padding:30px 26px;} .board .ghost{font-size:120px;} }
+
+  /* ---------- 10. FINAL CTA — the invitation ---------- */
+  .final{position:relative; overflow:hidden; min-height:88vh; display:flex; align-items:center; justify-content:center; text-align:center;}
+  .final .bgimg{position:absolute; inset:0;}
+  .final .bgimg img{width:100%; height:100%; object-fit:cover; animation:ctaDrift 40s ease-in-out infinite alternate; will-change:transform;}
+  @keyframes ctaDrift{from{transform:scale(1.08)} to{transform:scale(1)}}
+  .final .scrim{position:absolute; inset:0; background:linear-gradient(rgba(0,47,95,.45), rgba(0,47,95,.78));
+    box-shadow:inset 0 0 180px rgba(0,17,33,.5);}
+  .final .frame{position:absolute; inset:28px; pointer-events:none; z-index:2;}
+  .final .frame i{position:absolute; background:rgba(196,162,76,.75);}
+  .final .frame .ft,.final .frame .fb{left:0; right:0; height:1px; transform:scaleX(0); transition:transform 1.2s cubic-bezier(.22,1,.36,1) .2s;}
+  .final .frame .ft{top:0;} .final .frame .fb{bottom:0;}
+  .final .frame .fl,.final .frame .fr{top:0; bottom:0; width:1px; transform:scaleY(0); transition:transform 1.2s cubic-bezier(.22,1,.36,1) .45s;}
+  .final .frame .fl{left:0;} .final .frame .fr{right:0;}
+  .final.in .frame i{transform:none;}
+  .final .content{position:relative; z-index:3; max-width:900px; padding:120px 28px;}
+  .final .invite{font-family:'Fraunces',serif; font-style:italic; font-size:20px; color:var(--gold-lt);}
+  .final h2{font-size:clamp(40px,6vw,80px); font-weight:300; color:var(--soft); margin:18px 0 10px; text-wrap:balance; line-height:1.1;}
+  .final h2 .l2{font-style:italic;}
+  .final .sub{display:block; max-width:560px; margin:0 auto 36px; color:rgba(251,248,241,.82); font-size:16.5px;}
+  .cta-mask{display:block; overflow:hidden; padding-bottom:.12em; margin-bottom:-.12em;}
+  .cta-line{display:block; transform:translateY(112%); transition:transform .9s cubic-bezier(.22,1,.36,1) calc(var(--i,0)*.13s);}
+  .final.in .cta-line{transform:none;}
+  /* the button mask must not clip the icon, hover-lift or glow */
+  .cta-mask.btn-mask{overflow:visible; padding-top:20px; margin-top:6px;}
+  /* the page's single metallic-gold action: brushed ramp, sharp corners */
+  .cta-btn{display:inline-flex; align-items:center; color:#0B1626;
+    background:linear-gradient(135deg, var(--gold-shadow) 0%, var(--gold) 24%, var(--gold-lt) 46%, var(--gold-glint) 50%, var(--gold-lt) 54%, var(--gold) 76%, var(--gold-shadow) 100%);
+    font-weight:500; font-size:17px; padding:19px 44px; border-radius:999px; text-decoration:none;
+    border:1px solid rgba(246,236,200,.5); box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 4px 18px rgba(0,0,0,.3);
+    transition:transform .6s cubic-bezier(.22,1,.36,1), box-shadow .4s, filter .4s; will-change:transform;}
+  .cta-btn:hover{filter:brightness(1.04);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 8px 40px rgba(196,162,76,.45);}
+  .cta-btn .label{display:inline-flex; align-items:center; gap:12px; transition:transform .6s cubic-bezier(.22,1,.36,1);}
+  .cta-btn svg{width:19px; height:19px; fill:currentColor;}
+  .final .micro{margin-top:14px; font-size:13px; color:rgba(251,248,241,.6);}
+  .final .alt{display:inline-block; margin-top:12px; color:rgba(251,248,241,.85); font-size:14px;
+    text-decoration:underline; text-underline-offset:4px; text-decoration-color:rgba(196,162,76,.7);}
+  footer{background:var(--navy-d); color:rgba(243,236,220,.75); padding:60px 0 30px; font-size:14px; position:relative; z-index:2;}
+  footer .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:30px;}
+  footer a{color:inherit; text-decoration:none;} footer a:hover{color:var(--gold-lt);}
+  footer h4{color:var(--gold-lt); font-family:'Fraunces',serif; font-weight:500; font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px;}
+  footer .col p{margin-bottom:6px;}
+  .foot-btm{border-top:1px solid rgba(243,236,220,.15); margin-top:38px; padding-top:20px; text-align:center; font-size:12px; color:rgba(243,236,220,.45);}
+
+  /* ---------- modal ---------- */
+  .modal{position:fixed; inset:0; z-index:120; background:rgba(0,34,63,.55); backdrop-filter:blur(6px);
+    display:none; align-items:center; justify-content:center; padding:24px;}
+  .modal.open{display:flex;}
+  .modal-box{background:var(--soft); border-radius:18px; padding:44px 40px; max-width:480px; width:100%; position:relative; border:1px solid rgba(196,162,76,.5);}
+  .modal-box h3{font-size:30px; margin-bottom:6px;} .modal-box h3 em{font-style:italic; color:var(--gold);}
+  .modal-box .note{font-size:13.5px; color:#55636f; margin-bottom:24px;}
+  .modal-box label{display:block; font-family:'Fraunces',serif; font-style:italic; font-size:14px; letter-spacing:.015em; text-transform:none; color:var(--gold-ink); margin:14px 0 6px;}
+  .modal-box input, .modal-box select{width:100%; padding:13px 16px; border-radius:12px; border:1px solid rgba(0,47,95,.2);
+    background:#fff; font-family:'Poppins'; font-size:14px; color:var(--navy);}
+  .modal-box .btn{width:100%; justify-content:center; margin-top:24px;}
+  .modal-x{position:absolute; top:16px; right:20px; font-size:26px; color:var(--navy); cursor:pointer; background:none; border:none; font-family:'Fraunces',serif;}
+
+  /* ---------- floating WhatsApp ---------- */
+  .wa-float{position:fixed; bottom:24px; right:24px; z-index:100; width:58px; height:58px; border-radius:50%;
+    background:var(--wa); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(37,211,102,.45); animation:pulse 2.4s infinite;}
+  .wa-float svg{width:30px; height:30px; fill:#fff;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.4);}70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; transform:translateY(44px);
+    transition:opacity 1.35s cubic-bezier(.22,.61,.21,1), transform 1.35s cubic-bezier(.22,.61,.21,1);}
+  .reveal.visible{opacity:1; transform:none;}
+  .reveal-slow{opacity:0; transform:translateY(30px);
+    transition:opacity 2.1s cubic-bezier(.22,.61,.21,1), transform 2.1s cubic-bezier(.22,.61,.21,1);}
+  .reveal-slow.visible{opacity:1; transform:none;}
+
+  @media(max-width:860px){
+    .wrap{padding:0 20px;}
+    .nav-links{display:none;}
+    nav .btn{padding:9px 18px; font-size:12.5px;}
+    .hero-title h1{white-space:normal;}
+    .hero-title p{font-size:15px; margin:16px auto 24px;}
+    .hero-ctas{gap:10px;}
+    .btn{padding:13px 24px; font-size:13.5px;}
+    .hero-slug{gap:10px;}
+    .hero-slug .hs-line{width:32px;}
+    .hero-slug .hs-text{font-size:10.5px; letter-spacing:.22em;}
+    .deck-sec{padding:72px 0 84px;}
+    .deck-band{width:100%;}
+    .deck-grid{gap:32px;}
+    .deck-stage{height:660px;}
+    .deck{left:50%; margin-left:0; width:min(365px,93%); transform:translateX(-50%);}
+    .ghost-num{font-size:150px; top:-14px;}
+    .stat-row{padding:16px 0 16px 16px; gap:14px;}
+    .stat-row b{font-size:30px; min-width:76px;}
+    .stat-row > span{font-size:13px;}
+    .stack-intro{padding:72px 0 56px;}
+    .blur-line{font-size:clamp(26px,6.4vw,40px);}
+    .services{padding:72px 0;}
+    .services .head{grid-template-columns:1fr; gap:16px;}
+    .acc{flex-direction:column; height:auto; margin-top:24px;}
+    .acc-card{min-height:96px;} .acc-card.active{min-height:420px; flex:1;}
+    .vid-frame{width:88vw; height:52vh;}
+    .vid-tickers{gap:4vh;}
+    .vid-cap{bottom:22px;}
+    .vid-cap a{font-size:14px;}
+    .testi{padding:80px 0 72px;}
+    .testi .bigq{font-size:240px; top:-60px;}
+    .testi .head{margin-bottom:32px;}
+    .about-pin{height:300vh;}
+    .ab-grid{grid-template-columns:1fr; gap:20px; align-content:center;}
+    .ab-panels{min-height:250px; margin-top:14px;}
+    .ab-panel p{font-size:14px; line-height:1.6;}
+    .ab-stack{height:40vh;}
+    .stk{width:min(230px,64%);}
+    .faq{padding:80px 0 88px;}
+    .final .sub{font-size:15px;}
+    footer .wrap{grid-template-columns:1fr; gap:26px;}
+    .wa-float{width:50px; height:50px; bottom:18px; right:18px;}
+    .modal-box{padding:32px 24px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+    .reveal{opacity:1; transform:none;}
+    .blur-line .w{filter:none; opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">Prestige <em>Planners</em><span>Dubai</span></a>
+    <div class="nav-links">
+      <a href="#celebrations">Celebrations</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#benafsha">About</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn has-arr" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20enquire%20about%20planning%20my%20event." target="_blank" rel="noopener">Enquire
+      <span class="arr" aria-hidden="true"><svg class="a1" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg><svg class="a2" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+    </a>
+  </div>
+</nav>
+
+<!-- 1. HERO — layered scroll: arch rises through a glow, title sinks behind, haze drifts -->
+<div class="hero-pin" id="top">
+  <div class="hero-stick">
+    <div class="hero-amb"></div>
+    <video class="hero-video" autoplay muted loop playsinline src="assets/hero-video-sharp.mp4" onerror="this.remove()"></video>
+    <div class="hero-veil"></div>
+    <div class="hero-glow" id="heroGlow"></div>
+    <div class="hero-title" id="heroTitle">
+      <div class="hero-slug"><span class="hs-line" aria-hidden="true"></span><span class="hs-text">Luxury Weddings · Private Events · Dubai</span><span class="hs-line" aria-hidden="true"></span></div>
+      <h1>Prestige <em>Planners</em></h1>
+      <p>Bespoke celebrations, designed end to end, so you can simply be present.</p>
+      <div class="hero-ctas">
+        <a class="btn has-arr" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20enquire%20about%20planning%20my%20event." target="_blank" rel="noopener">Enquire on WhatsApp
+          <span class="arr" aria-hidden="true"><svg class="a1" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg><svg class="a2" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+        <button class="btn pearl" onclick="openModal()">Check availability</button>
+      </div>
+    </div>
+    <div class="haze"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+    <div class="scroll-cue">Scroll</div>
+  </div>
+</div>
+
+<!-- 1.5 MEET BENAFSHA — one portrait, one name -->
+<section class="meet grain" id="benafsha">
+  <svg class="ribbons" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+    <path class="r1" d="M-60,600 C300,500 540,760 840,630 C1080,530 1300,420 1520,530"/>
+    <path class="r2" d="M-60,700 C340,620 620,840 920,690 C1160,570 1360,500 1520,600"/>
+  </svg>
+  <div class="sparkles" aria-hidden="true">
+    <i style="--x:8%;--y:24%;--d:0s"></i><i style="--x:16%;--y:64%;--d:1.3s"></i><i style="--x:28%;--y:16%;--d:2.4s"></i>
+    <i style="--x:44%;--y:70%;--d:.7s"></i><i style="--x:55%;--y:12%;--d:3.1s"></i><i style="--x:64%;--y:48%;--d:1.9s"></i>
+    <i style="--x:78%;--y:20%;--d:2.8s"></i><i style="--x:88%;--y:58%;--d:.4s"></i><i style="--x:36%;--y:40%;--d:3.7s"></i>
+  </div>
+  <div class="glow-orb o5" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="meet-grid">
+      <div class="meet-fig reveal"><img src="assets/founder-large.jpg" alt="Benafsha Engineer-Mulla, founder of Prestige Planners"></div>
+      <div class="meet-copy">
+        <h2 class="reveal">Meet <em>Benafsha</em></h2>
+        <p class="reveal">The founder behind every Prestige celebration. London-raised, Dubai-based, and personally involved in every event from the first idea to the final toast. When you work with Prestige, you work directly with her.</p>
+        <a class="btn has-arr meet-cta reveal" href="https://wa.me/971509118505?text=Hi%20Benafsha%2C%20I%27d%20love%20to%20talk%20about%20an%20event." target="_blank" rel="noopener">Say hello on WhatsApp
+          <span class="arr" aria-hidden="true"><svg class="a1" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg><svg class="a2" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. PROOF — sticky ledger rail on the left, a dealing deck of event records on the right -->
+<section class="deck-sec grain">
+  <div class="deck-band"></div>
+  <div class="wrap deck-grid">
+    <div class="deck-rail">
+      <h2 class="reveal-slow">Every detail, <em>considered</em></h2>
+      <p class="para reveal-slow">One planner. One vision. These are the numbers our clients would tell you themselves.</p>
+      <div class="stat-rail">
+        <div class="stat-row reveal" data-delay="0" data-card="0"><b class="odo" data-value="50+">50+</b><span>celebrations brought to life across Dubai</span></div>
+        <div class="stat-row reveal" data-delay=".18" data-card="1"><b class="odo" data-value="4.9">4.9</b><span>average rating from the people who lived them</span></div>
+        <div class="stat-row reveal" data-delay=".36" data-card="2"><b class="odo" data-value="8+">8+</b><span>kinds of celebration, planned end to end</span></div>
+      </div>
+      <a class="deck-link reveal" href="#celebrations">See the events behind these numbers</a>
+    </div>
+    <div class="deck-stage" id="deckStage">
+      <div class="ghost-num" aria-hidden="true">50</div>
+      <div class="deck" id="deck">
+        <div class="card" data-depth="0">
+          <div class="card-photo">
+            <img src="assets/event-glamour.png" alt="Black and gold birthday celebration by Prestige Planners">
+            <button class="hs" style="left:31%;top:45%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Hand-gilded <em>charger plates</em> laid at every seat</span></button>
+            <button class="hs" style="left:69%;top:66%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A live <em>gold-leaf</em> dessert table</span></button>
+          </div>
+          <h3>A black &amp; gold fortieth</h3>
+          <div class="meta"><span>120 guests · Dubai</span><span class="stars">★★★★★</span></div>
+          <p class="quote">"Not one thing went wrong. Not one."<span>R. A., private villa birthday</span></p>
+        </div>
+        <div class="card" data-depth="1">
+          <div class="card-photo">
+            <img src="assets/event-butterfly.png" alt="Enchanted garden baby shower by Prestige Planners">
+            <button class="hs" style="left:40%;top:39%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A suspended <em>butterfly canopy</em>, hand-set</span></button>
+            <button class="hs" style="left:63%;top:63%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>fresh peony</em> arch, built on site</span></button>
+          </div>
+          <h3>An enchanted garden shower</h3>
+          <div class="meta"><span>60 guests · Dubai</span><span class="stars">★★★★★</span></div>
+          <p class="quote">"It looked like a storybook come true."<span>M. &amp; S., garden estate</span></p>
+        </div>
+        <div class="card" data-depth="2">
+          <div class="card-photo">
+            <img src="assets/event-banquet.png" alt="Al fresco banquet under festoon lights by Prestige Planners">
+            <button class="hs" style="left:29%;top:52%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Two hundred <em>festoon bulbs</em>, strung by hand</span></button>
+            <button class="hs" style="left:68%;top:47%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A single <em>ten-metre</em> banquet table</span></button>
+          </div>
+          <h3>Dinner under the lights</h3>
+          <div class="meta"><span>48 guests · Palm Jumeirah</span><span class="stars">★★★★★</span></div>
+          <p class="quote">"Nobody wanted the night to end."<span>K. F., anniversary dinner</span></p>
+        </div>
+        <div class="card" data-depth="3">
+          <div class="card-photo">
+            <img src="assets/hero-scene.png" alt="Cascading floral walkway by Prestige Planners">
+            <button class="hs" style="left:44%;top:41%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Cascading orchids</em> along the entrance</span></button>
+            <button class="hs" style="left:58%;top:66%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>mirrored aisle</em> that doubled the candlelight</span></button>
+          </div>
+          <h3>A floral walkway unveiling</h3>
+          <div class="meta"><span>200 guests · Dubai</span><span class="stars">★★★★★</span></div>
+          <p class="quote">"Guests stopped at the door just to take it in."<span>Corporate gala</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. DISCOVERY — words pop into focus over golden glimmers and a breathing video -->
+<div class="blur-pin">
+  <div class="blur-stick">
+    <video class="blur-video" src="assets/hero-video.mp4" poster="assets/hero-scene.png" autoplay muted loop playsinline aria-hidden="true"></video>
+    <div class="glints" id="glints" aria-hidden="true"></div>
+    <div class="glare-scroll" id="glareScroll"></div>
+    <div class="glare-cursor"></div>
+    <div class="vignette"></div>
+    <div class="blur-line" id="blurLine">
+      <span class="w">Focused</span><span class="w">on</span><span class="w">the</span><span class="w gold">details,</span>
+      <span class="w">devoted</span><span class="w">to</span><span class="w">the</span><span class="w gold">experience.</span>
+      <span class="w">Every</span><span class="w">moment</span><span class="w">considered,</span>
+      <span class="w">every</span><span class="w">celebration</span><span class="w gold">bespoke,</span>
+      <span class="w">built</span><span class="w">for</span><span class="w">the</span><span class="w">truly</span><span class="w gold">unforgettable.</span>
+    </div>
+  </div>
+</div>
+
+<!-- 4. STACKED EVENT CARDS -->
+<section id="celebrations">
+  <div class="stack-intro grain">
+    <div class="si-word" aria-hidden="true">Celebrations</div>
+    <div class="glow-orb o1" aria-hidden="true"></div>
+    <div class="glow-orb o2" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="eyebrow reveal">Real celebrations</div>
+      <h2 class="reveal">Explore the <em>moments</em> we've brought to life</h2>
+      <p class="reveal">Carefully chosen highlights: luxury weddings, bespoke birthdays, corporate galas &amp; private celebrations across Dubai.</p>
+    </div>
+  </div>
+  <div class="stack-pin" id="stackPin">
+    <div class="stack-stick">
+      <div class="stack-card">
+        <img src="assets/event-glamour.png" alt="Black and gold glamour birthday (full room view)">
+        <div class="veil"></div>
+        <div class="info"><div class="wrap">
+          <div><span class="tag">Birthday</span><h3>Black &amp; Gold Glamour</h3><div class="venue">[Venue: replace] · Dubai</div>
+            <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20glamorous%20birthday%20celebration." target="_blank" rel="noopener">Enquire about this event</a>
+          </div>
+          <div class="idx">.01</div>
+        </div></div>
+      </div>
+      <div class="stack-card">
+        <img src="assets/event-butterfly.png" alt="Enchanted pastel butterfly garden shower (full room view)">
+        <div class="veil"></div>
+        <div class="info"><div class="wrap">
+          <div><span class="tag">Shower</span><h3>Enchanted Butterfly Garden</h3><div class="venue">[Venue: replace] · Dubai</div>
+            <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20baby%20shower." target="_blank" rel="noopener">Enquire about this event</a>
+          </div>
+          <div class="idx">.02</div>
+        </div></div>
+      </div>
+      <div class="stack-card">
+        <img src="assets/event-banquet.png" alt="Golden-hour al fresco banquet (full view)">
+        <div class="veil"></div>
+        <div class="info"><div class="wrap">
+          <div><span class="tag">Private dining</span><h3>Al Fresco Banquet</h3><div class="venue">[Venue: replace] · Dubai</div>
+            <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20private%20dinner." target="_blank" rel="noopener">Enquire about this event</a>
+          </div>
+          <div class="idx">.03</div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. SERVICES — expanding accordion -->
+<section class="services grain" id="services">
+  <div class="watermark" aria-hidden="true">P</div>
+  <div class="wrap">
+    <div class="head">
+      <h2 class="reveal">Everything your <em>celebration</em> needs</h2>
+      <p class="reveal">Choose the level of care that suits you, from full planning to on-the-day perfection.</p>
+    </div>
+    <div class="acc" id="acc">
+      <div class="acc-card active">
+        <div class="acc-num">.01</div>
+        <div class="acc-label"><span class="eyebrow">Plan</span><h3>Planning</h3></div>
+        <div class="acc-full">
+          <img src="assets/38-1.png" alt="">
+          <div class="shade"></div>
+          <div class="txt"><h3>Full Planning</h3><p>From the first idea to the final toast: venues, vendors, timelines and budgets, curated and managed end to end.</p></div>
+        </div>
+      </div>
+      <div class="acc-card">
+        <div class="acc-num">.02</div>
+        <div class="acc-label"><span class="eyebrow">Style</span><h3>Styling</h3></div>
+        <div class="acc-full">
+          <img src="assets/36.png" alt="">
+          <div class="shade"></div>
+          <div class="txt"><h3>Styling &amp; Design</h3><p>Transforming your space so it feels refined, stunning and deeply personal: florals, stationery and custom builds.</p></div>
+        </div>
+      </div>
+      <div class="acc-card">
+        <div class="acc-num">.03</div>
+        <div class="acc-label"><span class="eyebrow">Deliver</span><h3>Coordination</h3></div>
+        <div class="acc-full">
+          <img src="assets/champagne-wall.png" alt="">
+          <div class="shade"></div>
+          <div class="txt"><h3>On-the-Day Coordination</h3><p>Seamless execution of your day, with complete project management so you can be fully present in the moment.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6+7. HIGHLIGHT — swaying marquee words behind the placeholder video, which scales to fullscreen -->
+<div class="vid-pin">
+  <div class="vid-stick">
+    <div class="vid-tickers" id="vidTickers" aria-hidden="true">
+      <div class="ticker t-fwd"><div class="ticker-track">
+        <span>Timeless</span><span>·</span><span><i>Bespoke</i></span><span>·</span><span>Unforgettable</span><span>·</span><span><i>Dubai</i></span><span>·</span>
+        <span>Timeless</span><span>·</span><span><i>Bespoke</i></span><span>·</span><span>Unforgettable</span><span>·</span><span><i>Dubai</i></span><span>·</span>
+      </div></div>
+      <div class="ticker t-rev"><div class="ticker-track">
+        <span><i>Weddings</i></span><span>·</span><span>Showers</span><span>·</span><span><i>Galas</i></span><span>·</span><span>Soirées</span><span>·</span>
+        <span><i>Weddings</i></span><span>·</span><span>Showers</span><span>·</span><span><i>Galas</i></span><span>·</span><span>Soirées</span><span>·</span>
+      </div></div>
+    </div>
+    <div class="vid-frame" id="vidFrame">
+      <video src="assets/vid-walkway.mp4" poster="assets/hero-scene.png" autoplay muted loop playsinline></video>
+      <div class="veil"></div>
+    </div>
+    <div class="vid-cap"><a href="https://www.instagram.com/prestigeplannersuae/" target="_blank" rel="noopener">Follow our journey on Instagram →</a></div>
+  </div>
+</div>
+
+<!-- 8. TESTIMONIALS — one story at a time -->
+<section class="testi grain" id="reviews">
+  <div class="glow-orb o3" aria-hidden="true"></div>
+  <div class="glow-orb o4" aria-hidden="true"></div>
+  <div class="bigq" aria-hidden="true">”</div>
+  <div class="wrap">
+    <div class="head">
+      <h2 class="reveal">Kind words from <em>our clients</em></h2>
+      <p class="reveal">One story at a time, from the people who lived them.</p>
+    </div>
+    <div class="spot">
+      <div class="spot-quote">
+        <blockquote id="spotQuote" aria-live="polite"></blockquote>
+        <div class="spot-who"><b id="spotName"></b><span id="spotEvent"></span></div>
+        <div class="spot-ctrl">
+          <button class="spot-arrow" id="spotPrev" aria-label="Previous story"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <div class="spot-progress"><i id="spotBar"></i></div>
+          <button class="spot-arrow" id="spotNext" aria-label="Next story"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+          <div class="spot-count" id="spotCount">1 of 3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ — coverflow of question boards -->
+<section class="faq grain" id="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <div class="eyebrow rule reveal">Questions</div>
+      <h2 class="reveal">Questions, <em>answered</em></h2>
+      <p class="reveal">Everything couples and hosts ask us before we begin. Swipe through the cards.</p>
+    </div>
+    <div class="cover">
+      <div class="cover-stage" id="coverStage" tabindex="0" aria-label="Frequently asked questions. Use the left and right arrow keys to browse.">
+        <article class="board">
+          <div class="b-n">01</div><div class="ghost" aria-hidden="true">01</div>
+          <h3>How far in advance should we book?</h3><div class="b-rule"></div>
+          <p class="b-a">For weddings and large celebrations, 3 to 6 months gives us the most freedom with venues and vendors, though we regularly deliver beautiful events on tighter timelines. Ask about your date.</p>
+        </article>
+        <article class="board">
+          <div class="b-n">02</div><div class="ghost" aria-hidden="true">02</div>
+          <h3>What is included in full planning?</h3><div class="b-rule"></div>
+          <p class="b-a">Everything: concept, venue and vendor curation, budgets, timelines, styling, and on-the-day management. You work directly with Benafsha throughout.</p>
+        </article>
+        <article class="board">
+          <div class="b-n">03</div><div class="ghost" aria-hidden="true">03</div>
+          <h3>Do you work with our budget?</h3><div class="b-rule"></div>
+          <p class="b-a">Yes. Every celebration is designed around your vision and your budget. After your enquiry we send our Services Guide, which explains how engagements work.</p>
+        </article>
+        <article class="board">
+          <div class="b-n">04</div><div class="ghost" aria-hidden="true">04</div>
+          <h3>Do you plan events outside Dubai?</h3><div class="b-rule"></div>
+          <p class="b-a">Dubai is home, and we travel across the UAE for the right celebration. Tell us what you are dreaming of.</p>
+        </article>
+        <article class="board">
+          <div class="b-n">05</div><div class="ghost" aria-hidden="true">05</div>
+          <h3>How do we start?</h3><div class="b-rule"></div>
+          <p class="b-a">Send a WhatsApp message with your date and event type. We confirm availability and arrange a consultation.</p>
+        </article>
+      </div>
+      <div class="cover-ctrl">
+        <button class="cover-arrow" id="coverPrev" aria-label="Previous question"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="cover-dots" id="coverDots"></div>
+        <button class="cover-arrow" id="coverNext" aria-label="Next question"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <a class="ask reveal" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%20have%20a%20question." target="_blank" rel="noopener">Can't find yours? Ask us on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- 10. FINAL CTA — the invitation -->
+<section class="final">
+  <div class="bgimg"><img src="assets/26.png" alt="" decoding="async"></div>
+  <div class="scrim"></div>
+  <div class="frame" aria-hidden="true"><i class="ft"></i><i class="fb"></i><i class="fl"></i><i class="fr"></i></div>
+  <div class="content">
+    <span class="cta-mask" style="--i:0"><span class="cta-line invite">Prestige invites you</span></span>
+    <h2>
+      <span class="cta-mask" style="--i:1"><span class="cta-line">Let's plan something</span></span>
+      <span class="cta-mask" style="--i:2"><span class="cta-line l2">truly extraordinary.</span></span>
+    </h2>
+    <span class="cta-mask" style="--i:3"><span class="cta-line sub">Tell us about your celebration. We will bring the vision, the vendors, and the calm.</span></span>
+    <span class="cta-mask btn-mask" style="--i:4"><span class="cta-line">
+      <a class="cta-btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20enquire%20about%20planning%20my%20event." target="_blank" rel="noopener"><span class="label"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.9 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.3.3c-.2.2-.3.4-.2.6.2.4.9 1.5 2 2.4 1.3 1.2 2.4 1.5 2.7 1.7.2.1.4.1.6-.1l.8-1c.2-.2.3-.2.6-.1l2 .9c.2.1.4.2.5.3.1.3.1.6-.1 1.3Z"/></svg>Message us on WhatsApp</span></a>
+    </span></span>
+    <div class="micro cta-mask" style="--i:5"><span class="cta-line">We reply within a few hours, often sooner.</span></div>
+    <div><a class="alt" href="mailto:contact@prestigeplanners.ae">or email contact@prestigeplanners.ae</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="col">
+      <a class="logo" style="color:var(--cream)" href="#top">Prestige <em>Planners</em><span>Dubai</span></a>
+      <p style="margin-top:12px;">Bespoke luxury events, crafted with care.</p>
+    </div>
+    <div class="col">
+      <h4>Contact</h4>
+      <p><a href="https://wa.me/971509118505" target="_blank" rel="noopener">WhatsApp +971 50 911 8505</a></p>
+      <p><a href="mailto:contact@prestigeplanners.ae">contact@prestigeplanners.ae</a></p>
+      <p>Meydan Grandstand, Dubai, UAE</p>
+    </div>
+    <div class="col">
+      <h4>Follow</h4>
+      <p><a href="https://www.instagram.com/prestigeplannersuae/" target="_blank" rel="noopener">Instagram</a></p>
+      <p><a href="https://prestigeplanners.ae" target="_blank" rel="noopener">prestigeplanners.ae</a></p>
+    </div>
+  </div>
+  <div class="foot-btm">© 2026 Prestige Planners · Dubai · Designed with care.</div>
+</footer>
+
+<!-- modal: simple check-availability -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeModal()">×</button>
+    <h3>Check <em>availability</em></h3>
+    <p class="note">Tell us your preferred date, month or season, and we'll confirm availability and send our Services Guide.</p>
+    <form action="mailto:contact@prestigeplanners.ae" method="get" enctype="text/plain">
+      <label>Your name</label><input type="text" name="name" placeholder="Full name" required>
+      <label>Event type</label>
+      <select name="event"><option>Wedding</option><option>Bridal / Baby Shower</option><option>Birthday</option><option>Corporate</option><option>Other celebration</option></select>
+      <label>Preferred date or season</label><input type="text" name="date" placeholder="e.g. October 2026" required>
+      <label>Email or WhatsApp</label><input type="text" name="contact" placeholder="How should we reach you?" required>
+      <button class="btn" type="submit">Send enquiry</button>
+    </form>
+  </div>
+</div>
+
+<a class="wa-float" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20enquire%20about%20planning%20my%20event." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.9 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.3.3c-.2.2-.3.4-.2.6.2.4.9 1.5 2 2.4 1.3 1.2 2.4 1.5 2.7 1.7.2.1.4.1.6-.1l.8-1c.2-.2.3-.2.6-.1l2 .9c.2.1.4.2.5.3.1.3.1.6-.1 1.3Z"/></svg>
+</a>
+
+<script>
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // nav state
+  const nav = document.getElementById('nav');
+  const setNav = () => nav.classList.toggle('scrolled', scrollY > 60);
+  setNav();
+
+  // reveal on scroll — slow and deliberate; boxes honor per-element data-delay
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add('visible');
+      // counting numbers inside the revealed element
+      const startDelay = (parseFloat(e.target.dataset.delay)||0)*1000 + 80;
+      e.target.querySelectorAll('.count').forEach(c => {
+        if (c.dataset.done) return; c.dataset.done = 1;
+        const to = parseFloat(c.dataset.to), dec = +(c.dataset.decimals||0), suf = c.dataset.suffix||'';
+        setTimeout(() => {
+          const dur = 850, t0 = performance.now();
+          const step = now => {
+            const p = Math.min(1, (now - t0)/dur), ease = 1 - Math.pow(1-p, 3);
+            c.textContent = (to*ease).toFixed(dec) + (p === 1 ? suf : '');
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }, startDelay);
+      });
+      io.unobserve(e.target);
+    }
+  }), {threshold:.3});
+  document.querySelectorAll('.reveal, .reveal-slow').forEach((el,i)=>{
+    el.style.transitionDelay = (el.dataset.delay ? parseFloat(el.dataset.delay) : (i%4)*.18) + 's';
+    io.observe(el);
+  });
+
+  // pinned-section progress helper (0 → 1 across the pin)
+  function progress(el){
+    const r = el.getBoundingClientRect();
+    const total = el.offsetHeight - innerHeight;
+    return Math.min(1, Math.max(0, -r.top / total));
+  }
+
+  const heroPin  = document.querySelector('.hero-pin');
+  const heroT    = document.getElementById('heroTitle');
+  const heroVeil = document.querySelector('.hero-veil');
+  const heroHaze = document.querySelector('.haze');
+  const heroCue  = document.querySelector('.scroll-cue');
+  const meetImg  = document.querySelector('.meet-fig img');
+  const faqSec   = document.querySelector('.faq');
+  let coverAPI   = null;   // set by the FAQ coverflow once it initialises
+  const aboutPin = document.getElementById('aboutPin');
+  let stackAPI   = null;   // set by the ABOUT story stack once it initialises
+  const heroGlow = document.getElementById('heroGlow');
+  const blurPin  = document.querySelector('.blur-pin');
+  const blurLine = document.getElementById('blurLine');
+  const blurStick = document.querySelector('.blur-stick');
+  const glareScroll = document.getElementById('glareScroll');
+  const words    = [...document.querySelectorAll('#blurLine .w')];
+  const clamp01 = v => Math.min(1, Math.max(0, v));
+  const easeOutBack = t => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3*Math.pow(t-1,3) + c1*Math.pow(t-1,2); };
+  // cursor glare on the glass panel
+  if (blurStick){
+    blurStick.addEventListener('mousemove', e => {
+      const r = blurStick.getBoundingClientRect();
+      blurStick.style.setProperty('--gx', ((e.clientX - r.left)/r.width*100).toFixed(2) + '%');
+      blurStick.style.setProperty('--gy', ((e.clientY - r.top)/r.height*100).toFixed(2) + '%');
+    });
+  }
+  const vidPin   = document.querySelector('.vid-pin');
+  const vidFrame = document.getElementById('vidFrame');
+  const vidTickers = document.getElementById('vidTickers');
+  const stackPin = document.getElementById('stackPin');
+  const stackCards = stackPin ? [...stackPin.querySelectorAll('.stack-card')] : [];
+
+  // Lenis-style smooth scroll: wheel input is lerped so the whole page glides
+  const fine = matchMedia('(pointer:fine)').matches;
+  const smooth = fine && !reduced;
+  let targetY = scrollY, curY = scrollY;
+  if (smooth){
+    addEventListener('wheel', e => {
+      if (document.getElementById('modal').classList.contains('open')) return;
+      e.preventDefault();
+      let d = e.deltaY * (e.deltaMode === 1 ? 16 : 1);
+      d = Math.max(-180, Math.min(180, d));   // tame single-flick spikes; momentum stays free-flowing
+      const max = document.documentElement.scrollHeight - innerHeight;
+      targetY = Math.max(0, Math.min(max, targetY + d));
+    }, {passive:false});
+    addEventListener('scroll', () => {  // sync when scrollbar / keys / anchors move the page
+      if (Math.abs(scrollY - curY) > 2){ curY = targetY = scrollY; }
+    }, {passive:true});
+  }
+
+  let lastT = performance.now();
+  function frame(now){
+    const t = now || performance.now();
+    const dt = Math.min(50, t - lastT); lastT = t;
+    if (smooth){
+      const k = 1 - Math.exp(-dt * 0.0075);   // time-based smoothing: identical glide at 60Hz and 120Hz
+      curY += (targetY - curY) * k;
+      if (Math.abs(targetY - curY) > .4) scrollTo({top:curY, left:0, behavior:'instant'});
+    }
+    setNav();
+    if (reduced){ requestAnimationFrame(frame); return; }
+
+    // HERO: nothing scroll-driven — the writing stays put and the whole scene scrolls away smoothly
+
+    // MEET: the founder portrait breathes slowly inside its frame
+    if (meetImg){
+      const mrc = meetImg.parentElement.getBoundingClientRect();
+      if (mrc.bottom > 0 && mrc.top < innerHeight){
+        const mp = (innerHeight - mrc.top) / (innerHeight + mrc.height);
+        meetImg.style.transform = `translateY(${((mp - .5) * -7).toFixed(2)}%)`;
+      }
+    }
+
+    // ABOUT stack: the scroll pulls each chapter's photo forward as the front one recedes
+    if (stackAPI && aboutPin){
+      const ap = progress(aboutPin);
+      const t = clamp01((ap - .04) / .9) * (stackAPI.n - 1);
+      stackAPI.pos += (t - stackAPI.pos) * .1;
+      stackAPI.layout(stackAPI.pos);
+    }
+
+    // FAQ coverflow: scrolling glides the question boards left and right
+    if (coverAPI && faqSec){
+      const fq = faqSec.getBoundingClientRect();
+      if (fq.bottom > -100 && fq.top < innerHeight + 100){
+        const range = fq.height + innerHeight * .55;
+        const sp = clamp01((innerHeight * .82 - fq.top) / range);
+        coverAPI.scrollIdx = sp * (coverAPI.n - 1);
+        const ct = Math.max(0, Math.min(coverAPI.n - 1, coverAPI.scrollIdx + coverAPI.bias));
+        coverAPI.pos += (ct - coverAPI.pos) * .09;
+        coverAPI.layoutAt(coverAPI.pos);
+      }
+    }
+
+    // BLUR WORDS: pop into focus while the line rides up, then settles DOWN to meet the white banner
+    const bp = progress(blurPin);
+    // line starts a few cm from the TOP, drifts down slowly ONLY while words pop in, then stays put
+    const rv = Math.min(bp/.65, 1), esv = rv*rv*(3-2*rv);
+    blurLine.style.transform = `translateY(${(-26 + 11*esv).toFixed(2)}vh)`;
+    words.forEach((w,i)=>{
+      const start = .6 * i / words.length;                     // all words fully revealed by ~70% of the pin
+      const t = clamp01((bp - start) / .12);
+      const pop = t === 0 ? 0 : easeOutBack(t);
+      w.style.filter    = `blur(${((1-t)*16).toFixed(1)}px)`;
+      w.style.opacity   = .08 + .92*t;
+      w.style.transform = `translateY(${((1-t)*40).toFixed(1)}px) scale(${(0.8 + 0.2*pop).toFixed(3)})`;
+    });
+    // diagonal glass glare sweeps across as you scroll
+    glareScroll.style.transform = `rotate(14deg) translateX(${(bp*190 - 60).toFixed(1)}vw)`;
+
+    // STACKED EVENTS: each incoming card GLIDES up with easing (not raw scroll), then holds
+    const spp = progress(stackPin);
+    const xu = spp * 2.4;                          // 2 incoming cards + a final hold
+    stackCards.forEach((card, idx) => {
+      if (idx === 0) return;
+      const local = clamp01(xu - (idx - 1) - 0.2); // 0.2 = the pause before this card begins
+      const t = clamp01(local / 0.5);              // glide takes half the segment…
+      const eg = t*t*(3 - 2*t);                    // …with smooth ease in-out
+      card.style.transform = `translateY(${((1 - eg) * 100).toFixed(2)}vh)`;
+      stackCards[idx - 1].style.filter = `brightness(${(1 - .16*eg).toFixed(3)})`; // covered card dims for depth
+    });
+
+    // VIDEO: frame grows to fullscreen while the word tickers soften away behind it
+    const vp = progress(vidPin);
+    vidFrame.style.width  = `calc(${58 + 42*vp}vw)`;
+    vidFrame.style.height = `calc(${58 + 42*vp}vh)`;
+    vidFrame.style.borderRadius = `${(1-vp)*26}px`;
+    if (vidTickers) vidTickers.style.opacity = (1 - vp*.85).toFixed(2);
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // hero video: keep the ambience layer visible as the crossfade target, but stop its
+  // pan animation once video plays (the video supplies the motion from then on)
+  const hv = document.querySelector('.hero-video');
+  const amb = document.querySelector('.hero-amb');
+  if (hv && amb) hv.addEventListener('playing', () => { amb.style.animation = 'none'; }, { once:true });
+  // perf: lazy-load below-the-fold imagery (finale + deck stay eager so they never pop in late)
+  [...document.querySelectorAll('section img, .stack-card img')]
+    .filter(im => !im.closest('.final') && !im.closest('.deck') && !im.closest('.meet-fig'))
+    .forEach(im => { im.loading = 'lazy'; im.decoding = 'async'; });
+
+  // ABOUT story stack: 3D pile of photos wired to panels, dots, and clicks
+  const abStackEl = document.getElementById('abStack');
+  if (abStackEl && aboutPin){
+    const stkCards = [...abStackEl.querySelectorAll('.stk')];
+    const abPanels = [...document.querySelectorAll('.ab-panel')];
+    const abDotsW = document.getElementById('abDots');
+    function layoutStack(p){
+      stkCards.forEach((c, i) => {
+        const o = i - p;
+        if (o >= 0){        // current card and the ones waiting behind it
+          const s = Math.max(.6, 1 - o*.07), ty = -o*30, op = Math.max(0, 1 - o*.16);
+          c.style.transform = `translate(-50%,-50%) translateY(${ty.toFixed(1)}px) scale(${s.toFixed(3)}) rotate(${(o*1.4).toFixed(2)}deg)`;
+          c.style.opacity = op.toFixed(2);
+          c.style.zIndex = String(30 - Math.round(o*2));
+        } else {            // the passed card minimises and dissolves into the distance
+          const k = Math.min(1, -o);
+          c.style.transform = `translate(-50%,-50%) translateY(${(-k*46).toFixed(1)}px) scale(${(1 - k*.16).toFixed(3)})`;
+          c.style.opacity = (1 - k).toFixed(2);
+          c.style.zIndex = k > .5 ? '5' : '31';
+        }
+      });
+      const on = Math.max(0, Math.min(stkCards.length - 1, Math.round(p)));
+      abPanels.forEach((pl, i) => pl.classList.toggle('on', i === on));
+      [...abDotsW.children].forEach((d, i) => d.classList.toggle('on', i === on));
+    }
+    function goStack(i){
+      const idx = Math.max(0, Math.min(stkCards.length - 1, i));
+      const pinTop = aboutPin.getBoundingClientRect().top + scrollY;
+      const span = aboutPin.offsetHeight - innerHeight;
+      const y = pinTop + (.04 + (idx / (stkCards.length - 1)) * .9) * span + 2;
+      targetY = Math.max(0, y);
+      if (reduced){ scrollTo(0, y); stackAPI.pos = idx; layoutStack(idx); }
+    }
+    stkCards.forEach((c, i) => {
+      const d = document.createElement('button');
+      d.setAttribute('aria-label', 'Chapter ' + (i + 1));
+      d.addEventListener('click', () => goStack(i));
+      abDotsW.appendChild(d);
+    });
+    abStackEl.addEventListener('click', () => goStack(Math.round(stackAPI.pos) + 1));
+    stackAPI = { n: stkCards.length, pos: 0, layout: layoutStack };
+    layoutStack(0);
+  }
+
+  // MEET: curtain-reveal the founder portrait when the section arrives
+  const meetSec = document.querySelector('.meet');
+  if (meetSec){
+    new IntersectionObserver((es, obs) => es.forEach(en => {
+      if (en.isIntersecting){ meetSec.classList.add('in'); obs.disconnect(); }
+    }), { threshold:.22 }).observe(meetSec);
+  }
+
+  // golden glimmers: scatter twinkling motes that drift up the champagne panel
+  const glintWrap = document.getElementById('glints');
+  if (glintWrap && !reduced){
+    const n = innerWidth < 860 ? 10 : 18;
+    for (let i = 0; i < n; i++){
+      const g = document.createElement('i'); g.className = 'glint';
+      const s = (2.5 + Math.random()*4.5).toFixed(1);
+      g.style.width = g.style.height = s + 'px';
+      g.style.left = (Math.random()*100).toFixed(1) + '%';
+      g.style.animationDuration = (10 + Math.random()*12).toFixed(1) + 's, ' + (2.4 + Math.random()*2.4).toFixed(1) + 's';
+      g.style.animationDelay = (-Math.random()*22).toFixed(1) + 's, ' + (Math.random()*2).toFixed(1) + 's';
+      glintWrap.appendChild(g);
+    }
+  }
+
+  // masthead dateline: cascade the letters in one by one
+  const hsText = document.querySelector('.hs-text');
+  if (hsText){
+    const t = hsText.textContent; hsText.textContent = '';
+    [...t].forEach((ch, i) => {
+      const s = document.createElement('span');
+      if (ch === ' '){ s.innerHTML = '&nbsp;'; }
+      else { s.className = 'ch'; s.style.setProperty('--i', i); s.textContent = ch; }
+      hsText.appendChild(s);
+    });
+  }
+
+  // SERVICES accordion: click + auto-cycle every 10s (pauses on hover, resets on click)
+  const cards = [...document.querySelectorAll('.acc-card')];
+  const setActive = c => { cards.forEach(x => x.classList.remove('active')); c.classList.add('active'); };
+  let accTimer;
+  const nextCard = () => { const i = cards.findIndex(c => c.classList.contains('active')); setActive(cards[(i+1) % cards.length]); };
+  const restartCycle = () => { clearInterval(accTimer); accTimer = setInterval(nextCard, 10000); };
+  cards.forEach(c => c.addEventListener('click', () => { setActive(c); restartCycle(); }));
+  // always begin the story at 01: the cycle only starts once the section scrolls into view
+  const accEl = document.getElementById('acc');
+  if (accEl){
+    new IntersectionObserver((es, obs) => es.forEach(en => {
+      if (en.isIntersecting){ setActive(cards[0]); restartCycle(); obs.disconnect(); }
+    }), { threshold:.35 }).observe(accEl);
+    accEl.addEventListener('mouseenter', () => clearInterval(accTimer));
+    accEl.addEventListener('mouseleave', restartCycle);
+  }
+
+  // hero video: gentler playback, clean native loop (no crossfade, no flash)
+  if (hv) hv.playbackRate = 0.8;
+
+  // PROOF deck: cards deal in on first view, then the front record slides off to the
+  // back every 7s. Pauses while the pointer is over the stage.
+  const deckStage = document.getElementById('deckStage');
+  if (deckStage){
+    const deckEl = document.getElementById('deck');
+    const deckCards = [...deckStage.querySelectorAll('.card')];
+    let deckTimer, dealing = false;
+    // dealt in one by one (staggered), then the stagger is cleared so cycling stays snappy
+    new IntersectionObserver((es, obs) => es.forEach(en => {
+      if (en.isIntersecting){
+        deckCards.forEach(c => c.style.transitionDelay = (+c.dataset.depth * .09) + 's');
+        deckStage.classList.add('in');
+        setTimeout(() => deckCards.forEach(c => c.style.transitionDelay = ''), 1400);
+        obs.disconnect();
+      }
+    }), { threshold:.3 }).observe(deckStage);
+    const cycleDeck = () => {
+      if (dealing || !deckStage.classList.contains('in')) return;
+      dealing = true;
+      const front = deckCards.find(c => c.dataset.depth === '0');
+      front.classList.add('leaving');
+      setTimeout(() => {
+        deckCards.forEach(c => { c.dataset.depth = c === front ? 3 : (+c.dataset.depth - 1); });
+        front.classList.remove('leaving');
+        dealing = false;
+      }, 750);
+    };
+    // a stat is a story: hovering or tapping a number pulls its event card to the front
+    const bringToFront = idx => {
+      const target = deckCards[idx];
+      if (!target || dealing || target.dataset.depth === '0') return;
+      const order = deckCards.slice().sort((a, b) => +a.dataset.depth - +b.dataset.depth);
+      [target, ...order.filter(c => c !== target)].forEach((c, d) => { c.dataset.depth = d; });
+    };
+    // SPOTLIGHT CYCLE: the stats take turns in focus (the rest blur back),
+    // and each stat pulls its own record to the front of the deck in sync
+    const statRows = [...document.querySelectorAll('.stat-row[data-card]')];
+    let statIdx = 0;
+    const setStat = idx => {
+      statIdx = idx;
+      statRows.forEach((r, i) => {
+        r.classList.toggle('lit', i === idx);
+        r.classList.toggle('dim', i !== idx);
+      });
+      bringToFront(+statRows[idx].dataset.card);
+    };
+    const clearStat = () => statRows.forEach(r => r.classList.remove('lit', 'dim'));
+    const cycleSpot = () => setStat((statIdx + 1) % statRows.length);
+    const startDeck = () => { clearInterval(deckTimer); deckTimer = setInterval(cycleSpot, 4200); };
+    statRows.forEach((row, i) => {
+      row.addEventListener('pointerenter', () => { clearInterval(deckTimer); setStat(i); });
+      row.addEventListener('pointerleave', () => { if (!reduced) startDeck(); });
+      row.addEventListener('click', () => setStat(i));
+    });
+    if (!reduced){
+      // always begin the story at 01, once the numbers have rolled in
+      const railEl = document.querySelector('.stat-rail');
+      new IntersectionObserver((es, obs) => es.forEach(en => {
+        if (en.isIntersecting){ setTimeout(() => { setStat(0); startDeck(); }, 2100); obs.disconnect(); }
+      }), { threshold:.5 }).observe(railEl);
+      deckStage.addEventListener('pointerenter', () => clearInterval(deckTimer));
+      deckStage.addEventListener('pointerleave', startDeck);
+      deckStage.addEventListener('click', cycleDeck);   // tap the stack to deal the next record
+    } else clearStat();
+    // the deck leans toward the cursor (desktop only)
+    if (matchMedia('(hover:hover) and (min-width:1025px)').matches && !reduced){
+      deckStage.addEventListener('pointermove', e => {
+        const r = deckStage.getBoundingClientRect();
+        const ry = ((e.clientX - r.left) / r.width - .5) * 7;
+        const rx = -((e.clientY - r.top) / r.height - .5) * 6;
+        deckEl.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      deckStage.addEventListener('pointerleave', () => { deckEl.style.transform = ''; });
+    }
+  }
+
+  // ODOMETER: stat numerals roll like a mechanical counter instead of a generic count-up
+  document.querySelectorAll('.odo').forEach(el => {
+    const val = el.dataset.value; el.textContent = ''; el.classList.add('od');
+    [...val].forEach((ch, i) => {
+      if (/\d/.test(ch)){
+        const col = document.createElement('span'); col.className = 'dcol';
+        const strip = document.createElement('span'); strip.className = 'dstrip';
+        strip.dataset.target = ch; strip.dataset.idx = i;
+        for (let n = 0; n <= 9; n++){ const s = document.createElement('span'); s.textContent = n; strip.appendChild(s); }
+        col.appendChild(strip); el.appendChild(col);
+      } else {
+        const s = document.createElement('span'); s.className = 'dsym'; s.textContent = ch; el.appendChild(s);
+      }
+    });
+  });
+  const statRail = document.querySelector('.stat-rail');
+  if (statRail) new IntersectionObserver((es, obs) => es.forEach(en => {
+    if (en.isIntersecting){
+      statRail.querySelectorAll('.dstrip').forEach(st => {
+        st.style.transitionDelay = (+st.dataset.idx * .15) + 's';
+        st.style.transform = `translateY(${-st.dataset.target * 1.08}em)`;
+      });
+      obs.disconnect();
+    }
+  }), { threshold:.5 }).observe(statRail);
+
+  // FAQ coverflow: the boards live on a CONTINUOUS position so the page scroll can
+  // glide them left↔right smoothly; arrows / dots / drag / keys nudge the same position
+  const coverStage = document.getElementById('coverStage');
+  if (coverStage){
+    const boards = [...coverStage.querySelectorAll('.board')];
+    const dotsWrap = document.getElementById('coverDots');
+    const GAP = () => innerWidth < 860 ? 188 : 300;
+    const layoutAt = p => {
+      const g = GAP();
+      boards.forEach((b, i) => {
+        const o = i - p, ao = Math.abs(o);
+        const t = Math.max(-1, Math.min(1, o));
+        const ry = -40 * t;
+        const sc = 1 - .16 * Math.min(ao, 1) - .14 * Math.max(0, Math.min(ao - 1, 1));
+        const op = ao < .5 ? 1 : ao < 1.5 ? 1 - .5 * (ao - .5) : Math.max(0, .5 - .3 * (ao - 1.5));
+        b.style.transform = `translate(-50%,-50%) translateX(${(o * g).toFixed(1)}px) rotateY(${ry.toFixed(1)}deg) scale(${sc.toFixed(3)})`;
+        b.style.opacity = op.toFixed(2);
+        b.style.zIndex = String(10 - Math.round(ao));
+        b.style.pointerEvents = ao > 2.2 ? 'none' : 'auto';
+        b.classList.toggle('active', ao < .5);
+      });
+      const on = Math.round(Math.max(0, Math.min(boards.length - 1, p)));
+      [...dotsWrap.children].forEach((d, i) => d.classList.toggle('on', i === on));
+    };
+    coverAPI = { n: boards.length, pos: 0, bias: 0, scrollIdx: 0, layoutAt };
+    const go = i => {
+      const idx = Math.max(0, Math.min(coverAPI.n - 1, i));
+      coverAPI.bias = idx - coverAPI.scrollIdx;
+      if (reduced){ coverAPI.pos = idx; layoutAt(idx); }
+    };
+    boards.forEach((b, i) => {
+      const d = document.createElement('button'); d.setAttribute('aria-label', 'Go to question ' + (i + 1));
+      d.addEventListener('click', () => go(i)); dotsWrap.appendChild(d);
+      b.addEventListener('click', () => { if (i !== Math.round(coverAPI.pos)) go(i); });
+    });
+    document.getElementById('coverNext').addEventListener('click', () => go(Math.round(coverAPI.pos) + 1));
+    document.getElementById('coverPrev').addEventListener('click', () => go(Math.round(coverAPI.pos) - 1));
+    coverStage.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight'){ e.preventDefault(); go(Math.round(coverAPI.pos) + 1); }
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); go(Math.round(coverAPI.pos) - 1); }
+    });
+    let dragX = null;
+    coverStage.addEventListener('pointerdown', e => { dragX = e.clientX; });
+    addEventListener('pointerup', e => {
+      if (dragX === null) return;
+      const dx = e.clientX - dragX; if (Math.abs(dx) > 50) go(Math.round(coverAPI.pos) + (dx < 0 ? 1 : -1));
+      dragX = null;
+    });
+    addEventListener('resize', () => layoutAt(coverAPI.pos));
+    layoutAt(0);
+  }
+
+  // TESTIMONIALS: the spotlight letter — one story at a time
+  const stories = [
+    {q:"From the first tasting to the last dance, every decision had already been thought through. Our celebration [[felt effortless,]] and our families still talk about it.", name:"S. & R.", ev:"Wedding weekend, Dubai"},
+    {q:"She made three hundred guests feel like [[the only ones in the room.]] Every corner held a detail we had not even thought to ask for.", name:"A. & K.", ev:"Engagement, Meydan"},
+    {q:"We handed over a colour and a feeling, and walked into a room that [[understood us completely.]] Planning felt calm from start to finish.", name:"M.", ev:"Milestone birthday, Palm Jumeirah"}
+  ];
+  const spotQuote = document.getElementById('spotQuote');
+  const spotName = document.getElementById('spotName');
+  const spotEvent = document.getElementById('spotEvent');
+  const spotCount = document.getElementById('spotCount');
+  const spotBar = document.getElementById('spotBar');
+  const spotFigs = [...document.querySelectorAll('#spotPhotos figure')];
+  let sIdx = 0, sTimer = null, sBarAnim = null;
+  function renderStory(i, fast){
+    const s = stories[i];
+    spotQuote.innerHTML = '';
+    s.q.split(/\[\[|\]\]/).forEach((chunk, pi) => {
+      chunk.split(' ').filter(Boolean).forEach(word => {
+        const sp = document.createElement('span');
+        sp.className = 'w' + (pi === 1 ? ' hl' : '');
+        sp.textContent = word;
+        spotQuote.appendChild(sp);
+      });
+    });
+    spotName.textContent = s.name; spotEvent.textContent = s.ev;
+    spotCount.textContent = (i+1) + ' of ' + stories.length;
+    spotFigs.forEach(f => {
+      const p = (+f.dataset.p - i + stories.length) % stories.length;
+      f.className = p === 0 ? 'is-front' : p === 1 ? 'is-mid' : 'is-back';
+    });
+    spotQuote.animate([{opacity:1, filter:'blur(0px)', transform:'none'}], {duration:1, fill:'forwards'});
+    if (!reduced && !fast){
+      [...spotQuote.children].forEach((w, wi) => w.animate(
+        [{opacity:0, filter:'blur(6px)', transform:'translateY(8px)'},
+         {opacity:1, filter:'blur(0px)', transform:'translateY(0)'}],
+        {duration:600, delay:wi*18, fill:'both', easing:'cubic-bezier(.22,1,.36,1)'}));
+    }
+    startSpotTimer();
+  }
+  function startSpotTimer(){
+    clearTimeout(sTimer); if (sBarAnim) sBarAnim.cancel();
+    if (reduced) return;
+    sBarAnim = spotBar.animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}],
+      {duration:5000, easing:'linear', fill:'forwards'});
+    sTimer = setTimeout(() => spotAdvance(1), 5000);
+  }
+  function spotAdvance(dir, fast){
+    sIdx = (sIdx + dir + stories.length) % stories.length;
+    if (!reduced && !fast){
+      spotQuote.animate(
+        [{opacity:1, filter:'blur(0px)', transform:'translateY(0)'},
+         {opacity:0, filter:'blur(5px)', transform:'translateY(-10px)'}],
+        {duration:450, fill:'forwards'}).onfinish = () => renderStory(sIdx);
+    } else renderStory(sIdx, true);
+  }
+  if (spotQuote){
+    document.getElementById('spotNext').addEventListener('click', () => spotAdvance(1, true));
+    document.getElementById('spotPrev').addEventListener('click', () => spotAdvance(-1, true));
+    const testiSec = document.querySelector('.testi');
+    testiSec.addEventListener('mouseenter', () => { clearTimeout(sTimer); if (sBarAnim) sBarAnim.pause(); });
+    testiSec.addEventListener('mouseleave', () => {
+      if (sBarAnim && sBarAnim.playState === 'paused'){
+        sBarAnim.play();
+        const remain = Math.max(500, 5000 - (sBarAnim.currentTime || 0));
+        sTimer = setTimeout(() => spotAdvance(1), remain);
+      }
+    });
+    renderStory(0);
+  }
+
+  // FINAL CTA: line-mask entrance, frame draw, magnetic button
+  const finalSec = document.querySelector('.final');
+  if (finalSec){
+    new IntersectionObserver((es, obs) => es.forEach(en => {
+      if (en.isIntersecting){ finalSec.classList.add('in'); obs.disconnect(); }
+    }), {threshold:.35}).observe(finalSec);
+    const cbtn = finalSec.querySelector('.cta-btn');
+    if (cbtn && matchMedia('(hover:hover)').matches && !reduced){
+      const lbl = cbtn.querySelector('.label');
+      cbtn.addEventListener('mousemove', e => {
+        const r = cbtn.getBoundingClientRect();
+        const dx = e.clientX - r.left - r.width/2, dy = e.clientY - r.top - r.height/2;
+        cbtn.style.transform = `translate(${dx*.18}px, ${dy*.18}px)`;
+        lbl.style.transform = `translate(${dx*.06}px, ${dy*.06}px)`;
+      });
+      cbtn.addEventListener('mouseleave', () => { cbtn.style.transform=''; lbl.style.transform=''; });
+    }
+  }
+
+  // modal
+  const modal = document.getElementById('modal');
+  function openModal(){ modal.classList.add('open'); }
+  function closeModal(){ modal.classList.remove('open'); }
+  window.openModal = openModal; window.closeModal = closeModal;
+</script>
+</body>
+</html>
