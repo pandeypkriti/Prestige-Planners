@@ -21,7 +21,7 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth; overflow-x:clip;}
-  body{font-family:'Poppins',sans-serif; font-weight:300; color:var(--ink); background:var(--cream); line-height:1.7; overflow-x:hidden;}
+  body{font-family:'Poppins',sans-serif; font-weight:300; color:var(--ink); background:var(--cream); line-height:1.7; overflow-x:clip;}
   h1,h2,h3{font-family:'Fraunces',serif; font-weight:400; color:var(--navy); line-height:1.12;}
   /* editorial voice: every body paragraph reads in serif */
   p{font-family:'Fraunces',serif; font-weight:400; letter-spacing:.005em;}
@@ -172,16 +172,17 @@
   .deck-rail h2 em{font-style:italic; color:var(--gold);}
   .deck-rail .para{color:#4c5b68; font-size:15.5px; max-width:46ch;}
   .stat-rail{margin-top:34px;}
-  .stat-row{display:flex; align-items:baseline; gap:20px; padding:22px 0 22px 18px; border-top:1px solid rgba(196,162,76,.35); position:relative;
+  .stat-row{display:flex; align-items:baseline; gap:20px; padding:22px 0 22px 26px; border-top:1px solid rgba(196,162,76,.35); position:relative;
     cursor:pointer; transition:background .5s ease, filter .9s ease, opacity .9s ease;}
   .stat-row:hover{background:linear-gradient(90deg, rgba(196,162,76,.09), rgba(196,162,76,0) 75%);}
-  .stat-row::before{content:''; position:absolute; left:0; top:50%; width:5px; height:5px; background:var(--gold); transform:translateY(-50%) rotate(45deg);
+  .stat-row::before{content:''; position:absolute; left:9px; top:50%; width:5px; height:5px; background:var(--gold); transform:translateY(-50%) rotate(45deg);
     transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease;}
   /* the story spotlight: one stat in focus, the rest rest quietly (no blur, no disorientation) */
   .stat-row{border-left:2px solid transparent;}
   .stat-row b, .stat-row > span{transition:opacity .25s ease;}
   .stat-row.lit{background:linear-gradient(90deg, rgba(196,162,76,.12), rgba(196,162,76,0) 75%);
-    border-left:2px solid var(--gold);}
+    border-left:2px solid var(--gold); animation:litPop .45s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes litPop{0%{transform:translateY(7px)} 100%{transform:none}}
   .stat-row.lit::before{transform:translateY(-50%) rotate(45deg) scale(1.5); box-shadow:0 0 12px rgba(196,162,76,.8);}
   .stat-row:last-child{border-bottom:1px solid rgba(196,162,76,.35);}
   .stat-row b{font-family:'Fraunces',serif; font-weight:600; font-size:42px; color:var(--navy); min-width:108px; line-height:1;}
@@ -208,7 +209,7 @@
     border:none; border-radius:20px; padding:0;
     box-shadow:0 2px 4px rgba(0,47,95,.06), 0 8px 24px rgba(0,47,95,.1), 0 0 0 1px rgba(196,162,76,.12);
     will-change:transform,opacity;
-    transition:transform .6s cubic-bezier(.25,.46,.45,.94), opacity .6s cubic-bezier(.25,.46,.45,.94);}
+    transition:transform .45s cubic-bezier(.34,1.56,.64,1), opacity .45s cubic-bezier(.34,1.56,.64,1);}
   .deck .card .card-photo{position:relative; overflow:visible; background:#F0E8D8; padding:10px; border-radius:20px 20px 0 0;}
   .deck .card img{width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center 30%; border-radius:12px; display:block;}
   .deck .card .cat{position:absolute; top:20px; right:20px; z-index:5;
@@ -258,7 +259,7 @@
   .deck .card[data-depth="2"]{transform:translate(-5px,10px) scale(.94) rotate(-3deg); opacity:.7; z-index:2;}
   .deck .card[data-depth="3"]{transform:translate(-10px,18px) scale(.9) rotate(-6deg); opacity:.55; z-index:1;}
   .deck .card.leaving{transform:translateX(110%) rotate(6deg); opacity:0;
-    transition:transform .38s cubic-bezier(.4,0,.2,1), opacity .38s cubic-bezier(.4,0,.2,1);}
+    transition:transform .3s cubic-bezier(.4,0,.2,1), opacity .3s cubic-bezier(.4,0,.2,1);}
   .deck-stage:not(.in) .card{opacity:0; transform:translateY(90px) rotate(6deg);}
   @media(max-width:1024px){
     .deck-grid{grid-template-columns:1fr; gap:24px;}
@@ -350,6 +351,11 @@
   /* ---------- 5. SERVICES — expanding accordion ---------- */
   .services{padding:96px 0; overflow:hidden;
     background:radial-gradient(120% 80% at 50% 0%, rgba(196,162,76,.1), transparent 60%), var(--cream);}
+  .svc-glow{position:absolute; left:50%; top:-16%; transform:translateX(-50%); width:min(1100px,90vw); height:70%;
+    pointer-events:none; z-index:0;
+    background:radial-gradient(55% 55% at 50% 30%, rgba(232,207,138,.28), rgba(196,162,76,.1) 55%, transparent 75%);
+    animation:svcBreath 9s ease-in-out infinite alternate;}
+  @keyframes svcBreath{from{opacity:.7; transform:translateX(-50%) scale(1)} to{opacity:1; transform:translateX(-50%) scale(1.08)}}
   .services .watermark{position:absolute; right:-4rem; top:-5rem; z-index:1;
     font:italic 600 24rem/1 'Fraunces',serif; color:rgba(0,47,95,.045); user-select:none; pointer-events:none;}
   .services .wrap{position:relative; z-index:2;}
@@ -384,22 +390,20 @@
 
   /* ---------- 6+7. HIGHLIGHT — marquee words sway behind the video as it scales to fullscreen ---------- */
   /* the champagne glass panel: the page's one dark editorial moment */
-  .vid-pin{height:190vh; background-color:#0A1C33;
-    /* small glazed navy tiles: each square carries its own sheen, bevel light and grout shadow */
+  /* compact champagne tile band: deep glazed navy tiles behind the swaying words */
+  .vid-pin{position:relative; padding:130px 0; overflow:hidden; background-color:#081426;
     background-image:
-      radial-gradient(90% 70% at 50% -10%, rgba(196,162,76,.15), transparent 60%),
-      radial-gradient(130% 130% at 24% 20%, rgba(150,182,218,.17) 0%, rgba(255,255,255,.05) 32%, rgba(0,0,0,0) 58%),
-      linear-gradient(180deg, rgba(255,255,255,.11) 0 1px, rgba(255,255,255,.03) 1px 3px, transparent 3px),
-      linear-gradient(90deg, rgba(255,255,255,.09) 0 1px, transparent 1px 3px),
-      linear-gradient(0deg, rgba(0,0,0,.42) 0 2px, rgba(0,0,0,.14) 2px 4px, transparent 4px),
-      linear-gradient(270deg, rgba(0,0,0,.34) 0 2px, transparent 2px 4px),
-      linear-gradient(160deg, #12294A 0%, #0B1D36 55%, #071426 100%);
+      radial-gradient(90% 70% at 50% -10%, rgba(196,162,76,.12), transparent 60%),
+      radial-gradient(130% 130% at 24% 20%, rgba(150,182,218,.09) 0%, rgba(255,255,255,.025) 32%, rgba(0,0,0,0) 58%),
+      linear-gradient(180deg, rgba(255,255,255,.06) 0 1px, rgba(255,255,255,.015) 1px 3px, transparent 3px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 3px),
+      linear-gradient(0deg, rgba(0,0,0,.5) 0 2px, rgba(0,0,0,.18) 2px 4px, transparent 4px),
+      linear-gradient(270deg, rgba(0,0,0,.4) 0 2px, transparent 2px 4px),
+      linear-gradient(160deg, #0D1F3A 0%, #081729 55%, #050F1D 100%);
     background-size:auto, 30px 30px, 30px 30px, 30px 30px, 30px 30px, 30px 30px, auto;
     background-repeat:no-repeat, repeat, repeat, repeat, repeat, repeat, no-repeat;}
-  .vid-stick{position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;}
-  /* the swaying word tickers live behind the frame */
-  .vid-tickers{position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; justify-content:center; gap:7vh;
-    transition:opacity .5s ease;}
+  .vid-stick{position:relative;}
+  .vid-tickers{display:flex; flex-direction:column; justify-content:center; gap:8vh;}
   .ticker{overflow:hidden; white-space:nowrap;}
   .ticker-track{display:inline-flex; will-change:transform;}
   .t-fwd .ticker-track{animation:tick 46s linear infinite;}
@@ -415,35 +419,11 @@
   .t-rev .ticker span{animation-delay:3.5s;}
   @keyframes glint{0%{background-position:200% 0} 55%{background-position:-40% 0} 100%{background-position:-40% 0}}
   .ticker span i{font-style:italic;}
-  /* slim Instagram invitation riding above the panel */
-  .vid-cap{position:absolute; z-index:3; bottom:34px; left:0; right:0; text-align:center;}
+  /* slim Instagram invitation beneath the words */
+  .vid-cap{position:relative; z-index:3; margin-top:64px; text-align:center;}
   .vid-cap a{font-family:'Fraunces',serif; font-style:italic; color:var(--gold-lt); font-size:16px;
     letter-spacing:.015em; text-transform:none; text-decoration:none; border-bottom:1px solid rgba(232,207,138,.45); padding-bottom:3px; transition:.3s;}
   .vid-cap a:hover{color:var(--gold-glint); border-color:var(--gold-glint);}
-  .vid-frame{position:relative; z-index:2; width:58vw; height:58vh; border-radius:26px; overflow:hidden;
-    box-shadow:0 40px 100px rgba(0,47,95,.35); will-change:width,height,border-radius; background:var(--navy-d);}
-  .vid-frame img{width:100%; height:100%; object-fit:cover; opacity:.85;}
-  .vid-frame video{width:100%; height:100%; object-fit:cover; display:block;}
-  /* golden petals drift down across the film */
-  .vid-petals{position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:2;}
-  .vid-petals i{position:absolute; top:-6%; border-radius:52% 48% 55% 0;
-    background:radial-gradient(circle at 35% 32%, var(--gold-glint), var(--gold) 72%);
-    box-shadow:0 0 6px rgba(232,207,138,.5); opacity:0;
-    animation:petalFall linear infinite; animation-delay:var(--pd,0s);}
-  @keyframes petalFall{
-    0%{transform:translate(0,-6vh) rotate(0deg); opacity:0}
-    6%{opacity:.9}
-    50%{transform:translate(var(--px,30px),52vh) rotate(200deg); opacity:.8}
-    94%{opacity:.5}
-    100%{transform:translate(calc(var(--px,30px)*.4),108vh) rotate(380deg); opacity:0}}
-  .vid-frame .veil{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,34,63,.15), rgba(0,34,63,.5));}
-  .vid-frame .play{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:#fff;}
-  .vid-frame .play .ring{width:84px; height:84px; border-radius:50%; border:1px solid rgba(243,236,220,.8);
-    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); background:rgba(0,34,63,.25);}
-  .vid-frame .play .ring::after{content:''; border-style:solid; border-width:11px 0 11px 19px; border-color:transparent transparent transparent var(--cream); margin-left:5px;}
-  .vid-frame .chip{font-family:'Fraunces',serif; font-style:italic; font-size:13px; letter-spacing:.02em; text-transform:none;
-    background:rgba(8,22,38,.55); color:var(--gold-lt); border:1px solid rgba(232,207,138,.35);
-    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding:8px 18px; border-radius:999px;}
 
   /* ---------- 8. TESTIMONIALS — the spotlight letter ---------- */
   .testi{padding:120px 0 110px; position:relative; overflow:hidden;
@@ -462,18 +442,19 @@
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
   /* the golden stage: three stories bounce up from below and take turns in the spotlight */
   .t-stage{position:relative; max-width:1150px; margin:0 auto;}
-  .t-squig{position:absolute; left:-4%; top:2%; width:108%; height:92%; pointer-events:none; overflow:visible; z-index:1;}
+  .t-squig{position:absolute; left:-6%; bottom:-6%; width:112%; height:62%; pointer-events:none; overflow:visible; z-index:1;}
   .t-squig path{fill:none; stroke:rgba(251,248,241,.7); stroke-width:2.5; stroke-linecap:round;
     stroke-dasharray:2600; stroke-dashoffset:2600;}
-  .testi.in .t-squig path{animation:squigDraw 2.6s cubic-bezier(.4,0,.2,1) .3s forwards;}
-  .t-squig .s2{stroke:rgba(122,95,41,.35); stroke-width:1.5; animation-delay:.6s !important;}
+  .testi.in .t-squig path{animation:squigDraw 2.4s cubic-bezier(.4,0,.2,1) .2s forwards, squigDrift 12s ease-in-out 2.8s infinite alternate;}
+  .t-squig .s2{stroke:rgba(122,95,41,.35); stroke-width:1.5; animation-delay:.5s, 3.2s !important;}
   @keyframes squigDraw{to{stroke-dashoffset:0}}
+  @keyframes squigDrift{from{transform:translateY(0)} to{transform:translateY(-26px)}}
   .t-row{position:relative; z-index:2; display:grid; grid-template-columns:repeat(3,1fr); gap:30px; align-items:start; padding:30px 0 16px;}
   .t-pop{position:relative; background:#FFFFFF; border-radius:20px; padding:58px 30px 24px;
     border:1px solid rgba(196,162,76,.35); margin-top:var(--ty,0px);
     box-shadow:0 3px 8px rgba(64,44,6,.08), 0 22px 48px -18px rgba(64,44,6,.28);
     opacity:0; transform:translateY(150px) rotate(var(--tr,0deg)) scale(.9); will-change:transform,opacity;
-    transition:opacity .95s cubic-bezier(.34,1.6,.44,1), transform .95s cubic-bezier(.34,1.6,.44,1),
+    transition:opacity .75s cubic-bezier(.34,1.6,.44,1), transform .75s cubic-bezier(.34,1.6,.44,1),
       box-shadow .5s ease, border-color .5s ease;
     transition-delay:var(--td,0s);}
   .testi.in .t-pop{opacity:1; transform:translateY(0) rotate(var(--tr,0deg)) scale(1);}
@@ -752,9 +733,9 @@
     .acc-full .txt{left:20px; right:20px; bottom:20px; width:auto;}
     .acc-full .txt h3{font-size:20px;}
     .acc-full .txt p{font-size:13px;}
-    .vid-frame{width:88vw; height:52vh;}
+    .vid-pin{padding:90px 0;}
     .vid-tickers{gap:4vh;}
-    .vid-cap{bottom:22px;}
+    .vid-cap{margin-top:44px;}
     .vid-cap a{font-size:14px;}
     .testi{padding:80px 0 72px;}
     .testi .bigq{font-size:240px; top:-60px;}
@@ -993,6 +974,12 @@
 <!-- 5. SERVICES — expanding accordion -->
 <section class="services grain" id="services">
   <div class="watermark" aria-hidden="true">P</div>
+  <div class="svc-glow" aria-hidden="true"></div>
+  <div class="sparkles" aria-hidden="true">
+    <i style="--x:8%;--y:20%;--d:.4s"></i><i style="--x:18%;--y:78%;--d:2.2s"></i><i style="--x:30%;--y:12%;--d:1.1s"></i>
+    <i style="--x:46%;--y:86%;--d:3.4s"></i><i style="--x:60%;--y:16%;--d:.8s"></i><i style="--x:72%;--y:74%;--d:2.8s"></i>
+    <i style="--x:86%;--y:26%;--d:1.7s"></i><i style="--x:94%;--y:64%;--d:3.9s"></i>
+  </div>
   <div class="wrap">
     <div class="head">
       <h2 class="reveal">Everything your <em>celebration</em> needs</h2>
@@ -1042,11 +1029,6 @@
         <span><i>Weddings</i></span><span>·</span><span>Showers</span><span>·</span><span><i>Galas</i></span><span>·</span><span>Soirées</span><span>·</span>
         <span><i>Weddings</i></span><span>·</span><span>Showers</span><span>·</span><span><i>Galas</i></span><span>·</span><span>Soirées</span><span>·</span>
       </div></div>
-    </div>
-    <div class="vid-frame" id="vidFrame">
-      <video src="assets/vid-walkway.mp4" poster="assets/hero-scene.png" autoplay muted loop playsinline></video>
-      <div class="veil"></div>
-      <div class="vid-petals" id="vidPetals" aria-hidden="true"></div>
     </div>
     <div class="vid-cap"><a href="https://www.instagram.com/prestigeplannersuae/" target="_blank" rel="noopener">Follow our journey on Instagram →</a></div>
   </div>
@@ -1266,9 +1248,6 @@
       blurStick.style.setProperty('--gy', ((e.clientY - r.top)/r.height*100).toFixed(2) + '%');
     });
   }
-  const vidPin   = document.querySelector('.vid-pin');
-  const vidFrame = document.getElementById('vidFrame');
-  const vidTickers = document.getElementById('vidTickers');
   const stackPin = document.getElementById('stackPin');
   const stackCards = stackPin ? [...stackPin.querySelectorAll('.stack-card')] : [];
 
@@ -1340,9 +1319,9 @@
 
     // BLUR WORDS: pop into focus while the line rides up, then settles DOWN to meet the white banner
     const bp = progress(blurPin);
-    // the line eases gently down to rest CENTERED in the panel (no dead space below)
+    // line starts a few cm from the TOP, drifts down slowly ONLY while words pop in, then stays put
     const rv = Math.min(bp/.65, 1), esv = rv*rv*(3-2*rv);
-    blurLine.style.transform = `translateY(${(-10 + 10*esv).toFixed(2)}vh)`;
+    blurLine.style.transform = `translateY(${(-26 + 11*esv).toFixed(2)}vh)`;
     words.forEach((w,i)=>{
       const start = .6 * i / words.length;                     // all words fully revealed by ~70% of the pin
       const t = clamp01((bp - start) / .12);
@@ -1365,13 +1344,6 @@
       card.style.transform = `translateY(${((1 - eg) * 100).toFixed(2)}vh)`;
       stackCards[idx - 1].style.filter = `brightness(${(1 - .16*eg).toFixed(3)})`; // covered card dims for depth
     });
-
-    // VIDEO: frame grows to fullscreen while the word tickers soften away behind it
-    const vp = progress(vidPin);
-    vidFrame.style.width  = `calc(${58 + 42*vp}vw)`;
-    vidFrame.style.height = `calc(${58 + 42*vp}vh)`;
-    vidFrame.style.borderRadius = `${(1-vp)*26}px`;
-    if (vidTickers) vidTickers.style.opacity = (1 - vp*.85).toFixed(2);
 
     requestAnimationFrame(frame);
   }
@@ -1552,7 +1524,7 @@
     };
     const clearStat = () => statRows.forEach(r => r.classList.remove('lit', 'dim'));
     const cycleSpot = () => setStat((statIdx + 1) % statRows.length);
-    const startDeck = () => { clearInterval(deckTimer); deckTimer = setInterval(cycleSpot, 5000); };
+    const startDeck = () => { clearInterval(deckTimer); deckTimer = setInterval(cycleSpot, 2000); };
     // hover only PAUSES the cycle (no jumping around under the cursor); click chooses
     statRows.forEach((row, i) => {
       row.addEventListener('pointerenter', () => clearInterval(deckTimer));
@@ -1584,20 +1556,6 @@
   // hotspot pulses breathe out of sync, not as one synchronized pop
   document.querySelectorAll('.hs').forEach((h, i) => h.style.setProperty('--hd', (i % 3) * .8 + 's'));
 
-  // golden petals drifting down over the showcase film
-  const petalWrap = document.getElementById('vidPetals');
-  if (petalWrap && !reduced){
-    for (let i = 0; i < 14; i++){
-      const g = document.createElement('i');
-      const sz = (5 + Math.random() * 6).toFixed(1);
-      g.style.width = g.style.height = sz + 'px';
-      g.style.left = (Math.random() * 100).toFixed(1) + '%';
-      g.style.setProperty('--px', ((Math.random() - .5) * 90).toFixed(0) + 'px');
-      g.style.animationDuration = (8 + Math.random() * 8).toFixed(1) + 's';
-      g.style.setProperty('--pd', (-Math.random() * 16).toFixed(1) + 's');
-      petalWrap.appendChild(g);
-    }
-  }
 
   // ODOMETER: stat numerals roll like a mechanical counter instead of a generic count-up
   document.querySelectorAll('.odo').forEach(el => {
@@ -1683,11 +1641,11 @@
     const pops = [...testiSec.querySelectorAll('.t-pop')];
     let emIdx = 0, emTimer = null;
     const setEm = i => { emIdx = i; pops.forEach((c, ci) => c.classList.toggle('em', ci === i)); };
-    const startEm = () => { clearInterval(emTimer); if (!reduced) emTimer = setInterval(() => setEm((emIdx + 1) % pops.length), 4000); };
+    const startEm = () => { clearInterval(emTimer); if (!reduced) emTimer = setInterval(() => setEm((emIdx + 1) % pops.length), 2500); };
     new IntersectionObserver((es, obs) => es.forEach(en => {
       if (en.isIntersecting){
         testiSec.classList.add('in');
-        setTimeout(() => { setEm(0); startEm(); }, 1600);   // let the bounce land first
+        setTimeout(() => { setEm(0); startEm(); }, 900);   // let the bounce land first
         obs.disconnect();
       }
     }), { threshold: .3 }).observe(testiSec);
