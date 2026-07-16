@@ -163,7 +163,7 @@
   @keyframes cue{0%,100%{opacity:.3; transform:scaleY(.6)} 50%{opacity:1; transform:scaleY(1)}}
 
   /* ---------- 2. PROOF — the client deck: a dealing stack of event record cards ---------- */
-  .deck-sec{background:var(--cream); padding:110px 0 120px; overflow:hidden;}
+  .deck-sec{background:var(--cream); padding:96px 0 84px; overflow:hidden;}
   .deck-band{position:absolute; top:0; bottom:0; right:0; width:56%; background:var(--soft);
     -webkit-mask-image:linear-gradient(90deg, transparent, #000 140px); mask-image:linear-gradient(90deg, transparent, #000 140px);}
   .deck-grid{display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; position:relative; z-index:2;}
@@ -199,10 +199,10 @@
   .deck-link:hover{border-color:var(--gold-ink);}
   .deck-note{margin-top:16px; font-size:12px; font-style:italic; color:rgba(0,47,95,.45);}
   .deck-hint{margin-top:10px; font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; color:var(--gold-ink);}
-  .deck-stage{position:relative; height:730px; perspective:1300px;}
+  .deck-stage{position:relative; height:800px; perspective:1300px;}
   .ghost-num{position:absolute; top:-36px; right:-10px; font-family:'Fraunces',serif; font-weight:600;
     font-size:min(280px,20vw); line-height:1; color:rgba(0,47,95,.06); pointer-events:none; user-select:none; font-variant-numeric:oldstyle-nums;}
-  .deck{position:absolute; left:4%; top:40px; width:min(490px,92%);
+  .deck{position:absolute; left:2%; top:20px; width:min(545px,95%);
     transform-style:preserve-3d; transition:transform .55s cubic-bezier(.22,1,.36,1);}
   /* Framer-style record card: white shell, the photo is a rounded inset panel on a cream mat */
   .deck .card{position:absolute; left:0; top:0; width:100%; background:#FFFFFF;
@@ -211,42 +211,40 @@
     will-change:transform,opacity;
     transition:transform .45s cubic-bezier(.34,1.56,.64,1), opacity .45s cubic-bezier(.34,1.56,.64,1);}
   .deck .card .card-photo{position:relative; overflow:visible; background:#F0E8D8; padding:10px; border-radius:20px 20px 0 0;}
-  .deck .card img{width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center 30%; border-radius:12px; display:block;}
+  .deck .card img{width:100%; aspect-ratio:5/4; object-fit:cover; object-position:center 30%; border-radius:12px; display:block;}
   .deck .card .cat{position:absolute; top:20px; right:20px; z-index:5;
     background:rgba(255,255,255,.92); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
     border-radius:100px; padding:4px 11px;
     font-family:'Poppins',sans-serif; font-size:9.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-ink);}
   /* detail hotspots: pulsing markers that reveal a caption on hover */
-  .deck .card .hs{position:absolute; width:24px; height:24px; margin:-12px 0 0 -12px; padding:0; border:none;
-    background:none; cursor:pointer; z-index:6; transform:translateZ(1px); opacity:0; transition:opacity .5s ease;}
+  .deck .card .hs{position:absolute; width:26px; height:26px; margin:-13px 0 0 -13px; padding:0; border:none;
+    background:none; cursor:pointer; z-index:6; opacity:0; transition:opacity .5s ease;}
   .deck .card[data-depth="0"] .hs{pointer-events:auto; opacity:1;}
   .deck .card:not([data-depth="0"]) .hs{pointer-events:none;}
-  .deck .card .hs .dot{position:absolute; inset:0; border-radius:50%;
-    border:1.5px solid var(--gold); background:rgba(196,162,76,.18); transition:background .2s ease, transform .2s ease;}
-  .deck .card .hs .dot::after{content:''; position:absolute; left:50%; top:50%; width:8px; height:8px;
-    margin:-4px 0 0 -4px; border-radius:50%; background:var(--gold);}
-  .deck .card .hs:hover .dot{background:rgba(196,162,76,.35); transform:scale(1.12);}
-  .deck .card .hs .dot::before{content:''; position:absolute; inset:-1px; border-radius:50%;
-    border:1px solid var(--gold); animation:hsPulse 2.4s ease-out infinite; animation-delay:var(--hd,0s);}
+  /* bold navy marker with a white ring: reads clearly against the warm photos */
+  .deck .card .hs .dot{position:absolute; inset:0; border-radius:50%; background:var(--navy);
+    border:2.5px solid #fff; box-shadow:0 2px 10px rgba(0,0,0,.4); transition:transform .25s ease;}
+  .deck .card .hs:hover .dot{transform:scale(1.1);}
+  .deck .card .hs .dot::after{content:''; position:absolute; left:50%; top:50%; width:6px; height:6px;
+    margin:-3px 0 0 -3px; border-radius:50%; background:#fff;}
+  .deck .card .hs .dot::before{content:''; position:absolute; inset:-3px; border-radius:50%;
+    border:2px solid rgba(255,255,255,.85); animation:hsPulse 2.4s ease-out infinite; animation-delay:var(--hd,0s);}
   .deck .card .hs:hover .dot::before{animation-play-state:paused; opacity:0;}
-  @keyframes hsPulse{0%{transform:scale(1); opacity:.6} 100%{transform:scale(2.2); opacity:0}}
-  .deck .card .hs-tip{position:absolute; left:50%; bottom:calc(100% + 10px); transform:translateX(-50%) translateY(5px);
-    width:190px; background:var(--navy); color:rgba(251,248,241,.9); border:1px solid rgba(196,162,76,.5);
-    border-radius:6px; padding:11px 14px; font-size:12.5px; font-weight:400; line-height:1.45; text-align:left;
-    font-family:'Fraunces',serif;
-    opacity:0; pointer-events:none; transition:opacity .18s ease, transform .18s cubic-bezier(.16,1,.3,1); z-index:8;
-    box-shadow:0 8px 24px rgba(0,0,0,.32);}
-  .deck .card .hs-tip::after{content:''; position:absolute; top:100%; left:50%; margin-left:-5px;
-    border:5px solid transparent; border-top-color:var(--navy);}
-  .deck .card .hs-tip em{font-style:italic; color:var(--gold); font-weight:400;}
-  .deck .card .hs:hover .hs-tip, .deck .card .hs:focus-visible .hs-tip{opacity:1; transform:translateX(-50%) translateY(0);}
-  /* tips near the card edges stay inside the photo */
-  .deck .card .hs.edge-l .hs-tip{left:0; transform:translateX(0) translateY(5px);}
-  .deck .card .hs.edge-l:hover .hs-tip{transform:translateX(0) translateY(0);}
-  .deck .card .hs.edge-l .hs-tip::after{left:12px; margin-left:0;}
-  .deck .card .hs.edge-r .hs-tip{left:auto; right:0; transform:translateX(0) translateY(5px);}
-  .deck .card .hs.edge-r:hover .hs-tip{transform:translateX(0) translateY(0);}
-  .deck .card .hs.edge-r .hs-tip::after{left:auto; right:12px; margin-left:0;}
+  @keyframes hsPulse{0%{transform:scale(1); opacity:.7} 100%{transform:scale(2); opacity:0}}
+  /* the callout: a card hanging above the dot, tied to it by a leader line */
+  .deck .card .hs-tip{position:absolute; left:50%; bottom:calc(100% + 38px); transform:translateX(-50%);
+    width:190px; background:var(--navy); color:#FBF8F1; border:1px solid rgba(196,162,76,.7);
+    border-radius:8px; padding:10px 13px; font-size:12.5px; line-height:1.45; text-align:left; font-family:'Poppins',sans-serif;
+    opacity:0; pointer-events:none; transition:opacity .3s ease; z-index:8;
+    box-shadow:0 10px 26px rgba(0,0,0,.35);}
+  .deck .card .hs-tip::after{content:''; position:absolute; top:100%; left:50%; width:2px; height:34px; margin-left:-1px;
+    background:linear-gradient(180deg, var(--navy), rgba(0,47,95,.35));}
+  .deck .card .hs-tip em{font-style:italic; color:var(--gold-lt); font-weight:400;}
+  .deck .card .hs:hover .hs-tip, .deck .card .hs:focus-visible .hs-tip{opacity:1;}
+  .deck .card .hs.edge-l .hs-tip{left:-6px; transform:none;}
+  .deck .card .hs.edge-l .hs-tip::after{left:16px; margin-left:0;}
+  .deck .card .hs.edge-r .hs-tip{left:auto; right:-6px; transform:none;}
+  .deck .card .hs.edge-r .hs-tip::after{left:auto; right:16px; margin-left:0;}
   .deck .card h3{font-weight:300; font-size:24px; line-height:1.25; margin:16px 20px 6px; font-style:normal;}
   .deck .card .meta{display:flex; justify-content:space-between; align-items:center; margin:0 20px; padding:0 0 12px;
     font-size:12.5px; color:#9B8B6E; font-family:'Poppins',sans-serif; border-bottom:1px solid rgba(196,162,76,.15);}
@@ -285,7 +283,11 @@
   .blur-line{position:relative; z-index:2; max-width:1100px; padding:0 30px; text-align:center;
     font-family:'Fraunces',serif; font-weight:300; font-size:clamp(30px,4.6vw,58px); line-height:1.3; color:var(--navy); will-change:transform;}
   .blur-line .w{display:inline-block; margin:0 .13em; filter:blur(16px); opacity:.08; transform:translateY(40px) scale(.8); will-change:filter,opacity,transform;}
-  .blur-line .w.gold{color:var(--gold); font-style:italic;}
+  .blur-line .w.gold{font-style:italic; color:transparent;
+    background:linear-gradient(105deg, var(--gold-shadow), var(--gold) 40%, var(--gold-glint) 50%, var(--gold) 60%, var(--gold-shadow));
+    background-size:240% 100%; -webkit-background-clip:text; background-clip:text;
+    animation:goldShine 4.5s linear infinite;}
+  @keyframes goldShine{0%{background-position:200% 0} 100%{background-position:-140% 0}}
   /* ambient placeholder video breathing beneath the champagne panel */
   .blur-video{position:absolute; inset:0; z-index:0; width:100%; height:100%; object-fit:cover;
     opacity:.2; filter:saturate(1.1) brightness(1.05);}
@@ -332,6 +334,7 @@
   .stack-card .veil{position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(0,34,63,.03) 35%, rgba(0,23,44,.5) 72%, rgba(0,17,33,.85) 100%);}
   .stack-card .info{position:absolute; left:0; right:0; bottom:0; padding:56px 0; color:#fff;}
+  .stack-card .btn{padding:17px 38px; font-size:15.5px;}
   .stack-card .info .wrap{display:flex; align-items:flex-end; justify-content:space-between; gap:20px;}
   /* museum-caption badge: dark glass chip, gradient gold ring, italic serif mixed case */
   .stack-card .tag{display:inline-block; font-family:'Fraunces',serif; font-style:italic; font-size:13px; font-weight:500;
@@ -440,44 +443,68 @@
   .testi .head{max-width:640px; margin-bottom:56px;}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
-  /* the golden stage: three stories bounce up from below and take turns in the spotlight */
-  .t-stage{position:relative; max-width:1150px; margin:0 auto;}
-  .t-squig{position:absolute; left:-6%; bottom:-6%; width:112%; height:62%; pointer-events:none; overflow:visible; z-index:1;}
+  /* the envelope unveiling: the flap opens and the letters fly out, then float forever */
+  .env-stage{position:relative; max-width:1150px; margin:0 auto; height:700px; z-index:2;}
+  .t-squig{position:absolute; left:-6%; top:0; width:112%; height:100%; pointer-events:none; overflow:visible; z-index:1;}
   .t-squig path{fill:none; stroke:rgba(251,248,241,.7); stroke-width:2.5; stroke-linecap:round;
     stroke-dasharray:2600; stroke-dashoffset:2600;}
   .testi.in .t-squig path{animation:squigDraw 2.4s cubic-bezier(.4,0,.2,1) .2s forwards, squigDrift 12s ease-in-out 2.8s infinite alternate;}
   .t-squig .s2{stroke:rgba(122,95,41,.35); stroke-width:1.5; animation-delay:.5s, 3.2s !important;}
   @keyframes squigDraw{to{stroke-dashoffset:0}}
   @keyframes squigDrift{from{transform:translateY(0)} to{transform:translateY(-26px)}}
-  .t-row{position:relative; z-index:2; display:grid; grid-template-columns:repeat(3,1fr); gap:30px; align-items:start; padding:30px 0 16px;}
-  .t-pop{position:relative; background:#FFFFFF; border-radius:20px; padding:58px 30px 24px;
-    border:1px solid rgba(196,162,76,.35); margin-top:var(--ty,0px);
-    box-shadow:0 3px 8px rgba(64,44,6,.08), 0 22px 48px -18px rgba(64,44,6,.28);
-    opacity:0; transform:translateY(150px) rotate(var(--tr,0deg)) scale(.9); will-change:transform,opacity;
-    transition:opacity .75s cubic-bezier(.34,1.6,.44,1), transform .75s cubic-bezier(.34,1.6,.44,1),
-      box-shadow .5s ease, border-color .5s ease;
+  /* the envelope itself */
+  .envelope{position:absolute; left:50%; bottom:4px; transform:translateX(-50%); width:340px; height:198px; z-index:3; perspective:900px;}
+  .env-back{position:absolute; inset:0; border-radius:12px; background:linear-gradient(170deg,#0E2242,#08182B);
+    border:1px solid rgba(196,162,76,.6); box-shadow:0 24px 50px -18px rgba(64,44,6,.5);}
+  .env-flap{position:absolute; left:0; right:0; top:0; height:110px; transform-origin:top center; z-index:6;
+    background:linear-gradient(190deg,#123059,#0A1D38); border-bottom:1px solid rgba(196,162,76,.5);
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    transition:transform .95s cubic-bezier(.4,0,.2,1) .2s;}
+  .testi.in .env-flap{transform:rotateX(178deg);}
+  .env-front{position:absolute; left:0; right:0; bottom:0; height:116px; z-index:5; border-radius:0 0 12px 12px;
+    background:linear-gradient(160deg,#13315B,#0B2140); border:1px solid rgba(196,162,76,.6); border-top:none;
+    clip-path:polygon(0 0, 50% 34%, 100% 0, 100% 100%, 0 100%);}
+  .env-seal{position:absolute; left:50%; top:88px; transform:translate(-50%,-50%); z-index:7; width:46px; height:46px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold-glint), var(--gold) 60%, var(--gold-shadow));
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-style:italic;
+    color:#0B1626; font-size:20px; box-shadow:0 4px 12px rgba(0,0,0,.35);
+    transition:opacity .45s ease .25s, transform .55s ease .25s;}
+  .testi.in .env-seal{opacity:0; transform:translate(-50%,-50%) scale(.5) rotate(-24deg);}
+  /* the letters: fly from the envelope to their fanned places, then bob gently */
+  .env-cards{position:absolute; inset:0; z-index:4;}
+  .t-pop{position:absolute; left:var(--fx); top:var(--fy); width:min(300px,86vw); opacity:0;
+    transform:translate(var(--bx,0px),var(--by,0px)) scale(.3) rotate(0deg); will-change:transform,opacity;
+    transition:opacity .85s cubic-bezier(.34,1.5,.5,1), transform .85s cubic-bezier(.34,1.5,.5,1);
     transition-delay:var(--td,0s);}
-  .testi.in .t-pop{opacity:1; transform:translateY(0) rotate(var(--tr,0deg)) scale(1);}
-  /* the spotlight: one story at a time swells forward */
-  .testi.in .t-pop.em{transform:translateY(-10px) rotate(0deg) scale(1.05); z-index:3;
-    border-color:rgba(196,162,76,.8);
-    box-shadow:0 6px 14px rgba(64,44,6,.12), 0 34px 70px -20px rgba(64,44,6,.42), 0 0 0 1px rgba(196,162,76,.4);
-    transition:transform .6s cubic-bezier(.34,1.56,.5,1), box-shadow .6s ease, border-color .6s ease;}
-  .t-pop .tq-mark{position:absolute; top:4px; left:20px; font-family:'Fraunces',serif; font-style:italic;
-    font-size:92px; line-height:1; color:var(--gold); opacity:.9; pointer-events:none;}
-  .t-pop blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:16px;
-    line-height:1.62; color:var(--navy); margin:0; text-wrap:pretty;}
+  .testi.in .t-pop{opacity:1; transform:translate(0,0) scale(1) rotate(var(--fr,0deg));}
+  .t-in{position:relative; background:#fff; border-radius:18px; padding:48px 24px 18px; border:1px solid rgba(196,162,76,.35);
+    box-shadow:0 3px 8px rgba(64,44,6,.08), 0 22px 48px -18px rgba(64,44,6,.3);
+    transition:transform .5s cubic-bezier(.34,1.56,.5,1), box-shadow .5s ease, border-color .5s ease;}
+  .testi.in .t-in{animation:envFloat 5.5s ease-in-out var(--fd,2s) infinite alternate;}
+  @keyframes envFloat{from{translate:0 0} to{translate:0 -9px}}
+  .t-pop.em{z-index:8;}
+  .t-pop.em .t-in{transform:scale(1.06); border-color:rgba(196,162,76,.85);
+    box-shadow:0 6px 14px rgba(64,44,6,.12), 0 34px 70px -20px rgba(64,44,6,.45), 0 0 0 1px rgba(196,162,76,.4);}
+  .t-pop .tq-mark{position:absolute; top:2px; left:18px; font-family:'Fraunces',serif; font-style:italic;
+    font-size:76px; line-height:1; color:var(--gold); opacity:.9; pointer-events:none;}
+  .t-pop blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:14px;
+    line-height:1.58; color:var(--navy); margin:0; text-wrap:pretty;}
   .t-pop blockquote .hl{font-style:normal; font-weight:700; color:var(--navy);
     background:linear-gradient(transparent 60%, rgba(196,162,76,.4) 60%);}
   .t-pop .t-foot{display:flex; align-items:center; justify-content:space-between;
-    border-top:1px solid rgba(196,162,76,.25); margin-top:16px; padding-top:12px;}
-  .t-pop .t-who b{display:block; font-family:'Poppins',sans-serif; font-weight:600; font-size:11px;
+    border-top:1px solid rgba(196,162,76,.25); margin-top:12px; padding-top:10px;}
+  .t-pop .t-who b{display:block; font-family:'Poppins',sans-serif; font-weight:600; font-size:10.5px;
     letter-spacing:.12em; text-transform:uppercase; color:var(--navy);}
-  .t-pop .t-who span{font-family:'Poppins',sans-serif; font-size:10.5px; letter-spacing:.06em; color:var(--gold-ink);}
-  .t-pop .t-stars{color:var(--gold); font-size:11px; letter-spacing:2px;}
+  .t-pop .t-who span{font-family:'Poppins',sans-serif; font-size:10px; letter-spacing:.06em; color:var(--gold-ink);}
+  .t-pop .t-stars{color:var(--gold); font-size:10.5px; letter-spacing:2px;}
   @media(max-width:980px){
-    .t-row{grid-template-columns:1fr; gap:22px; max-width:520px; margin:0 auto;}
-    .t-pop{margin-top:0;}
+    .env-stage{height:auto; padding-top:240px;}
+    .envelope{top:10px; bottom:auto; width:300px; height:176px;}
+    .env-flap{height:96px;} .env-front{height:102px;} .env-seal{top:78px;}
+    .env-cards{position:static;}
+    .t-pop{position:relative; left:auto; top:auto; margin:0 auto 18px; width:min(420px,92vw);
+      transform:translateY(80px) scale(.85);}
+    .testi.in .t-pop{transform:none;}
   }
 
   /* ---------- 9. FAQ — coverflow of question boards ---------- */
@@ -541,6 +568,8 @@
     animation:emShine 5.5s ease-in-out infinite;}
   .meet.in .cta-line{transform:none;}
   .meet-cta{margin-top:22px;}
+  .meet-cta::before{animation:ctaSweep 4.2s ease-in-out 1s infinite;}
+  @keyframes ctaSweep{0%,55%{transform:translateX(-130%) skewX(-18deg)} 82%,100%{transform:translateX(320%) skewX(-18deg)}}
   .meet-sig{font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:30px; color:var(--gold-ink); margin-top:16px;}
   .meet-sig span{display:block; font-family:'Poppins',sans-serif; font-style:normal; font-size:12px; color:rgba(0,47,95,.55); margin-top:4px;}
   .meet-link{display:inline-block; margin-top:18px; color:var(--gold-ink); font-size:14.5px; text-decoration:none;
@@ -699,7 +728,9 @@
     nav .btn{padding:9px 18px; font-size:12.5px;}
     .hero-title h1{white-space:normal;}
     .hero-title p{font-size:15px; margin:16px auto 24px;}
-    .hero-ctas{gap:10px;}
+    .hero-ctas{flex-direction:column; align-items:center; gap:11px;}
+    nav{padding:14px 0;}
+    nav .wrap{padding-right:24px;}
     .btn{padding:13px 24px; font-size:13.5px;}
     .hero-slug{gap:10px;}
     .hero-slug .hs-line{width:32px;}
@@ -711,17 +742,18 @@
     nav .btn.has-arr{padding:7px 7px 7px 16px; font-size:11.5px; gap:9px;}
     nav .btn .arr{width:28px; height:28px; border-radius:9px;}
     nav .btn .arr svg{width:12px; height:12px;}
-    .deck-sec{padding:72px 0 84px;}
+    .deck-sec{padding:54px 0 36px;}
     .deck-band{width:100%;}
     .deck-grid{gap:32px;}
-    .deck-stage{height:660px;}
+    .deck-stage{height:700px;}
     .deck{left:50%; margin-left:0; width:min(365px,93%); transform:translateX(-50%);}
     .ghost-num{font-size:150px; top:-14px;}
     .stat-row{padding:16px 0 16px 16px; gap:14px;}
     .stat-row b{font-size:30px; min-width:76px;}
     .stat-row > span{font-size:13px;}
-    .stack-intro{padding:72px 0 56px;}
+    .stack-intro{padding:52px 0 34px;}
     .blur-line{font-size:clamp(26px,6.4vw,40px);}
+    .blur-pin{height:120vh;}
     .services{padding:72px 0;}
     .services .head{grid-template-columns:1fr; gap:16px;}
     .acc{flex-direction:column; height:auto; margin-top:24px; gap:12px;}
@@ -733,11 +765,11 @@
     .acc-full .txt{left:20px; right:20px; bottom:20px; width:auto;}
     .acc-full .txt h3{font-size:20px;}
     .acc-full .txt p{font-size:13px;}
-    .vid-pin{padding:90px 0;}
+    .vid-pin{padding:64px 0;}
     .vid-tickers{gap:4vh;}
     .vid-cap{margin-top:44px;}
     .vid-cap a{font-size:14px;}
-    .testi{padding:80px 0 72px;}
+    .testi{padding:60px 0 52px;}
     .testi .bigq{font-size:240px; top:-60px;}
     .testi .head{margin-bottom:32px;}
     .about-pin{height:300vh;}
@@ -889,17 +921,6 @@
           <div class="meta"><span>48 guests · Palm Jumeirah</span><span class="stars">★★★★★</span></div>
           <p class="quote">"Nobody wanted the night to end."<span>K. F., anniversary dinner</span></p>
         </div>
-        <div class="card" data-depth="3">
-          <div class="card-photo">
-            <img src="assets/hero-scene.png" alt="Cascading floral walkway by Prestige Planners">
-            <span class="cat">Corporate gala</span>
-            <button class="hs" style="left:44%;top:41%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Cascading orchids</em> along the entrance</span></button>
-            <button class="hs" style="left:58%;top:66%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>mirrored aisle</em> that doubled the candlelight</span></button>
-          </div>
-          <h3>A floral walkway unveiling</h3>
-          <div class="meta"><span>200 guests · Dubai</span><span class="stars">★★★★★</span></div>
-          <p class="quote">"Guests stopped at the door just to take it in."<span>Corporate gala</span></p>
-        </div>
       </div>
     </div>
   </div>
@@ -1044,26 +1065,42 @@
       <h2 class="reveal">Kind words from <em>our clients</em></h2>
       <p class="reveal">One story at a time, from the people who lived them.</p>
     </div>
-    <div class="t-stage">
-      <svg class="t-squig" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M-20,430 C120,300 240,470 380,360 C520,250 560,120 700,180 C840,240 850,420 990,380 C1090,350 1150,220 1230,190"/>
-        <path class="s2" d="M-20,470 C160,380 300,500 460,420 C620,340 660,200 810,250 C960,300 1010,440 1230,330"/>
+    <div class="env-stage">
+      <svg class="t-squig" viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-20,520 C120,380 250,560 390,430 C530,300 570,150 710,220 C850,290 860,500 1000,450 C1100,415 1160,260 1230,220"/>
+        <path class="s2" d="M-20,560 C170,450 310,590 470,500 C630,410 670,240 820,300 C970,360 1020,530 1230,400"/>
       </svg>
-      <div class="t-row">
-        <article class="t-pop" style="--td:.05s; --tr:-2deg; --ty:26px">
-          <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-          <blockquote>From the first tasting to the last dance, every decision had already been thought through. Our celebration <span class="hl">felt effortless,</span> and our families still talk about it.</blockquote>
-          <div class="t-foot"><div class="t-who"><b>S. &amp; R.</b><span>Wedding weekend, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+      <div class="envelope" aria-hidden="true">
+        <div class="env-back"></div>
+        <div class="env-flap"></div>
+        <div class="env-front"></div>
+        <div class="env-seal">P</div>
+      </div>
+      <div class="env-cards">
+        <article class="t-pop" style="--fx:0%; --fy:235px; --fr:-3deg; --bx:425px; --by:300px; --td:.55s; --fd:2s">
+          <div class="t-in"><span class="tq-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>From the first tasting to the last dance, every decision had already been thought through. Our celebration <span class="hl">felt effortless.</span></blockquote>
+          <div class="t-foot"><div class="t-who"><b>S. &amp; R.</b><span>Wedding weekend, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div></div>
         </article>
-        <article class="t-pop" style="--td:.22s; --tr:1.4deg; --ty:0px">
-          <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-          <blockquote>She made three hundred guests feel like <span class="hl">the only ones in the room.</span> Every corner held a detail we had not even thought to ask for.</blockquote>
-          <div class="t-foot"><div class="t-who"><b>A. &amp; K.</b><span>Engagement, Meydan</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+        <article class="t-pop" style="--fx:20.5%; --fy:0px; --fr:1.6deg; --bx:190px; --by:480px; --td:.7s; --fd:2.6s">
+          <div class="t-in"><span class="tq-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>She made three hundred guests feel like <span class="hl">the only ones in the room.</span> Every corner held a detail we had not thought to ask for.</blockquote>
+          <div class="t-foot"><div class="t-who"><b>A. &amp; K.</b><span>Engagement, Meydan</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div></div>
         </article>
-        <article class="t-pop" style="--td:.4s; --tr:-1.2deg; --ty:44px">
-          <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-          <blockquote>We handed over a colour and a feeling, and walked into a room that <span class="hl">understood us completely.</span> Planning felt calm from start to finish.</blockquote>
-          <div class="t-foot"><div class="t-who"><b>M.</b><span>Milestone birthday, Palm Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+        <article class="t-pop" style="--fx:42%; --fy:225px; --fr:-1.2deg; --bx:-45px; --by:310px; --td:.85s; --fd:3.1s">
+          <div class="t-in"><span class="tq-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>We handed over a colour and a feeling, and walked into a room that <span class="hl">understood us completely.</span></blockquote>
+          <div class="t-foot"><div class="t-who"><b>M.</b><span>Milestone birthday, Palm Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div></div>
+        </article>
+        <article class="t-pop" style="--fx:61.5%; --fy:10px; --fr:2.4deg; --bx:-280px; --by:490px; --td:1s; --fd:2.3s">
+          <div class="t-in"><span class="tq-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>Every single guest asked who planned it. <span class="hl">Every single one.</span></blockquote>
+          <div class="t-foot"><div class="t-who"><b>H. R.</b><span>Corporate gala, DIFC</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div></div>
+        </article>
+        <article class="t-pop" style="--fx:79%; --fy:215px; --fr:-2deg; --bx:-480px; --by:320px; --td:1.15s; --fd:2.9s">
+          <div class="t-in"><span class="tq-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>One call and one vision board, and she was off. We walked into <span class="hl">a dream we did not know we had.</span></blockquote>
+          <div class="t-foot"><div class="t-who"><b>L. &amp; T.</b><span>Golden anniversary, Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div></div>
         </article>
       </div>
     </div>
@@ -1319,9 +1356,9 @@
 
     // BLUR WORDS: pop into focus while the line rides up, then settles DOWN to meet the white banner
     const bp = progress(blurPin);
-    // line starts a few cm from the TOP, drifts down slowly ONLY while words pop in, then stays put
+    // the line drifts down as the words pop in, coming to rest dead-centre
     const rv = Math.min(bp/.65, 1), esv = rv*rv*(3-2*rv);
-    blurLine.style.transform = `translateY(${(-26 + 11*esv).toFixed(2)}vh)`;
+    blurLine.style.transform = `translateY(${(-12 + 12*esv).toFixed(2)}vh)`;
     words.forEach((w,i)=>{
       const start = .6 * i / words.length;                     // all words fully revealed by ~70% of the pin
       const t = clamp01((bp - start) / .12);
@@ -1541,16 +1578,6 @@
       deckStage.addEventListener('pointerleave', startDeck);
       deckStage.addEventListener('click', cycleDeck);   // tap the stack to deal the next record
     } else clearStat();
-    // the deck leans toward the cursor (desktop only)
-    if (matchMedia('(hover:hover) and (min-width:1025px)').matches && !reduced){
-      deckStage.addEventListener('pointermove', e => {
-        const r = deckStage.getBoundingClientRect();
-        const ry = ((e.clientX - r.left) / r.width - .5) * 7;
-        const rx = -((e.clientY - r.top) / r.height - .5) * 6;
-        deckEl.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-      });
-      deckStage.addEventListener('pointerleave', () => { deckEl.style.transform = ''; });
-    }
   }
 
   // hotspot pulses breathe out of sync, not as one synchronized pop
