@@ -164,7 +164,27 @@
 
   /* ---------- 2. PROOF — the client deck: a dealing stack of event record cards ---------- */
   .deck-sec{background:var(--cream); padding:96px 0 84px; overflow:hidden;}
-  .deck-band{position:absolute; top:0; bottom:0; right:0; width:56%; background:var(--soft);
+  /* DEPTH, all behind the content:
+     [vignette: darker at the outer edges, falling off toward the centre]
+     [edge bleed: navy fading inward ~18% from the top and bottom, eased stops, no banding] */
+  .deck-sec::before{content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(120% 92% at 50% 50%, transparent 52%, rgba(8,24,43,.14) 80%, rgba(8,24,43,.28) 100%),
+      linear-gradient(to bottom, rgba(8,24,43,.32) 0%, rgba(8,24,43,.18) 7%, rgba(8,24,43,.07) 13%, transparent 19%),
+      linear-gradient(to top,    rgba(8,24,43,.32) 0%, rgba(8,24,43,.18) 7%, rgba(8,24,43,.07) 13%, transparent 19%);}
+  /* particulate atmosphere: fine navy specks, masked so they live at the edges and thin toward the centre */
+  .deck-atmo{position:absolute; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(1.3px 1.3px at 22% 31%, rgba(8,24,43,.5), transparent 55%),
+      radial-gradient(1px 1px at 67% 12%, rgba(8,24,43,.45), transparent 55%),
+      radial-gradient(1.6px 1.6px at 84% 74%, rgba(8,24,43,.4), transparent 55%),
+      radial-gradient(1px 1px at 38% 88%, rgba(8,24,43,.5), transparent 55%),
+      radial-gradient(1.2px 1.2px at 9% 63%, rgba(8,24,43,.42), transparent 55%),
+      radial-gradient(.9px .9px at 53% 46%, rgba(8,24,43,.38), transparent 55%);
+    background-size:210px 170px, 160px 130px, 240px 200px, 190px 150px, 170px 140px, 150px 120px;
+    -webkit-mask:radial-gradient(78% 66% at 50% 50%, transparent 40%, rgba(0,0,0,.55) 72%, black 100%);
+    mask:radial-gradient(78% 66% at 50% 50%, transparent 40%, rgba(0,0,0,.55) 72%, black 100%);}
+  .deck-band{position:absolute; z-index:0; top:0; bottom:0; right:0; width:56%; background:var(--soft);
     -webkit-mask-image:linear-gradient(90deg, transparent, #000 140px); mask-image:linear-gradient(90deg, transparent, #000 140px);}
   .deck-grid{display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; position:relative; z-index:2;}
   .deck-rail{position:sticky; top:110px; align-self:start;}
@@ -364,7 +384,8 @@
   .services .wrap{position:relative; z-index:2;}
   .acc{display:flex; gap:16px; height:540px; margin-top:40px;}
   .acc-card{position:relative; flex:1; border-radius:22px; overflow:hidden; cursor:pointer; background:var(--soft);
-    border:1px solid rgba(196,162,76,.35); transition:flex .85s cubic-bezier(.25,.8,.25,1);}
+    border:1px solid rgba(196,162,76,.35);
+    transition:flex-grow .4s cubic-bezier(.25,.46,.45,.94);}   /* continuous, ease-out, retargets mid-flight */
   .acc-card.active{flex:4;}
   .acc-num{position:absolute; top:26px; right:28px; font-family:'Fraunces',serif; font-size:52px; color:transparent; -webkit-text-stroke:1.2px var(--gold); z-index:3; transition:.4s;}
   .acc-label{position:absolute; left:26px; bottom:24px; z-index:3;
@@ -750,6 +771,10 @@
   .cover-dots{display:flex; gap:10px;}
   .cover-dots button{width:8px; height:8px; border-radius:50%; border:none; background:rgba(243,236,220,.3); cursor:pointer; padding:0; transition:.3s;}
   .cover-dots button.on{background:var(--gold); transform:scale(1.4);}
+  /* the closing step: a true link, accent-coloured, underline arrives on hover */
+  .faq-start{color:var(--gold-lt); text-decoration:underline; text-decoration-color:transparent;
+    text-underline-offset:3px; transition:text-decoration-color .2s ease;}
+  .faq-start:hover{text-decoration-color:var(--gold-lt);}
   .faq .ask{display:block; width:max-content; margin:28px auto 0; color:var(--gold-lt); font-size:14px; text-decoration:none;
     border-bottom:1px solid rgba(196,162,76,.5); padding-bottom:2px; transition:.3s; position:relative; z-index:2;}
   .faq .ask:hover{border-color:var(--gold-ink);}
@@ -1001,6 +1026,7 @@
 <!-- 3. PROOF — sticky ledger rail on the left, a dealing deck of event records on the right -->
 <section class="deck-sec grain">
   <div class="deck-band"></div>
+  <div class="deck-atmo" aria-hidden="true"></div>
   <div class="sparkles" aria-hidden="true">
     <i style="--x:5%;--y:14%;--d:0s"></i><i style="--x:14%;--y:72%;--d:1.6s"></i><i style="--x:24%;--y:32%;--d:2.9s"></i>
     <i style="--x:38%;--y:80%;--d:.9s"></i><i style="--x:47%;--y:12%;--d:3.6s"></i><i style="--x:58%;--y:56%;--d:2.1s"></i>
@@ -1269,7 +1295,7 @@
         <article class="board">
           <div class="b-n">05</div><div class="ghost" aria-hidden="true">05</div>
           <h3>How do we start?</h3><div class="b-rule"></div>
-          <p class="b-a">Send a WhatsApp message with your date and event type. We confirm availability and arrange a consultation.</p>
+          <p class="b-a">Send a WhatsApp message with your date and event type. We confirm availability and arrange a consultation. Ready when you are: <a class="faq-start" href="#contact">how do we start</a></p>
         </article>
       </div>
       <div class="cover-ctrl">
@@ -1284,7 +1310,7 @@
 </div>
 
 <!-- 10. FINAL CTA — the invitation -->
-<section class="final">
+<section class="final" id="contact">
   <div class="bgimg"><img src="assets/26.png" alt="" decoding="async"></div>
   <div class="scrim"></div>
   <div class="frame" aria-hidden="true"><i class="ft"></i><i class="fb"></i><i class="fl"></i><i class="fr"></i></div>
@@ -1651,6 +1677,10 @@
   const nextCard = () => { const i = cards.findIndex(c => c.classList.contains('active')); setActive(cards[(i+1) % cards.length]); };
   const restartCycle = () => { clearInterval(accTimer); accTimer = setInterval(nextCard, 10000); };
   cards.forEach(c => c.addEventListener('click', () => { setActive(c); restartCycle(); }));
+  // fine pointers glide: hovering a panel opens it; the click above stays as the touch fallback
+  if (matchMedia('(pointer:fine)').matches){
+    cards.forEach(c => c.addEventListener('pointerenter', () => { clearInterval(accTimer); setActive(c); }));
+  }
   // always begin the story at 01: the cycle only starts once the section scrolls into view
   const accEl = document.getElementById('acc');
   if (accEl){
