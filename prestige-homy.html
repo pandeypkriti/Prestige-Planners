@@ -430,7 +430,7 @@
 
   /* ---------- 8. TESTIMONIALS — the spotlight letter ---------- */
   .testi-pin{height:300vh;}
-  .testi{position:sticky; top:0; height:100vh; padding:0; display:flex; flex-direction:column; justify-content:center; overflow:hidden;
+  .testi{position:sticky; top:0; height:100vh; padding:clamp(44px,6vh,76px) 0 0; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden;
     background:
       radial-gradient(75% 60% at 50% 0%, rgba(251,248,241,.55), transparent 65%),
       linear-gradient(165deg, #EBDAAC 0%, #E0C787 45%, #CFAE61 100%);}
@@ -441,7 +441,8 @@
   .testi .wrap{position:relative; z-index:2;}
   .testi .o3{left:-110px; top:20%; width:380px; height:380px; animation:orbB 21s ease-in-out infinite alternate;}
   .testi .o4{right:-140px; bottom:-120px; width:460px; height:460px; animation:orbA 27s ease-in-out infinite alternate;}
-  .testi .head{max-width:640px; margin-bottom:26px;}
+  /* the text block always wins the stacking fight — never painted over */
+  .testi .head{max-width:640px; margin-bottom:22px; position:relative; z-index:9; isolation:isolate;}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
   /* the envelope unveiling: the flap opens and the letters fly out, then float forever */
@@ -453,30 +454,33 @@
   /* BODY — warm kraft manila. Texture passes, back to front:
      [1] speckle (SVG noise, multiply)  [2] fibre grain x2  [3] crumple creases x6
      [4] tonal blotching x5  [5] base kraft ramp */
+  /* silhouette helper: a soft dark pool behind the envelope so it never dissolves */
+  .env-stage::before{content:''; position:absolute; left:50%; top:34px; transform:translateX(-50%);
+    width:500px; height:280px; border-radius:50%; pointer-events:none; z-index:0;
+    background:radial-gradient(50% 50% at 50% 50%, rgba(80,52,16,.15), transparent 68%);}
+  /* BODY — cool light kraft, clearly lighter than the gold page. Texture passes:
+     [speckle: SVG pulp noise, multiply]
+     [fibre grain: two opposing repeating gradients, <5% opacity]
+     [tonal blotching: 5 soft radials, warm amber / cool ochre mix]
+     [base ramp: #F0E1C6 falling to #D9BC8C, upper-left key light] */
   .env-back{position:absolute; inset:0; border-radius:3px;
     background:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-      repeating-linear-gradient(35deg, rgba(120,84,36,.045) 0 1px, transparent 1px 3px),
-      repeating-linear-gradient(-55deg, rgba(255,240,214,.05) 0 1px, transparent 1px 4px),
-      linear-gradient(72deg, transparent 33.8%, rgba(255,240,210,.3) 34%, rgba(96,64,22,.24) 34.25%, transparent 34.6%),
-      linear-gradient(-38deg, transparent 60.8%, rgba(255,240,210,.24) 61%, rgba(96,64,22,.2) 61.25%, transparent 61.6%),
-      linear-gradient(105deg, transparent 21.8%, rgba(255,240,210,.2) 22%, rgba(96,64,22,.16) 22.2%, transparent 22.5%),
-      linear-gradient(-80deg, transparent 73.8%, rgba(255,240,210,.22) 74%, rgba(96,64,22,.18) 74.2%, transparent 74.5%),
-      linear-gradient(54deg, transparent 80.8%, rgba(255,240,210,.18) 81%, rgba(96,64,22,.15) 81.2%, transparent 81.5%),
-      linear-gradient(-15deg, transparent 44.8%, rgba(255,240,210,.16) 45%, rgba(96,64,22,.13) 45.2%, transparent 45.5%),
-      radial-gradient(42% 55% at 24% 30%, rgba(238,206,150,.5), transparent 70%),
-      radial-gradient(38% 46% at 78% 22%, rgba(196,148,88,.35), transparent 70%),
-      radial-gradient(50% 60% at 62% 78%, rgba(170,124,66,.3), transparent 72%),
-      radial-gradient(30% 40% at 10% 82%, rgba(232,198,140,.42), transparent 70%),
-      radial-gradient(45% 50% at 90% 60%, rgba(150,105,52,.24), transparent 75%),
-      linear-gradient(160deg, #E3C08D 0%, #D6AF77 55%, #C79B62 100%);
-    background-size:130px, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto;
-    background-blend-mode:multiply, normal, normal, normal, normal, normal, normal, normal, normal, normal, normal, normal, normal, normal, normal;
-    /* paper thickness rim + two-layer resting shadow */
+      repeating-linear-gradient(35deg, rgba(122,92,44,.04) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(-55deg, rgba(255,247,228,.045) 0 1px, transparent 1px 4px),
+      radial-gradient(42% 55% at 24% 30%, rgba(248,228,190,.55), transparent 70%),
+      radial-gradient(38% 46% at 78% 22%, rgba(206,168,116,.32), transparent 70%),
+      radial-gradient(50% 60% at 62% 78%, rgba(186,148,96,.28), transparent 72%),
+      radial-gradient(30% 40% at 10% 82%, rgba(244,222,182,.4), transparent 70%),
+      radial-gradient(45% 50% at 90% 60%, rgba(168,130,78,.22), transparent 75%),
+      linear-gradient(135deg, #F0E1C6 0%, #E5CFA8 55%, #D9BC8C 100%);
+    background-size:130px, auto, auto, auto, auto, auto, auto, auto, auto;
+    background-blend-mode:multiply, normal, normal, normal, normal, normal, normal, normal, normal;
+    /* paper thickness rim (light top/left, dark bottom/right) + two-layer resting shadow */
     box-shadow:
-      inset 1px 1px 0 rgba(255,242,214,.6), inset -1px -1px 0 rgba(96,64,22,.38),
-      0 3px 5px rgba(50,30,8,.38),
-      0 26px 50px -16px rgba(50,30,8,.45);}
+      inset 1px 1px 0 rgba(255,249,234,.7), inset -1px -1px 0 rgba(96,66,26,.4),
+      0 4px 6px rgba(46,28,8,.42),
+      0 30px 58px -14px rgba(46,28,8,.5);}
   /* FLAP-FACETS — conic sectors give each flap a slight tonal offset (X legibility) */
   .env-facets{position:absolute; inset:0; border-radius:3px; z-index:2; pointer-events:none;
     background:conic-gradient(from 0deg at 50% 50%,
@@ -495,13 +499,27 @@
   .seam.s2{transform:rotate(31.7deg);}
   .seam.s3{transform:rotate(148.3deg);}
   .seam.s4{transform:rotate(211.7deg);}
+  /* CREASES — physical folds: 1px shadow paired with 1px highlight on the raised
+     (upper-left-lit) side; masked at BOTH ends so they terminate mid-run.
+     Clustered lower-left and centre-right; the rest of the face stays clean. */
+  .crease{position:absolute; height:2px; z-index:4; pointer-events:none;
+    background:linear-gradient(to bottom, rgba(255,248,230,.55) 0 1px, rgba(96,66,26,.35) 1px);
+    -webkit-mask:linear-gradient(to right, transparent, black 22%, black 74%, transparent);
+    mask:linear-gradient(to right, transparent, black 22%, black 74%, transparent);}
+  .crease.c1{left:9%;  top:66%; width:96px;  transform:rotate(-24deg);}
+  .crease.c2{left:14%; top:78%; width:64px;  transform:rotate(14deg);}
+  .crease.c3{left:22%; top:60%; width:48px;  transform:rotate(-64deg);}
+  .crease.c4{left:56%; top:44%; width:110px; transform:rotate(9deg);}
+  .crease.c5{left:63%; top:56%; width:58px;  transform:rotate(-38deg);}
+  .crease.c6{left:38%; top:24%; width:44px;  transform:rotate(21deg);}
+
   /* TOP FLAP — kraft, one shade brighter, crease shadow along its cut edges */
   .env-flap{position:absolute; left:0; right:0; top:0; height:50%; transform-origin:top center; z-index:6;
     background:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-      linear-gradient(to bottom, rgba(255,244,218,.5), transparent 9%),
-      radial-gradient(60% 80% at 30% 20%, rgba(240,210,158,.4), transparent 70%),
-      linear-gradient(to bottom, #E9C893 0%, #DDB77C 62%, #D2A96B 100%);
+      linear-gradient(to bottom, rgba(255,249,232,.55), transparent 9%),
+      radial-gradient(60% 80% at 30% 20%, rgba(248,228,190,.42), transparent 70%),
+      linear-gradient(to bottom, #F3E5CC 0%, #E7D2AC 62%, #DCC094 100%);
     background-size:130px, auto, auto, auto;
     background-blend-mode:multiply, normal, normal, normal;
     clip-path:polygon(0 0, 100% 0, 50% 100%);
@@ -511,13 +529,14 @@
   /* WAX SEAL — oxblood, poured-wax outline, top-lit gloss, pressed impression */
   .env-seal{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:7;
     width:46px; height:46px;
-    border-radius:46% 54% 49% 51%/55% 44% 56% 45%;
+    border-radius:43% 57% 46% 54%/58% 41% 59% 42%;
     background:radial-gradient(circle at 32% 26%, #C04A3A 0%, #A0342A 38%, #8E2B24 62%, #5A1712 100%);
     box-shadow:
-      0 2px 3px rgba(40,8,4,.55),
-      0 7px 12px -4px rgba(40,8,4,.4),
-      inset -2px -3px 6px rgba(80,18,11,.6),
-      inset 2px 3px 5px rgba(232,124,98,.32);
+      0 2px 4px rgba(40,8,4,.55),          /* tight contact, gone within ~6px */
+      0 5px 7px -3px rgba(40,8,4,.32),     /* soft remainder */
+      inset -2px -3px 6px rgba(80,18,11,.6),   /* wax pooling lower-right */
+      inset -1px -1.5px 1.5px rgba(238,142,112,.3), /* faint rim light lower-right */
+      inset 2px 3px 5px rgba(232,124,98,.32);  /* upper-left sheen assist */
     transition:opacity .45s ease .25s, transform .55s ease .25s;}
   /* overspill teardrop at 4 o'clock */
   .env-seal::before{content:''; position:absolute; right:-4px; bottom:1px; width:13px; height:15px;
@@ -550,6 +569,15 @@
   .testi.scrollmode .t-pop{transition-delay:0s;}
   @media(max-width:860px){
     .testi.in .t-pop{opacity:1; transform:none;}
+  }
+  /* short screens: the letters compress so the whole scene fits under the pin */
+  @media(max-height:840px) and (min-width:861px){
+    .testi{padding-top:clamp(28px,4vh,48px);}
+    .testi .head{margin-bottom:14px;}
+    .envelope{margin-bottom:22px;}
+    .env-grid{gap:16px;}
+    .t-in{padding:40px 20px 14px;}
+    .t-pop blockquote{font-size:13px; line-height:1.5;}
   }
   .t-in{position:relative; border:none;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), linear-gradient(168deg,#FDF9ED 0%,#F6EEDA 62%,#EDE2C6 100%);
@@ -1171,6 +1199,8 @@
         <div class="env-back"></div>
         <div class="env-facets"></div>
         <i class="seam s1"></i><i class="seam s2"></i><i class="seam s3"></i><i class="seam s4"></i>
+        <i class="crease c1"></i><i class="crease c2"></i><i class="crease c3"></i>
+        <i class="crease c4"></i><i class="crease c5"></i><i class="crease c6"></i>
         <div class="env-flap"></div>
         <div class="env-seal"><span class="seal-ring"></span><span class="seal-drop"></span></div>
       </div>
