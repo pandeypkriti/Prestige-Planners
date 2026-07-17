@@ -167,27 +167,48 @@
   /* DEPTH, all behind the content:
      [vignette: darker at the outer edges, falling off toward the centre]
      [edge bleed: navy fading inward ~18% from the top and bottom, eased stops, no banding] */
+  /* [DEPTH 1 — vignette + edge bleed] every stop WARM (deep champagne umber), never grey */
   .deck-sec::before{content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
     background:
-      radial-gradient(120% 92% at 50% 50%, transparent 52%, rgba(8,24,43,.14) 80%, rgba(8,24,43,.28) 100%),
-      linear-gradient(to bottom, rgba(8,24,43,.32) 0%, rgba(8,24,43,.18) 7%, rgba(8,24,43,.07) 13%, transparent 19%),
-      linear-gradient(to top,    rgba(8,24,43,.32) 0%, rgba(8,24,43,.18) 7%, rgba(8,24,43,.07) 13%, transparent 19%);}
+      radial-gradient(120% 92% at 50% 50%, transparent 52%, rgba(112,82,34,.1) 80%, rgba(92,66,24,.2) 100%),
+      linear-gradient(to bottom, rgba(112,82,34,.26) 0%, rgba(112,82,34,.14) 7%, rgba(112,82,34,.05) 13%, transparent 19%),
+      linear-gradient(to top,    rgba(92,66,24,.3) 0%, rgba(102,74,28,.16) 7%, rgba(112,82,34,.06) 13%, transparent 19%);}
   /* navy clouds: soft blurred banks drifting along the bottom edge */
   .deck-clouds{position:absolute; left:-10%; right:-10%; bottom:-6%; height:34%; pointer-events:none; z-index:1; overflow:visible;}
+  /* [DEPTH 2 — cloud banks] rich champagne fog, warm at every stop */
   .deck-clouds i{position:absolute; bottom:0; border-radius:50%; filter:blur(30px);
-    background:radial-gradient(ellipse at center, rgba(8,24,43,.38) 0%, rgba(8,24,43,.16) 48%, rgba(8,24,43,0) 72%);}
+    background:radial-gradient(ellipse at center, rgba(122,90,38,.3) 0%, rgba(122,90,38,.13) 48%, rgba(122,90,38,0) 72%);}
   .deck-clouds .k1{left:-4%;  width:52vw; height:78%; animation:driftA 19s ease-in-out infinite alternate;}
   .deck-clouds .k2{left:34%;  width:62vw; height:92%; bottom:-14%; animation:driftB 26s ease-in-out infinite alternate;}
   .deck-clouds .k3{left:66%;  width:48vw; height:70%; animation:driftA 23s ease-in-out infinite alternate-reverse;}
-  /* particulate atmosphere: fine navy specks, masked so they live at the edges and thin toward the centre */
+  /* [ATMOS A — warm bloom] the card lit from behind; felt, not seen */
+  .deck-bloom{position:absolute; z-index:1; right:-8%; top:12%; width:min(940px,72vw); height:76%; pointer-events:none;
+    background:radial-gradient(50% 50% at 50% 50%, rgba(232,207,138,.3), rgba(232,207,138,.1) 46%, transparent 72%);}
+  /* [ATMOS B — ghost numeral system] the other stats echo across the section in gold,
+     each at its own depth; frame() parallaxes them at data-rate px */
+  .gnum{position:absolute; z-index:1; pointer-events:none; user-select:none; will-change:transform;
+    font-family:'Fraunces',serif; font-weight:600; line-height:1; font-variant-numeric:oldstyle-nums;
+    color:rgba(196,162,76,.05);}
+  .gnum.g1{left:2%;  bottom:5%;  font-size:min(250px,17vw);}
+  .gnum.g2{left:31%; top:3%;     font-size:min(150px,11vw); color:rgba(196,162,76,.04);}
+  .gnum.g3{right:1%; bottom:12%; font-size:min(120px,9vw);  color:rgba(196,162,76,.035);}
+  /* [ATMOS C — bokeh field] sparse warm out-of-focus lights, candlelight echo;
+     sizes and blurs vary for depth, drift is slow alternate (no loop point) */
+  .deck-bokeh{position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden;}
+  .deck-bokeh i{position:absolute; border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, rgba(246,236,200,.6), rgba(232,207,138,.28) 55%, transparent 75%);}
+  @keyframes bkA{from{transform:translate(0,0)} to{transform:translate(26px,-34px)}}
+  @keyframes bkB{from{transform:translate(0,0)} to{transform:translate(-30px,-20px)}}
+  @keyframes bkC{from{transform:translate(0,0)} to{transform:translate(18px,28px)}}
+  /* particulate atmosphere: fine warm specks, masked so they live at the edges and thin toward the centre */
   .deck-atmo{position:absolute; inset:0; pointer-events:none; z-index:1;
     background:
-      radial-gradient(1.3px 1.3px at 22% 31%, rgba(8,24,43,.5), transparent 55%),
-      radial-gradient(1px 1px at 67% 12%, rgba(8,24,43,.45), transparent 55%),
-      radial-gradient(1.6px 1.6px at 84% 74%, rgba(8,24,43,.4), transparent 55%),
-      radial-gradient(1px 1px at 38% 88%, rgba(8,24,43,.5), transparent 55%),
-      radial-gradient(1.2px 1.2px at 9% 63%, rgba(8,24,43,.42), transparent 55%),
-      radial-gradient(.9px .9px at 53% 46%, rgba(8,24,43,.38), transparent 55%);
+      radial-gradient(1.3px 1.3px at 22% 31%, rgba(92,66,24,.5), transparent 55%),
+      radial-gradient(1px 1px at 67% 12%, rgba(92,66,24,.45), transparent 55%),
+      radial-gradient(1.6px 1.6px at 84% 74%, rgba(92,66,24,.4), transparent 55%),
+      radial-gradient(1px 1px at 38% 88%, rgba(92,66,24,.5), transparent 55%),
+      radial-gradient(1.2px 1.2px at 9% 63%, rgba(92,66,24,.42), transparent 55%),
+      radial-gradient(.9px .9px at 53% 46%, rgba(92,66,24,.38), transparent 55%);
     background-size:210px 170px, 160px 130px, 240px 200px, 190px 150px, 170px 140px, 150px 120px;
     -webkit-mask:radial-gradient(78% 66% at 50% 50%, transparent 40%, rgba(0,0,0,.55) 72%, black 100%);
     mask:radial-gradient(78% 66% at 50% 50%, transparent 40%, rgba(0,0,0,.55) 72%, black 100%);}
@@ -1035,6 +1056,11 @@
   <div class="deck-band"></div>
   <div class="deck-atmo" aria-hidden="true"></div>
   <div class="deck-clouds" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></div>
+  <div class="deck-bloom" aria-hidden="true"></div>
+  <div class="gnum g1" aria-hidden="true" data-rate="58">4.9</div>
+  <div class="gnum g2" aria-hidden="true" data-rate="32">8+</div>
+  <div class="gnum g3" aria-hidden="true" data-rate="86">50</div>
+  <div class="deck-bokeh" aria-hidden="true"><i style="left:21%;top:54%;width:16px;height:16px;filter:blur(4px);opacity:0.26;animation:bkA 24s ease-in-out -26s infinite alternate"></i><i style="left:14%;top:50%;width:26px;height:26px;filter:blur(8px);opacity:0.24;animation:bkB 38s ease-in-out -6s infinite alternate"></i><i style="left:13%;top:59%;width:9px;height:9px;filter:blur(2px);opacity:0.22;animation:bkC 29s ease-in-out -2s infinite alternate"></i><i style="left:56%;top:11%;width:26px;height:26px;filter:blur(8px);opacity:0.29;animation:bkA 25s ease-in-out -30s infinite alternate"></i><i style="left:82%;top:84%;width:12px;height:12px;filter:blur(3px);opacity:0.24;animation:bkB 23s ease-in-out -18s infinite alternate"></i><i style="left:52%;top:10%;width:26px;height:26px;filter:blur(8px);opacity:0.32;animation:bkC 23s ease-in-out -17s infinite alternate"></i><i style="left:19%;top:41%;width:44px;height:44px;filter:blur(14px);opacity:0.22;animation:bkA 39s ease-in-out -3s infinite alternate"></i><i style="left:41%;top:75%;width:26px;height:26px;filter:blur(8px);opacity:0.29;animation:bkB 27s ease-in-out -3s infinite alternate"></i><i style="left:75%;top:85%;width:26px;height:26px;filter:blur(8px);opacity:0.17;animation:bkC 25s ease-in-out -17s infinite alternate"></i><i style="left:10%;top:76%;width:34px;height:34px;filter:blur(11px);opacity:0.15;animation:bkA 28s ease-in-out -15s infinite alternate"></i><i style="left:70%;top:58%;width:34px;height:34px;filter:blur(11px);opacity:0.28;animation:bkB 36s ease-in-out -18s infinite alternate"></i><i style="left:48%;top:42%;width:20px;height:20px;filter:blur(6px);opacity:0.18;animation:bkC 27s ease-in-out -22s infinite alternate"></i><i style="left:33%;top:14%;width:44px;height:44px;filter:blur(14px);opacity:0.24;animation:bkA 38s ease-in-out -15s infinite alternate"></i><i style="left:95%;top:61%;width:16px;height:16px;filter:blur(4px);opacity:0.19;animation:bkB 24s ease-in-out -3s infinite alternate"></i></div>
   <div class="sparkles" aria-hidden="true">
     <i style="--x:5%;--y:14%;--d:0s"></i><i style="--x:14%;--y:72%;--d:1.6s"></i><i style="--x:24%;--y:32%;--d:2.9s"></i>
     <i style="--x:38%;--y:80%;--d:.9s"></i><i style="--x:47%;--y:12%;--d:3.6s"></i><i style="--x:58%;--y:56%;--d:2.1s"></i>
@@ -1453,6 +1479,8 @@
   }
   const stackPin = document.getElementById('stackPin');
   const testiPinEl = document.getElementById('testiPin');
+  const gnums = [...document.querySelectorAll('.gnum')];
+  const deckSecEl = document.querySelector('.deck-sec');
   const envEl = document.querySelector('.envelope');
   const testiEl = document.querySelector('.testi');
   const tPops = [...document.querySelectorAll('.t-pop')];
@@ -1566,6 +1594,15 @@
       } else {
         envEl.style.transform = '';
         testiEl.classList.remove('scrollmode');
+      }
+    }
+
+    // [ATMOS B] ghost numerals drift at their own rates as the section passes
+    if (gnums.length && deckSecEl){
+      const gr = deckSecEl.getBoundingClientRect();
+      if (gr.bottom > 0 && gr.top < innerHeight){
+        const gp = (innerHeight - gr.top) / (innerHeight + gr.height);
+        gnums.forEach(g => g.style.transform = `translateY(${((gp - .5) * -2 * (+g.dataset.rate || 40)).toFixed(1)}px)`);
       }
     }
 
