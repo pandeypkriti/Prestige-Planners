@@ -144,7 +144,7 @@
     background:linear-gradient(100deg, transparent 42%, rgba(255,251,236,.75) 50%, transparent 58%);
     -webkit-background-clip:text; background-clip:text; background-size:260% 100%; background-position:-40% 0;
     animation:planGlimmer 6s ease-in-out infinite;}
-  @keyframes planGlimmer{0%,60%{background-position:-40% 0} 84%,100%{background-position:150% 0}}
+  @keyframes planGlimmer{0%,60%{background-position:150% 0} 84%,100%{background-position:-40% 0}}
   .hero-title p{max-width:540px; margin:22px auto 30px; font-size:17px; font-weight:500; color:var(--navy);
     text-shadow:0 1px 2px rgba(251,248,241,.95), 0 0 16px rgba(251,248,241,.9);}
   .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
@@ -241,23 +241,23 @@
     background:linear-gradient(180deg, var(--navy), rgba(0,47,95,.35));}
   .deck .card .hs-tip em{font-style:italic; color:var(--gold-lt); font-weight:400;}
   .deck .card .hs:hover .hs-tip, .deck .card .hs:focus-visible .hs-tip{opacity:1;}
+  .deck .card .hs.open .hs-tip{opacity:1;}
+  .deck .card .hs.open .dot{background:rgba(196,162,76,.35); transform:scale(1.12);}
+  .deck .card .hs.open .dot::before{animation-play-state:paused; opacity:0;}
   .deck .card .hs.edge-l .hs-tip{left:-6px; transform:none;}
   .deck .card .hs.edge-l .hs-tip::after{left:16px; margin-left:0;}
   .deck .card .hs.edge-r .hs-tip{left:auto; right:-6px; transform:none;}
   .deck .card .hs.edge-r .hs-tip::after{left:auto; right:16px; margin-left:0;}
   .deck .card h3{font-weight:300; font-size:24px; line-height:1.25; margin:16px 20px 6px; font-style:normal;}
-  .deck .card .meta{display:flex; justify-content:space-between; align-items:center; margin:0 20px; padding:0 0 12px;
-    font-size:12.5px; color:#9B8B6E; font-family:'Poppins',sans-serif; border-bottom:1px solid rgba(196,162,76,.15);}
+  .deck .card .meta{display:flex; justify-content:space-between; align-items:center; margin:0 20px; padding:0 0 18px;
+    font-size:12.5px; color:#9B8B6E; font-family:'Poppins',sans-serif;}
   .deck .card .stars{color:var(--gold); letter-spacing:2px; font-size:11px;}
-  .deck .card .quote{font-style:italic; font-family:'Fraunces',serif; font-size:14.5px; line-height:1.55; color:#6B5A3E;
-    margin:12px 20px 18px; padding:0 0 0 12px; border-left:2px solid var(--gold);}
-  .deck .card .quote span{display:block; font-family:'Poppins',sans-serif; font-style:normal; font-size:11.5px; color:rgba(0,47,95,.55); margin-top:6px;}
   .deck .card[data-depth="0"]{transform:none; z-index:4;}
   .deck .card[data-depth="1"]{transform:translate(-2px,4px) scale(.97) rotate(-1deg); opacity:.85; z-index:3;}
   .deck .card[data-depth="2"]{transform:translate(-5px,10px) scale(.94) rotate(-3deg); opacity:.7; z-index:2;}
   .deck .card[data-depth="3"]{transform:translate(-10px,18px) scale(.9) rotate(-6deg); opacity:.55; z-index:1;}
   .deck .card.leaving{transform:translateX(110%) rotate(6deg); opacity:0;
-    transition:transform .3s cubic-bezier(.4,0,.2,1), opacity .3s cubic-bezier(.4,0,.2,1);}
+    transition:transform .45s cubic-bezier(.45,0,.2,1), opacity .45s cubic-bezier(.45,0,.2,1);}
   .deck-stage:not(.in) .card{opacity:0; transform:translateY(90px) rotate(6deg);}
   @media(max-width:1024px){
     .deck-grid{grid-template-columns:1fr; gap:24px;}
@@ -851,7 +851,7 @@
     <div class="hero-title" id="heroTitle">
       <div class="hero-slug"><span class="hs-line" aria-hidden="true"></span><span class="hs-text">Luxury Weddings · Private Events · Dubai</span><span class="hs-line" aria-hidden="true"></span></div>
       <h1>Prestige <em>Planners</em></h1>
-      <p>Bespoke celebrations, designed end to end, so you can simply be present.</p>
+      <p>Bespoke celebrations, designed end to end, <span style="white-space:nowrap">so you can simply be present.</span></p>
       <div class="hero-ctas">
         <a class="btn has-arr" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20enquire%20about%20planning%20my%20event." target="_blank" rel="noopener">Enquire on WhatsApp
           <span class="arr" aria-hidden="true"><svg class="a1" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg><svg class="a2" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
@@ -923,7 +923,6 @@
           </div>
           <h3>A black &amp; gold fortieth</h3>
           <div class="meta"><span>120 guests · Dubai</span><span class="stars">★★★★★</span></div>
-          <p class="quote">"Not one thing went wrong. Not one."<span>R. A., private villa birthday</span></p>
         </div>
         <div class="card" data-depth="1">
           <div class="card-photo">
@@ -934,7 +933,6 @@
           </div>
           <h3>An evening in feathers</h3>
           <div class="meta"><span>Private dinner · Dubai</span><span class="stars">★★★★★</span></div>
-          <p class="quote">"It looked like a storybook come true."<span>M. &amp; S., private estate</span></p>
         </div>
         <div class="card" data-depth="2">
           <div class="card-photo">
@@ -945,7 +943,6 @@
           </div>
           <h3>Candlelight &amp; pearls</h3>
           <div class="meta"><span>Styling detail · Dubai</span><span class="stars">★★★★★</span></div>
-          <p class="quote">"Nobody wanted the night to end."<span>K. F., anniversary dinner</span></p>
         </div>
         <div class="card" data-depth="3">
           <div class="card-photo">
@@ -956,7 +953,6 @@
           </div>
           <h3>The celebration cake</h3>
           <div class="meta"><span>Celebration cake · Dubai</span><span class="stars">★★★★★</span></div>
-          <p class="quote">"Guests photographed it before they touched it."<span>Milestone birthday</span></p>
         </div>
       </div>
     </div>
@@ -1598,10 +1594,12 @@
       const front = deckCards.find(c => c.dataset.depth === '0');
       front.classList.add('leaving');
       setTimeout(() => {
-        deckCards.forEach(c => { c.dataset.depth = c === front ? 3 : (+c.dataset.depth - 1); });
+        front.style.transition = 'none';          // the leaving card slips underneath, unseen
         front.classList.remove('leaving');
-        dealing = false;
-      }, 750);
+        deckCards.forEach(c => { c.dataset.depth = c === front ? 3 : (+c.dataset.depth - 1); });
+        void front.offsetWidth;
+        requestAnimationFrame(() => { front.style.transition = ''; dealing = false; });
+      }, 470);
     };
     // a stat is a story: hovering or tapping a number pulls its event card to the front
     const bringToFront = idx => {
@@ -1644,6 +1642,15 @@
 
   // hotspot pulses breathe out of sync, not as one synchronized pop
   document.querySelectorAll('.hs').forEach((h, i) => h.style.setProperty('--hd', (i % 3) * .8 + 's'));
+
+  // a tap on a beacon dot reveals its note; tap again, or another dot, to dismiss
+  document.querySelectorAll('.hs').forEach(h => {
+    h.addEventListener('click', () => {
+      const was = h.classList.contains('open');
+      document.querySelectorAll('.hs.open').forEach(x => x.classList.remove('open'));
+      if (!was) h.classList.add('open');
+    });
+  });
 
 
   // ODOMETER: stat numerals roll like a mechanical counter instead of a generic count-up
