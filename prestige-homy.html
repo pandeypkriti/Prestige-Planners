@@ -108,7 +108,7 @@
   /* light pool holds the title zone; the frame darkens toward the base for depth + contrast */
   .hero-veil{position:absolute; inset:0; z-index:1;
     background:
-      radial-gradient(68% 52% at 50% 42%, rgba(251,248,241,.78), rgba(251,248,241,0) 72%),
+      radial-gradient(62% 48% at 50% 44%, rgba(251,248,241,.9), rgba(251,248,241,.4) 55%, rgba(251,248,241,0) 78%),
       linear-gradient(180deg, rgba(251,248,241,.55) 0%, rgba(251,248,241,.28) 38%, rgba(8,24,43,.18) 70%, rgba(8,24,43,.52) 100%);}
   /* illumination that grows behind the rising arch */
   .hero-glow{position:absolute; z-index:2; left:50%; bottom:4vh; transform:translateX(-50%) scale(.55);
@@ -132,21 +132,14 @@
   .hero-title p{animation:heroRise 1.2s cubic-bezier(.22,1,.36,1) .55s backwards;}
   .hero-ctas{animation:heroRise 1.2s cubic-bezier(.22,1,.36,1) .75s backwards;}
   @keyframes heroRise{from{opacity:0; transform:translateY(38px)}}
-  .hero-title h1{font-size:clamp(56px,10.5vw,148px); font-weight:300; letter-spacing:-.01em; white-space:nowrap;
-    filter:drop-shadow(0 2px 24px rgba(251,248,241,.85));
-    color:transparent;
-    background:linear-gradient(105deg, var(--navy) 0%, var(--navy) 40%, #E7EEF6 50%, var(--navy) 60%, var(--navy) 100%);
-    background-size:300% 100%; background-position:130% 0;
-    -webkit-background-clip:text; background-clip:text;
-    animation:silverSweep 6s ease-in-out 1.6s infinite;}
-  @keyframes silverSweep{0%{background-position:130% 0} 55%,100%{background-position:-170% 0}}
-  .hero-title h1 em{font-style:italic; color:transparent;
-    background:linear-gradient(105deg, var(--gold-shadow) 0%, var(--gold) 38%, #F2F5F8 50%, var(--gold) 62%, var(--gold-shadow) 100%);
-    background-size:300% 100%; background-position:130% 0;
-    -webkit-background-clip:text; background-clip:text;
-    animation:silverSweep 6s ease-in-out 1.6s infinite;}
-  .hero-title p{max-width:540px; margin:22px auto 30px; font-size:16.5px; font-weight:400; color:#33434f;
-    text-shadow:0 1px 16px rgba(251,248,241,.9);}
+  /* solid, readable: navy wordmark with a gold italic accent, luminous halo to lift it off the busy hero */
+  .hero-title h1{font-size:clamp(56px,10.5vw,148px); font-weight:400; letter-spacing:-.01em; white-space:nowrap;
+    color:var(--navy);
+    text-shadow:0 1px 2px rgba(251,248,241,.9), 0 0 22px rgba(251,248,241,.85), 0 2px 40px rgba(251,248,241,.7);}
+  .hero-title h1 em{font-style:italic; color:var(--gold-shadow);
+    text-shadow:0 1px 2px rgba(251,248,241,.9), 0 0 22px rgba(251,248,241,.8);}
+  .hero-title p{max-width:540px; margin:22px auto 30px; font-size:17px; font-weight:500; color:var(--navy);
+    text-shadow:0 1px 2px rgba(251,248,241,.95), 0 0 16px rgba(251,248,241,.9);}
   .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
   .haze{position:absolute; z-index:5; bottom:-12vh; left:-20vw; right:-20vw; height:46vh; pointer-events:none;}
   .haze .blob{position:absolute; bottom:0; width:60vw; height:34vh; border-radius:50%;
@@ -819,7 +812,7 @@
     .t-pop{opacity:1 !important; transform:none !important;}
     .meet-fig{opacity:1 !important; transform:none !important;}
     .meet-copy p .mw{opacity:1 !important; transform:none !important;}
-    .hero-title h1, .hero-title h1 em{color:var(--navy); background:none; -webkit-background-clip:initial;}
+    .hero-title h1 em{color:var(--gold-shadow);}
   }
 </style>
 </head>
