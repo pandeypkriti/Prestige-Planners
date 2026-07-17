@@ -184,14 +184,6 @@
   /* [ATMOS A — warm bloom] the card lit from behind; felt, not seen */
   .deck-bloom{position:absolute; z-index:1; right:-8%; top:12%; width:min(940px,72vw); height:76%; pointer-events:none;
     background:radial-gradient(50% 50% at 50% 50%, rgba(232,207,138,.3), rgba(232,207,138,.1) 46%, transparent 72%);}
-  /* [ATMOS B — ghost numeral system] the other stats echo across the section in gold,
-     each at its own depth; frame() parallaxes them at data-rate px */
-  .gnum{position:absolute; z-index:1; pointer-events:none; user-select:none; will-change:transform;
-    font-family:'Fraunces',serif; font-weight:600; line-height:1; font-variant-numeric:oldstyle-nums;
-    color:rgba(196,162,76,.05);}
-  .gnum.g1{left:2%;  bottom:5%;  font-size:min(250px,17vw);}
-  .gnum.g2{left:31%; top:3%;     font-size:min(150px,11vw); color:rgba(196,162,76,.04);}
-  .gnum.g3{right:1%; bottom:12%; font-size:min(120px,9vw);  color:rgba(196,162,76,.035);}
   /* [ATMOS C — bokeh field] sparse warm out-of-focus lights, candlelight echo;
      sizes and blurs vary for depth, drift is slow alternate (no loop point) */
   .deck-bokeh{position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden;}
@@ -220,18 +212,15 @@
   .deck-rail h2 em{font-style:italic; color:var(--gold);}
   .deck-rail .para{color:#4c5b68; font-size:15.5px; max-width:46ch;}
   .stat-rail{margin-top:34px;}
-  .stat-row{display:flex; align-items:baseline; gap:20px; padding:22px 0 22px 26px; border-top:1px solid rgba(196,162,76,.35); position:relative;
+  .stat-row{display:flex; align-items:baseline; gap:20px; padding:22px 0 22px 18px; border-top:1px solid rgba(196,162,76,.35); position:relative;
     cursor:pointer; transition:background .5s ease, filter .9s ease, opacity .9s ease;}
   .stat-row:hover{background:linear-gradient(90deg, rgba(196,162,76,.09), rgba(196,162,76,0) 75%);}
-  .stat-row::before{content:''; position:absolute; left:9px; top:50%; width:5px; height:5px; background:var(--gold); transform:translateY(-50%) rotate(45deg);
-    transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease;}
   /* the story spotlight: one stat in focus, the rest rest quietly (no blur, no disorientation) */
   .stat-row{border-left:2px solid transparent;}
   .stat-row b, .stat-row > span{transition:opacity .25s ease;}
   .stat-row.lit{background:linear-gradient(90deg, rgba(196,162,76,.12), rgba(196,162,76,0) 75%);
     border-left:2px solid var(--gold); animation:litPop .45s cubic-bezier(.34,1.56,.64,1);}
   @keyframes litPop{0%{transform:translateY(7px)} 100%{transform:none}}
-  .stat-row.lit::before{transform:translateY(-50%) rotate(45deg) scale(1.5); box-shadow:0 0 12px rgba(196,162,76,.8);}
   .stat-row:last-child{border-bottom:1px solid rgba(196,162,76,.35);}
   .stat-row b{font-family:'Fraunces',serif; font-weight:600; font-size:42px; color:var(--navy); min-width:108px; line-height:1;}
   /* odometer: each digit is a rolling strip, like a mechanical counter */
@@ -247,73 +236,38 @@
   .deck-link:hover{border-color:var(--gold-ink);}
   .deck-note{margin-top:16px; font-size:12px; font-style:italic; color:rgba(0,47,95,.45);}
   .deck-hint{margin-top:10px; font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; color:var(--gold-ink);}
-  .deck-stage{position:relative; height:800px; perspective:1300px;}
-  .ghost-num{position:absolute; top:-36px; right:-10px; font-family:'Fraunces',serif; font-weight:600;
-    font-size:min(280px,20vw); line-height:1; color:rgba(0,47,95,.06); pointer-events:none; user-select:none; font-variant-numeric:oldstyle-nums;}
-  .deck{position:absolute; left:2%; top:20px; width:min(545px,95%);
-    transform-style:preserve-3d; transition:transform .55s cubic-bezier(.22,1,.36,1);}
+  .deck-stage{position:relative;}
+  .deck{position:relative; margin:12px 0 0 2%; width:min(545px,95%);}
   /* Framer-style record card: white shell, the photo is a rounded inset panel on a cream mat */
-  .deck .card{position:absolute; left:0; top:0; width:100%; background:#FFFFFF;
+  .deck .card{position:relative; width:100%; background:#FFFFFF;
     border:none; border-radius:20px; padding:0;
     box-shadow:0 2px 4px rgba(0,47,95,.06), 0 8px 24px rgba(0,47,95,.1), 0 0 0 1px rgba(196,162,76,.12);
     will-change:transform,opacity;
     transition:transform .55s cubic-bezier(.22,1,.36,1), opacity .55s cubic-bezier(.22,1,.36,1);}
-  .deck .card .card-photo{position:relative; overflow:visible; background:#F0E8D8; padding:10px; border-radius:20px 20px 0 0;}
-  .deck .card img{width:100%; aspect-ratio:5/4; object-fit:cover; object-position:center 30%; border-radius:12px; display:block;}
+  .deck .card .card-photo{position:relative; background:#F0E8D8; padding:10px; border-radius:20px 20px 0 0;}
+  /* two stacked layers cross-fade; the frame locks the aspect so the card never reflows */
+  .ph-frame{position:relative; aspect-ratio:5/4; border-radius:12px; overflow:hidden;}
+  .ph{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;
+    transition:opacity .45s cubic-bezier(0,0,.2,1); will-change:opacity;}
   .deck .card .cat{position:absolute; top:20px; right:20px; z-index:5;
     background:rgba(255,255,255,.92); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
     border-radius:100px; padding:4px 11px;
     font-family:'Poppins',sans-serif; font-size:9.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-ink);}
-  /* detail hotspots: pulsing markers that reveal a caption on hover */
-  .deck .card .hs{position:absolute; width:26px; height:26px; margin:-13px 0 0 -13px; padding:0; border:none;
-    background:none; cursor:pointer; z-index:6; opacity:0; transition:opacity .5s ease;}
-  .deck .card[data-depth="0"] .hs{pointer-events:auto; opacity:1;}
-  .deck .card:not([data-depth="0"]) .hs{pointer-events:none;}
-  /* bold navy marker with a white ring: reads clearly against the warm photos */
-  .deck .card .hs .dot{position:absolute; inset:0; border-radius:50%; background:var(--navy);
-    border:2.5px solid #fff; box-shadow:0 2px 10px rgba(0,0,0,.4); transition:transform .25s ease;}
-  .deck .card .hs:hover .dot{transform:scale(1.1);}
-  .deck .card .hs .dot::after{content:''; position:absolute; left:50%; top:50%; width:6px; height:6px;
-    margin:-3px 0 0 -3px; border-radius:50%; background:#fff;}
-  .deck .card .hs .dot::before{content:''; position:absolute; inset:-3px; border-radius:50%;
-    border:2px solid rgba(255,255,255,.85); animation:hsPulse 2.4s ease-out infinite; animation-delay:var(--hd,0s);}
-  .deck .card .hs:hover .dot::before{animation-play-state:paused; opacity:0;}
-  @keyframes hsPulse{0%{transform:scale(1); opacity:.7} 100%{transform:scale(2); opacity:0}}
-  /* the callout: a card hanging above the dot, tied to it by a leader line */
-  .deck .card .hs-tip{position:absolute; left:50%; bottom:calc(100% + 38px); transform:translateX(-50%);
-    width:190px; background:var(--navy); color:#FBF8F1; border:1px solid rgba(196,162,76,.7);
-    border-radius:8px; padding:10px 13px; font-size:12.5px; line-height:1.45; text-align:left; font-family:'Poppins',sans-serif;
-    opacity:0; pointer-events:none; transition:opacity .3s ease; z-index:8;
-    box-shadow:0 10px 26px rgba(0,0,0,.35);}
-  .deck .card .hs-tip::after{content:''; position:absolute; top:100%; left:50%; width:2px; height:34px; margin-left:-1px;
-    background:linear-gradient(180deg, var(--navy), rgba(0,47,95,.35));}
-  .deck .card .hs-tip em{font-style:italic; color:var(--gold-lt); font-weight:400;}
-  .deck .card .hs:hover .hs-tip, .deck .card .hs:focus-visible .hs-tip{opacity:1;}
-  .deck .card .hs.open .hs-tip{opacity:1;}
-  .deck .card .hs.open .dot{background:rgba(196,162,76,.35); transform:scale(1.12);}
-  .deck .card .hs.open .dot::before{animation-play-state:paused; opacity:0;}
-  .deck .card .hs.edge-l .hs-tip{left:-6px; transform:none;}
-  .deck .card .hs.edge-l .hs-tip::after{left:16px; margin-left:0;}
-  .deck .card .hs.edge-r .hs-tip{left:auto; right:-6px; transform:none;}
-  .deck .card .hs.edge-r .hs-tip::after{left:auto; right:16px; margin-left:0;}
-  .deck .card h3{font-weight:300; font-size:24px; line-height:1.25; margin:16px 20px 6px; font-style:normal;}
+  .deck .card h3{font-weight:300; font-size:24px; line-height:1.25; margin:16px 20px 6px; font-style:normal;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}   /* one locked line */
   .deck .card .meta{display:flex; justify-content:space-between; align-items:center; margin:0 20px; padding:0 0 18px;
     font-size:12.5px; color:#9B8B6E; font-family:'Poppins',sans-serif;}
+  /* the surfaced review line: fixed two-line slot so height never changes */
+  .evquote{font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; line-height:1.55; color:#6B5A3E;
+    margin:10px 20px 16px; height:42px; overflow:hidden;}
+  /* rows are controls now: keyboard focus is visible */
+  .stat-row:focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:4px;}
   .deck .card .stars{color:var(--gold); letter-spacing:2px; font-size:11px;}
-  .deck .card[data-depth="0"]{transform:none; z-index:4;}
-  .deck .card[data-depth="1"]{transform:translate(-2px,4px) scale(.97) rotate(-1deg); opacity:.85; z-index:3;}
-  .deck .card[data-depth="2"]{transform:translate(-5px,10px) scale(.94) rotate(-3deg); opacity:.7; z-index:2;}
-  .deck .card[data-depth="3"]{transform:translate(-10px,18px) scale(.9) rotate(-6deg); opacity:.55; z-index:1;}
-  .deck .card.leaving{transform:translateX(110%) rotate(6deg); opacity:0;
-    transition:transform .45s cubic-bezier(.45,0,.2,1), opacity .45s cubic-bezier(.45,0,.2,1);}
-  .deck-stage:not(.in) .card{opacity:0; transform:translateY(90px) rotate(6deg);}
   @media(max-width:1024px){
     .deck-grid{grid-template-columns:1fr; gap:24px;}
     .deck-rail{position:static;}
-    .deck-stage{height:720px;}
-    .deck{left:50%; margin-left:0; transform:translateX(-50%);}
-    .ghost-num{right:0;}
-  }
+    .deck{margin:0 auto; width:min(365px,93%);}
+    }
 
   /* ---------- 3. DISCOVERY — blur-to-focus words over a darker champagne glass panel ---------- */
   .blur-pin{height:175vh;
@@ -332,7 +286,7 @@
     font-family:'Fraunces',serif; font-weight:300; font-size:clamp(30px,4.6vw,58px); line-height:1.3; color:var(--navy); will-change:transform;}
   .blur-line .w{display:inline-block; margin:0 .13em; filter:blur(16px); opacity:.08; transform:translateY(40px) scale(.8); will-change:filter,opacity,transform;}
   .blur-line .w.gold{font-style:italic; color:transparent;
-    background:linear-gradient(105deg, var(--gold-shadow), var(--gold) 40%, var(--gold-glint) 50%, var(--gold) 60%, var(--gold-shadow));
+    background:linear-gradient(105deg, var(--gold-shadow), var(--gold-lt) 50%, var(--gold-shadow));
     background-size:240% 100%; -webkit-background-clip:text; background-clip:text;
     animation:goldShine 4.5s linear infinite;}
   @keyframes goldShine{0%{background-position:200% 0} 100%{background-position:-140% 0}}
@@ -363,7 +317,7 @@
   .stack-intro h2{font-size:clamp(32px,4.2vw,52px);}
   /* "moments" catches the light: metallic shimmer sweeping through the italic word */
   .stack-intro h2 em{font-style:italic; color:transparent;
-    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 50%, var(--gold-shadow));
     background-size:220% 100%; -webkit-background-clip:text; background-clip:text;
     animation:emShine 5.5s ease-in-out infinite;}
   @keyframes emShine{0%,100%{background-position:0% 0} 50%{background-position:100% 0}}
@@ -687,7 +641,7 @@
   .ab-panel.on{opacity:1; transform:none; pointer-events:auto;}
   .ab-panel h3{font-size:clamp(26px,2.6vw,36px); font-weight:400;}
   .ab-panel h3 em{font-style:italic; color:transparent;
-    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 50%, var(--gold-shadow));
     background-size:220% 100%; -webkit-background-clip:text; background-clip:text; animation:emShine 5.5s ease-in-out infinite;}
   .ab-panel p{color:#4c5b68; font-size:15.5px; line-height:1.75; max-width:48ch; margin:12px 0 0;}
   .ab-panel ul{margin:14px 0 0; padding:0; list-style:none; max-width:48ch;}
@@ -716,7 +670,7 @@
   .meet.in .cta-line{animation:titleGlint 5.5s ease-in-out 1s infinite;}
   @keyframes titleGlint{0%{background-position:120% 0} 45%,100%{background-position:-140% 0}}
   .ab-head h2 em{font-style:italic; color:transparent;
-    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 50%, var(--gold-shadow));
     background-size:220% 100%; -webkit-background-clip:text; background-clip:text;
     animation:emShine 5.5s ease-in-out infinite;}
   .meet.in .cta-line{transform:none;}
@@ -739,7 +693,7 @@
   .meet.in .meet-fig{opacity:1; transform:none;}
   .meet-copy h2{font-size:clamp(40px,5vw,66px); line-height:1.05; margin:0;}
   .meet-copy h2 em{font-style:italic; color:transparent;
-    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 50%, var(--gold-shadow));
     background-size:220% 100%; -webkit-background-clip:text; background-clip:text; animation:emShine 5.5s ease-in-out infinite;}
   .meet-copy p{color:#41525f; font-size:18.5px; line-height:1.85; max-width:44ch; margin:22px 0 0;}
   /* her story pops up word by word as it scrolls into view */
@@ -902,10 +856,8 @@
     .deck-sec{padding:54px 0 36px;}
     .deck-band{width:100%;}
     .deck-grid{gap:32px;}
-    .deck-stage{height:700px;}
-    .deck{left:50%; margin-left:0; width:min(365px,93%); transform:translateX(-50%);}
-    .ghost-num{font-size:150px; top:-14px;}
-    .stat-row{padding:16px 0 16px 16px; gap:14px;}
+    .deck{margin:0 auto; width:min(365px,93%);}
+      .stat-row{padding:16px 0 16px 16px; gap:14px;}
     .stat-row b{font-size:30px; min-width:76px;}
     .stat-row > span{font-size:13px;}
     .stack-intro{padding:52px 0 34px;}
@@ -946,11 +898,11 @@
   /* every gold word in a heading carries the metallic shimmer */
   .deck-rail h2 em, .stack-intro h2 em, .services .head h2 em, .testi .head h2 em{
     font-style:italic; color:transparent;
-    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 32%, var(--gold-glint) 50%, var(--gold) 68%, var(--gold-shadow));
+    background:linear-gradient(100deg, var(--gold-shadow), var(--gold) 50%, var(--gold-shadow));
     background-size:220% 100%; -webkit-background-clip:text; background-clip:text;
     animation:emShine 5.5s ease-in-out infinite;}
   .faq-head h2 em{font-style:italic; color:transparent;
-    background:linear-gradient(100deg, var(--gold) 0%, var(--gold-lt) 35%, #FBF4DC 50%, var(--gold-lt) 65%, var(--gold) 100%);
+    background:linear-gradient(100deg, var(--gold) 0%, var(--gold-lt) 35%, var(--gold-lt) 50%, var(--gold-lt) 65%, var(--gold) 100%);
     background-size:220% 100%; -webkit-background-clip:text; background-clip:text;
     animation:emShine 5.5s ease-in-out infinite;}
 
@@ -1057,9 +1009,6 @@
   <div class="deck-atmo" aria-hidden="true"></div>
   <div class="deck-clouds" aria-hidden="true"><i class="k1"></i><i class="k2"></i><i class="k3"></i></div>
   <div class="deck-bloom" aria-hidden="true"></div>
-  <div class="gnum g1" aria-hidden="true" data-rate="58">4.9</div>
-  <div class="gnum g2" aria-hidden="true" data-rate="32">8+</div>
-  <div class="gnum g3" aria-hidden="true" data-rate="86">50</div>
   <div class="deck-bokeh" aria-hidden="true"><i style="left:21%;top:54%;width:16px;height:16px;filter:blur(4px);opacity:0.26;animation:bkA 24s ease-in-out -26s infinite alternate"></i><i style="left:14%;top:50%;width:26px;height:26px;filter:blur(8px);opacity:0.24;animation:bkB 38s ease-in-out -6s infinite alternate"></i><i style="left:13%;top:59%;width:9px;height:9px;filter:blur(2px);opacity:0.22;animation:bkC 29s ease-in-out -2s infinite alternate"></i><i style="left:56%;top:11%;width:26px;height:26px;filter:blur(8px);opacity:0.29;animation:bkA 25s ease-in-out -30s infinite alternate"></i><i style="left:82%;top:84%;width:12px;height:12px;filter:blur(3px);opacity:0.24;animation:bkB 23s ease-in-out -18s infinite alternate"></i><i style="left:52%;top:10%;width:26px;height:26px;filter:blur(8px);opacity:0.32;animation:bkC 23s ease-in-out -17s infinite alternate"></i><i style="left:19%;top:41%;width:44px;height:44px;filter:blur(14px);opacity:0.22;animation:bkA 39s ease-in-out -3s infinite alternate"></i><i style="left:41%;top:75%;width:26px;height:26px;filter:blur(8px);opacity:0.29;animation:bkB 27s ease-in-out -3s infinite alternate"></i><i style="left:75%;top:85%;width:26px;height:26px;filter:blur(8px);opacity:0.17;animation:bkC 25s ease-in-out -17s infinite alternate"></i><i style="left:10%;top:76%;width:34px;height:34px;filter:blur(11px);opacity:0.15;animation:bkA 28s ease-in-out -15s infinite alternate"></i><i style="left:70%;top:58%;width:34px;height:34px;filter:blur(11px);opacity:0.28;animation:bkB 36s ease-in-out -18s infinite alternate"></i><i style="left:48%;top:42%;width:20px;height:20px;filter:blur(6px);opacity:0.18;animation:bkC 27s ease-in-out -22s infinite alternate"></i><i style="left:33%;top:14%;width:44px;height:44px;filter:blur(14px);opacity:0.24;animation:bkA 38s ease-in-out -15s infinite alternate"></i><i style="left:95%;top:61%;width:16px;height:16px;filter:blur(4px);opacity:0.19;animation:bkB 24s ease-in-out -3s infinite alternate"></i></div>
   <div class="sparkles" aria-hidden="true">
     <i style="--x:5%;--y:14%;--d:0s"></i><i style="--x:14%;--y:72%;--d:1.6s"></i><i style="--x:24%;--y:32%;--d:2.9s"></i>
@@ -1072,54 +1021,25 @@
       <h2 class="reveal-slow">Every detail, <em>considered</em></h2>
       <p class="para reveal-slow">One planner. One vision. These are the numbers our clients would tell you themselves.</p>
       <div class="stat-rail">
-        <div class="stat-row reveal" data-delay="0" data-card="0"><b class="odo" data-value="50+">50+</b><span>celebrations brought to life across Dubai</span></div>
-        <div class="stat-row reveal" data-delay=".18" data-card="1"><b class="odo" data-value="4.9">4.9</b><span>average rating from the people who lived them</span></div>
-        <div class="stat-row reveal" data-delay=".36" data-card="2"><b class="odo" data-value="8+">8+</b><span>kinds of celebration, planned end to end</span></div>
+        <div class="stat-row reveal" data-delay="0" role="button" tabindex="0" aria-label="Browse the full gallery of celebrations"><b class="odo" data-value="50+">50+</b><span>celebrations brought to life across Dubai</span></div>
+        <div class="stat-row reveal" data-delay=".18" role="button" tabindex="0" aria-label="See the highest rated events"><b class="odo" data-value="4.9">4.9</b><span>average rating from the people who lived them</span></div>
+        <div class="stat-row reveal" data-delay=".36" role="button" tabindex="0" aria-label="See one event of each kind"><b class="odo" data-value="8+">8+</b><span>kinds of celebration, planned end to end</span></div>
       </div>
       <a class="deck-link reveal" href="#celebrations">See the events behind these numbers</a>
     </div>
     <div class="deck-stage" id="deckStage">
-      <div class="ghost-num" aria-hidden="true">50</div>
-      <div class="deck" id="deck">
-        <div class="card" data-depth="0">
+      <div class="deck reveal" id="deck">
+        <div class="card">
           <div class="card-photo">
-            <img src="assets/event-glamour.png" alt="Black and gold birthday celebration by Prestige Planners">
-            <span class="cat">Birthday</span>
-            <button class="hs edge-l" style="left:31%;top:45%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Hand-gilded <em>charger plates</em> laid at every seat</span></button>
-            <button class="hs edge-r" style="left:69%;top:66%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A live <em>gold-leaf</em> dessert table</span></button>
+            <div class="ph-frame">
+              <img class="ph" id="phA" src="assets/event-glamour.png" alt="Event photograph" style="opacity:1">
+              <img class="ph" id="phB" src="assets/event-butterfly.png" alt="" aria-hidden="true" style="opacity:0">
+            </div>
+            <span class="cat" id="evCat">Birthday</span>
           </div>
-          <h3>A black &amp; gold fortieth</h3>
-          <div class="meta"><span>120 guests · Dubai</span><span class="stars">★★★★★</span></div>
-        </div>
-        <div class="card" data-depth="1">
-          <div class="card-photo">
-            <img src="assets/detail-feathertable.jpg" alt="Feather centrepieces over a gold sequin table runner with floating candles">
-            <span class="cat">Tablescape</span>
-            <button class="hs edge-l" style="left:24%;top:60%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Crystal votives, <em>lit by hand</em> before doors</span></button>
-            <button class="hs edge-r" style="left:60%;top:76%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">A <em>gold sequin runner</em> set with pearls and mirrors</span></button>
-          </div>
-          <h3>An evening in feathers</h3>
-          <div class="meta"><span>Private dinner · Dubai</span><span class="stars">★★★★★</span></div>
-        </div>
-        <div class="card" data-depth="2">
-          <div class="card-photo">
-            <img src="assets/detail-candelabra.jpg" alt="Gold candelabras with white tapers and strands of oversized pearls">
-            <span class="cat">Details</span>
-            <button class="hs edge-l" style="left:26%;top:64%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Pearl garlands</em> draped one by one</span></button>
-            <button class="hs" style="left:55%;top:30%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Gilded candelabra, <em>polished before doors</em></span></button>
-          </div>
-          <h3>Candlelight &amp; pearls</h3>
-          <div class="meta"><span>Styling detail · Dubai</span><span class="stars">★★★★★</span></div>
-        </div>
-        <div class="card" data-depth="3">
-          <div class="card-photo">
-            <img src="assets/detail-cakewhite.jpg" alt="Cream celebration cake pressed with gold leaf and sugar flowers">
-            <span class="cat">The cake</span>
-            <button class="hs edge-r" style="left:62%;top:62%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip"><em>Gold leaf</em>, pressed petal by petal</span></button>
-            <button class="hs edge-l" style="left:34%;top:20%" onclick="event.stopPropagation()" aria-label="Detail"><span class="dot"></span><span class="hs-tip">Hand-sculpted <em>sugar peonies</em></span></button>
-          </div>
-          <h3>The celebration cake</h3>
-          <div class="meta"><span>Celebration cake · Dubai</span><span class="stars">★★★★★</span></div>
+          <h3 id="evTitle">A black &amp; gold fortieth</h3>
+          <div class="meta"><span id="evMeta">120 guests · Dubai</span><span class="stars">★★★★★</span></div>
+          <p class="evquote" id="evQuote">"Not one thing went wrong. Not one."</p>
         </div>
       </div>
     </div>
@@ -1479,8 +1399,6 @@
   }
   const stackPin = document.getElementById('stackPin');
   const testiPinEl = document.getElementById('testiPin');
-  const gnums = [...document.querySelectorAll('.gnum')];
-  const deckSecEl = document.querySelector('.deck-sec');
   const envEl = document.querySelector('.envelope');
   const testiEl = document.querySelector('.testi');
   const tPops = [...document.querySelectorAll('.t-pop')];
@@ -1594,15 +1512,6 @@
       } else {
         envEl.style.transform = '';
         testiEl.classList.remove('scrollmode');
-      }
-    }
-
-    // [ATMOS B] ghost numerals drift at their own rates as the section passes
-    if (gnums.length && deckSecEl){
-      const gr = deckSecEl.getBoundingClientRect();
-      if (gr.bottom > 0 && gr.top < innerHeight){
-        const gp = (innerHeight - gr.top) / (innerHeight + gr.height);
-        gnums.forEach(g => g.style.transform = `translateY(${((gp - .5) * -2 * (+g.dataset.rate || 40)).toFixed(1)}px)`);
       }
     }
 
@@ -1742,86 +1651,69 @@
   // hero video: gentler playback, clean native loop (no crossfade, no flash)
   if (hv) hv.playbackRate = 0.8;
 
-  // PROOF deck: cards deal in on first view, then the front record slides off to the
-  // back every 7s. Pauses while the pointer is over the stage.
+  // EVENT EXPLORER: the stat rows are the navigation; the card is the viewport.
+  const EVENTS = {
+    glamour:  {img:'assets/event-glamour.png',       cat:'Birthday',       title:'A black & gold fortieth',    meta:'120 guests · Dubai',        quote:'"Not one thing went wrong. Not one."'},
+    butterfly:{img:'assets/event-butterfly.png',     cat:'Shower',         title:'An enchanted garden shower', meta:'60 guests · Dubai',         quote:'"It looked like a storybook come true."'},
+    banquet:  {img:'assets/event-banquet.png',       cat:'Private dining', title:'Dinner under the lights',    meta:'48 guests · Palm Jumeirah', quote:'"Nobody wanted the night to end."'},
+    feathers: {img:'assets/detail-feathertable.jpg', cat:'Tablescape',     title:'An evening in feathers',     meta:'Private dinner · Dubai',    quote:'"Every table felt like the head table."'},
+    pearls:   {img:'assets/detail-candelabra.jpg',   cat:'Details',        title:'Candlelight & pearls',       meta:'Styling detail · Dubai',    quote:'"The details were the event."'},
+    cake:     {img:'assets/detail-cakewhite.jpg',    cat:'The cake',       title:'The celebration cake',       meta:'Celebration cake · Dubai',  quote:'"Guests photographed it before they touched it."'},
+    gatsby:   {img:'assets/detail-gatsby.jpg',       cat:'Gala',           title:'Gatsby nights',              meta:'Themed gala · Dubai',       quote:'"Straight out of the twenties."'},
+    mirror:   {img:'assets/detail-mirror.jpg',       cat:'Corporate',      title:'A mirrored banquet',         meta:'Corporate dinner · Dubai',  quote:'"Our clients are still talking about it."'}
+  };
+  const SETS = [
+    ['glamour','feathers','pearls','cake','butterfly','banquet','gatsby','mirror'], // 50+ · the full gallery
+    ['banquet','glamour','butterfly'],                                              // 4.9 · highest rated, quotes forward
+    ['gatsby','butterfly','banquet','mirror','cake','feathers','pearls','glamour']  // 8+  · one of each kind
+  ];
   const deckStage = document.getElementById('deckStage');
   if (deckStage){
-    const deckEl = document.getElementById('deck');
-    const deckCards = [...deckStage.querySelectorAll('.card')];
-    let deckTimer, dealing = false;
-    // dealt in one by one (staggered), then the stagger is cleared so cycling stays snappy
-    new IntersectionObserver((es, obs) => es.forEach(en => {
-      if (en.isIntersecting){
-        deckCards.forEach(c => c.style.transitionDelay = (+c.dataset.depth * .09) + 's');
-        deckStage.classList.add('in');
-        setTimeout(() => deckCards.forEach(c => c.style.transitionDelay = ''), 1400);
-        obs.disconnect();
-      }
-    }), { threshold:.3 }).observe(deckStage);
-    const cycleDeck = () => {
-      if (dealing || !deckStage.classList.contains('in')) return;
-      dealing = true;
-      const front = deckCards.find(c => c.dataset.depth === '0');
-      front.classList.add('leaving');
-      setTimeout(() => {
-        front.style.transition = 'none';          // the leaving card slips underneath, unseen
-        front.classList.remove('leaving');
-        deckCards.forEach(c => { c.dataset.depth = c === front ? 3 : (+c.dataset.depth - 1); });
-        void front.offsetWidth;
-        requestAnimationFrame(() => { front.style.transition = ''; dealing = false; });
-      }, 470);
+    const phEls = [document.getElementById('phA'), document.getElementById('phB')];
+    const evCat = document.getElementById('evCat'), evTitle = document.getElementById('evTitle');
+    const evMeta = document.getElementById('evMeta'), evQuote = document.getElementById('evQuote');
+    const statRows = [...document.querySelectorAll('.stat-row')];
+    let frontIdx = 0, setIdx = 0, evIdx = 0, advTimer = null, cardHover = false, seq = 0;
+    const show = key => {
+      const ev = EVENTS[key], my = ++seq;
+      const back = phEls[1 - frontIdx], front = phEls[frontIdx];
+      back.src = ev.img;
+      const commit = () => {
+        if (my !== seq) return;                            // superseded by newer input
+        back.style.opacity = 1; front.style.opacity = 0;   // retargets in-flight fades, nothing stacks
+        frontIdx = 1 - frontIdx;
+        evCat.textContent = ev.cat; evTitle.textContent = ev.title;
+        evMeta.textContent = ev.meta; evQuote.textContent = ev.quote;
+        const set = SETS[setIdx];                          // preload the next photo: no blank frames
+        const pre = new Image(); pre.src = EVENTS[set[(evIdx + 1) % set.length]].img;
+      };
+      (back.decode ? back.decode().catch(() => {}) : Promise.resolve()).then(commit);
     };
-    // a stat is a story: hovering or tapping a number pulls its event card to the front
-    const bringToFront = idx => {
-      const target = deckCards[idx];
-      if (!target || dealing || target.dataset.depth === '0') return;
-      const order = deckCards.slice().sort((a, b) => +a.dataset.depth - +b.dataset.depth);
-      [target, ...order.filter(c => c !== target)].forEach((c, d) => { c.dataset.depth = d; });
+    const showIndex = k => { const set = SETS[setIdx]; evIdx = (k + set.length) % set.length; show(set[evIdx]); };
+    const startAdv = () => { clearInterval(advTimer);
+      if (!reduced) advTimer = setInterval(() => { if (!cardHover) showIndex(evIdx + 1); }, 4000); };
+    const setStat = i => {
+      setIdx = i;
+      statRows.forEach((r, ri) => r.classList.toggle('lit', ri === i));
+      showIndex(0);
+      startAdv();                                          // the timer resets on every stat change
     };
-    // SPOTLIGHT CYCLE: the stats take turns in focus (the rest blur back),
-    // and each stat pulls its own record to the front of the deck in sync
-    const statRows = [...document.querySelectorAll('.stat-row[data-card]')];
-    let statIdx = 0;
-    const setStat = idx => {
-      statIdx = idx;
-      statRows.forEach((r, i) => {
-        r.classList.toggle('lit', i === idx);
-      });
-      bringToFront(+statRows[idx].dataset.card);
-    };
-    const clearStat = () => statRows.forEach(r => r.classList.remove('lit', 'dim'));
-    const cycleSpot = () => setStat((statIdx + 1) % statRows.length);
-    const startDeck = () => { clearInterval(deckTimer); deckTimer = setInterval(cycleSpot, 2000); };
-    // hover only PAUSES the cycle (no jumping around under the cursor); click chooses
     statRows.forEach((row, i) => {
-      row.addEventListener('pointerenter', () => clearInterval(deckTimer));
-      row.addEventListener('pointerleave', () => { if (!reduced) startDeck(); });
-      row.addEventListener('click', () => { setStat(i); if (!reduced) startDeck(); });
+      if (matchMedia('(pointer:fine)').matches)
+        row.addEventListener('pointerenter', () => setStat(i));
+      row.addEventListener('click', () => setStat(i));
+      row.addEventListener('focus', () => setStat(i));
+      row.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown'){ e.preventDefault(); statRows[(i + 1) % statRows.length].focus(); }
+        if (e.key === 'ArrowUp'){ e.preventDefault(); statRows[(i - 1 + statRows.length) % statRows.length].focus(); }
+        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); setStat(i); }
+      });
     });
-    if (!reduced){
-      // always begin the story at 01, once the numbers have rolled in
-      const railEl = document.querySelector('.stat-rail');
-      new IntersectionObserver((es, obs) => es.forEach(en => {
-        if (en.isIntersecting){ setTimeout(() => { setStat(0); startDeck(); }, 1000); obs.disconnect(); }
-      }), { threshold:.5 }).observe(railEl);
-      deckStage.addEventListener('pointerenter', () => clearInterval(deckTimer));
-      deckStage.addEventListener('pointerleave', startDeck);
-      deckStage.addEventListener('click', cycleDeck);   // tap the stack to deal the next record
-    } else clearStat();
+    const cardEl = deckStage.querySelector('.card');
+    cardEl.addEventListener('pointerenter', () => { cardHover = true; });   // pause so people can look
+    cardEl.addEventListener('pointerleave', () => { cardHover = false; });
+    setStat(0);                                            // first row active on load, never null
   }
-
-  // hotspot pulses breathe out of sync, not as one synchronized pop
-  document.querySelectorAll('.hs').forEach((h, i) => h.style.setProperty('--hd', (i % 3) * .8 + 's'));
-
-  // a tap on a beacon dot reveals its note; tap again, or another dot, to dismiss
-  document.querySelectorAll('.hs').forEach(h => {
-    h.addEventListener('click', () => {
-      const was = h.classList.contains('open');
-      document.querySelectorAll('.hs.open').forEach(x => x.classList.remove('open'));
-      if (!was) h.classList.add('open');
-    });
-  });
-
 
   // ODOMETER: stat numerals roll like a mechanical counter instead of a generic count-up
   document.querySelectorAll('.odo').forEach(el => {
