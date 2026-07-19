@@ -664,7 +664,7 @@
   }
 
   /* the questions PIN on screen: scrolling leafs through the boards, then releases */
-  .faq-pin{height:340vh;}
+  .faq-pin{height:440vh;}   /* taller so the final-board hold is genuine reading time */
   .faq{position:sticky; top:0; height:100vh; padding:0; overflow:hidden;
     display:flex; flex-direction:column; justify-content:center;
     background:radial-gradient(80% 60% at 50% -8%, rgba(196,162,76,.2), transparent 60%), var(--navy-ink);}
@@ -1458,6 +1458,10 @@
           const range = fq.height + innerHeight * .55;
           sp = clamp01((innerHeight * .82 - fq.top) / range);
         }
+        // the last board is reached at 78% of the pin; the final 22% HOLDS on it so
+        // "how do we start" has real dwell time before the section releases
+        const HOLD = .78;
+        sp = clamp01(sp / HOLD);
         coverAPI.scrollIdx = sp * (coverAPI.n - 1);
         const ct = Math.max(0, Math.min(coverAPI.n - 1, coverAPI.scrollIdx + coverAPI.bias));
         coverAPI.pos += (ct - coverAPI.pos) * .09;
