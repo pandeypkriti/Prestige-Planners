@@ -442,31 +442,40 @@
     letter-spacing:.015em; text-transform:none; text-decoration:none; border-bottom:1px solid rgba(232,207,138,.45); padding-bottom:3px; transition:.3s;}
   .vid-cap a:hover{color:var(--gold-glint); border-color:var(--gold-glint);}
 
-  /* ---------- 8. TESTIMONIALS — a scroll-stack of client letters (inspired by a sticky card stack) ---------- */
-  .testi{position:relative; overflow:hidden; padding:clamp(88px,11vh,116px) 0 0;
+  /* ---------- 8. TESTIMONIALS — client letters rise into view beneath a pinned title ---------- */
+  .testi{position:relative; padding:clamp(80px,10vh,108px) 0 clamp(64px,9vh,104px);
     background:
       radial-gradient(75% 60% at 50% 0%, rgba(251,248,241,.55), transparent 65%),
       linear-gradient(165deg, #EBDAAC 0%, #E0C787 45%, #CFAE61 100%);}
+  /* decorations clip here so the section itself can host a working sticky title */
+  .testi-fx{position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none;}
   .testi .bigq{position:absolute; top:-100px; right:-16px; font-family:'Fraunces',serif; font-size:420px; line-height:1;
     color:rgba(196,162,76,.09); pointer-events:none; user-select:none;
     animation:bigqFloat 22s ease-in-out infinite alternate;}
   @keyframes bigqFloat{from{transform:translateY(0) rotate(0deg)} to{transform:translateY(48px) rotate(-3deg)}}
-  .testi .wrap{position:relative; z-index:2;}
   .testi .o3{left:-110px; top:20%; width:380px; height:380px; animation:orbB 21s ease-in-out infinite alternate;}
   .testi .o4{right:-140px; bottom:-120px; width:460px; height:460px; animation:orbA 27s ease-in-out infinite alternate;}
-  .testi .head{max-width:640px; margin:0 auto 44px; text-align:center; position:relative; z-index:9;}
+  /* the title pins and stays in view the whole section; a soft frost dissolves cards as they rise past it */
+  .testi .head{position:sticky; top:74px; z-index:6; max-width:640px; margin:0 auto 8px; text-align:center; padding:0 22px 24px;}
+  .testi .head::before{content:''; position:absolute; left:50%; transform:translateX(-50%);
+    top:-30px; bottom:6px; width:min(860px,94vw); z-index:-1; pointer-events:none;
+    backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+    -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+    mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+    background:linear-gradient(180deg, rgba(233,214,166,.9) 0%, rgba(233,214,166,.62) 52%, rgba(233,214,166,0) 100%);}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
-  /* the stack: each letter pins under the last; the next scrolls up and stacks over it */
+  /* the letters: a centered column; each rises up and lands at a gentle slant as it enters view */
   .tstack{position:relative; max-width:540px; margin:0 auto; padding:0 22px; z-index:2;}
-  .tcard{position:sticky; top:calc(116px + var(--i) * 13px); margin:0 auto 46vh;
-    will-change:transform; transform-origin:center top;}
-  .tcard:last-child{margin-bottom:20vh;}
+  .tcard{margin:0 auto clamp(42px,7vh,74px); transform-origin:center bottom; will-change:transform, opacity;
+    opacity:0; transform:translateY(66px) rotate(var(--rot,0deg)) scale(.97);
+    transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);}
+  .tcard.in{opacity:1; transform:translateY(0) rotate(var(--rot,0deg)) scale(1);}
+  .tcard:last-child{margin-bottom:0;}
   .t-in{position:relative; border:1px solid rgba(196,162,76,.4);
     background:linear-gradient(168deg, #FEFBF3 0%, #F5EEDC 100%);
     border-radius:18px; padding:56px 40px 26px;
-    box-shadow:0 3px 8px rgba(64,44,6,.1), 0 26px 56px -22px rgba(64,44,6,.4);
-    transition:filter .4s ease;}
+    box-shadow:0 3px 8px rgba(64,44,6,.1), 0 26px 56px -22px rgba(64,44,6,.42);}
   .tcard .tq-mark{position:absolute; top:22px; left:32px; font-family:'Fraunces',serif; font-style:italic;
     font-size:62px; line-height:.8; color:var(--gold); opacity:.9; pointer-events:none;}
   .tcard blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:22px;
@@ -481,7 +490,8 @@
   .tcard .t-stars{color:var(--gold); font-size:12px; letter-spacing:2px;}
   @media(max-width:860px){
     .tstack{max-width:100%;}
-    .tcard{top:calc(84px + var(--i) * 11px); margin-bottom:40vh;}
+    .testi .head{top:62px; padding-bottom:18px;}
+    .tcard{margin-bottom:clamp(30px,5vh,50px); transform:translateY(48px) rotate(var(--rot,0deg)) scale(.97);}
     .t-in{padding:46px 26px 22px; border-radius:15px;}
     .tcard .tq-mark{font-size:50px; top:16px; left:22px;}
     .tcard blockquote{font-size:18px; line-height:1.5;}
@@ -708,6 +718,8 @@
   .reveal-slow.visible{opacity:1; transform:none;}
 
   @media(max-width:860px){
+    /* kill phantom sideways scroll on phones; clip (not hidden) so sticky pins still work */
+    html, body{overflow-x:clip;}
     .wrap{padding:0 20px;}
     .nav-links{display:none;}
     nav .btn{padding:9px 18px; font-size:12.5px;}
@@ -752,10 +764,8 @@
     .reel-belt{--rW:58vw;}
     .vid-cap{margin-top:44px;}
     .vid-cap a{font-size:14px;}
-    .testi-pin{height:auto;}
-    .testi{position:static; height:auto; display:block; padding:60px 0 52px;}
+    .testi{padding:56px 0 60px;}
     .testi .bigq{font-size:240px; top:-60px;}
-    .testi .head{margin-bottom:32px;}
     .about-pin{height:300vh;}
     .ab-grid{grid-template-columns:1fr; gap:20px; align-content:center;}
     .ab-panels{min-height:250px; margin-top:14px;}
@@ -784,8 +794,7 @@
     *{animation:none !important; transition:none !important;}
     .reveal{opacity:1; transform:none;}
     .blur-line .w{filter:none; opacity:1; transform:none;}
-    .t-pop{opacity:1 !important; transform:none !important;}
-    .envelope.open .env-flap3d{opacity:0; transform:none;}
+    .tcard{opacity:1 !important; transform:rotate(var(--rot,0deg)) !important; transition:none !important;}
     .meet-fig{opacity:1 !important; transform:none !important;}
     .meet-copy p .mw{opacity:1 !important; transform:none !important;}
     .hero-title h1 em{color:var(--gold-shadow);}
@@ -1070,53 +1079,53 @@
   </div>
 </div>
 
-<!-- 8. TESTIMONIALS — a scroll-stack of client letters -->
+<!-- 8. TESTIMONIALS — client letters rise into view beneath a pinned title -->
 <section class="testi grain" id="reviews">
-  <div class="glow-orb o3" aria-hidden="true"></div>
-  <div class="glow-orb o4" aria-hidden="true"></div>
-  <div class="bigq" aria-hidden="true">&rdquo;</div>
-  <div class="sparkles" aria-hidden="true">
-    <i style="--x:6%;--y:16%;--d:.3s"></i><i style="--x:15%;--y:70%;--d:1.8s"></i><i style="--x:26%;--y:30%;--d:3s"></i>
-    <i style="--x:37%;--y:82%;--d:.9s"></i><i style="--x:49%;--y:14%;--d:2.4s"></i><i style="--x:57%;--y:60%;--d:4s"></i>
-    <i style="--x:68%;--y:24%;--d:1.4s"></i><i style="--x:78%;--y:74%;--d:3.4s"></i><i style="--x:88%;--y:38%;--d:.6s"></i>
-    <i style="--x:94%;--y:66%;--d:2.1s"></i><i style="--x:32%;--y:52%;--d:4.4s"></i><i style="--x:83%;--y:12%;--d:2.9s"></i>
-  </div>
-  <div class="wrap">
-    <div class="head">
-      <h2 class="reveal">Kind words from <em>our clients</em></h2>
-      <p class="reveal">Each story stacks as you scroll, from the people who lived them.</p>
+  <div class="testi-fx" aria-hidden="true">
+    <div class="glow-orb o3"></div>
+    <div class="glow-orb o4"></div>
+    <div class="bigq">&rdquo;</div>
+    <div class="sparkles">
+      <i style="--x:6%;--y:16%;--d:.3s"></i><i style="--x:15%;--y:70%;--d:1.8s"></i><i style="--x:26%;--y:30%;--d:3s"></i>
+      <i style="--x:37%;--y:82%;--d:.9s"></i><i style="--x:49%;--y:14%;--d:2.4s"></i><i style="--x:57%;--y:60%;--d:4s"></i>
+      <i style="--x:68%;--y:24%;--d:1.4s"></i><i style="--x:78%;--y:74%;--d:3.4s"></i><i style="--x:88%;--y:38%;--d:.6s"></i>
+      <i style="--x:94%;--y:66%;--d:2.1s"></i><i style="--x:32%;--y:52%;--d:4.4s"></i><i style="--x:83%;--y:12%;--d:2.9s"></i>
     </div>
   </div>
+  <div class="head">
+    <h2 class="reveal">Kind words from <em>our clients</em></h2>
+    <p class="reveal">In their own words, from the people who lived them.</p>
+  </div>
   <div class="tstack">
-    <article class="tcard" style="--i:0">
+    <article class="tcard" style="--rot:-3.2deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>From the first tasting to the last dance, every decision had already been thought through. Our celebration <span class="hl">felt effortless.</span></blockquote>
         <div class="t-foot"><div class="t-who"><b>S. &amp; R.</b><span>Wedding weekend, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--i:1">
+    <article class="tcard" style="--rot:2.6deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>She made three hundred guests feel like <span class="hl">the only ones in the room.</span> Every corner held a detail we had not thought to ask for.</blockquote>
         <div class="t-foot"><div class="t-who"><b>A. &amp; K.</b><span>Engagement, Meydan</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--i:2">
+    <article class="tcard" style="--rot:-2.3deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>We handed over a colour and a feeling, and walked into a room that <span class="hl">understood us completely.</span></blockquote>
         <div class="t-foot"><div class="t-who"><b>M.</b><span>Milestone birthday, Palm Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--i:3">
+    <article class="tcard" style="--rot:3deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>Every single guest asked who planned it. <span class="hl">Every single one.</span></blockquote>
         <div class="t-foot"><div class="t-who"><b>H. R.</b><span>Corporate gala, DIFC</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--i:4">
+    <article class="tcard" style="--rot:-2.7deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>One call and one vision board, and she was off. We walked into <span class="hl">a dream we did not know we had.</span></blockquote>
@@ -1308,10 +1317,6 @@
     });
   }
   const stackPin = document.getElementById('stackPin');
-  const testiPinEl = document.getElementById('testiPin');
-  const envEl = document.querySelector('.envelope');
-  const testiEl = document.querySelector('.testi');
-  const tPops = [...document.querySelectorAll('.t-pop')];
   const stackCards = stackPin ? [...stackPin.querySelectorAll('.stack-card')] : [];
 
   // Lenis-style smooth scroll: wheel input is lerped so the whole page glides
@@ -1412,22 +1417,6 @@
       stackCards[idx - 1].style.filter = `brightness(${(1 - .16*eg).toFixed(3)})`; // covered card dims for depth
     });
 
-    // ENVELOPE SCENE: opens huge in the middle of the screen, then settles down
-    // to its seat while the letters deal themselves out, one per scroll beat
-    if (testiPinEl && envEl){
-      if (innerWidth > 860){
-        testiEl.classList.add('scrollmode');
-        const tp = progress(testiPinEl);
-        const eg = clamp01(tp / .42), ee = eg*eg*(3-2*eg);
-        envEl.style.transform = `translateY(${(8 + (1-ee)*16).toFixed(2)}vh) scale(${(1.5 - .5*ee).toFixed(3)})`;
-        testiEl.classList.toggle('in', tp > .01);
-        envEl.classList.toggle('open', tp > .28);
-        tPops.forEach((c, i) => c.classList.toggle('out', tp > .36 + i*.115));
-      } else {
-        envEl.style.transform = '';
-        testiEl.classList.remove('scrollmode');
-      }
-    }
 
     requestAnimationFrame(frame);
   }
@@ -1759,30 +1748,18 @@
     bLayout();
   }
 
-  // TESTIMONIALS: a scroll-stack. Each letter pins; as the next scrolls over, the
-  // buried one recedes (scale + settle its tilt) so the pile reads with real depth.
+  // TESTIMONIALS: the letters rise up and settle at their slant as each enters view,
+  // while the section title stays pinned above them.
   const tstack = document.querySelector('.tstack');
   if (tstack){
     const cards = [...tstack.querySelectorAll('.tcard')];
-    cards.forEach((c, i) => { c._tilt = i % 2 ? 1.1 : -1.2; });
-    const stickTop = () => parseFloat(getComputedStyle(cards[0]).top) || 116;
-    const tframe = () => {
-      const stick = stickTop();
-      for (let i = 0; i < cards.length; i++){
-        const c = cards[i], next = cards[i + 1];
-        let buried = 0;                                  // 0 forward, 1 fully covered by the next
-        if (next){
-          const nr = next.getBoundingClientRect();
-          const span = c.getBoundingClientRect().height * 0.85;
-          buried = Math.min(1, Math.max(0, (span - (nr.top - stick)) / span));
-        }
-        c.style.transform = `scale(${(1 - buried * 0.06).toFixed(4)}) rotate(${(c._tilt * (1 - buried * 0.45)).toFixed(2)}deg)`;
-        c.querySelector('.t-in').style.filter = `brightness(${(1 - buried * 0.05).toFixed(3)})`;
-      }
-      requestAnimationFrame(tframe);
-    };
-    if (!reduced) requestAnimationFrame(tframe);
-    else cards.forEach(c => { c.style.transform = `rotate(${c._tilt}deg)`; });
+    if (reduced){ cards.forEach(c => c.classList.add('in')); }
+    else {
+      const tio = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); tio.unobserve(e.target); } });
+      }, { threshold: 0.2, rootMargin: '0px 0px -12% 0px' });
+      cards.forEach(c => tio.observe(c));
+    }
   }
 
   // FINAL CTA: line-mask entrance, frame draw, magnetic button
