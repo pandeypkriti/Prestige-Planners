@@ -458,17 +458,22 @@
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   /* the carousel */
   .tcarousel{position:relative; z-index:2; max-width:1000px; margin:0 auto; padding:0 clamp(46px,7vw,96px); text-align:center;}
-  .tc-mark{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(72px,9vw,116px); line-height:.5;
-    color:var(--gold); opacity:.92; height:.6em; margin:0 auto 22px; user-select:none;}
+  .tc-mark{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(70px,9vw,112px); line-height:.6;
+    color:var(--gold); opacity:.92; height:.72em; margin:26px auto 34px; user-select:none;}
   .tc-viewport{overflow:hidden;}
+  /* each testimonial sits in a bordered navy card, darker infill against the cream */
+  .tc-card{max-width:760px; margin:0 auto; border:2px solid rgba(196,162,76,.72); border-radius:20px;
+    background:linear-gradient(158deg, #0B2748 0%, #002F5F 55%, #061E3B 100%);
+    padding:clamp(40px,4.6vw,60px) clamp(30px,4.6vw,58px);
+    box-shadow:0 10px 24px rgba(0,18,45,.28), 0 40px 82px -30px rgba(0,18,45,.62);}
   .tc-track{display:flex; transition:transform .7s cubic-bezier(.5,.05,.2,1);}
   .tc-slide{flex:0 0 100%; min-width:0; padding:2px clamp(0px,3vw,42px);}
   .tc-slide blockquote{margin:0; font-family:'Poppins',sans-serif; font-weight:300;
-    font-size:clamp(20px,2.5vw,30px); line-height:1.55; color:var(--navy); text-wrap:balance;}
-  .tc-slide .tc-stars{margin-top:26px; color:var(--gold); letter-spacing:4px; font-size:13px;}
+    font-size:clamp(20px,2.5vw,30px); line-height:1.55; color:#F7F2E7; text-wrap:balance;}
+  .tc-slide .tc-stars{margin-top:26px; color:var(--gold-lt); letter-spacing:4px; font-size:13px;}
   .tc-slide .tc-who{margin-top:13px; font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.2em;
-    text-transform:uppercase; color:var(--gold-ink);}
-  .tc-slide .tc-who b{color:var(--navy); font-weight:600;}
+    text-transform:uppercase; color:var(--gold-lt);}
+  .tc-slide .tc-who b{color:#FBF8F1; font-weight:600;}
   .tc-arrow{position:absolute; top:calc(50% + 18px); transform:translateY(-50%); z-index:3;
     width:52px; height:52px; border:1px solid rgba(196,162,76,.5); border-radius:50%;
     background:rgba(255,255,255,.3); color:var(--navy); cursor:pointer;
@@ -491,6 +496,7 @@
     .tcarousel{padding:0 44px;}
     .tc-mark{margin-bottom:14px;}
     .tc-slide{padding:2px 2px;}
+    .tc-card{padding:34px 22px; border-radius:16px;}
     .tc-slide blockquote{font-size:18.5px; line-height:1.55;}
     .tc-arrow{width:40px; height:40px; top:calc(50% + 6px);}
     .tc-slide .tc-stars{margin-top:20px;}
@@ -1097,12 +1103,12 @@
     <button class="tc-arrow prev" id="tcPrev" type="button" aria-label="Previous testimonial"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
     <div class="tc-viewport">
       <div class="tc-track" id="tcTrack">
-        <div class="tc-slide"><blockquote>&ldquo;They planned my husband's 45th and did not disappoint in the slightest. Every idea and extra touch made it unforgettable, the execution flawless. I have zero hesitation recommending them.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>Zainab Kufaishi</b> · 45th birthday, Dubai</div></div>
-        <div class="tc-slide"><blockquote>&ldquo;From the first tasting to the last dance, every decision had already been thought through. Our celebration felt effortless.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>S. &amp; R.</b> · Wedding weekend, Dubai</div></div>
-        <div class="tc-slide"><blockquote>&ldquo;She made three hundred guests feel like the only ones in the room. Every corner held a detail we had not thought to ask for.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>A. &amp; K.</b> · Engagement, Meydan</div></div>
-        <div class="tc-slide"><blockquote>&ldquo;We handed over a colour and a feeling, and walked into a room that understood us completely.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>M.</b> · Milestone birthday, Palm Jumeirah</div></div>
-        <div class="tc-slide"><blockquote>&ldquo;Every single guest asked who planned it. Every single one.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>H. R.</b> · Corporate gala, DIFC</div></div>
-        <div class="tc-slide"><blockquote>&ldquo;One call and one vision board, and she was off. We walked into a dream we did not know we had.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>L. &amp; T.</b> · Golden anniversary, Jumeirah</div></div>
+        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;They planned my husband's 45th and did not disappoint in the slightest. Every idea and extra touch made it unforgettable, the execution flawless. I have zero hesitation recommending them.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>Zainab Kufaishi</b> · 45th birthday, Dubai</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;From the first tasting to the last dance, every decision had already been thought through. Our celebration felt effortless.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>S. &amp; R.</b> · Wedding weekend, Dubai</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;She made three hundred guests feel like the only ones in the room. Every corner held a detail we had not thought to ask for.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>A. &amp; K.</b> · Engagement, Meydan</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;We handed over a colour and a feeling, and walked into a room that understood us completely.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>M.</b> · Milestone birthday, Palm Jumeirah</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;Every single guest asked who planned it. Every single one.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>H. R.</b> · Corporate gala, DIFC</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;One call and one vision board, and she was off. We walked into a dream we did not know we had.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>L. &amp; T.</b> · Golden anniversary, Jumeirah</div></div></div>
       </div>
     </div>
     <button class="tc-arrow next" id="tcNext" type="button" aria-label="Next testimonial"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
@@ -1591,6 +1597,21 @@
     cardEl.addEventListener('pointerenter', () => { cardHover = true; });   // pause so people can look
     cardEl.addEventListener('pointerleave', () => { cardHover = false; });
     setStat(0);                                            // first row active on load, never null
+    // AUTOPLAY: step through the three stat cards every 1.5s while the section is in view;
+    // pause the instant someone hovers a row or the card so they can read at their own pace
+    let statAuto = null, statPaused = false;
+    const cycleStats = () => { clearInterval(statAuto); if (reduced) return;
+      statAuto = setInterval(() => { if (!statPaused) setStat((setIdx + 1) % statRows.length); }, 1500); };
+    statRows.forEach(row => {
+      row.addEventListener('pointerenter', () => { statPaused = true; });
+      row.addEventListener('pointerleave', () => { statPaused = false; });
+    });
+    cardEl.addEventListener('pointerenter', () => { statPaused = true; });
+    cardEl.addEventListener('pointerleave', () => { statPaused = false; });
+    const deckSec = deckStage.closest('.deck-sec');
+    if (deckSec){
+      new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) cycleStats(); else clearInterval(statAuto); }), { threshold: .2 }).observe(deckSec);
+    } else cycleStats();
   }
 
   // ODOMETER: stat numerals roll like a mechanical counter instead of a generic count-up
