@@ -452,12 +452,16 @@
   .tcarousel{position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:0 clamp(44px,5vw,80px); text-align:center;}
   .tc-viewport{overflow:hidden;}
   .tc-track{display:flex; transition:transform .7s cubic-bezier(.5,.05,.2,1);}
-  .tc-slide{flex:0 0 100%; min-width:0;}
-  /* the card: light, cool blue-hued, SHARP corners, soft leaf-shadow texture inside */
-  .tc-card{position:relative; overflow:hidden; max-width:100%; margin:0 auto;
+  .tc-slide{flex:0 0 100%; min-width:0; display:flex;}
+  /* the card: light, cool blue-hued, SHARP corners, soft leaf-shadow texture inside.
+     every card is the SAME height (min-height + flex stretch) with content centred, so
+     swapping quotes never changes the card size */
+  .tc-card{position:relative; overflow:hidden; width:100%; margin:0 auto;
+    display:flex; flex-direction:column; justify-content:center;
+    min-height:clamp(380px,44vh,466px);
     border:1.5px solid rgba(196,162,76,.55); border-radius:0;
     background:linear-gradient(140deg, #EEF1F2 0%, #E7ECEF 52%, #DFE6EB 100%);
-    padding:clamp(52px,6.5vw,86px) clamp(30px,7vw,104px);
+    padding:clamp(44px,5.5vw,72px) clamp(30px,7vw,104px);
     box-shadow:0 34px 74px -36px rgba(20,34,60,.34);}
   .tc-card::before, .tc-card::after{content:''; position:absolute; z-index:0; filter:blur(52px); pointer-events:none;
     background:radial-gradient(ellipse 56% 100% at 50% 50%, rgba(26,42,68,.16), transparent 72%);}
