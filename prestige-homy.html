@@ -477,9 +477,9 @@
   .tstack{position:relative; max-width:760px; margin:0 auto; padding:0 22px; z-index:2;}
   /* a real spacer after the last card gives it content to stick over, so the finished
      stack LINGERS on screen (a sticky card only holds while real content scrolls beneath it) */
-  .t-tail{height:30vh; pointer-events:none;}
+  .t-tail{height:22vh; pointer-events:none;}
   .tcard{position:sticky; top:calc(50vh - 190px + var(--i,0) * 12px);
-    width:var(--w,600px); max-width:100%; margin:0 auto 34vh; transform-origin:center center;
+    width:var(--w,600px); max-width:100%; margin:0 auto 26vh; transform-origin:center center;
     will-change:transform; transform:translateX(var(--dx,0px)) rotate(var(--rot,0deg));}
   .t-in{position:relative; border:1px solid rgba(196,162,76,.4);
     background:linear-gradient(168deg, #FEFBF3 0%, #F5EEDC 100%);
@@ -508,21 +508,12 @@
   .tcard.hero .t-who b{color:#FBF8F1;}
   .tcard.hero .t-who span{color:var(--gold-lt);}
   .tcard.hero .t-stars{color:var(--gold-lt);}
-  /* THE CLOSER — a dense row of one-line quotes so the section ends with weight */
-  .tcloser{position:relative; z-index:2; max-width:1040px; margin:9vh auto 0; padding:0 30px;
-    display:flex; align-items:stretch; justify-content:center; gap:0;}
-  .tcloser blockquote{flex:1 1 0; min-width:0; margin:0; text-align:center; padding:2px 24px;
-    font-family:'Fraunces',serif; font-style:italic; font-size:18px; line-height:1.38; color:var(--navy); text-wrap:balance;}
-  .tcloser cite{display:block; font-family:'Poppins',sans-serif; font-style:normal; font-size:10px;
-    letter-spacing:.15em; text-transform:uppercase; color:var(--gold-ink); margin-top:12px;}
-  .tc-sep{width:1px; align-self:center; height:64px; flex:none;
-    background:linear-gradient(180deg,transparent,rgba(196,162,76,.55),transparent);}
   @media(max-width:860px){
     .tstack{max-width:100%;}
     .testi .head{top:84px; padding-bottom:14px;}
     .testi .head h2{font-size:26px; line-height:1.14;}
-    .t-tail{height:40vh;}
-    .tcard{top:calc(50vh - 200px + var(--i,0) * 9px); width:100%; --dx:0px !important; margin-bottom:30vh;}
+    .t-tail{height:28vh;}
+    .tcard{top:calc(50vh - 200px + var(--i,0) * 9px); width:100%; --dx:0px !important; margin-bottom:24vh;}
     .t-in{padding:44px 26px 22px; border-radius:15px;}
     .tcard .tq-mark{font-size:48px; top:16px; left:22px;}
     .tcard blockquote{font-size:18px; line-height:1.5;}
@@ -530,9 +521,6 @@
     .tcard.hero .t-in{padding:44px 26px 22px;}
     .tcard.hero .tq-mark{font-size:52px; top:15px; left:22px;}
     .tcard.hero blockquote{font-size:19.5px; line-height:1.44;}
-    .tcloser{flex-direction:column; align-items:center; gap:24px; margin-top:8vh;}
-    .tcloser blockquote{font-size:19px; padding:0 10px;}
-    .tc-sep{width:70px; height:1px; background:linear-gradient(90deg,transparent,rgba(196,162,76,.55),transparent);}
   }
 
   /* ---------- 9. FAQ — coverflow of question boards ---------- */
@@ -1157,13 +1145,6 @@
       </div>
     </article>
     <div class="t-tail" aria-hidden="true"></div>
-  </div>
-  <div class="tcloser">
-    <blockquote>Understood us completely.<cite>M. · Palm Jumeirah</cite></blockquote>
-    <span class="tc-sep" aria-hidden="true"></span>
-    <blockquote>Every single guest asked who planned it.<cite>H. R. · Corporate gala, DIFC</cite></blockquote>
-    <span class="tc-sep" aria-hidden="true"></span>
-    <blockquote>A dream we did not know we had.<cite>L. &amp; T. · Golden anniversary</cite></blockquote>
   </div>
 </section>
 
