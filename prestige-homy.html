@@ -443,94 +443,58 @@
     letter-spacing:.015em; text-transform:none; text-decoration:none; border-bottom:1px solid rgba(232,207,138,.45); padding-bottom:3px; transition:.3s;}
   .vid-cap a:hover{color:var(--gold-glint); border-color:var(--gold-glint);}
 
-  /* ---------- 8. TESTIMONIALS — client letters rise into view beneath a pinned title ---------- */
-  .testi{position:relative; padding:clamp(100px,12vh,140px) 0 clamp(64px,9vh,104px);
-    background:
-      radial-gradient(75% 60% at 50% 0%, rgba(251,248,241,.55), transparent 65%),
-      linear-gradient(165deg, #EBDAAC 0%, #E0C787 45%, #CFAE61 100%);}
-  /* decorations clip here so the section itself can host a working sticky title */
+  /* ---------- 8. TESTIMONIALS — a calm quote carousel on soft, dappled cream ---------- */
+  .testi{position:relative; overflow:hidden; padding:clamp(88px,12vh,140px) 0 clamp(80px,11vh,124px);
+    background:radial-gradient(130% 100% at 50% 6%, #F8F3E9 0%, #F1E8D5 56%, #E7DCC4 100%);}
   .testi-fx{position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none;}
-  /* oversized serif quotation glyphs bleed off both edges, low opacity, behind the cards */
-  .testi .bigq{position:absolute; top:-96px; right:-78px; font-family:'Fraunces',serif; font-weight:600; font-size:min(460px,56vw); line-height:1;
-    color:rgba(196,162,76,.055); pointer-events:none; user-select:none;
-    animation:bigqFloat 22s ease-in-out infinite alternate;}
-  .testi .bigq.left{top:auto; right:auto; bottom:-40px; left:-72px;
-    animation:bigqFloat 27s ease-in-out infinite alternate-reverse;}
-  @keyframes bigqFloat{from{transform:translateY(0) rotate(0deg)} to{transform:translateY(48px) rotate(-3deg)}}
-  /* a soft radial vignette so the gold reads as lit, not a flat fill */
-  .testi .tvig{position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(122% 80% at 50% 38%, transparent 42%, rgba(74,48,6,.2) 100%);}
-  .testi .o3{left:-110px; top:20%; width:380px; height:380px; animation:orbB 21s ease-in-out infinite alternate;}
-  .testi .o4{right:-140px; bottom:-120px; width:460px; height:460px; animation:orbA 27s ease-in-out infinite alternate;}
-  /* the title pins and stays in view the whole section; a soft frost dissolves cards as they rise past it */
-  .testi .head{position:sticky; top:108px; z-index:6; max-width:640px; margin:0 auto 8px; text-align:center; padding:0 22px 24px;}
-  .testi .head::before{content:''; position:absolute; left:50%; transform:translateX(-50%);
-    top:-30px; bottom:6px; width:min(860px,94vw); z-index:-1; pointer-events:none;
-    backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
-    -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-    mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-    background:linear-gradient(180deg, rgba(233,214,166,.9) 0%, rgba(233,214,166,.62) 52%, rgba(233,214,166,0) 100%);}
+  /* soft botanical shadows, like light falling through leaves */
+  .testi .leaf{position:absolute; filter:blur(50px); transform:rotate(var(--r,0deg));
+    background:radial-gradient(ellipse 56% 100% at 50% 50%, rgba(44,36,24,.2), transparent 72%);}
+  .testi .leaf.l1{--r:-20deg; width:540px; height:820px; left:-180px; top:-150px; opacity:.55;}
+  .testi .leaf.l2{--r:24deg; width:480px; height:720px; right:-165px; top:10px; opacity:.5;}
+  .testi .leaf.l3{--r:14deg; width:400px; height:560px; left:5%; bottom:-190px; opacity:.36;}
+  .testi .leaf.l4{--r:-16deg; width:440px; height:600px; right:9%; bottom:-170px; opacity:.36;}
+  .testi .head{position:relative; z-index:2; max-width:640px; margin:0 auto 28px; text-align:center; padding:0 22px;}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
-  .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
-  /* the pile: cards pin at the vertical middle and stack, but each is a different width,
-     angle and side of centre so the stack reads as a hand-placed set, not a uniform feed */
-  .tstack{position:relative; max-width:760px; margin:0 auto; padding:0 22px; z-index:2;}
-  /* a real spacer after the last card gives it content to stick over, so the finished
-     stack LINGERS on screen (a sticky card only holds while real content scrolls beneath it) */
-  .t-tail{height:22vh; pointer-events:none;}
-  .tcard{position:sticky; top:calc(50vh - 190px + var(--i,0) * 12px);
-    width:var(--w,600px); max-width:100%; margin:0 auto 26vh; transform-origin:center center;
-    will-change:transform; transform:translateX(var(--dx,0px)) rotate(var(--rot,0deg));}
-  .t-in{position:relative; border:1px solid rgba(196,162,76,.4);
-    background:linear-gradient(168deg, #FEFBF3 0%, #F5EEDC 100%);
-    border-radius:18px; padding:52px 40px 26px;
-    box-shadow:0 3px 8px rgba(64,44,6,.1), 0 26px 56px -22px rgba(64,44,6,.42);}
-  .tcard .tq-mark{position:absolute; top:22px; left:32px; font-family:'Fraunces',serif; font-style:italic;
-    font-size:60px; line-height:.8; color:var(--gold); opacity:.9; pointer-events:none;}
-  .tcard blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:21px;
-    line-height:1.5; color:var(--navy); margin:0; text-wrap:pretty;}
-  .tcard blockquote .hl{font-style:normal; font-weight:600; color:var(--navy);
-    background:linear-gradient(transparent 62%, rgba(196,162,76,.42) 62%);}
-  .tcard .t-foot{display:flex; align-items:center; justify-content:space-between;
-    border-top:1px solid rgba(196,162,76,.28); margin-top:24px; padding-top:16px;}
-  .tcard .t-who b{display:block; font-family:'Poppins',sans-serif; font-weight:600; font-size:11.5px;
-    letter-spacing:.13em; text-transform:uppercase; color:var(--navy);}
-  .tcard .t-who span{font-family:'Poppins',sans-serif; font-size:11px; letter-spacing:.05em; color:var(--gold-ink);}
-  .tcard .t-stars{color:var(--gold); font-size:12px; letter-spacing:2px;}
-  /* THE HERO — one inverted navy card carries the strongest, real testimonial */
-  .tcard.hero .t-in{border-color:rgba(196,162,76,.55); border-radius:20px; padding:66px 52px 32px;
-    background:linear-gradient(158deg, #0B2748 0%, #002F5F 52%, #061E3B 100%);
-    box-shadow:0 8px 18px rgba(0,18,45,.34), 0 40px 80px -26px rgba(0,18,45,.72);}
-  .tcard.hero .tq-mark{color:var(--gold-lt); opacity:.85; font-size:74px; top:26px; left:40px;}
-  .tcard.hero blockquote{color:#F7F2E7; font-size:28px; line-height:1.42;}
-  .tcard.hero blockquote .hl{color:#FBF8F1; background:linear-gradient(transparent 60%, rgba(196,162,76,.5) 60%);}
-  .tcard.hero .t-foot{border-top-color:rgba(196,162,76,.4); margin-top:30px;}
-  .tcard.hero .t-who b{color:#FBF8F1;}
-  .tcard.hero .t-who span{color:var(--gold-lt);}
-  .tcard.hero .t-stars{color:var(--gold-lt);}
-  /* below true desktop (tablets, split-screen, browser zoom, large phones): drop the
-     left/right fan so cards stay centred and capped to the viewport, and keep the nav
-     compact so the Enquire pill never crowds the edge */
+  /* the carousel */
+  .tcarousel{position:relative; z-index:2; max-width:1000px; margin:0 auto; padding:0 clamp(46px,7vw,96px); text-align:center;}
+  .tc-mark{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(72px,9vw,116px); line-height:.5;
+    color:var(--gold); opacity:.92; height:.6em; margin:0 auto 22px; user-select:none;}
+  .tc-viewport{overflow:hidden;}
+  .tc-track{display:flex; transition:transform .7s cubic-bezier(.5,.05,.2,1);}
+  .tc-slide{flex:0 0 100%; min-width:0; padding:2px clamp(0px,3vw,42px);}
+  .tc-slide blockquote{margin:0; font-family:'Poppins',sans-serif; font-weight:300;
+    font-size:clamp(20px,2.5vw,30px); line-height:1.55; color:var(--navy); text-wrap:balance;}
+  .tc-slide .tc-stars{margin-top:26px; color:var(--gold); letter-spacing:4px; font-size:13px;}
+  .tc-slide .tc-who{margin-top:13px; font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--gold-ink);}
+  .tc-slide .tc-who b{color:var(--navy); font-weight:600;}
+  .tc-arrow{position:absolute; top:calc(50% + 18px); transform:translateY(-50%); z-index:3;
+    width:52px; height:52px; border:1px solid rgba(196,162,76,.5); border-radius:50%;
+    background:rgba(255,255,255,.3); color:var(--navy); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:background .3s, color .3s, border-color .3s;
+    -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);}
+  .tc-arrow:hover{background:var(--gold); color:#fff; border-color:var(--gold);}
+  .tc-arrow.prev{left:0;} .tc-arrow.next{right:0;}
+  .tc-arrow svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  .tc-dots{display:flex; justify-content:center; gap:9px; margin-top:40px;}
+  .tc-dots button{width:8px; height:8px; border-radius:50%; border:none; background:rgba(0,47,95,.22); cursor:pointer; padding:0; transition:.3s;}
+  .tc-dots button.on{background:var(--gold); transform:scale(1.45);}
   @media(max-width:1024px){
-    .tcard{--dx:0px !important; width:min(var(--w,620px), 90vw);}
-    .tstack{max-width:min(700px,94vw);}
     .nav-links{display:none;}
     nav .btn.has-arr{padding:8px 8px 8px 18px; font-size:12.5px; gap:9px;}
     nav .btn .arr{width:30px; height:30px; border-radius:10px;}
   }
   @media(max-width:860px){
-    .tstack{max-width:100%;}
-    .testi .head{top:84px; padding-bottom:14px;}
+    .testi{padding:60px 0 68px;}
     .testi .head h2{font-size:26px; line-height:1.14;}
-    .t-tail{height:28vh;}
-    .tcard{top:calc(50vh - 200px + var(--i,0) * 9px); width:100%; --dx:0px !important; margin-bottom:24vh;}
-    .t-in{padding:44px 26px 22px; border-radius:15px;}
-    .tcard .tq-mark{font-size:48px; top:16px; left:22px;}
-    .tcard blockquote{font-size:18px; line-height:1.5;}
-    .tcard .t-foot{margin-top:20px; padding-top:13px;}
-    .tcard.hero .t-in{padding:44px 26px 22px;}
-    .tcard.hero .tq-mark{font-size:52px; top:15px; left:22px;}
-    .tcard.hero blockquote{font-size:19.5px; line-height:1.44;}
+    .tcarousel{padding:0 44px;}
+    .tc-mark{margin-bottom:14px;}
+    .tc-slide{padding:2px 2px;}
+    .tc-slide blockquote{font-size:18.5px; line-height:1.55;}
+    .tc-arrow{width:40px; height:40px; top:calc(50% + 6px);}
+    .tc-slide .tc-stars{margin-top:20px;}
+    .tc-dots{margin-top:32px;}
   }
 
   /* ---------- 9. FAQ — coverflow of question boards ---------- */
@@ -639,6 +603,10 @@
     background:radial-gradient(80% 60% at 50% -8%, rgba(196,162,76,.2), transparent 60%), var(--navy-ink);}
   .faq::before{content:''; position:absolute; right:-10%; top:8%; width:min(900px,72vw); height:84%;
     background:radial-gradient(ellipse at center, rgba(196,162,76,.1), rgba(196,162,76,0) 70%); pointer-events:none;}
+  .faq .ribbons{position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none;}
+  .faq .ribbons path{fill:none; stroke:rgba(196,162,76,.28); stroke-width:1.2; stroke-dasharray:900 260; animation:ribbonFlow 28s linear infinite;}
+  .faq .ribbons .r2{stroke:rgba(196,162,76,.18); animation-duration:36s; animation-direction:reverse;}
+  .faq .ribbons .r3{stroke:rgba(196,162,76,.13); animation-duration:44s;}
   .faq-head h2{color:#FBF8F1;}
   .faq-head p{color:rgba(243,236,220,.7);}
   .faq-head{text-align:center; max-width:660px; margin:0 auto 30px; position:relative; z-index:2; width:100%;}
@@ -832,7 +800,7 @@
     *{animation:none !important; transition:none !important;}
     .reveal{opacity:1; transform:none;}
     .blur-line .w{filter:none; opacity:1; transform:none;}
-    .tcard{position:static !important; transform:rotate(var(--rot,0deg)) !important; margin:0 auto 38px !important;}
+    .tc-track{transition:none !important;}
     .meet-fig{opacity:1 !important; transform:none !important;}
     .meet-copy p .mw{opacity:1 !important; transform:none !important;}
     .hero-title h1 em{color:var(--gold-shadow);}
@@ -1119,50 +1087,37 @@
 <!-- 8. TESTIMONIALS — client letters rise into view beneath a pinned title -->
 <section class="testi grain" id="reviews">
   <div class="testi-fx" aria-hidden="true">
-    <div class="glow-orb o3"></div>
-    <div class="glow-orb o4"></div>
-    <div class="bigq">&rdquo;</div>
-    <div class="bigq left">&ldquo;</div>
-    <div class="tvig"></div>
-    <div class="sparkles">
-      <i style="--x:6%;--y:16%;--d:.3s"></i><i style="--x:15%;--y:70%;--d:1.8s"></i><i style="--x:26%;--y:30%;--d:3s"></i>
-      <i style="--x:37%;--y:82%;--d:.9s"></i><i style="--x:49%;--y:14%;--d:2.4s"></i><i style="--x:57%;--y:60%;--d:4s"></i>
-      <i style="--x:68%;--y:24%;--d:1.4s"></i><i style="--x:78%;--y:74%;--d:3.4s"></i><i style="--x:88%;--y:38%;--d:.6s"></i>
-      <i style="--x:94%;--y:66%;--d:2.1s"></i><i style="--x:32%;--y:52%;--d:4.4s"></i><i style="--x:83%;--y:12%;--d:2.9s"></i>
-    </div>
+    <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div><div class="leaf l4"></div>
   </div>
   <div class="head">
     <h2 class="reveal">Kind words from <em>our clients</em></h2>
   </div>
-  <div class="tstack">
-    <article class="tcard" style="--i:0; --rot:-1.8deg; --w:620px; --dx:-46px">
-      <div class="t-in">
-        <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>She made three hundred guests feel like the only ones in the room. Every corner held a detail we had not thought to ask for.</blockquote>
-        <div class="t-foot"><div class="t-who"><b>A. &amp; K.</b><span>Engagement, Meydan</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+  <div class="tcarousel">
+    <div class="tc-mark" aria-hidden="true">&rdquo;</div>
+    <button class="tc-arrow prev" id="tcPrev" type="button" aria-label="Previous testimonial"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="tc-viewport">
+      <div class="tc-track" id="tcTrack">
+        <div class="tc-slide"><blockquote>&ldquo;They planned my husband's 45th and did not disappoint in the slightest. Every idea and extra touch made it unforgettable, the execution flawless. I have zero hesitation recommending them.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>Zainab Kufaishi</b> · 45th birthday, Dubai</div></div>
+        <div class="tc-slide"><blockquote>&ldquo;From the first tasting to the last dance, every decision had already been thought through. Our celebration felt effortless.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>S. &amp; R.</b> · Wedding weekend, Dubai</div></div>
+        <div class="tc-slide"><blockquote>&ldquo;She made three hundred guests feel like the only ones in the room. Every corner held a detail we had not thought to ask for.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>A. &amp; K.</b> · Engagement, Meydan</div></div>
+        <div class="tc-slide"><blockquote>&ldquo;We handed over a colour and a feeling, and walked into a room that understood us completely.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>M.</b> · Milestone birthday, Palm Jumeirah</div></div>
+        <div class="tc-slide"><blockquote>&ldquo;Every single guest asked who planned it. Every single one.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>H. R.</b> · Corporate gala, DIFC</div></div>
+        <div class="tc-slide"><blockquote>&ldquo;One call and one vision board, and she was off. We walked into a dream we did not know we had.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>L. &amp; T.</b> · Golden anniversary, Jumeirah</div></div>
       </div>
-    </article>
-    <article class="tcard" style="--i:1; --rot:2deg; --w:540px; --dx:54px">
-      <div class="t-in">
-        <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>From the first tasting to the last dance, every decision had already been thought through. Our celebration felt effortless.</blockquote>
-        <div class="t-foot"><div class="t-who"><b>S. &amp; R.</b><span>Wedding weekend, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
-      </div>
-    </article>
-    <article class="tcard hero" style="--i:2; --rot:0.6deg; --w:680px; --dx:0px">
-      <div class="t-in">
-        <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>They planned my husband's 45th and did not disappoint in the slightest. Every idea and extra touch made it unforgettable, the execution flawless. I have <span class="hl">zero hesitation recommending them.</span></blockquote>
-        <div class="t-foot"><div class="t-who"><b>Zainab Kufaishi</b><span>45th birthday, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
-      </div>
-    </article>
-    <div class="t-tail" aria-hidden="true"></div>
+    </div>
+    <button class="tc-arrow next" id="tcNext" type="button" aria-label="Next testimonial"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    <div class="tc-dots" id="tcDots"></div>
   </div>
 </section>
 
 <!-- 9. FAQ — pinned: the board stays put while scroll leafs through the questions -->
 <div class="faq-pin" id="faqPin">
 <section class="faq grain" id="faq">
+  <svg class="ribbons" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+    <path class="r1" d="M-60,560 C300,470 540,720 840,600 C1080,500 1300,400 1520,510"/>
+    <path class="r2" d="M-60,680 C340,600 620,820 920,670 C1160,560 1360,480 1520,590"/>
+    <path class="r3" d="M-60,320 C320,250 600,430 900,300 C1140,200 1360,280 1520,220"/>
+  </svg>
   <div class="wrap">
     <div class="faq-head">
       <h2 class="reveal">Questions, <em>answered</em></h2>
@@ -1768,36 +1723,40 @@
     bLayout();
   }
 
-  // TESTIMONIALS: a centered pile. Each letter pins at the vertical middle; as the next
-  // stacks over it, the buried one recedes (scales down, drifts up, settles its slant),
-  // so the growing stack reads with depth while the title stays pinned above.
-  const tstack = document.querySelector('.tstack');
-  if (tstack){
-    const cards = [...tstack.querySelectorAll('.tcard')];
-    cards.forEach(c => {
-      c._rot = parseFloat(getComputedStyle(c).getPropertyValue('--rot')) || 0;
-      c._dx  = parseFloat(getComputedStyle(c).getPropertyValue('--dx')) || 0;
+  // TESTIMONIALS: a calm quote carousel — arrows, dots, swipe, gentle autoplay
+  const tcTrack = document.getElementById('tcTrack');
+  if (tcTrack){
+    const slides = [...tcTrack.children];
+    const dotsWrap = document.getElementById('tcDots');
+    let idx = 0, timer = null;
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+      b.addEventListener('click', () => { go(i); restart(); });
+      dotsWrap.appendChild(b);
     });
-    if (reduced){
-      cards.forEach(c => { c.style.transform = `translateX(${c._dx}px) rotate(${c._rot}deg)`; });
-    } else {
-      const tframe = () => {
-        for (let i = 0; i < cards.length; i++){
-          const c = cards[i], next = cards[i + 1];
-          const stick = parseFloat(getComputedStyle(c).top) || 0;
-          let buried = 0;                                  // 0 = the front letter, 1 = fully covered by the next
-          if (next){
-            const nr = next.getBoundingClientRect();
-            const span = c.getBoundingClientRect().height * 0.9;
-            buried = Math.min(1, Math.max(0, (span - (nr.top - stick)) / span));
-          }
-          c.style.transform = `translate(${c._dx.toFixed(0)}px, ${(-buried * 12).toFixed(1)}px) scale(${(1 - buried * 0.07).toFixed(4)}) rotate(${(c._rot * (1 - buried * 0.35)).toFixed(2)}deg)`;
-          c.querySelector('.t-in').style.filter = `brightness(${(1 - buried * 0.06).toFixed(3)})`;
-        }
-        requestAnimationFrame(tframe);
-      };
-      requestAnimationFrame(tframe);
-    }
+    const dots = [...dotsWrap.children];
+    const go = (i) => {
+      idx = (i + slides.length) % slides.length;
+      tcTrack.style.transform = `translateX(${-idx * 100}%)`;
+      dots.forEach((d, j) => d.classList.toggle('on', j === idx));
+    };
+    const restart = () => { if (reduced) return; clearInterval(timer); timer = setInterval(() => go(idx + 1), 6500); };
+    document.getElementById('tcPrev').addEventListener('click', () => { go(idx - 1); restart(); });
+    document.getElementById('tcNext').addEventListener('click', () => { go(idx + 1); restart(); });
+    const vp = tcTrack.parentElement;
+    let x0 = null;
+    vp.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    vp.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40){ go(idx + (dx < 0 ? 1 : -1)); restart(); }
+      x0 = null;
+    });
+    const carousel = document.querySelector('.tcarousel');
+    carousel.addEventListener('pointerenter', () => clearInterval(timer));
+    carousel.addEventListener('pointerleave', restart);
+    go(0); restart();
   }
 
   // FINAL CTA: line-mask entrance, frame draw, magnetic button
