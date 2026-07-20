@@ -443,46 +443,43 @@
     letter-spacing:.015em; text-transform:none; text-decoration:none; border-bottom:1px solid rgba(232,207,138,.45); padding-bottom:3px; transition:.3s;}
   .vid-cap a:hover{color:var(--gold-glint); border-color:var(--gold-glint);}
 
-  /* ---------- 8. TESTIMONIALS — a calm quote carousel on soft, dappled cream ---------- */
-  .testi{position:relative; overflow:hidden; padding:clamp(88px,12vh,140px) 0 clamp(80px,11vh,124px);
-    background:radial-gradient(130% 100% at 50% 6%, #F8F3E9 0%, #F1E8D5 56%, #E7DCC4 100%);}
-  .testi-fx{position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none;}
-  /* soft botanical shadows, like light falling through leaves */
-  .testi .leaf{position:absolute; filter:blur(50px); transform:rotate(var(--r,0deg));
-    background:radial-gradient(ellipse 56% 100% at 50% 50%, rgba(44,36,24,.2), transparent 72%);}
-  .testi .leaf.l1{--r:-20deg; width:540px; height:820px; left:-180px; top:-150px; opacity:.55;}
-  .testi .leaf.l2{--r:24deg; width:480px; height:720px; right:-165px; top:10px; opacity:.5;}
-  .testi .leaf.l3{--r:14deg; width:400px; height:560px; left:5%; bottom:-190px; opacity:.36;}
-  .testi .leaf.l4{--r:-16deg; width:440px; height:600px; right:9%; bottom:-170px; opacity:.36;}
-  .testi .head{position:relative; z-index:2; max-width:640px; margin:0 auto 28px; text-align:center; padding:0 22px;}
+  /* ---------- 8. TESTIMONIALS — a calm quote carousel in a wide, light bordered card ---------- */
+  .testi{position:relative; overflow:hidden; padding:clamp(78px,10vh,120px) 0 clamp(78px,10vh,116px);
+    background:linear-gradient(180deg, #FAF8F3 0%, #F1F1EC 100%);}
+  .testi .head{position:relative; z-index:2; max-width:640px; margin:0 auto 30px; text-align:center; padding:0 22px;}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
-  /* the carousel */
-  .tcarousel{position:relative; z-index:2; max-width:1000px; margin:0 auto; padding:0 clamp(46px,7vw,96px); text-align:center;}
-  .tc-mark{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(70px,9vw,112px); line-height:.6;
-    color:var(--gold); opacity:.92; height:.72em; margin:26px auto 34px; user-select:none;}
+  /* the carousel — a wide card that fills most of the screen */
+  .tcarousel{position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:0 clamp(44px,5vw,80px); text-align:center;}
   .tc-viewport{overflow:hidden;}
-  /* each testimonial sits in a bordered navy card, darker infill against the cream */
-  .tc-card{max-width:760px; margin:0 auto; border:2px solid rgba(196,162,76,.72); border-radius:20px;
-    background:linear-gradient(158deg, #0B2748 0%, #002F5F 55%, #061E3B 100%);
-    padding:clamp(40px,4.6vw,60px) clamp(30px,4.6vw,58px);
-    box-shadow:0 10px 24px rgba(0,18,45,.28), 0 40px 82px -30px rgba(0,18,45,.62);}
   .tc-track{display:flex; transition:transform .7s cubic-bezier(.5,.05,.2,1);}
-  .tc-slide{flex:0 0 100%; min-width:0; padding:2px clamp(0px,3vw,42px);}
+  .tc-slide{flex:0 0 100%; min-width:0;}
+  /* the card: light, cool blue-hued, SHARP corners, soft leaf-shadow texture inside */
+  .tc-card{position:relative; overflow:hidden; max-width:100%; margin:0 auto;
+    border:1.5px solid rgba(196,162,76,.55); border-radius:0;
+    background:linear-gradient(140deg, #EEF1F2 0%, #E7ECEF 52%, #DFE6EB 100%);
+    padding:clamp(52px,6.5vw,86px) clamp(30px,7vw,104px);
+    box-shadow:0 34px 74px -36px rgba(20,34,60,.34);}
+  .tc-card::before, .tc-card::after{content:''; position:absolute; z-index:0; filter:blur(52px); pointer-events:none;
+    background:radial-gradient(ellipse 56% 100% at 50% 50%, rgba(26,42,68,.16), transparent 72%);}
+  .tc-card::before{width:420px; height:660px; left:-130px; top:-90px; transform:rotate(-19deg);}
+  .tc-card::after{width:460px; height:680px; right:-140px; bottom:-100px; transform:rotate(23deg);}
+  .tc-card > *{position:relative; z-index:1;}
+  .tc-mark{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(58px,6.5vw,90px); line-height:.5;
+    color:var(--gold); opacity:.85; height:.55em; margin:0 auto 22px; user-select:none;}
   .tc-slide blockquote{margin:0; font-family:'Poppins',sans-serif; font-weight:300;
-    font-size:clamp(20px,2.5vw,30px); line-height:1.55; color:#F7F2E7; text-wrap:balance;}
-  .tc-slide .tc-stars{margin-top:26px; color:var(--gold-lt); letter-spacing:4px; font-size:13px;}
+    font-size:clamp(20px,2.5vw,31px); line-height:1.55; color:var(--navy); text-wrap:balance;}
+  .tc-slide .tc-stars{margin-top:26px; color:var(--gold); letter-spacing:4px; font-size:13px;}
   .tc-slide .tc-who{margin-top:13px; font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.2em;
-    text-transform:uppercase; color:var(--gold-lt);}
-  .tc-slide .tc-who b{color:#FBF8F1; font-weight:600;}
-  .tc-arrow{position:absolute; top:calc(50% + 18px); transform:translateY(-50%); z-index:3;
-    width:52px; height:52px; border:1px solid rgba(196,162,76,.5); border-radius:50%;
-    background:rgba(255,255,255,.3); color:var(--navy); cursor:pointer;
-    display:flex; align-items:center; justify-content:center; transition:background .3s, color .3s, border-color .3s;
-    -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);}
-  .tc-arrow:hover{background:var(--gold); color:#fff; border-color:var(--gold);}
-  .tc-arrow.prev{left:0;} .tc-arrow.next{right:0;}
-  .tc-arrow svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
-  .tc-dots{display:flex; justify-content:center; gap:9px; margin-top:40px;}
+    text-transform:uppercase; color:var(--gold-ink);}
+  .tc-slide .tc-who b{color:var(--navy); font-weight:600;}
+  .tc-arrow{position:absolute; top:50%; transform:translateY(-50%); z-index:4;
+    width:44px; height:44px; border:none; background:none; color:rgba(0,47,95,.42); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:color .3s, transform .3s;}
+  .tc-arrow:hover{color:var(--gold-ink);}
+  .tc-arrow.prev{left:0;} .tc-arrow.prev:hover{transform:translateY(-50%) translateX(-3px);}
+  .tc-arrow.next{right:0;} .tc-arrow.next:hover{transform:translateY(-50%) translateX(3px);}
+  .tc-arrow svg{width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round;}
+  .tc-dots{display:flex; justify-content:center; gap:9px; margin-top:38px;}
   .tc-dots button{width:8px; height:8px; border-radius:50%; border:none; background:rgba(0,47,95,.22); cursor:pointer; padding:0; transition:.3s;}
   .tc-dots button.on{background:var(--gold); transform:scale(1.45);}
   @media(max-width:1024px){
@@ -491,16 +488,16 @@
     nav .btn .arr{width:30px; height:30px; border-radius:10px;}
   }
   @media(max-width:860px){
-    .testi{padding:60px 0 68px;}
+    .testi{padding:54px 0 62px;}
     .testi .head h2{font-size:26px; line-height:1.14;}
-    .tcarousel{padding:0 44px;}
-    .tc-mark{margin-bottom:14px;}
-    .tc-slide{padding:2px 2px;}
-    .tc-card{padding:34px 22px; border-radius:16px;}
+    .tcarousel{padding:0 32px;}
+    .tc-card{padding:44px 24px;}
+    .tc-mark{font-size:50px; margin-bottom:16px;}
     .tc-slide blockquote{font-size:18.5px; line-height:1.55;}
-    .tc-arrow{width:40px; height:40px; top:calc(50% + 6px);}
+    .tc-arrow{width:30px; height:30px;}
+    .tc-arrow svg{width:20px; height:20px;}
     .tc-slide .tc-stars{margin-top:20px;}
-    .tc-dots{margin-top:32px;}
+    .tc-dots{margin-top:30px;}
   }
 
   /* ---------- 9. FAQ — coverflow of question boards ---------- */
@@ -1092,23 +1089,19 @@
 
 <!-- 8. TESTIMONIALS — client letters rise into view beneath a pinned title -->
 <section class="testi grain" id="reviews">
-  <div class="testi-fx" aria-hidden="true">
-    <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div><div class="leaf l4"></div>
-  </div>
   <div class="head">
     <h2 class="reveal">Kind words from <em>our clients</em></h2>
   </div>
   <div class="tcarousel">
-    <div class="tc-mark" aria-hidden="true">&rdquo;</div>
     <button class="tc-arrow prev" id="tcPrev" type="button" aria-label="Previous testimonial"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
     <div class="tc-viewport">
       <div class="tc-track" id="tcTrack">
-        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;They planned my husband's 45th and did not disappoint in the slightest. Every idea and extra touch made it unforgettable, the execution flawless. I have zero hesitation recommending them.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>Zainab Kufaishi</b> · 45th birthday, Dubai</div></div></div>
-        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;From the first tasting to the last dance, every decision had already been thought through. Our celebration felt effortless.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>S. &amp; R.</b> · Wedding weekend, Dubai</div></div></div>
-        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;She made three hundred guests feel like the only ones in the room. Every corner held a detail we had not thought to ask for.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>A. &amp; K.</b> · Engagement, Meydan</div></div></div>
-        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;We handed over a colour and a feeling, and walked into a room that understood us completely.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>M.</b> · Milestone birthday, Palm Jumeirah</div></div></div>
-        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;Every single guest asked who planned it. Every single one.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>H. R.</b> · Corporate gala, DIFC</div></div></div>
-        <div class="tc-slide"><div class="tc-card"><blockquote>&ldquo;One call and one vision board, and she was off. We walked into a dream we did not know we had.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>L. &amp; T.</b> · Golden anniversary, Jumeirah</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><div class="tc-mark" aria-hidden="true">&rdquo;</div><blockquote>&ldquo;They planned my husband's 45th and did not disappoint in the slightest. Every idea and extra touch made it unforgettable, the execution flawless. I have zero hesitation recommending them.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>Zainab Kufaishi</b> · 45th birthday, Dubai</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><div class="tc-mark" aria-hidden="true">&rdquo;</div><blockquote>&ldquo;From the first tasting to the last dance, every decision had already been thought through. Our celebration felt effortless.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>S. &amp; R.</b> · Wedding weekend, Dubai</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><div class="tc-mark" aria-hidden="true">&rdquo;</div><blockquote>&ldquo;She made three hundred guests feel like the only ones in the room. Every corner held a detail we had not thought to ask for.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>A. &amp; K.</b> · Engagement, Meydan</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><div class="tc-mark" aria-hidden="true">&rdquo;</div><blockquote>&ldquo;We handed over a colour and a feeling, and walked into a room that understood us completely.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>M.</b> · Milestone birthday, Palm Jumeirah</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><div class="tc-mark" aria-hidden="true">&rdquo;</div><blockquote>&ldquo;Every single guest asked who planned it. Every single one.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>H. R.</b> · Corporate gala, DIFC</div></div></div>
+        <div class="tc-slide"><div class="tc-card"><div class="tc-mark" aria-hidden="true">&rdquo;</div><blockquote>&ldquo;One call and one vision board, and she was off. We walked into a dream we did not know we had.&rdquo;</blockquote><div class="tc-stars" aria-label="Five stars">★★★★★</div><div class="tc-who"><b>L. &amp; T.</b> · Golden anniversary, Jumeirah</div></div></div>
       </div>
     </div>
     <button class="tc-arrow next" id="tcNext" type="button" aria-label="Next testimonial"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
