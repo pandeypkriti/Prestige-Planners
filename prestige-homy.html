@@ -25,7 +25,8 @@
     --navy-chip:#0B1626;   /* badge chips (never pure black) */
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth; overflow-x:clip;}
+  html{scroll-behavior:smooth;}
+  /* clip horizontal overflow on BODY only (not html) so iOS Safari keeps position:fixed working */
   body{font-family:'Poppins',sans-serif; font-weight:300; color:var(--ink); background:var(--cream); line-height:1.7; overflow-x:clip;}
   h1,h2,h3{font-family:'Fraunces',serif; font-weight:400; color:var(--navy); line-height:1.12;}
   /* editorial voice: every body paragraph reads in serif */
@@ -443,7 +444,7 @@
   .vid-cap a:hover{color:var(--gold-glint); border-color:var(--gold-glint);}
 
   /* ---------- 8. TESTIMONIALS — client letters rise into view beneath a pinned title ---------- */
-  .testi{position:relative; padding:clamp(80px,10vh,108px) 0 clamp(64px,9vh,104px);
+  .testi{position:relative; padding:clamp(100px,12vh,140px) 0 clamp(64px,9vh,104px);
     background:
       radial-gradient(75% 60% at 50% 0%, rgba(251,248,241,.55), transparent 65%),
       linear-gradient(165deg, #EBDAAC 0%, #E0C787 45%, #CFAE61 100%);}
@@ -456,7 +457,7 @@
   .testi .o3{left:-110px; top:20%; width:380px; height:380px; animation:orbB 21s ease-in-out infinite alternate;}
   .testi .o4{right:-140px; bottom:-120px; width:460px; height:460px; animation:orbA 27s ease-in-out infinite alternate;}
   /* the title pins and stays in view the whole section; a soft frost dissolves cards as they rise past it */
-  .testi .head{position:sticky; top:74px; z-index:6; max-width:640px; margin:0 auto 8px; text-align:center; padding:0 22px 24px;}
+  .testi .head{position:sticky; top:108px; z-index:6; max-width:640px; margin:0 auto 8px; text-align:center; padding:0 22px 24px;}
   .testi .head::before{content:''; position:absolute; left:50%; transform:translateX(-50%);
     top:-30px; bottom:6px; width:min(860px,94vw); z-index:-1; pointer-events:none;
     backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
@@ -466,10 +467,11 @@
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
   /* the letters: a centered pile — each pins at the vertical middle and the next stacks over it */
-  .tstack{position:relative; max-width:520px; margin:0 auto; padding:0 22px; z-index:2;}
+  /* padding-bottom (not a last-card margin, which would collapse out) holds the finished stack on screen */
+  .tstack{position:relative; max-width:520px; margin:0 auto; padding:0 22px 82vh; z-index:2;}
   .tcard{position:sticky; top:calc(50vh - 178px + var(--i,0) * 9px); margin:0 auto 52vh;
     transform-origin:center center; will-change:transform; transform:rotate(var(--rot,0deg));}
-  .tcard:last-child{margin-bottom:14vh;}
+  .tcard:last-child{margin-bottom:0;}
   .t-in{position:relative; border:1px solid rgba(196,162,76,.4);
     background:linear-gradient(168deg, #FEFBF3 0%, #F5EEDC 100%);
     border-radius:18px; padding:56px 40px 26px;
@@ -488,7 +490,9 @@
   .tcard .t-stars{color:var(--gold); font-size:12px; letter-spacing:2px;}
   @media(max-width:860px){
     .tstack{max-width:100%;}
-    .testi .head{top:62px; padding-bottom:18px;}
+    .testi .head{top:84px; padding-bottom:14px;}
+    .testi .head h2{font-size:26px; line-height:1.14;}
+    .tstack{max-width:100%; padding-bottom:66vh;}
     .tcard{top:calc(50vh - 200px + var(--i,0) * 8px); margin-bottom:46vh;}
     .t-in{padding:46px 26px 22px; border-radius:15px;}
     .tcard .tq-mark{font-size:50px; top:16px; left:22px;}
@@ -716,8 +720,6 @@
   .reveal-slow.visible{opacity:1; transform:none;}
 
   @media(max-width:860px){
-    /* kill phantom sideways scroll on phones; clip (not hidden) so sticky pins still work */
-    html, body{overflow-x:clip;}
     .wrap{padding:0 20px;}
     .nav-links{display:none;}
     nav .btn{padding:9px 18px; font-size:12.5px;}
@@ -725,7 +727,7 @@
     .hero-title p{font-size:15px; margin:16px auto 24px;}
     .hero-ctas{flex-direction:column; align-items:center; gap:11px;}
     nav{padding:14px 0;}
-    nav .wrap{padding-right:24px;}
+    nav .wrap{padding-right:max(24px, env(safe-area-inset-right)); padding-left:max(20px, env(safe-area-inset-left));}
     .btn{padding:13px 24px; font-size:13.5px;}
     .hero-slug{gap:10px;}
     .hero-slug .hs-line{width:32px;}
@@ -746,7 +748,7 @@
     .stat-row > span{font-size:13px;}
     .stack-intro{padding:52px 0 34px;}
     .blur-line{font-size:clamp(26px,6.4vw,40px);}
-    .blur-pin{height:120vh;}
+    .blur-pin{height:260vh;}   /* taller pin on phones = a slower, readable word-by-word reveal */
     .services{padding:72px 0;}
     .services .head{grid-template-columns:1fr; gap:16px;}
     .acc{flex-direction:column; height:auto; margin-top:24px; gap:12px;}
@@ -770,11 +772,13 @@
     .ab-panel p{font-size:14px; line-height:1.6;}
     .ab-stack{height:40vh;}
     .stk{width:min(230px,64%);}
-    .faq-pin{height:auto;}
-    .faq{position:static; height:auto; display:block; padding:80px 0 88px;}
+    /* re-pin the FAQ on phones with a tall track: each question gets real scroll time,
+       and the last board ("How do we start?") holds long at the end to build the CTA */
+    .faq-pin{height:560vh;}
+    .cover-stage{height:420px;}
     .final .sub{font-size:15px;}
     footer .wrap{grid-template-columns:1fr; gap:26px;}
-    .wa-float{width:50px; height:50px; bottom:18px; right:18px;}
+    .wa-float{width:54px; height:54px; bottom:max(18px, env(safe-area-inset-bottom)); right:max(18px, env(safe-area-inset-right));}
     .modal-box{padding:32px 24px;}
   }
   /* every gold word in a heading carries the metallic shimmer */
@@ -1092,7 +1096,6 @@
   </div>
   <div class="head">
     <h2 class="reveal">Kind words from <em>our clients</em></h2>
-    <p class="reveal">Their stories, one stacking over the last.</p>
   </div>
   <div class="tstack">
     <article class="tcard" style="--i:0; --rot:-3.2deg">
@@ -1370,15 +1373,11 @@
     if (coverAPI && faqPinEl){
       const fq = faqPinEl.getBoundingClientRect();
       if (fq.bottom > -100 && fq.top < innerHeight + 100){
-        let sp;
-        if (innerWidth > 860){ sp = progress(faqPinEl); }
-        else {
-          const range = fq.height + innerHeight * .55;
-          sp = clamp01((innerHeight * .82 - fq.top) / range);
-        }
-        // the last board is reached at 78% of the pin; the final 22% HOLDS on it so
+        // both desktop and phone now pin the FAQ, so a single scroll-progress drives it
+        let sp = progress(faqPinEl);
+        // the last board is reached at HOLD of the pin; the remainder HOLDS on it so
         // "how do we start" has real dwell time before the section releases
-        const HOLD = .78;
+        const HOLD = innerWidth > 860 ? .78 : .72;
         sp = clamp01(sp / HOLD);
         coverAPI.scrollIdx = sp * (coverAPI.n - 1);
         const ct = Math.max(0, Math.min(coverAPI.n - 1, coverAPI.scrollIdx + coverAPI.bias));
