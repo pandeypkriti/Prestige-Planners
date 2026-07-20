@@ -508,6 +508,16 @@
   .tcard.hero .t-who b{color:#FBF8F1;}
   .tcard.hero .t-who span{color:var(--gold-lt);}
   .tcard.hero .t-stars{color:var(--gold-lt);}
+  /* below true desktop (tablets, split-screen, browser zoom, large phones): drop the
+     left/right fan so cards stay centred and capped to the viewport, and keep the nav
+     compact so the Enquire pill never crowds the edge */
+  @media(max-width:1024px){
+    .tcard{--dx:0px !important; width:min(var(--w,620px), 90vw);}
+    .tstack{max-width:min(700px,94vw);}
+    .nav-links{display:none;}
+    nav .btn.has-arr{padding:8px 8px 8px 18px; font-size:12.5px; gap:9px;}
+    nav .btn .arr{width:30px; height:30px; border-radius:10px;}
+  }
   @media(max-width:860px){
     .tstack{max-width:100%;}
     .testi .head{top:84px; padding-bottom:14px;}
