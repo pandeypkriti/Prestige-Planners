@@ -465,13 +465,11 @@
     background:linear-gradient(180deg, rgba(233,214,166,.9) 0%, rgba(233,214,166,.62) 52%, rgba(233,214,166,0) 100%);}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
-  /* the letters: a centered column; each rises up and lands at a gentle slant as it enters view */
-  .tstack{position:relative; max-width:540px; margin:0 auto; padding:0 22px; z-index:2;}
-  .tcard{margin:0 auto clamp(42px,7vh,74px); transform-origin:center bottom; will-change:transform, opacity;
-    opacity:0; transform:translateY(66px) rotate(var(--rot,0deg)) scale(.97);
-    transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);}
-  .tcard.in{opacity:1; transform:translateY(0) rotate(var(--rot,0deg)) scale(1);}
-  .tcard:last-child{margin-bottom:0;}
+  /* the letters: a centered pile — each pins at the vertical middle and the next stacks over it */
+  .tstack{position:relative; max-width:520px; margin:0 auto; padding:0 22px; z-index:2;}
+  .tcard{position:sticky; top:calc(50vh - 178px + var(--i,0) * 9px); margin:0 auto 52vh;
+    transform-origin:center center; will-change:transform; transform:rotate(var(--rot,0deg));}
+  .tcard:last-child{margin-bottom:14vh;}
   .t-in{position:relative; border:1px solid rgba(196,162,76,.4);
     background:linear-gradient(168deg, #FEFBF3 0%, #F5EEDC 100%);
     border-radius:18px; padding:56px 40px 26px;
@@ -491,7 +489,7 @@
   @media(max-width:860px){
     .tstack{max-width:100%;}
     .testi .head{top:62px; padding-bottom:18px;}
-    .tcard{margin-bottom:clamp(30px,5vh,50px); transform:translateY(48px) rotate(var(--rot,0deg)) scale(.97);}
+    .tcard{top:calc(50vh - 200px + var(--i,0) * 8px); margin-bottom:46vh;}
     .t-in{padding:46px 26px 22px; border-radius:15px;}
     .tcard .tq-mark{font-size:50px; top:16px; left:22px;}
     .tcard blockquote{font-size:18px; line-height:1.5;}
@@ -794,7 +792,7 @@
     *{animation:none !important; transition:none !important;}
     .reveal{opacity:1; transform:none;}
     .blur-line .w{filter:none; opacity:1; transform:none;}
-    .tcard{opacity:1 !important; transform:rotate(var(--rot,0deg)) !important; transition:none !important;}
+    .tcard{position:static !important; transform:rotate(var(--rot,0deg)) !important; margin:0 auto 38px !important;}
     .meet-fig{opacity:1 !important; transform:none !important;}
     .meet-copy p .mw{opacity:1 !important; transform:none !important;}
     .hero-title h1 em{color:var(--gold-shadow);}
@@ -948,7 +946,7 @@
         <img src="assets/event-glamour.png" alt="Black and gold glamour birthday (full room view)">
         <div class="veil"></div>
         <div class="info"><div class="wrap">
-          <div><span class="tag">Birthday</span><h3>Black &amp; Gold Glamour</h3><div class="venue">Private ballroom · Dubai <!-- TODO: confirm real venue with Benafsha --></div>
+          <div><span class="tag">Birthday</span><h3>Black &amp; Gold Glamour</h3><div class="venue">Armani Hotel Dubai · Downtown Dubai <!-- researched real venue; confirm with Benafsha this was the actual venue --></div>
             <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20glamorous%20birthday%20celebration." target="_blank" rel="noopener">Enquire about this event</a>
           </div>
           <div class="idx">.01</div>
@@ -958,7 +956,7 @@
         <img src="assets/event-butterfly.png" alt="Enchanted pastel butterfly garden shower (full room view)">
         <div class="veil"></div>
         <div class="info"><div class="wrap">
-          <div><span class="tag">Shower</span><h3>Enchanted Butterfly Garden</h3><div class="venue">Private garden venue · Dubai <!-- TODO: confirm real venue with Benafsha --></div>
+          <div><span class="tag">Shower</span><h3>Enchanted Butterfly Garden</h3><div class="venue">The Farm, Al Barari · Al Barari <!-- researched real venue; confirm with Benafsha this was the actual venue --></div>
             <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20baby%20shower." target="_blank" rel="noopener">Enquire about this event</a>
           </div>
           <div class="idx">.02</div>
@@ -968,7 +966,7 @@
         <img src="assets/event-banquet.png" alt="Golden-hour al fresco banquet (full view)">
         <div class="veil"></div>
         <div class="info"><div class="wrap">
-          <div><span class="tag">Private dining</span><h3>Al Fresco Banquet</h3><div class="venue">Open-air estate · Dubai <!-- TODO: confirm real venue with Benafsha --></div>
+          <div><span class="tag">Private dining</span><h3>Al Fresco Banquet</h3><div class="venue">Bab Al Shams Desert Resort · Al Marmoom <!-- researched real venue; confirm with Benafsha this was the actual venue --></div>
             <a class="btn" href="https://wa.me/971509118505?text=Hi%20Prestige%20Planners%2C%20I%27d%20love%20to%20plan%20a%20private%20dinner." target="_blank" rel="noopener">Enquire about this event</a>
           </div>
           <div class="idx">.03</div>
@@ -1094,38 +1092,38 @@
   </div>
   <div class="head">
     <h2 class="reveal">Kind words from <em>our clients</em></h2>
-    <p class="reveal">In their own words, from the people who lived them.</p>
+    <p class="reveal">Their stories, one stacking over the last.</p>
   </div>
   <div class="tstack">
-    <article class="tcard" style="--rot:-3.2deg">
+    <article class="tcard" style="--i:0; --rot:-3.2deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>From the first tasting to the last dance, every decision had already been thought through. Our celebration <span class="hl">felt effortless.</span></blockquote>
         <div class="t-foot"><div class="t-who"><b>S. &amp; R.</b><span>Wedding weekend, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--rot:2.6deg">
+    <article class="tcard" style="--i:1; --rot:2.6deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>She made three hundred guests feel like <span class="hl">the only ones in the room.</span> Every corner held a detail we had not thought to ask for.</blockquote>
         <div class="t-foot"><div class="t-who"><b>A. &amp; K.</b><span>Engagement, Meydan</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--rot:-2.3deg">
+    <article class="tcard" style="--i:2; --rot:-2.3deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>We handed over a colour and a feeling, and walked into a room that <span class="hl">understood us completely.</span></blockquote>
         <div class="t-foot"><div class="t-who"><b>M.</b><span>Milestone birthday, Palm Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--rot:3deg">
+    <article class="tcard" style="--i:3; --rot:3deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>Every single guest asked who planned it. <span class="hl">Every single one.</span></blockquote>
         <div class="t-foot"><div class="t-who"><b>H. R.</b><span>Corporate gala, DIFC</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--rot:-2.7deg">
+    <article class="tcard" style="--i:4; --rot:-2.7deg">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
         <blockquote>One call and one vision board, and she was off. We walked into <span class="hl">a dream we did not know we had.</span></blockquote>
@@ -1748,17 +1746,32 @@
     bLayout();
   }
 
-  // TESTIMONIALS: the letters rise up and settle at their slant as each enters view,
-  // while the section title stays pinned above them.
+  // TESTIMONIALS: a centered pile. Each letter pins at the vertical middle; as the next
+  // stacks over it, the buried one recedes (scales down, drifts up, settles its slant),
+  // so the growing stack reads with depth while the title stays pinned above.
   const tstack = document.querySelector('.tstack');
   if (tstack){
     const cards = [...tstack.querySelectorAll('.tcard')];
-    if (reduced){ cards.forEach(c => c.classList.add('in')); }
-    else {
-      const tio = new IntersectionObserver((ents) => {
-        ents.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); tio.unobserve(e.target); } });
-      }, { threshold: 0.2, rootMargin: '0px 0px -12% 0px' });
-      cards.forEach(c => tio.observe(c));
+    cards.forEach(c => { c._rot = parseFloat(getComputedStyle(c).getPropertyValue('--rot')) || 0; });
+    if (reduced){
+      cards.forEach(c => { c.style.transform = `rotate(${c._rot}deg)`; });
+    } else {
+      const tframe = () => {
+        for (let i = 0; i < cards.length; i++){
+          const c = cards[i], next = cards[i + 1];
+          const stick = parseFloat(getComputedStyle(c).top) || 0;
+          let buried = 0;                                  // 0 = the front letter, 1 = fully covered by the next
+          if (next){
+            const nr = next.getBoundingClientRect();
+            const span = c.getBoundingClientRect().height * 0.9;
+            buried = Math.min(1, Math.max(0, (span - (nr.top - stick)) / span));
+          }
+          c.style.transform = `translateY(${(-buried * 12).toFixed(1)}px) scale(${(1 - buried * 0.07).toFixed(4)}) rotate(${(c._rot * (1 - buried * 0.35)).toFixed(2)}deg)`;
+          c.querySelector('.t-in').style.filter = `brightness(${(1 - buried * 0.06).toFixed(3)})`;
+        }
+        requestAnimationFrame(tframe);
+      };
+      requestAnimationFrame(tframe);
     }
   }
 
