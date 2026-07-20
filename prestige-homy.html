@@ -467,11 +467,15 @@
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
   /* the letters: a centered pile — each pins at the vertical middle and the next stacks over it */
-  /* padding-bottom (not a last-card margin, which would collapse out) holds the finished stack on screen */
-  .tstack{position:relative; max-width:520px; margin:0 auto; padding:0 22px 82vh; z-index:2;}
+  .tstack{position:relative; max-width:520px; margin:0 auto; padding:0 22px; z-index:2;}
+  /* a real spacer after the last card gives it content to stick over, so the finished
+     stack LINGERS on screen (padding-bottom can't do this — a sticky card only holds
+     while real content scrolls beneath it) */
+  .t-tail{height:34vh; pointer-events:none;}
   .tcard{position:sticky; top:calc(50vh - 178px + var(--i,0) * 9px); margin:0 auto 52vh;
     transform-origin:center center; will-change:transform; transform:rotate(var(--rot,0deg));}
-  .tcard:last-child{margin-bottom:0;}
+  /* the last card keeps the SAME margin as the rest (tstack's padding-bottom stops it collapsing),
+     so it unpins on the same schedule and stacks onto the pile instead of arriving orphaned */
   .t-in{position:relative; border:1px solid rgba(196,162,76,.4);
     background:linear-gradient(168deg, #FEFBF3 0%, #F5EEDC 100%);
     border-radius:18px; padding:56px 40px 26px;
@@ -492,7 +496,8 @@
     .tstack{max-width:100%;}
     .testi .head{top:84px; padding-bottom:14px;}
     .testi .head h2{font-size:26px; line-height:1.14;}
-    .tstack{max-width:100%; padding-bottom:66vh;}
+    .tstack{max-width:100%;}
+    .t-tail{height:44vh;}
     .tcard{top:calc(50vh - 200px + var(--i,0) * 8px); margin-bottom:46vh;}
     .t-in{padding:46px 26px 22px; border-radius:15px;}
     .tcard .tq-mark{font-size:50px; top:16px; left:22px;}
@@ -1133,6 +1138,7 @@
         <div class="t-foot"><div class="t-who"><b>L. &amp; T.</b><span>Golden anniversary, Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
+    <div class="t-tail" aria-hidden="true"></div>
   </div>
 </section>
 
