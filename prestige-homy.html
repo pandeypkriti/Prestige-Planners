@@ -450,10 +450,16 @@
       linear-gradient(165deg, #EBDAAC 0%, #E0C787 45%, #CFAE61 100%);}
   /* decorations clip here so the section itself can host a working sticky title */
   .testi-fx{position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none;}
-  .testi .bigq{position:absolute; top:-100px; right:-16px; font-family:'Fraunces',serif; font-size:420px; line-height:1;
-    color:rgba(196,162,76,.09); pointer-events:none; user-select:none;
+  /* oversized serif quotation glyphs bleed off both edges, low opacity, behind the cards */
+  .testi .bigq{position:absolute; top:-96px; right:-78px; font-family:'Fraunces',serif; font-weight:600; font-size:min(460px,56vw); line-height:1;
+    color:rgba(196,162,76,.055); pointer-events:none; user-select:none;
     animation:bigqFloat 22s ease-in-out infinite alternate;}
+  .testi .bigq.left{top:auto; right:auto; bottom:-40px; left:-72px;
+    animation:bigqFloat 27s ease-in-out infinite alternate-reverse;}
   @keyframes bigqFloat{from{transform:translateY(0) rotate(0deg)} to{transform:translateY(48px) rotate(-3deg)}}
+  /* a soft radial vignette so the gold reads as lit, not a flat fill */
+  .testi .tvig{position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(122% 80% at 50% 38%, transparent 42%, rgba(74,48,6,.2) 100%);}
   .testi .o3{left:-110px; top:20%; width:380px; height:380px; animation:orbB 21s ease-in-out infinite alternate;}
   .testi .o4{right:-140px; bottom:-120px; width:460px; height:460px; animation:orbA 27s ease-in-out infinite alternate;}
   /* the title pins and stays in view the whole section; a soft frost dissolves cards as they rise past it */
@@ -466,43 +472,67 @@
     background:linear-gradient(180deg, rgba(233,214,166,.9) 0%, rgba(233,214,166,.62) 52%, rgba(233,214,166,0) 100%);}
   .testi .head h2{font-size:clamp(30px,3.8vw,46px);} .testi .head h2 em{font-style:italic; color:var(--gold-ink);}
   .testi .head p{color:rgba(0,47,95,.72); font-size:15px; margin-top:8px;}
-  /* the letters: a centered pile — each pins at the vertical middle and the next stacks over it */
-  .tstack{position:relative; max-width:520px; margin:0 auto; padding:0 22px; z-index:2;}
+  /* the pile: cards pin at the vertical middle and stack, but each is a different width,
+     angle and side of centre so the stack reads as a hand-placed set, not a uniform feed */
+  .tstack{position:relative; max-width:760px; margin:0 auto; padding:0 22px; z-index:2;}
   /* a real spacer after the last card gives it content to stick over, so the finished
-     stack LINGERS on screen (padding-bottom can't do this — a sticky card only holds
-     while real content scrolls beneath it) */
-  .t-tail{height:34vh; pointer-events:none;}
-  .tcard{position:sticky; top:calc(50vh - 178px + var(--i,0) * 9px); margin:0 auto 52vh;
-    transform-origin:center center; will-change:transform; transform:rotate(var(--rot,0deg));}
-  /* the last card keeps the SAME margin as the rest (tstack's padding-bottom stops it collapsing),
-     so it unpins on the same schedule and stacks onto the pile instead of arriving orphaned */
+     stack LINGERS on screen (a sticky card only holds while real content scrolls beneath it) */
+  .t-tail{height:30vh; pointer-events:none;}
+  .tcard{position:sticky; top:calc(50vh - 190px + var(--i,0) * 12px);
+    width:var(--w,600px); max-width:100%; margin:0 auto 34vh; transform-origin:center center;
+    will-change:transform; transform:translateX(var(--dx,0px)) rotate(var(--rot,0deg));}
   .t-in{position:relative; border:1px solid rgba(196,162,76,.4);
     background:linear-gradient(168deg, #FEFBF3 0%, #F5EEDC 100%);
-    border-radius:18px; padding:56px 40px 26px;
+    border-radius:18px; padding:52px 40px 26px;
     box-shadow:0 3px 8px rgba(64,44,6,.1), 0 26px 56px -22px rgba(64,44,6,.42);}
   .tcard .tq-mark{position:absolute; top:22px; left:32px; font-family:'Fraunces',serif; font-style:italic;
-    font-size:62px; line-height:.8; color:var(--gold); opacity:.9; pointer-events:none;}
-  .tcard blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:22px;
+    font-size:60px; line-height:.8; color:var(--gold); opacity:.9; pointer-events:none;}
+  .tcard blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:21px;
     line-height:1.5; color:var(--navy); margin:0; text-wrap:pretty;}
   .tcard blockquote .hl{font-style:normal; font-weight:600; color:var(--navy);
     background:linear-gradient(transparent 62%, rgba(196,162,76,.42) 62%);}
   .tcard .t-foot{display:flex; align-items:center; justify-content:space-between;
-    border-top:1px solid rgba(196,162,76,.28); margin-top:26px; padding-top:16px;}
+    border-top:1px solid rgba(196,162,76,.28); margin-top:24px; padding-top:16px;}
   .tcard .t-who b{display:block; font-family:'Poppins',sans-serif; font-weight:600; font-size:11.5px;
     letter-spacing:.13em; text-transform:uppercase; color:var(--navy);}
   .tcard .t-who span{font-family:'Poppins',sans-serif; font-size:11px; letter-spacing:.05em; color:var(--gold-ink);}
   .tcard .t-stars{color:var(--gold); font-size:12px; letter-spacing:2px;}
+  /* THE HERO — one inverted navy card carries the strongest, real testimonial */
+  .tcard.hero .t-in{border-color:rgba(196,162,76,.55); border-radius:20px; padding:66px 52px 32px;
+    background:linear-gradient(158deg, #0B2748 0%, #002F5F 52%, #061E3B 100%);
+    box-shadow:0 8px 18px rgba(0,18,45,.34), 0 40px 80px -26px rgba(0,18,45,.72);}
+  .tcard.hero .tq-mark{color:var(--gold-lt); opacity:.85; font-size:74px; top:26px; left:40px;}
+  .tcard.hero blockquote{color:#F7F2E7; font-size:28px; line-height:1.42;}
+  .tcard.hero blockquote .hl{color:#FBF8F1; background:linear-gradient(transparent 60%, rgba(196,162,76,.5) 60%);}
+  .tcard.hero .t-foot{border-top-color:rgba(196,162,76,.4); margin-top:30px;}
+  .tcard.hero .t-who b{color:#FBF8F1;}
+  .tcard.hero .t-who span{color:var(--gold-lt);}
+  .tcard.hero .t-stars{color:var(--gold-lt);}
+  /* THE CLOSER — a dense row of one-line quotes so the section ends with weight */
+  .tcloser{position:relative; z-index:2; max-width:1040px; margin:9vh auto 0; padding:0 30px;
+    display:flex; align-items:stretch; justify-content:center; gap:0;}
+  .tcloser blockquote{flex:1 1 0; min-width:0; margin:0; text-align:center; padding:2px 24px;
+    font-family:'Fraunces',serif; font-style:italic; font-size:18px; line-height:1.38; color:var(--navy); text-wrap:balance;}
+  .tcloser cite{display:block; font-family:'Poppins',sans-serif; font-style:normal; font-size:10px;
+    letter-spacing:.15em; text-transform:uppercase; color:var(--gold-ink); margin-top:12px;}
+  .tc-sep{width:1px; align-self:center; height:64px; flex:none;
+    background:linear-gradient(180deg,transparent,rgba(196,162,76,.55),transparent);}
   @media(max-width:860px){
     .tstack{max-width:100%;}
     .testi .head{top:84px; padding-bottom:14px;}
     .testi .head h2{font-size:26px; line-height:1.14;}
-    .tstack{max-width:100%;}
-    .t-tail{height:44vh;}
-    .tcard{top:calc(50vh - 200px + var(--i,0) * 8px); margin-bottom:46vh;}
-    .t-in{padding:46px 26px 22px; border-radius:15px;}
-    .tcard .tq-mark{font-size:50px; top:16px; left:22px;}
+    .t-tail{height:40vh;}
+    .tcard{top:calc(50vh - 200px + var(--i,0) * 9px); width:100%; --dx:0px !important; margin-bottom:30vh;}
+    .t-in{padding:44px 26px 22px; border-radius:15px;}
+    .tcard .tq-mark{font-size:48px; top:16px; left:22px;}
     .tcard blockquote{font-size:18px; line-height:1.5;}
     .tcard .t-foot{margin-top:20px; padding-top:13px;}
+    .tcard.hero .t-in{padding:44px 26px 22px;}
+    .tcard.hero .tq-mark{font-size:52px; top:15px; left:22px;}
+    .tcard.hero blockquote{font-size:19.5px; line-height:1.44;}
+    .tcloser{flex-direction:column; align-items:center; gap:24px; margin-top:8vh;}
+    .tcloser blockquote{font-size:19px; padding:0 10px;}
+    .tc-sep{width:70px; height:1px; background:linear-gradient(90deg,transparent,rgba(196,162,76,.55),transparent);}
   }
 
   /* ---------- 9. FAQ — coverflow of question boards ---------- */
@@ -1092,6 +1122,8 @@
     <div class="glow-orb o3"></div>
     <div class="glow-orb o4"></div>
     <div class="bigq">&rdquo;</div>
+    <div class="bigq left">&ldquo;</div>
+    <div class="tvig"></div>
     <div class="sparkles">
       <i style="--x:6%;--y:16%;--d:.3s"></i><i style="--x:15%;--y:70%;--d:1.8s"></i><i style="--x:26%;--y:30%;--d:3s"></i>
       <i style="--x:37%;--y:82%;--d:.9s"></i><i style="--x:49%;--y:14%;--d:2.4s"></i><i style="--x:57%;--y:60%;--d:4s"></i>
@@ -1103,42 +1135,35 @@
     <h2 class="reveal">Kind words from <em>our clients</em></h2>
   </div>
   <div class="tstack">
-    <article class="tcard" style="--i:0; --rot:-3.2deg">
+    <article class="tcard" style="--i:0; --rot:-1.8deg; --w:620px; --dx:-46px">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>From the first tasting to the last dance, every decision had already been thought through. Our celebration <span class="hl">felt effortless.</span></blockquote>
-        <div class="t-foot"><div class="t-who"><b>S. &amp; R.</b><span>Wedding weekend, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
-      </div>
-    </article>
-    <article class="tcard" style="--i:1; --rot:2.6deg">
-      <div class="t-in">
-        <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>She made three hundred guests feel like <span class="hl">the only ones in the room.</span> Every corner held a detail we had not thought to ask for.</blockquote>
+        <blockquote>She made three hundred guests feel like the only ones in the room. Every corner held a detail we had not thought to ask for.</blockquote>
         <div class="t-foot"><div class="t-who"><b>A. &amp; K.</b><span>Engagement, Meydan</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--i:2; --rot:-2.3deg">
+    <article class="tcard" style="--i:1; --rot:2deg; --w:540px; --dx:54px">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>We handed over a colour and a feeling, and walked into a room that <span class="hl">understood us completely.</span></blockquote>
-        <div class="t-foot"><div class="t-who"><b>M.</b><span>Milestone birthday, Palm Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+        <blockquote>From the first tasting to the last dance, every decision had already been thought through. Our celebration felt effortless.</blockquote>
+        <div class="t-foot"><div class="t-who"><b>S. &amp; R.</b><span>Wedding weekend, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
-    <article class="tcard" style="--i:3; --rot:3deg">
+    <article class="tcard hero" style="--i:2; --rot:0.6deg; --w:680px; --dx:0px">
       <div class="t-in">
         <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>Every single guest asked who planned it. <span class="hl">Every single one.</span></blockquote>
-        <div class="t-foot"><div class="t-who"><b>H. R.</b><span>Corporate gala, DIFC</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
-      </div>
-    </article>
-    <article class="tcard" style="--i:4; --rot:-2.7deg">
-      <div class="t-in">
-        <span class="tq-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>One call and one vision board, and she was off. We walked into <span class="hl">a dream we did not know we had.</span></blockquote>
-        <div class="t-foot"><div class="t-who"><b>L. &amp; T.</b><span>Golden anniversary, Jumeirah</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
+        <blockquote>They planned my husband's 45th and did not disappoint in the slightest. Every idea and extra touch made it unforgettable, the execution flawless. I have <span class="hl">zero hesitation recommending them.</span></blockquote>
+        <div class="t-foot"><div class="t-who"><b>Zainab Kufaishi</b><span>45th birthday, Dubai</span></div><div class="t-stars" aria-label="Five stars">★★★★★</div></div>
       </div>
     </article>
     <div class="t-tail" aria-hidden="true"></div>
+  </div>
+  <div class="tcloser">
+    <blockquote>Understood us completely.<cite>M. · Palm Jumeirah</cite></blockquote>
+    <span class="tc-sep" aria-hidden="true"></span>
+    <blockquote>Every single guest asked who planned it.<cite>H. R. · Corporate gala, DIFC</cite></blockquote>
+    <span class="tc-sep" aria-hidden="true"></span>
+    <blockquote>A dream we did not know we had.<cite>L. &amp; T. · Golden anniversary</cite></blockquote>
   </div>
 </section>
 
@@ -1757,9 +1782,12 @@
   const tstack = document.querySelector('.tstack');
   if (tstack){
     const cards = [...tstack.querySelectorAll('.tcard')];
-    cards.forEach(c => { c._rot = parseFloat(getComputedStyle(c).getPropertyValue('--rot')) || 0; });
+    cards.forEach(c => {
+      c._rot = parseFloat(getComputedStyle(c).getPropertyValue('--rot')) || 0;
+      c._dx  = parseFloat(getComputedStyle(c).getPropertyValue('--dx')) || 0;
+    });
     if (reduced){
-      cards.forEach(c => { c.style.transform = `rotate(${c._rot}deg)`; });
+      cards.forEach(c => { c.style.transform = `translateX(${c._dx}px) rotate(${c._rot}deg)`; });
     } else {
       const tframe = () => {
         for (let i = 0; i < cards.length; i++){
@@ -1771,7 +1799,7 @@
             const span = c.getBoundingClientRect().height * 0.9;
             buried = Math.min(1, Math.max(0, (span - (nr.top - stick)) / span));
           }
-          c.style.transform = `translateY(${(-buried * 12).toFixed(1)}px) scale(${(1 - buried * 0.07).toFixed(4)}) rotate(${(c._rot * (1 - buried * 0.35)).toFixed(2)}deg)`;
+          c.style.transform = `translate(${c._dx.toFixed(0)}px, ${(-buried * 12).toFixed(1)}px) scale(${(1 - buried * 0.07).toFixed(4)}) rotate(${(c._rot * (1 - buried * 0.35)).toFixed(2)}deg)`;
           c.querySelector('.t-in').style.filter = `brightness(${(1 - buried * 0.06).toFixed(3)})`;
         }
         requestAnimationFrame(tframe);
