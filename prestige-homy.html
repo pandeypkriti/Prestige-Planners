@@ -219,14 +219,13 @@
   .deck-rail .para{color:#4c5b68; font-size:15.5px; max-width:46ch;}
   .stat-rail{margin-top:22px;}
   .stat-row{display:flex; align-items:baseline; gap:20px; padding:22px 0 22px 18px; border-top:1px solid rgba(196,162,76,.35); position:relative;
-    cursor:pointer; transition:background .5s ease, filter .9s ease, opacity .9s ease;}
+    cursor:pointer; transition:background .65s ease, border-color .65s ease, filter .9s ease, opacity .9s ease;}
   .stat-row:hover{background:linear-gradient(90deg, rgba(196,162,76,.09), rgba(196,162,76,0) 75%);}
   /* the story spotlight: one stat in focus, the rest rest quietly (no blur, no disorientation) */
   .stat-row{border-left:2px solid transparent;}
   .stat-row b, .stat-row > span{transition:opacity .25s ease;}
-  .stat-row.lit{background:linear-gradient(90deg, rgba(196,162,76,.12), rgba(196,162,76,0) 75%);
-    border-left:2px solid var(--gold); animation:litPop .45s cubic-bezier(.34,1.56,.64,1);}
-  @keyframes litPop{0%{transform:translateY(7px)} 100%{transform:none}}
+  .stat-row.lit{background:linear-gradient(90deg, rgba(196,162,76,.14), rgba(196,162,76,0) 75%);
+    border-left:2px solid var(--gold);}   /* smooth fade, no spring bounce (jarring on autoplay) */
   .stat-row:last-child{border-bottom:1px solid rgba(196,162,76,.35);}
   .stat-row b{font-family:'Fraunces',serif; font-weight:600; font-size:42px; color:var(--navy); min-width:108px; line-height:1;}
   /* odometer: each digit is a rolling strip, like a mechanical counter */
@@ -254,7 +253,9 @@
   /* two stacked layers cross-fade; the frame locks the aspect so the card never reflows */
   .ph-frame{position:relative; aspect-ratio:5/4; border-radius:12px; overflow:hidden;}
   .ph{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;
-    transition:opacity .45s cubic-bezier(0,0,.2,1); will-change:opacity;}
+    transition:opacity .7s cubic-bezier(.4,0,.2,1); will-change:opacity;}
+  /* the card copy cross-fades in step with the photo instead of snapping */
+  #evCat, #evTitle, #evMeta, #evQuote{transition:opacity .55s ease;}
   .deck .card .cat{position:absolute; top:20px; right:20px; z-index:5;
     background:rgba(255,255,255,.92); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
     border-radius:100px; padding:4px 11px;
@@ -1559,12 +1560,14 @@
       const ev = EVENTS[key], my = ++seq;
       const back = phEls[1 - frontIdx], front = phEls[frontIdx];
       back.src = ev.img;
+      [evCat, evTitle, evMeta, evQuote].forEach(el => el.style.opacity = '0');  // fade the copy out with the photo
       const commit = () => {
         if (my !== seq) return;                            // superseded by newer input
         back.style.opacity = 1; front.style.opacity = 0;   // retargets in-flight fades, nothing stacks
         frontIdx = 1 - frontIdx;
         evCat.textContent = ev.cat; evTitle.textContent = ev.title;
         evMeta.textContent = ev.meta; evQuote.textContent = ev.quote;
+        [evCat, evTitle, evMeta, evQuote].forEach(el => el.style.opacity = '1');  // fade new copy back in
         const set = SETS[setIdx];                          // preload the next photo: no blank frames
         const pre = new Image(); pre.src = EVENTS[set[(evIdx + 1) % set.length]].img;
       };
@@ -1598,7 +1601,7 @@
     // pause the instant someone hovers a row or the card so they can read at their own pace
     let statAuto = null, statPaused = false;
     const cycleStats = () => { clearInterval(statAuto); if (reduced) return;
-      statAuto = setInterval(() => { if (!statPaused) setStat((setIdx + 1) % statRows.length); }, 1500); };
+      statAuto = setInterval(() => { if (!statPaused) setStat((setIdx + 1) % statRows.length); }, 2000); };
     statRows.forEach(row => {
       row.addEventListener('pointerenter', () => { statPaused = true; });
       row.addEventListener('pointerleave', () => { statPaused = false; });
